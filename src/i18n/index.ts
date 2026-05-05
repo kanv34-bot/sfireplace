@@ -1,38 +1,45 @@
-import { en } from './en';
-import { zh } from './zh';
-import type { Locale, TranslationKeys } from './config';
+import type { Locale } from './config';
 
-const translations: Record<Locale, TranslationKeys> = { en, zh };
+import en from './translations/en.json';
+import zh from './translations/zh.json';
+import fr from './translations/fr.json';
+import es from './translations/es.json';
+import de from './translations/de.json';
+import it from './translations/it.json';
+import ru from './translations/ru.json';
+import ar from './translations/ar.json';
 
-// Store current locale
-let currentLocale: Locale = 'en';
+const allTranslations: Record<string, any> = { en, zh, fr, es, de, it, ru, ar };
 
-export function setLocale(locale: Locale) {
-  currentLocale = locale;
+export function getTranslations(locale: string = 'en'): any {
+  return allTranslations[locale] || allTranslations.en;
 }
 
-export function getLocale(): Locale {
-  return currentLocale;
-}
-
-export function useTranslations(locale?: Locale): TranslationKeys {
-  const lang = locale || currentLocale;
-  return translations[lang] || translations.en;
-}
-
-export function t(path: string, locale?: Locale): string {
-  const lang = locale || currentLocale;
+export function getContent(locale: string, path: string): string {
+  const t = getTranslations(locale);
   const keys = path.split('.');
-  let result: any = translations[lang] || translations.en;
-  
+  let result = t;
   for (const key of keys) {
-    if (result === undefined) return path;
-    result = result[key];
+    result = result?.[key];
   }
-  
-  return result === undefined ? path : result;
+  return result || path;
 }
 
-export function getTranslations(locale: Locale): TranslationKeys {
-  return translations[locale] || translations.en;
+export const locales = ['en', 'zh', 'fr', 'es', 'de', 'it', 'ru', 'ar'] as const;
+
+// Non-English locales used for [locale] dynamic routing
+export const nonEnglishLocales: string[] = ['zh', 'fr', 'es', 'de', 'it', 'ru', 'ar'];
+
+export const localeLabels: Record<string, string> = {
+  en: '🇬🇧 English', zh: '🇨🇳 中文', fr: '🇫🇷 Français',
+  es: '🇪🇸 Español', de: '🇩🇪 Deutsch', it: '🇮🇹 Italiano',
+  ru: '🇷🇺 Русский', ar: '🇸🇦 العربية',
+};
+
+export const localeShortLabels: Record<string, string> = {
+  en: 'EN', zh: '中文', fr: 'FR', es: 'ES', de: 'DE', it: 'IT', ru: 'RU', ar: 'العربية',
+};
+
+export function isRtl(locale: string): boolean {
+  return locale === 'ar';
 }

@@ -1,0 +1,88 @@
+{
+  "siteTitle": "Fireplace Master",
+  "siteDescription": "Proveedor premium de chimeneas de leña, gas, alcohol y eléctricas.",
+  "nav": {
+    "home": "Inicio", "products": "Productos", "projects": "Proyectos",
+    "about": "Nosotros", "blog": "Blog", "contact": "Contacto", "getQuote": "Presupuesto",
+    "switchLang": "English"
+  },
+  "hero": {
+    "badge": "Proveedor Premium de Chimeneas",
+    "title": "Eleve Su Espacio con Chimeneas Premium",
+    "subtitle": "Descubra una colección seleccionada de chimeneas de leña, gas, alcohol y eléctricas de las mejores marcas del mundo.",
+    "cta": "Explorar Productos",
+    "secondary": "Ver Proyectos",
+    "statYears": "Años de Experiencia",
+    "statProjects": "Proyectos Realizados",
+    "statBrands": "Marcas Premium",
+    "statSat": "Satisfacción del Cliente"
+  },
+  "home": {
+    "featuredTitle": "Nuestra Colección Premium",
+    "featuredSubtitle": "Desde estufas de leña clásicas hasta chimeneas de bioetanol modernas, encuentre el centro perfecto.",
+    "viewAll": "Ver Todos los Productos",
+    "categoriesTitle": "Encuentre Su Chimenea Perfecta",
+    "brandsTitle": "Socios Mundiales",
+    "whyTitle": "Creando Calor Desde 2008",
+    "ctaTitle": "¿Listo para Transformar Su Espacio?",
+    "ctaButton": "Obtenga Su Presupuesto Gratis"
+  },
+  "products": {
+    "title": "Nuestros Productos",
+    "subtitle": "Descubra nuestra colección seleccionada de chimeneas premium.",
+    "showing": "Mostrando",
+    "count": "productos",
+    "clearFilters": "Limpiar filtros",
+    "noResults": "No se encontraron productos",
+    "requestQuote": "Solicitar Presupuesto",
+    "specs": "Especificaciones",
+    "brand": "Marca", "type": "Tipo", "installation": "Instalación", "view": "Vista",
+    "learnMore": "Más Información",
+    "featured": "Destacado"
+  },
+  "about": {
+    "title": "Sobre Nosotros",
+    "subtitle": "Durante casi dos décadas, hemos llevado chimeneas premium a hogares de todo el mundo.",
+    "storyTitle": "Fundado en 2008",
+    "journeyTitle": "Nuestra Trayectoria",
+    "valuesTitle": "Nuestros Valores"
+  },
+  "contact": {
+    "title": "Contáctenos",
+    "subtitle": "Póngase en contacto para una consulta gratuita y presupuesto.",
+    "formTitle": "Envíenos un Mensaje",
+    "name": "Nombre Completo", "email": "Email", "phone": "Teléfono",
+    "interest": "Estoy interesado en",
+    "message": "Mensaje", "send": "Enviar Mensaje"
+  },
+  "filter": {
+    "title": "Filtrar Productos",
+    "all": "Todos",
+    "brand": "Marca", "type": "Tipo", "installation": "Instalación"
+  },
+  "footer": {
+    "description": "Proveedor premium de chimeneas dedicado a llevar calidez y elegancia a su hogar.",
+    "products": "Productos", "company": "Empresa", "support": "Soporte",
+    "rights": "Todos los derechos reservados."
+  },
+  "categories": {
+    "wood-burning": "Leña", "gas": "Gas", "alcohol": "Bioetanol",
+    "electric": "Eléctrica", "outdoor": "Fogatas Exteriores", "custom": "Personalizada"
+  },
+  "whyUs": [
+    {"icon":"🏆","title":"Calidad Premium","desc":"Certificado ISO9001, productos probados rigurosamente."},
+    {"icon":"🎨","title":"Diseño Experto","desc":"Soluciones personalizadas para su espacio."},
+    {"icon":"🌍","title":"Abastecimiento Global","desc":"Las mejores marcas de Europa y más allá."},
+    {"icon":"🔧","title":"Instalación Profesional","desc":"Técnicos certificados para instalación segura."},
+    {"icon":"💪","title":"20 Años de Experiencia","desc":"Casi dos décadas de experiencia."},
+    {"icon":"🛡️","title":"Soporte Integral","desc":"Desde la selección hasta el servicio postventa."}
+  ],
+  "brands": ["RAIS","HAAS+SOHN","RUEGG","LACUNZA","ELEMENT4","DECOFLAME"],
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Consejos, guías e inspiración sobre chimeneas.",
+    "readMore": "Leer Más",
+    "back": "Volver al Blog",
+    "categories": {"Guide":"Guía","Comparison":"Comparación","Trends":"Tendencias","Inspiration":"Inspiración"}
+  }
+}

@@ -1,0 +1,35 @@
+---
+import { getTranslations, nonEnglishLocales, isRtl } from '../../../i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+
+export async function getStaticPaths() {
+  return nonEnglishLocales.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+const t = getTranslations(locale);
+const rtl = isRtl(locale);
+
+const projects = [
+  { title: { en:'Luxury Villa Installation', zh:'豪华别墅壁炉安装', fr:'Installation Villa de Luxe', es:'Instalación Villa de Lujo', de:'Luxusvilla Installation', it:'Installazione Villa di Lusso', ru:'Установка в роскошной вилле', ar:'تركيب فيلا فاخرة' }, slug: 'luxury-villa', category: { en:'Residential', zh:'住宅' }, description: { en:'Custom gas fireplace installation in a luxury villa.', zh:'豪华别墅燃气壁炉定制安装。' } },
+  { title: { en:'Hotel Lobby Feature', zh:'酒店大堂装饰', fr:'Hall d\'Hôtel', es:'Vestíbulo de Hotel', de:'Hotel Lobby', it:'Atrio d\'Albergo', ru:'Холл отеля', ar:'بهو فندق' }, slug: 'hotel-lobby', category: { en:'Commercial', zh:'商业' }, description: { en:'Statement suspended fireplace for a 5-star hotel.', zh:'五星级酒店悬吊式壁炉。' } },
+  { title: { en:'Garden Landscape', zh:'花园景观项目', fr:'Jardin Paysager', es:'Jardín Paisajístico', de:'Gartenlandschaft', it:'Giardino Paesaggistico', ru:'Садовый ландшафт', ar:'حديقة طبيعية' }, slug: 'garden-landscape', category: { en:'Landscape', zh:'景观' }, description: { en:'Outdoor fireplace and fire pit for a private garden.', zh:'私人花园户外壁炉和火盆。' } },
+];
+
+const getVal = (obj: any) => obj[locale] || obj.en;
+const localizedProjects = projects.map(p => ({ ...p, title: getVal(p.title), category: getVal(p.category), description: getVal(p.description) }));
+---
+
+<BaseLayout title={t.blog.title} description={t.blog.subtitle} lang={locale} dir={rtl ? 'rtl' : 'ltr'}>
+  <section class="py-16 bg-charcoal-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-white mb-4">Projects</h1>
+    </div>
+  </section>
+  <section class="py-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {localizedProjects.map(p => <ProjectCard {...p} />)}
+    </div>
+  </div></section>
+</BaseLayout>

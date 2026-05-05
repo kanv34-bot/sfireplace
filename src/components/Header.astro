@@ -1,95 +1,82 @@
 ---
-const currentLocale = Astro.currentLocale || 'en';
+import { localeLabels, localeShortLabels, isRtl } from '../i18n';
 
-// Navigation data with translation keys
+const { locale = 'en' } = Astro.props;
+const loc = locale as string;
+
 const navItems = [
-  { label: { en: 'Home', zh: '首页' }, href: { en: '/', zh: '/zh/' } },
-  { label: { en: 'Products', zh: '产品中心' }, href: { en: '/products', zh: '/zh/products' } },
-  { label: { en: 'Projects', zh: '经典案例' }, href: { en: '/projects', zh: '/zh/projects' } },
-  { label: { en: 'About', zh: '关于我们' }, href: { en: '/about', zh: '/zh/about' } },
-  { label: { en: 'Blog', zh: '新闻资讯' }, href: { en: '/blog', zh: '/zh/blog' } },
-  { label: { en: 'Contact', zh: '联系我们' }, href: { en: '/contact', zh: '/zh/contact' } },
+  { key: 'home', label: { en:'Home', zh:'首页', fr:'Accueil', es:'Inicio', de:'Start', it:'Home', ru:'Главная', ar:'الرئيسية' } },
+  { key: 'products', label: { en:'Products', zh:'产品中心', fr:'Produits', es:'Productos', de:'Produkte', it:'Prodotti', ru:'Продукты', ar:'المنتجات' } },
+  { key: 'projects', label: { en:'Projects', zh:'经典案例', fr:'Projets', es:'Proyectos', de:'Projekte', it:'Progetti', ru:'Проекты', ar:'المشاريع' } },
+  { key: 'about', label: { en:'About', zh:'关于我们', fr:'À propos', es:'Nosotros', de:'Über uns', it:'Chi siamo', ru:'О нас', ar:'من نحن' } },
+  { key: 'blog', label: { en:'Blog', zh:'新闻资讯', fr:'Blog', es:'Blog', de:'Blog', it:'Blog', ru:'Блог', ar:'المدونة' } },
+  { key: 'contact', label: { en:'Contact', zh:'联系我们', fr:'Contact', es:'Contacto', de:'Kontakt', it:'Contatti', ru:'Контакты', ar:'اتصل بنا' } },
 ];
 
-const otherLocale = currentLocale === 'en' ? 'zh' : 'en';
-const localeLabel = { en: '中文', zh: 'English' };
-const localeIcon = { en: '🇨🇳', zh: '🇺🇸' };
-const localeHref = currentLocale === 'en' ? '/zh' : '/';
-const ctaLabel = { en: 'Get a Quote', zh: '获取报价' };
+const ctaLabel = { en:'Get a Quote', zh:'获取报价', fr:'Devis', es:'Presupuesto', de:'Angebot', it:'Preventivo', ru:'Заказать', ar:'طلب عرض سعر' };
+
+const allLocales = ['en', 'zh', 'fr', 'es', 'de', 'it', 'ru', 'ar'];
+const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
+const getLocalePath = (l: string) => l === 'en' ? currentPath || '/' : `/${l}${currentPath}`;
 ---
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-charcoal-100 shadow-sm">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 lg:h-20">
-      <!-- Logo -->
-      <a href={currentLocale === 'en' ? '/' : '/zh/'} class="flex items-center gap-2 group">
+      <a href={loc === 'en' ? '/' : `/${loc}/`} class="flex items-center gap-2 group">
         <span class="text-2xl">🔥</span>
-        <span class="text-xl font-bold text-charcoal-800 group-hover:text-fire-600 transition-colors">
-          Fireplace Master
-        </span>
+        <span class="text-xl font-bold text-charcoal-800 group-hover:text-fire-600 transition-colors">Fireplace Master</span>
       </a>
 
-      <!-- Desktop Nav -->
-      <div class="hidden lg:flex items-center gap-8">
+      <div class="hidden lg:flex items-center gap-6">
         {navItems.map((item) => (
-          <a
-            href={item.href[currentLocale as 'en' | 'zh']}
-            class="text-sm font-medium text-charcoal-600 hover:text-fire-600 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-fire-500 after:transition-all hover:after:w-full"
-          >
-            {item.label[currentLocale as 'en' | 'zh']}
+          <a href={loc === 'en' ? `/${item.key}` : `/${loc}/${item.key}`} class="text-sm font-medium text-charcoal-600 hover:text-fire-600 transition-colors">
+            {item.label[loc] || item.label.en}
           </a>
         ))}
-        
-        <!-- Language Switcher -->
-        <a
-          href={localeHref}
-          class="flex items-center gap-1.5 text-sm font-medium text-charcoal-500 hover:text-fire-600 transition-colors px-3 py-1.5 rounded-lg border border-charcoal-200 hover:border-fire-400"
-        >
-          <span>{localeIcon[currentLocale as 'en' | 'zh']}</span>
-          <span>{localeLabel[currentLocale as 'en' | 'zh']}</span>
-        </a>
 
-        <a
-          href={currentLocale === 'en' ? '/contact' : '/zh/contact'}
-          class="bg-fire-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-fire-700 transition-colors shadow-sm"
-        >
-          {ctaLabel[currentLocale as 'en' | 'zh']}
+        <!-- Language Switcher Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-1.5 text-xs font-medium text-charcoal-500 hover:text-fire-600 transition-colors px-2.5 py-1.5 rounded-lg border border-charcoal-200 hover:border-fire-400 cursor-pointer">
+            <span>{localeShortLabels[loc] || 'EN'}</span>
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="absolute right-0 top-full mt-1 bg-white rounded-xl shadow-lg border border-charcoal-100 py-1.5 min-w-[160px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            {allLocales.map((l) => (
+              <a href={getLocalePath(l)} class={`block px-4 py-2 text-sm hover:bg-stone-50 transition-colors ${l === loc ? 'text-fire-600 font-semibold' : 'text-charcoal-600'}`}>
+                {localeLabels[l]}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <a href={loc === 'en' ? '/contact' : `/${loc}/contact`} class="bg-fire-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-fire-700 transition-colors shadow-sm">
+          {ctaLabel[loc] || ctaLabel.en}
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
       <button id="menu-toggle" class="lg:hidden p-2 rounded-lg hover:bg-charcoal-100 transition-colors" aria-label="Toggle menu">
         <svg class="w-6 h-6 text-charcoal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          <path id="menu-icon-close" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
 
-    <!-- Mobile Nav -->
     <div id="mobile-menu" class="lg:hidden hidden pb-4 border-t border-charcoal-100 pt-4">
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-col gap-2">
         {navItems.map((item) => (
-          <a
-            href={item.href[currentLocale as 'en' | 'zh']}
-            class="text-sm font-medium text-charcoal-600 hover:text-fire-600 transition-colors px-2 py-1.5 rounded hover:bg-stone-50"
-          >
-            {item.label[currentLocale as 'en' | 'zh']}
+          <a href={loc === 'en' ? `/${item.key}` : `/${loc}/${item.key}`} class="text-sm font-medium text-charcoal-600 hover:text-fire-600 px-2 py-1.5 rounded hover:bg-stone-50">
+            {item.label[loc] || item.label.en}
           </a>
         ))}
-        <a
-          href={localeHref}
-          class="text-sm font-medium text-charcoal-500 hover:text-fire-600 transition-colors px-2 py-1.5 rounded hover:bg-stone-50 flex items-center gap-1"
-        >
-          <span>{localeIcon[currentLocale as 'en' | 'zh']}</span>
-          <span>{localeLabel[currentLocale as 'en' | 'zh']}</span>
-        </a>
-        <a
-          href={currentLocale === 'en' ? '/contact' : '/zh/contact'}
-          class="bg-fire-600 text-white px-4 py-2.5 rounded-lg text-sm font-semibold text-center hover:bg-fire-700 transition-colors mt-2"
-        >
-          {ctaLabel[currentLocale as 'en' | 'zh']}
-        </a>
+        <div class="border-t border-charcoal-100 pt-2 mt-2">
+          <div class="text-xs font-medium text-charcoal-400 px-2 mb-1">Language</div>
+          {allLocales.map((l) => (
+            <a href={getLocalePath(l)} class={`block px-2 py-1.5 text-sm ${l === loc ? 'text-fire-600 font-semibold' : 'text-charcoal-600'} hover:bg-stone-50 rounded`}>
+              {localeLabels[l]}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </nav>
@@ -98,12 +85,5 @@ const ctaLabel = { en: 'Get a Quote', zh: '获取报价' };
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  const openIcon = document.getElementById('menu-icon-open');
-  const closeIcon = document.getElementById('menu-icon-close');
-
-  toggle?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
-    openIcon?.classList.toggle('hidden');
-    closeIcon?.classList.toggle('hidden');
-  });
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
 </script>

@@ -1,0 +1,88 @@
+{
+  "siteTitle": "Fireplace Master",
+  "siteDescription": "Fournisseur premium de cheminées : bois, gaz, alcool et électriques.",
+  "nav": {
+    "home": "Accueil", "products": "Produits", "projects": "Projets",
+    "about": "À propos", "blog": "Blog", "contact": "Contact", "getQuote": "Devis",
+    "switchLang": "English"
+  },
+  "hero": {
+    "badge": "Fournisseur Premium de Cheminées",
+    "title": "Élevez Votre Espace avec des Cheminées Premium",
+    "subtitle": "Découvrez une collection curated de cheminées à bois, gaz, alcool et électriques des meilleures marques mondiales.",
+    "cta": "Explorer les Produits",
+    "secondary": "Voir les Projets",
+    "statYears": "Ans d'Expérience",
+    "statProjects": "Projets Réalisés",
+    "statBrands": "Marques Premium",
+    "statSat": "Satisfaction Client"
+  },
+  "home": {
+    "featuredTitle": "Notre Collection Premium",
+    "featuredSubtitle": "Des poêles à bois classiques aux cheminées bioéthanol modernes, trouvez la pièce maîtresse parfaite.",
+    "viewAll": "Voir Tous les Produits",
+    "categoriesTitle": "Trouvez Votre Cheminée Parfaite",
+    "brandsTitle": "Partenaires Mondiaux",
+    "whyTitle": "Créateur de Chaleur Depuis 2008",
+    "ctaTitle": "Prêt à Transformer Votre Espace ?",
+    "ctaButton": "Obtenez Votre Devis Gratuit"
+  },
+  "products": {
+    "title": "Nos Produits",
+    "subtitle": "Découvrez notre collection curated de cheminées premium.",
+    "showing": "Affichage de",
+    "count": "produits",
+    "clearFilters": "Effacer les filtres",
+    "noResults": "Aucun produit trouvé",
+    "requestQuote": "Demander un Devis",
+    "specs": "Spécifications",
+    "brand": "Marque", "type": "Type", "installation": "Installation", "view": "Vue",
+    "learnMore": "En Savoir Plus",
+    "featured": "En Vedette"
+  },
+  "about": {
+    "title": "À Propos",
+    "subtitle": "Depuis près de vingt ans, nous apportons des cheminées premium aux foyers du monde entier.",
+    "storyTitle": "Fondé en 2008",
+    "journeyTitle": "Notre Parcours",
+    "valuesTitle": "Nos Valeurs"
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "subtitle": "Contactez-nous pour une consultation gratuite et un devis.",
+    "formTitle": "Envoyez-Nous un Message",
+    "name": "Nom Complet", "email": "Email", "phone": "Téléphone",
+    "interest": "Je suis intéressé par",
+    "message": "Message", "send": "Envoyer"
+  },
+  "filter": {
+    "title": "Filtrer les Produits",
+    "all": "Tout",
+    "brand": "Marque", "type": "Type", "installation": "Installation"
+  },
+  "footer": {
+    "description": "Fournisseur premium de cheminées dédié à apporter chaleur et élégance à votre maison.",
+    "products": "Produits", "company": "Entreprise", "support": "Support",
+    "rights": "Tous droits réservés."
+  },
+  "categories": {
+    "wood-burning": "Bois", "gas": "Gaz", "alcohol": "Bioéthanol",
+    "electric": "Électrique", "outdoor": "Foyers Extérieurs", "custom": "Sur Mesure"
+  },
+  "whyUs": [
+    {"icon":"🏆","title":"Qualité Premium","desc":"Certifié ISO9001, produits rigoureusement testés."},
+    {"icon":"🎨","title":"Design Expert","desc":"Solutions sur mesure pour votre espace."},
+    {"icon":"🌍","title":"Approvisionnement Global","desc":"Marques prestigieuses d'Europe et d'ailleurs."},
+    {"icon":"🔧","title":"Installation Pro","desc":"Techniciens certifiés pour une installation sécurisée."},
+    {"icon":"💪","title":"20 Ans d'Expérience","desc":"Près de deux décennies d'expertise."},
+    {"icon":"🛡️","title":"Support Complet","desc":"De la sélection au service après-vente."}
+  ],
+  "brands": ["RAIS","HAAS+SOHN","RUEGG","LACUNZA","ELEMENT4","DECOFLAME"],
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Conseils, guides et inspiration pour tout ce qui concerne les cheminées.",
+    "readMore": "Lire la Suite",
+    "back": "Retour au Blog",
+    "categories": {"Guide":"Guide","Comparison":"Comparaison","Trends":"Tendances","Inspiration":"Inspiration"}
+  }
+}
