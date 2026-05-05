@@ -1,50 +1,40 @@
 ---
-import { getTranslations, isRtl } from '../i18n';
-import BaseLayout from '@layouts/BaseLayout.astro';
-
-const { locale } = Astro.props;
-const t = getTranslations(locale || 'en');
-const rtl = isRtl(locale || 'en');
+const { locale = 'en' } = Astro.props;
 const currentYear = new Date().getFullYear();
+const loc = locale as string;
 
-const footerLinks = (loc: string) => [
-  { title: t.footer.products, links: [
-    { label: { en:'Wood-Burning', zh:'燃木壁炉', fr:'Bois', es:'Leña', de:'Holz', it:'Legna', ru:'Дровяные', ar:'الحطب' }, key: 'wood-burning' },
-    { label: { en:'Gas', zh:'燃气壁炉', fr:'Gaz', es:'Gas', de:'Gas', it:'Gas', ru:'Газовые', ar:'الغاز' }, key: 'gas' },
-  ]},
-  { title: t.footer.company, links: [
-    { label: { en:'About Us', zh:'关于我们', fr:'À propos', es:'Nosotros', de:'Über uns', it:'Chi siamo', ru:'О нас', ar:'من نحن' }, key: 'about' },
-    { label: { en:'Contact', zh:'联系我们', fr:'Contact', es:'Contacto', de:'Kontakt', it:'Contatti', ru:'Контакты', ar:'اتصل بنا' }, key: 'contact' },
-  ]},
+const p = (path: string) => loc === 'en' ? path : `/${loc}${path}`;
+
+const footerLinks = [
+  { label: p('/products'), text: { en:'Products', zh:'产品', fr:'Produits', es:'Productos', de:'Produkte', it:'Prodotti', ru:'Продукты', ar:'المنتجات' } },
+  { label: p('/projects'), text: { en:'Projects', zh:'案例', fr:'Projets', es:'Proyectos', de:'Projekte', it:'Progetti', ru:'Проекты', ar:'المشاريع' } },
+  { label: p('/about'), text: { en:'About', zh:'关于', fr:'À propos', es:'Nosotros', de:'Über uns', it:'Chi siamo', ru:'О нас', ar:'من نحن' } },
+  { label: p('/contact'), text: { en:'Contact', zh:'联系', fr:'Contact', es:'Contacto', de:'Kontakt', it:'Contatti', ru:'Контакты', ar:'اتصل بنا' } },
 ];
 
-const p = (path: string) => (locale === 'en' || locale === undefined) ? path : `/${locale}${path}`;
-const getLabel = (obj: any) => obj[locale] || obj.en;
+const getT = (obj: any) => obj[loc] || obj.en;
 ---
 
-<footer class="bg-charcoal-900 text-charcoal-300" dir={rtl ? 'rtl' : 'ltr'}>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="md:col-span-1">
-        <a href={p('/')} class="flex items-center gap-2 mb-4">
+<footer class="bg-[#fafafa] border-t border-[#f0f0f0]">
+  <div class="max-w-[1200px] mx-auto px-6 lg:px-10 py-16">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="text-center lg:text-left">
+        <a href={loc === 'en' ? '/' : `/${loc}/`} class="flex items-center justify-center lg:justify-start gap-2 mb-2">
           <span class="text-2xl">🔥</span>
-          <span class="text-xl font-bold text-white">Fireplace Master</span>
+          <span class="text-lg font-semibold tracking-tight text-[#1d1d1f]">Fireplace Master</span>
         </a>
-        <p class="text-sm leading-relaxed mb-4">{t.footer.description}</p>
+        <p class="text-sm text-[#86868b] max-w-sm mt-1">
+          {getT({ en:'Premium fireplaces. Timeless warmth.', zh:'高端壁炉，永恒温暖。', fr:'Cheminées premium. Chaleur intemporelle.', es:'Chimeneas premium. Calor atemporal.', de:'Premium-Kamine. Zeitlose Wärme.', it:'Caminetti premium. Calore senza tempo.', ru:'Премиальные камины. Вечное тепло.', ar:'مواقد ممتازة. دفء خالد.' })}
+        </p>
       </div>
-      {footerLinks(locale).map(col => (
-        <div>
-          <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{col.title}</h3>
-          <ul class="space-y-2">
-            {col.links.map(link => (
-              <li><a href={p(`/${link.key === 'about' || link.key === 'contact' ? link.key : 'products?type=' + link.key}`)} class="text-sm hover:text-white transition-colors">{getLabel(link.label)}</a></li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <div class="flex items-center gap-6">
+        {footerLinks.map(link => (
+          <a href={link.label} class="text-sm text-[#86868b] hover:text-[#1d1d1f] transition-colors">{getT(link.text)}</a>
+        ))}
+      </div>
     </div>
-    <div class="border-t border-charcoal-800 mt-8 pt-6 text-sm text-center">
-      <p>&copy; {currentYear} Fireplace Master. {t.footer.rights}</p>
+    <div class="border-t border-[#f0f0f0] mt-10 pt-6 text-center text-sm text-[#86868b]">
+      &copy; {currentYear} Fireplace Master. {getT({ en:'All rights reserved.', zh:'保留所有权利。', fr:'Tous droits réservés.', es:'Todos los derechos reservados.', de:'Alle Rechte vorbehalten.', it:'Tutti i diritti riservati.', ru:'Все права защищены.', ar:'جميع الحقوق محفوظة.' })}
     </div>
   </div>
 </footer>

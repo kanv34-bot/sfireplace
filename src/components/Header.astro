@@ -1,85 +1,87 @@
 ---
-import { localeLabels, localeShortLabels, isRtl } from '../i18n';
+import { localeLabels, localeShortLabels } from '../i18n';
 
 const { locale = 'en' } = Astro.props;
 const loc = locale as string;
 
 const navItems = [
-  { key: 'home', label: { en:'Home', zh:'首页', fr:'Accueil', es:'Inicio', de:'Start', it:'Home', ru:'Главная', ar:'الرئيسية' } },
-  { key: 'products', label: { en:'Products', zh:'产品中心', fr:'Produits', es:'Productos', de:'Produkte', it:'Prodotti', ru:'Продукты', ar:'المنتجات' } },
-  { key: 'projects', label: { en:'Projects', zh:'经典案例', fr:'Projets', es:'Proyectos', de:'Projekte', it:'Progetti', ru:'Проекты', ar:'المشاريع' } },
-  { key: 'about', label: { en:'About', zh:'关于我们', fr:'À propos', es:'Nosotros', de:'Über uns', it:'Chi siamo', ru:'О нас', ar:'من نحن' } },
-  { key: 'blog', label: { en:'Blog', zh:'新闻资讯', fr:'Blog', es:'Blog', de:'Blog', it:'Blog', ru:'Блог', ar:'المدونة' } },
-  { key: 'contact', label: { en:'Contact', zh:'联系我们', fr:'Contact', es:'Contacto', de:'Kontakt', it:'Contatti', ru:'Контакты', ar:'اتصل بنا' } },
+  { key: 'products', label: { en:'Products', zh:'产品', fr:'Produits', es:'Productos', de:'Produkte', it:'Prodotti', ru:'Продукты', ar:'المنتجات' } },
+  { key: 'projects', label: { en:'Projects', zh:'案例', fr:'Projets', es:'Proyectos', de:'Projekte', it:'Progetti', ru:'Проекты', ar:'المشاريع' } },
+  { key: 'about', label: { en:'About', zh:'关于', fr:'À propos', es:'Nosotros', de:'Über uns', it:'Chi siamo', ru:'О нас', ar:'من نحن' } },
+  { key: 'contact', label: { en:'Contact', zh:'联系', fr:'Contact', es:'Contacto', de:'Kontakt', it:'Contatti', ru:'Контакты', ar:'اتصل بنا' } },
 ];
 
-const ctaLabel = { en:'Get a Quote', zh:'获取报价', fr:'Devis', es:'Presupuesto', de:'Angebot', it:'Preventivo', ru:'Заказать', ar:'طلب عرض سعر' };
-
 const allLocales = ['en', 'zh', 'fr', 'es', 'de', 'it', 'ru', 'ar'];
-const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
-const getLocalePath = (l: string) => l === 'en' ? currentPath || '/' : `/${l}${currentPath}`;
+const currentPath = Astro.url.pathname;
+// Remove locale prefix if any
+const cleanPath = currentPath.replace(/^\/[a-z]{2}(\/|$)/, '/');
+const getLocalePath = (l: string) => l === 'en' ? (cleanPath || '/') : `/${l}${cleanPath}`;
+
+const p = (path: string) => loc === 'en' ? path : `/${loc}${path}`;
+const getLabel = (obj: any) => obj[loc] || obj.en;
 ---
 
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-charcoal-100 shadow-sm">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 lg:h-20">
-      <a href={loc === 'en' ? '/' : `/${loc}/`} class="flex items-center gap-2 group">
-        <span class="text-2xl">🔥</span>
-        <span class="text-xl font-bold text-charcoal-800 group-hover:text-fire-600 transition-colors">Fireplace Master</span>
-      </a>
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-[#f0f0f0]">
+  <nav class="max-w-[1200px] mx-auto px-6 lg:px-10 h-14 lg:h-16 flex items-center justify-between">
+    <a href={loc === 'en' ? '/' : `/${loc}/`} class="flex items-center gap-2">
+      <span class="text-lg">🔥</span>
+      <span class="text-[17px] font-semibold tracking-tight text-[#1d1d1f]">Fireplace Master</span>
+    </a>
 
-      <div class="hidden lg:flex items-center gap-6">
-        {navItems.map((item) => (
-          <a href={loc === 'en' ? `/${item.key}` : `/${loc}/${item.key}`} class="text-sm font-medium text-charcoal-600 hover:text-fire-600 transition-colors">
-            {item.label[loc] || item.label.en}
-          </a>
-        ))}
-
-        <!-- Language Switcher Dropdown -->
-        <div class="relative group">
-          <button class="flex items-center gap-1.5 text-xs font-medium text-charcoal-500 hover:text-fire-600 transition-colors px-2.5 py-1.5 rounded-lg border border-charcoal-200 hover:border-fire-400 cursor-pointer">
-            <span>{localeShortLabels[loc] || 'EN'}</span>
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div class="absolute right-0 top-full mt-1 bg-white rounded-xl shadow-lg border border-charcoal-100 py-1.5 min-w-[160px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            {allLocales.map((l) => (
-              <a href={getLocalePath(l)} class={`block px-4 py-2 text-sm hover:bg-stone-50 transition-colors ${l === loc ? 'text-fire-600 font-semibold' : 'text-charcoal-600'}`}>
-                {localeLabels[l]}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <a href={loc === 'en' ? '/contact' : `/${loc}/contact`} class="bg-fire-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-fire-700 transition-colors shadow-sm">
-          {ctaLabel[loc] || ctaLabel.en}
+    <!-- Desktop nav -->
+    <div class="hidden lg:flex items-center gap-8">
+      {navItems.map(item => (
+        <a href={p(`/${item.key}`)} class="text-[13px] font-medium text-[#86868b] hover:text-[#1d1d1f] tracking-tight transition-colors">
+          {getLabel(item.label)}
         </a>
-      </div>
+      ))}
 
-      <button id="menu-toggle" class="lg:hidden p-2 rounded-lg hover:bg-charcoal-100 transition-colors" aria-label="Toggle menu">
-        <svg class="w-6 h-6 text-charcoal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-
-    <div id="mobile-menu" class="lg:hidden hidden pb-4 border-t border-charcoal-100 pt-4">
-      <div class="flex flex-col gap-2">
-        {navItems.map((item) => (
-          <a href={loc === 'en' ? `/${item.key}` : `/${loc}/${item.key}`} class="text-sm font-medium text-charcoal-600 hover:text-fire-600 px-2 py-1.5 rounded hover:bg-stone-50">
-            {item.label[loc] || item.label.en}
-          </a>
-        ))}
-        <div class="border-t border-charcoal-100 pt-2 mt-2">
-          <div class="text-xs font-medium text-charcoal-400 px-2 mb-1">Language</div>
-          {allLocales.map((l) => (
-            <a href={getLocalePath(l)} class={`block px-2 py-1.5 text-sm ${l === loc ? 'text-fire-600 font-semibold' : 'text-charcoal-600'} hover:bg-stone-50 rounded`}>
+      <!-- Language -->
+      <div class="relative group">
+        <button class="flex items-center gap-1 text-[13px] font-medium text-[#86868b] cursor-pointer">
+          {localeShortLabels[loc]}
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="absolute right-0 top-full mt-1.5 bg-white rounded-xl shadow-lg border border-[#f0f0f0] py-1.5 min-w-[170px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          {allLocales.map(l => (
+            <a href={getLocalePath(l)} class={`block px-4 py-2 text-sm ${l === loc ? 'text-[#c2410c] font-semibold' : 'text-[#86868b] hover:text-[#1d1d1f]'} transition-colors`}>
               {localeLabels[l]}
             </a>
           ))}
         </div>
       </div>
+
+      <a href={p('/contact')} class="bg-[#1d1d1f] text-white text-[13px] font-medium px-5 py-2 rounded-full hover:bg-black transition-colors">
+        {loc === 'en' ? 'Get a Quote' : loc === 'zh' ? '获取报价' : 'Contact'}
+      </a>
     </div>
+
+    <!-- Mobile toggle -->
+    <button id="menu-toggle" class="lg:hidden p-1.5 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Menu">
+      <svg class="w-5 h-5 text-[#1d1d1f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
   </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-[#f0f0f0] px-6 pb-5 pt-3 bg-white">
+    <div class="flex flex-col gap-1">
+      {navItems.map(item => (
+        <a href={p(`/${item.key}`)} class="text-sm text-[#86868b] hover:text-[#1d1d1f] py-2 transition-colors">{getLabel(item.label)}</a>
+      ))}
+      <div class="border-t border-[#f0f0f0] my-2 pt-3">
+        <div class="text-xs text-[#86868b] mb-2 font-medium">Language</div>
+        <div class="flex flex-wrap gap-2">
+          {allLocales.map(l => (
+            <a href={getLocalePath(l)} class={`text-sm px-3 py-1.5 rounded-lg ${l === loc ? 'bg-[#1d1d1f] text-white' : 'bg-[#f5f5f7] text-[#86868b]'} transition-colors`}>
+              {localeShortLabels[l]}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
 <script>
