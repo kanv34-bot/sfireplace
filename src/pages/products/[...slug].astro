@@ -3,18 +3,18 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const products = [
-    { slug: 'rais-wood-burning-stove', title: 'RAIS Wood-Burning Stove', brand: 'RAIS', type: 'Wood-Burning', installation: 'Freestanding', view: 'Panoramic 360°', description: 'Modern wood-burning stove with panoramic 360° view, combining Scandinavian design with exceptional heating performance.' },
-    { slug: 'haas-sohn-gas-fireplace', title: 'HAAS+SOHN Gas Fireplace', brand: 'HAAS+SOHN', type: 'Gas', installation: 'Built-in', view: 'Double-sided', description: 'Premium gas fireplace with realistic flame technology and remote control operation.' },
-    { slug: 'element4-bioethanol', title: 'ELEMENT4 Bioethanol Fireplace', brand: 'ELEMENT4', type: 'Bioethanol', installation: 'Built-in', view: 'Single-sided', description: 'Sleek bioethanol fireplace, ventless and eco-friendly, perfect for contemporary interiors.' },
-    { slug: 'ruegg-traditional-stove', title: 'RUEGG Traditional Stove', brand: 'RUEGG', type: 'Wood-Burning', installation: 'Freestanding', view: 'Single-sided', description: 'Swiss-made traditional stove with timeless elegance and exceptional build quality.' },
-    { slug: 'lacunza-outdoor-fire-pit', title: 'LACUNZA Outdoor Fire Pit', brand: 'LACUNZA', type: 'Outdoor', installation: 'Freestanding', view: 'Panoramic', description: 'Spanish-designed outdoor fire pit for garden and terrace entertainment spaces.' },
-    { slug: 'decoflame-electric', title: 'DECOFLAME Electric Fireplace', brand: 'DECOFLAME', type: 'Electric', installation: 'Wall-mounted', view: 'Single-sided', description: 'Contemporary electric fireplace with realistic flame effects and easy installation.' },
-    { slug: 'haas-sohn-double-gas', title: 'HAAS+SOHN Double-Sided Gas', brand: 'HAAS+SOHN', type: 'Gas', installation: 'Built-in', view: 'Double-sided', description: 'Double-sided gas fireplace, perfect for room dividers and open-plan spaces.' },
-    { slug: 'rais-wall-mounted', title: 'RAIS Wall-Mounted Fireplace', brand: 'RAIS', type: 'Electric', installation: 'Wall-mounted', view: 'Single-sided', description: 'Sleek wall-mounted electric fireplace from the renowned Danish design house.' },
-    { slug: 'outdoor-fire-bowl', title: 'Outdoor Fire Bowl', brand: 'BILU ZONGSHI', type: 'Outdoor', installation: 'Freestanding', view: 'Panoramic', description: 'Elegant outdoor fire bowl crafted from weather-resistant materials.' },
-    { slug: 'custom-builtin-gas', title: 'Custom Built-in Gas Fireplace', brand: 'BILU ZONGSHI', type: 'Gas', installation: 'Built-in', view: 'Three-sided', description: 'Bespoke three-sided gas fireplace designed for luxury residential interiors.' },
-    { slug: 'suspended-bioethanol', title: 'Suspended Bioethanol Fireplace', brand: 'ELEMENT4', type: 'Bioethanol', installation: 'Suspended', view: 'Panoramic', description: 'Stunning suspended bioethanol fireplace that serves as a true statement piece.' },
-    { slug: 'ruegg-corner-fireplace', title: 'Ruegg Corner Fireplace', brand: 'RUEGG', type: 'Wood-Burning', installation: 'Built-in', view: 'Corner', description: 'Space-saving corner wood-burning fireplace with signature Swiss craftsmanship.' },
+    { slug: 'rais-wood-burning-stove', image: '/images/ref_rais_Qtee.jpg', title: 'RAIS Wood-Burning Stove', brand: 'RAIS', type: 'Wood-Burning', installation: 'Freestanding', view: 'Panoramic 360°', description: 'Modern wood-burning stove with panoramic 360° view, combining Scandinavian design with exceptional heating performance.' },
+    { slug: 'haas-sohn-gas-fireplace', image: '/images/ref_bio_double.jpg', title: 'HAAS+SOHN Gas Fireplace', brand: 'HAAS+SOHN', type: 'Gas', installation: 'Built-in', view: 'Double-sided', description: 'Premium gas fireplace with realistic flame technology and remote control operation.' },
+    { slug: 'element4-bioethanol', image: '/images/ref_bio_regular.jpg', title: 'ELEMENT4 Bioethanol Fireplace', brand: 'ELEMENT4', type: 'Bioethanol', installation: 'Built-in', view: 'Single-sided', description: 'Sleek bioethanol fireplace, ventless and eco-friendly, perfect for contemporary interiors.' },
+    { slug: 'ruegg-traditional-stove', image: '/images/ref_rais_Nexo.jpg', title: 'RUEGG Traditional Stove', brand: 'RUEGG', type: 'Wood-Burning', installation: 'Freestanding', view: 'Single-sided', description: 'Swiss-made traditional stove with timeless elegance and exceptional build quality.' },
+    { slug: 'lacunza-outdoor-fire-pit', image: '/images/ref_lacunza_Altea.jpg', title: 'LACUNZA Outdoor Fire Pit', brand: 'LACUNZA', type: 'Outdoor', installation: 'Freestanding', view: 'Panoramic', description: 'Spanish-designed outdoor fire pit for garden and terrace entertainment spaces.' },
+    { slug: 'decoflame-electric', image: '/images/ref_bio_round.jpg', title: 'DECOFLAME Electric Fireplace', brand: 'DECOFLAME', type: 'Electric', installation: 'Wall-mounted', view: 'Single-sided', description: 'Contemporary electric fireplace with realistic flame effects and easy installation.' },
+    { slug: 'haas-sohn-double-gas', image: '/images/ref_bio_suspend.jpg', title: 'HAAS+SOHN Double-Sided Gas', brand: 'HAAS+SOHN', type: 'Gas', installation: 'Built-in', view: 'Double-sided', description: 'Double-sided gas fireplace, perfect for room dividers and open-plan spaces.' },
+    { slug: 'rais-wall-mounted', image: '/images/ref_rais_Nexo.jpg', title: 'RAIS Wall-Mounted Fireplace', brand: 'RAIS', type: 'Electric', installation: 'Wall-mounted', view: 'Single-sided', description: 'Sleek wall-mounted electric fireplace from the renowned Danish design house.' },
+    { slug: 'outdoor-fire-bowl', image: '/images/ref_bio_panoramic.jpg', title: 'Outdoor Fire Bowl', brand: 'BILU ZONGSHI', type: 'Outdoor', installation: 'Freestanding', view: 'Panoramic', description: 'Elegant outdoor fire bowl crafted from weather-resistant materials.' },
+    { slug: 'custom-builtin-gas', image: '/images/ref_bio_three.jpg', title: 'Custom Built-in Gas Fireplace', brand: 'BILU ZONGSHI', type: 'Gas', installation: 'Built-in', view: 'Three-sided', description: 'Bespoke three-sided gas fireplace designed for luxury residential interiors.' },
+    { slug: 'suspended-bioethanol', image: '/images/ref_bio_suspend.jpg', title: 'Suspended Bioethanol Fireplace', brand: 'ELEMENT4', type: 'Bioethanol', installation: 'Suspended', view: 'Panoramic', description: 'Stunning suspended bioethanol fireplace that serves as a true statement piece.' },
+    { slug: 'ruegg-corner-fireplace', image: '/images/ref_20230407145306_75657.jpg', title: 'Ruegg Corner Fireplace', brand: 'RUEGG', type: 'Wood-Burning', installation: 'Built-in', view: 'Corner', description: 'Space-saving corner wood-burning fireplace with signature Swiss craftsmanship.' },
   ];
 
   return products.map((product) => ({
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const { slug, title, brand, type, installation, view, description } = Astro.props;
+const { slug, title, brand, type, installation, view, description, image } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -47,13 +47,13 @@ const { slug, title, brand, type, installation, view, description } = Astro.prop
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         <!-- Image Gallery -->
         <div>
-          <div class="bg-charcoal-100 rounded-2xl aspect-[4/3] flex items-center justify-center mb-4">
-            <span class="text-8xl">🔥</span>
+          <div class="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-[#f5f5f7]">
+            <img src={image} alt={title} class="w-full h-full object-cover" />
           </div>
           <div class="grid grid-cols-4 gap-3">
             {[1, 2, 3, 4].map((i) => (
-              <div class="bg-charcoal-100 rounded-xl aspect-square flex items-center justify-center cursor-pointer hover:ring-2 hover:ring-fire-500 transition-all">
-                <span class="text-2xl">🔥</span>
+              <div class="rounded-xl overflow-hidden aspect-square bg-[#f5f5f7] cursor-pointer hover:ring-2 hover:ring-[#c2410c] transition-all">
+                <img src={image} alt={title + ' view ' + i} loading="lazy" class="w-full h-full object-cover opacity-50" />
               </div>
             ))}
           </div>
