@@ -12,9 +12,9 @@ const t = getTranslations(locale);
 const rtl = isRtl(locale);
 
 const projects = [
-  { title: { en:'Luxury Villa Installation', zh:'豪华别墅壁炉安装', fr:'Installation Villa de Luxe', es:'Instalación Villa de Lujo', de:'Luxusvilla Installation', it:'Installazione Villa di Lusso', ru:'Установка в роскошной вилле', ar:'تركيب فيلا فاخرة' }, slug: 'luxury-villa', category: { en:'Residential', zh:'住宅' }, description: { en:'Custom gas fireplace installation in a luxury villa.', zh:'豪华别墅燃气壁炉定制安装。' } },
-  { title: { en:'Hotel Lobby Feature', zh:'酒店大堂装饰', fr:'Hall d\'Hôtel', es:'Vestíbulo de Hotel', de:'Hotel Lobby', it:'Atrio d\'Albergo', ru:'Холл отеля', ar:'بهو فندق' }, slug: 'hotel-lobby', category: { en:'Commercial', zh:'商业' }, description: { en:'Statement suspended fireplace for a 5-star hotel.', zh:'五星级酒店悬吊式壁炉。' } },
-  { title: { en:'Garden Landscape', zh:'花园景观项目', fr:'Jardin Paysager', es:'Jardín Paisajístico', de:'Gartenlandschaft', it:'Giardino Paesaggistico', ru:'Садовый ландшафт', ar:'حديقة طبيعية' }, slug: 'garden-landscape', category: { en:'Landscape', zh:'景观' }, description: { en:'Outdoor fireplace and fire pit for a private garden.', zh:'私人花园户外壁炉和火盆。' } },
+  { title: { en:'Luxury Villa Installation', zh:'豪华别墅壁炉安装', fr:'Installation Villa de Luxe', es:'Instalación Villa de Lujo', de:'Luxusvilla Installation', it:'Installazione Villa di Lusso', ru:'Установка в роскошной вилле', ar:'تركيب فيلا فاخرة' }, slug: 'luxury-villa', category: { en:'Residential', zh:'住宅' }, description: { en:'Custom gas fireplace installation in a luxury villa.', zh:'豪华别墅燃气壁炉定制安装。' }, image: '/images/ref_bio_double.jpg' },
+  { title: { en:'Hotel Lobby Feature', zh:'酒店大堂装饰', fr:'Hall d\'Hôtel', es:'Vestíbulo de Hotel', de:'Hotel Lobby', it:'Atrio d\'Albergo', ru:'Холл отеля', ar:'بهو فندق' }, slug: 'hotel-lobby', category: { en:'Commercial', zh:'商业' }, description: { en:'Statement suspended fireplace for a 5-star hotel.', zh:'五星级酒店悬吊式壁炉。' }, image: '/images/ref_bio_suspend.jpg' },
+  { title: { en:'Garden Landscape', zh:'花园景观项目', fr:'Jardin Paysager', es:'Jardín Paisajístico', de:'Gartenlandschaft', it:'Giardino Paesaggistico', ru:'Садовый ландшафт', ar:'حديقة طبيعية' }, slug: 'garden-landscape', category: { en:'Landscape', zh:'景观' }, description: { en:'Outdoor fireplace and fire pit for a private garden.', zh:'私人花园户外壁炉和火盆。' }, image: '/images/ref_lacunza_Altea.jpg' },
 ];
 
 const getVal = (obj: any) => obj[locale] || obj.en;
