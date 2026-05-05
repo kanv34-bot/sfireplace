@@ -1,0 +1,84 @@
+---
+// Navigation data
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Products', href: '/products' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'About', href: '/about' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-charcoal-100 shadow-sm">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="text-2xl">🔥</span>
+        <span class="text-xl font-bold text-charcoal-800 group-hover:text-fire-600 transition-colors">
+          Fireplace Master
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-charcoal-600 hover:text-fire-600 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-fire-500 after:transition-all hover:after:w-full"
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          href="/contact"
+          class="bg-fire-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-fire-700 transition-colors shadow-sm"
+        >
+          Get a Quote
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-toggle" class="lg:hidden p-2 rounded-lg hover:bg-charcoal-100 transition-colors" aria-label="Toggle menu">
+        <svg class="w-6 h-6 text-charcoal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <path id="menu-icon-close" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="lg:hidden hidden pb-4 border-t border-charcoal-100 pt-4">
+      <div class="flex flex-col gap-3">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-charcoal-600 hover:text-fire-600 transition-colors px-2 py-1.5 rounded hover:bg-stone-50"
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          href="/contact"
+          class="bg-fire-600 text-white px-4 py-2.5 rounded-lg text-sm font-semibold text-center hover:bg-fire-700 transition-colors mt-2"
+        >
+          Get a Quote
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-icon-open');
+  const closeIcon = document.getElementById('menu-icon-close');
+
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    openIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+</script>

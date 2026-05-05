@@ -1,0 +1,83 @@
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Delete “{{path}}”"
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    folder: "src/content/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly name (e.g., rais-wood-stove)" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Gallery", name: "gallery", widget: "image", required: false, multiple: true }
+      - label: "Brand"
+        name: "brand"
+        widget: "select"
+        options: ["RAIS", "HAAS+SOHN", "RUEGG", "LACUNZA", "ELEMENT4", "DECOFLAME", "BILU ZONGSHI"]
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options: ["Wood-Burning", "Gas", "Bioethanol", "Electric", "Outdoor", "Custom", "Accessories"]
+      - label: "Installation"
+        name: "installation"
+        widget: "select"
+        options: ["Built-in", "Freestanding", "Wall-mounted", "Suspended"]
+      - label: "View"
+        name: "view"
+        widget: "select"
+        options: ["Single-sided", "Double-sided", "Three-sided", "Four-sided", "Corner", "Panoramic"]
+      - { label: "Featured", name: "featured", widget: "boolean", required: false, default: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "projects"
+    label: "Projects"
+    label_singular: "Project"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["Residential", "Commercial", "Landscape", "Hospitality"] }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["Guide", "Comparison", "Trends", "Inspiration", "Maintenance", "News"] }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    label_singular: "Page"
+    folder: "src/content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }

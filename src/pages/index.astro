@@ -1,0 +1,174 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import ProductCard from '@components/ProductCard.astro';
+
+// Sample featured products
+const featuredProducts = [
+  { title: 'RAIS Wood-Burning Stove', slug: 'rais-wood-burning-stove', image: '', brand: 'RAIS', type: 'wood-burning', description: 'Modern wood-burning stove with panoramic view, combining Scandinavian design with exceptional heating performance.', featured: true },
+  { title: 'ELEMENT4 Bioethanol Fireplace', slug: 'element4-bioethanol-fireplace', image: '', brand: 'ELEMENT4', type: 'alcohol', description: 'Sleek bioethanol fireplace, ventless and eco-friendly, perfect for contemporary interiors.', featured: true },
+  { title: 'HAAS+SOHN Gas Fireplace', slug: 'haas-sohn-gas-fireplace', image: '', brand: 'HAAS+SOHN', type: 'gas', description: 'Premium gas fireplace with realistic flame technology and remote control operation.', featured: true },
+  { title: 'Outdoor Fire Pit Collection', slug: 'outdoor-fire-pit', image: '', brand: 'BILU ZONGSHI', type: 'outdoor', description: 'Elegant outdoor fire pits for gardens and terraces, crafted from weather-resistant materials.', featured: true },
+];
+---
+
+<BaseLayout title="Premium Fireplaces & Outdoor Fire Pits" description="Fireplace Master offers premium wood-burning, gas, alcohol, and electric fireplaces from world-renowned brands. Transform your home with warmth and elegance.">
+  
+  <Hero
+    title="Elevate Your Space with Premium Fireplaces"
+    subtitle="Discover a curated collection of wood-burning, gas, alcohol, and electric fireplaces from the world's finest brands. We bring warmth, style, and craftsmanship to your home."
+    ctaText="Explore Products"
+    ctaLink="/products"
+    secondaryText="View Projects"
+    secondaryLink="/projects"
+  />
+
+  <!-- Featured Products Section -->
+  <section class="py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-fire-600 font-semibold text-sm uppercase tracking-wider">Featured Products</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-charcoal-800 mt-3 mb-4">
+          Our Premium Collection
+        </h2>
+        <p class="text-charcoal-500 text-lg">
+          From classic wood-burning stoves to modern bioethanol fireplaces, find the perfect centerpiece for your space.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {featuredProducts.map((product) => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a
+          href="/products"
+          class="inline-flex items-center gap-2 bg-fire-600 text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-fire-700 transition-all shadow-sm"
+        >
+          View All Products
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-fire-600 font-semibold text-sm uppercase tracking-wider">Categories</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-charcoal-800 mt-3 mb-4">
+          Find Your Perfect Fireplace
+        </h2>
+        <p class="text-charcoal-500 text-lg">
+          Browse our extensive range of fireplace types to find the one that suits your style and needs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { name: 'Wood-Burning', icon: '🪵', desc: 'Traditional charm with modern efficiency', slug: 'wood-burning', color: 'from-amber-900 to-amber-700' },
+          { name: 'Gas', icon: '🔥', desc: 'Clean, convenient, and controllable', slug: 'gas', color: 'from-blue-900 to-blue-700' },
+          { name: 'Bioethanol', icon: '💧', desc: 'Eco-friendly, ventless, and stylish', slug: 'alcohol', color: 'from-green-900 to-green-700' },
+          { name: 'Electric', icon: '⚡', desc: 'Easy installation, instant ambiance', slug: 'electric', color: 'from-purple-900 to-purple-700' },
+          { name: 'Outdoor Fire Pits', icon: '🏕️', desc: 'Extend your living space outdoors', slug: 'outdoor', color: 'from-orange-900 to-orange-700' },
+          { name: 'Custom Fireplaces', icon: '✨', desc: 'Bespoke designs for unique spaces', slug: 'custom', color: 'from-red-900 to-red-700' },
+        ].map((cat) => (
+          <a
+            href={`/products?type=${cat.slug}`}
+            class={`group relative rounded-2xl overflow-hidden bg-gradient-to-br ${cat.color} p-6 min-h-[200px] flex flex-col justify-end hover:scale-[1.02] transition-transform duration-300`}
+          >
+            <span class="text-4xl mb-3">{cat.icon}</span>
+            <h3 class="text-xl font-bold text-white mb-1">{cat.name}</h3>
+            <p class="text-sm text-white/70">{cat.desc}</p>
+            <span class="absolute top-4 right-4 text-white/30 group-hover:text-white/60 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands Section -->
+  <section class="py-20 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-fire-600 font-semibold text-sm uppercase tracking-wider">Brands</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-charcoal-800 mt-3 mb-4">
+          World-Class Partners
+        </h2>
+        <p class="text-charcoal-500 text-lg">
+          We partner with the most respected fireplace manufacturers from around the world.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {['RAIS', 'HAAS+SOHN', 'RUEGG', 'LACUNZA', 'ELEMENT4', 'DECOFLAME'].map((brand) => (
+          <div class="bg-white rounded-xl p-6 flex items-center justify-center min-h-[100px] shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-lg font-bold text-charcoal-400 text-center">{brand}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-charcoal-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-fire-400 font-semibold text-sm uppercase tracking-wider">Why Fireplace Master</span>
+        <h2 class="text-3xl lg:text-4xl font-bold mt-3 mb-4">
+          Crafting Warmth Since 2008
+        </h2>
+        <p class="text-charcoal-300 text-lg">
+          With nearly two decades of experience, we bring unparalleled expertise to every project.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        {[
+          { icon: '🏆', title: 'Premium Quality', desc: 'All our products meet rigorous international quality standards, backed by ISO9001 certification.' },
+          { icon: '🎨', title: 'Expert Design', desc: 'Our team of experienced designers helps you create the perfect fireplace solution for your space.' },
+          { icon: '🌍', title: 'Global Sourcing', desc: 'We source the finest fireplaces from leading manufacturers across Europe and beyond.' },
+          { icon: '🔧', title: 'Professional Installation', desc: 'Certified technicians ensure safe, precise installation of every fireplace we sell.' },
+          { icon: '💪', title: '20 Years Experience', desc: 'Nearly two decades of expertise in designing, supplying, and installing premium fireplaces.' },
+          { icon: '🛡️', title: 'Comprehensive Support', desc: 'From selection to after-sales service, we are with you every step of the way.' },
+        ].map((item) => (
+          <div class="text-center lg:text-left">
+            <span class="text-4xl block mb-4">{item.icon}</span>
+            <h3 class="text-lg font-semibold mb-2">{item.title}</h3>
+            <p class="text-charcoal-400 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-fire-700 to-fire-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+        Ready to Transform Your Space?
+      </h2>
+      <p class="text-fire-100 text-lg mb-8 max-w-xl mx-auto">
+        Contact us today for a free consultation. Let us help you find the perfect fireplace for your home or project.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 bg-white text-fire-700 px-8 py-3.5 rounded-xl text-lg font-semibold hover:bg-fire-50 transition-all shadow-lg"
+      >
+        Get Your Free Quote
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

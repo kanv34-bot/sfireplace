@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProductCard from '@components/ProductCard.astro';
+import ProductFilter from '@components/ProductFilter.astro';
+
+// Available filter options
+const brands = ['RAIS', 'HAAS+SOHN', 'RUEGG', 'LACUNZA', 'ELEMENT4', 'DECOFLAME', 'BILU ZONGSHI'];
+const types = ['wood-burning', 'gas', 'alcohol', 'electric', 'outdoor', 'custom', 'accessories'];
+const installations = ['built-in', 'freestanding', 'wall-mounted', 'suspended'];
+
+// Get current filters from URL
+const url = Astro.url;
+const currentBrand = url.searchParams.get('brand') || undefined;
+const currentType = url.searchParams.get('type') || undefined;
+const currentInstallation = url.searchParams.get('installation') || undefined;
+const currentView = url.searchParams.get('view') || undefined;
+
+// Sample products (will be replaced with CMS content)
+const allProducts = [
+  { title: 'RAIS Wood-Burning Stove', slug: 'rais-wood-burning-stove', brand: 'RAIS', type: 'wood-burning', installation: 'freestanding', view: 'panoramic', description: 'Modern wood-burning stove with panoramic 360° view, Scandinavian design, exceptional heating performance.' },
+  { title: 'HAAS+SOHN Gas Fireplace', slug: 'haas-sohn-gas-fireplace', brand: 'HAAS+SOHN', type: 'gas', installation: 'built-in', view: 'double-sided', description: 'Premium gas fireplace with realistic flame technology and remote control.' },
+  { title: 'ELEMENT4 Bioethanol Fireplace', slug: 'element4-bioethanol', brand: 'ELEMENT4', type: 'alcohol', installation: 'built-in', view: 'single-sided', description: 'Sleek bioethanol fireplace, ventless and eco-friendly.' },
+  { title: 'RUEGG Traditional Stove', slug: 'ruegg-traditional-stove', brand: 'RUEGG', type: 'wood-burning', installation: 'freestanding', view: 'single-sided', description: 'Swiss-made traditional stove with timeless elegance.' },
+  { title: 'LACUNZA Outdoor Fire Pit', slug: 'lacunza-outdoor-fire-pit', brand: 'LACUNZA', type: 'outdoor', installation: 'freestanding', view: 'panoramic', description: 'Spanish-designed outdoor fire pit for garden and terrace.' },
+  { title: 'DECOFLAME Electric Fireplace', slug: 'decoflame-electric', brand: 'DECOFLAME', type: 'electric', installation: 'wall-mounted', view: 'single-sided', description: 'Contemporary electric fireplace with realistic flame effects.' },
+  { title: 'HAAS+SOHN Double-Sided Gas', slug: 'haas-sohn-double-gas', brand: 'HAAS+SOHN', type: 'gas', installation: 'built-in', view: 'double-sided', description: 'Double-sided gas fireplace, perfect for room dividers.' },
+  { title: 'RAIS Wall-Mounted Fireplace', slug: 'rais-wall-mounted', brand: 'RAIS', type: 'electric', installation: 'wall-mounted', view: 'single-sided', description: 'Sleek wall-mounted electric fireplace from Danish design house.' },
+  { title: 'Outdoor Fire Bowl', slug: 'outdoor-fire-bowl', brand: 'BILU ZONGSHI', type: 'outdoor', installation: 'freestanding', view: 'panoramic', description: 'Elegant outdoor fire bowl crafted from weather-resistant materials.' },
+  { title: 'Custom Built-in Gas Fireplace', slug: 'custom-builtin-gas', brand: 'BILU ZONGSHI', type: 'gas', installation: 'built-in', view: 'three-sided', description: 'Bespoke three-sided gas fireplace for luxury interiors.' },
+  { title: 'Suspended Bioethanol Fireplace', slug: 'suspended-bioethanol', brand: 'ELEMENT4', type: 'alcohol', installation: 'suspended', view: 'panoramic', description: 'Stunning suspended bioethanol fireplace, a true statement piece.' },
+  { title: 'Ruegg Corner Fireplace', slug: 'ruegg-corner-fireplace', brand: 'RUEGG', type: 'wood-burning', installation: 'built-in', view: 'corner', description: 'Corner wood-burning fireplace, space-saving Swiss design.' },
+];
+
+// Apply filters
+let filtered = allProducts;
+if (currentBrand) filtered = filtered.filter(p => p.brand.toLowerCase() === currentBrand.toLowerCase());
+if (currentType) filtered = filtered.filter(p => p.type === currentType);
+if (currentInstallation) filtered = filtered.filter(p => p.installation === currentInstallation);
+if (currentView) filtered = filtered.filter(p => p.view === currentView);
+---
+
+<BaseLayout title="Products" description="Browse our extensive collection of premium fireplaces. Wood-burning, gas, alcohol, electric fireplaces and outdoor fire pits from world-class brands.">
+  
+  <!-- Page Header -->
+  <section class="py-16 lg:py-20 bg-charcoal-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">Our Products</h1>
+      <p class="text-lg text-charcoal-300 max-w-2xl">
+        Discover our curated collection of premium fireplaces. Browse by type, brand, or installation method to find your perfect match.
+      </p>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-4 lg:gap-8">
+        <!-- Sidebar Filter -->
+        <div class="lg:col-span-1 mb-8 lg:mb-0">
+          <ProductFilter
+            brands={brands}
+            types={types}
+            installations={installations}
+            currentFilters={{ brand: currentBrand, type: currentType, installation: currentInstallation, view: currentView }}
+          />
+        </div>
+
+        <!-- Product Grid -->
+        <div class="lg:col-span-3">
+          <!-- Results Count -->
+          <div class="mb-6 text-sm text-charcoal-500">
+            Showing <span class="font-semibold text-charcoal-800">{filtered.length}</span> products
+            {(currentBrand || currentType || currentInstallation) && (
+              <a href="/products" class="ml-3 text-fire-600 hover:text-fire-700 underline underline-offset-2">
+                Clear all filters
+              </a>
+            )}
+          </div>
+
+          {filtered.length > 0 ? (
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filtered.map((product) => (
+                <ProductCard
+                  title={product.title}
+                  slug={product.slug}
+                  brand={product.brand}
+                  type={product.type}
+                  description={product.description}
+                  featured={false}
+                />
+              ))}
+            </div>
+          ) : (
+            <div class="text-center py-20 bg-white rounded-2xl">
+              <span class="text-5xl block mb-4">🔍</span>
+              <h3 class="text-xl font-semibold text-charcoal-700 mb-2">No products found</h3>
+              <p class="text-charcoal-500 mb-6">Try adjusting your filters to see more products.</p>
+              <a href="/products" class="text-fire-600 hover:text-fire-700 font-medium underline underline-offset-2">
+                Clear all filters
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,79 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = [
+    { slug: 'choose-perfect-fireplace', title: 'How to Choose the Perfect Fireplace for Your Home', date: '2026-04-28', category: 'Guide', content: 'Choosing the right fireplace for your home is an important decision that affects both the ambiance and functionality of your living space. In this comprehensive guide, we walk you through the key factors to consider.\n\n## Consider Your Heating Needs\n\nThe first step is determining whether you want a fireplace primarily for heating, aesthetics, or both. Wood-burning and gas fireplaces provide substantial heat output, while bioethanol and electric models are more focused on ambiance.\n\n## Space and Installation\n\nYour available space and installation requirements will significantly influence your choice. Built-in fireplaces require construction work, while freestanding and wall-mounted options offer more flexibility.\n\n## Fuel Type\n\nEach fuel type has its advantages:\n- **Wood-Burning**: Traditional appeal, high heat output, requires chimney\n- **Gas**: Convenient, clean burning, remote controlled\n- **Bioethanol**: Eco-friendly, ventless, modern aesthetic\n- **Electric**: Easiest installation, low maintenance, safe' },
+    { slug: 'wood-vs-gas-fireplaces', title: 'Wood-Burning vs Gas Fireplaces: Pros and Cons', date: '2026-04-20', category: 'Comparison', content: 'When deciding between a wood-burning and gas fireplace, there are several important factors to weigh.\n\n## Wood-Burning Fireplaces\n\n**Pros:**\n- Authentic flame and crackling sound\n- High heat output\n- No utility costs (if using your own wood)\n- Traditional aesthetic appeal\n\n**Cons:**\n- Requires chimney and ventilation\n- Needs regular cleaning and maintenance\n- Wood storage required\n- Less convenient to start and maintain\n\n## Gas Fireplaces\n\n**Pros:**\n- Instant ignition with remote control\n- Clean burning, no ash or soot\n- Easy to use and maintain\n- More efficient heat distribution\n\n**Cons:**\n- Requires gas line installation\n- Less authentic flame appearance\n- Ongoing gas costs\n- Professional installation required' },
+  ];
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+const { slug, title, date, category, content } = Astro.props;
+const paragraphs = content.split('\n\n');
+---
+
+<BaseLayout title={title} description={`${title} - Read more on the Fireplace Master blog.`}>
+
+  <div class="bg-stone-100 border-b border-stone-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div class="flex items-center gap-2 text-sm text-charcoal-500">
+        <a href="/" class="hover:text-fire-600">Home</a>
+        <span>/</span>
+        <a href="/blog" class="hover:text-fire-600">Blog</a>
+        <span>/</span>
+        <span class="text-charcoal-800 font-medium">{title}</span>
+      </div>
+    </div>
+  </div>
+
+  <article class="py-12 lg:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-semibold text-fire-600 bg-fire-50 px-3 py-1 rounded-full">{category}</span>
+          <span class="text-xs text-charcoal-400">{date}</span>
+        </div>
+        <h1 class="text-3xl lg:text-4xl font-bold text-charcoal-800">{title}</h1>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        {paragraphs.map((p) => {
+          if (p.startsWith('## ')) {
+            const title = p.replace('## ', '');
+            return <h2 class="text-2xl font-bold text-charcoal-800 mt-10 mb-4">{title}</h2>;
+          }
+          if (p.startsWith('- **')) {
+            const items = p.split('\n').filter(l => l.startsWith('- '));
+            return (
+              <ul class="list-none space-y-2 my-4">
+                {items.map((item) => {
+                  const clean = item.replace('- ', '');
+                  const [bold, rest] = clean.includes('**:') ? clean.split('**:') : [clean, ''];
+                  return (
+                    <li class="flex items-start gap-2">
+                      <span class="text-fire-500 mt-1">•</span>
+                      <span><strong>{bold.replace('**', '')}</strong>{rest}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            );
+          }
+          return <p class="text-charcoal-600 leading-relaxed mb-4">{p}</p>;
+        })}
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-stone-200">
+        <a href="/blog" class="inline-flex items-center gap-2 text-fire-600 hover:text-fire-700 font-medium">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m7-7l-7 7 7 7" /></svg>
+          Back to Blog
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
