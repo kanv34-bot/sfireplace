@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sfireplace.com/sitemap-index.xml

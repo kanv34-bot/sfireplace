@@ -1,43 +1,79 @@
-# Astro Starter Kit: Minimal
+# 🔥 Fireplace Master — sfireplace.com
 
-```sh
-npm create astro@latest -- --template minimal
+> Premium Fireplace Supplier Website — Built with Astro + Decap CMS
+
+## Tech Stack
+
+- **Astro** — Static Site Generator (SSG)
+- **Tailwind CSS v4** — Styling
+- **Decap CMS** — Git-based Content Management
+- **Vercel** — Deployment (auto HTTPS, global CDN)
+
+## Quick Start
+
+```bash
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # Build to ./dist/
+npm run preview    # Preview build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Project Structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── components/     # Reusable UI components
+│   ├── Header.astro
+│   ├── Footer.astro
+│   ├── Hero.astro
+│   ├── ProductCard.astro
+│   ├── ProductFilter.astro
+│   └── ProjectCard.astro
+├── layouts/
+│   └── BaseLayout.astro    # Main layout (SEO meta, header, footer)
+├── pages/          # Route pages
+│   ├── index.astro         # Homepage
+│   ├── about.astro
+│   ├── contact.astro
+│   ├── products/
+│   │   ├── index.astro     # Product listing with filters
+│   │   └── [...slug].astro # Product detail pages
+│   ├── projects/
+│   │   └── index.astro
+│   └── blog/
+│       ├── index.astro
+│       └── [...slug].astro
+├── styles/
+│   └── global.css          # Tailwind + custom theme
+└── content/                # CMS-managed content
+    ├── products/
+    ├── projects/
+    ├── blog/
+    └── pages/
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## SEO Features
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- ✅ SSG static HTML (Core Web Vitals optimized)
+- ✅ Meta title/description per page
+- ✅ Open Graph & Twitter Card tags
+- ✅ JSON-LD structured data (Organization, Product)
+- ✅ Auto-generated sitemap.xml
+- ✅ Semantic URL slugs
+- ✅ Canonical URLs
 
-Any static assets, like images, can be placed in the `public/` directory.
+## CMS
 
-## 🧞 Commands
+Access the content manager at `/admin/` after deployment. Add/edit products, projects, and blog posts through a clean UI.
 
-All commands are run from the root of the project, from a terminal:
+## Deployment
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Push to GitHub → Vercel auto-deploys.
 
-## 👀 Want to learn more?
+```bash
+git push origin main
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## License
+
+Private — Fireplace Master
