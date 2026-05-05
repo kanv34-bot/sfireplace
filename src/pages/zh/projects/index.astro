@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+
+const projects = [
+  { title: '豪华别墅壁炉安装', slug: 'luxury-villa', category: '住宅', description: '豪华别墅客厅双面燃气壁炉定制安装。', image: '' },
+  { title: '现代公寓改造', slug: 'modern-apartment', category: '住宅', description: '为现代公寓改造项目安装的时尚酒精壁炉。', image: '' },
+  { title: '户外餐厅露台', slug: 'outdoor-restaurant', category: '商业', description: '为市中心高端餐厅露台配置的多个户外火盆。', image: '' },
+  { title: '酒店大堂装饰', slug: 'hotel-lobby', category: '商业', description: '为五星级酒店大堂设计的悬吊式壁炉。', image: '' },
+  { title: '花园景观项目', slug: 'garden-landscape', category: '景观', description: '为私人花园定制的户外壁炉和火盆组合。', image: '' },
+  { title: '办公休息区', slug: 'office-lounge', category: '商业', description: '为企业休息区打造的现代燃气壁炉。', image: '' },
+];
+---
+
+<BaseLayout title="经典案例" description="浏览我们的壁炉安装项目案例，从豪华别墅到商业空间。">
+
+  <section class="py-16 lg:py-20 bg-charcoal-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">经典案例</h1>
+      <p class="text-lg text-charcoal-300 max-w-2xl">探索我们的壁炉安装案例集。每个项目都体现了我们对品质和工艺的承诺。</p>
+    </div>
+  </section>
+
+  <section class="py-12 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {projects.map((project) => <ProjectCard {...project} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const posts = [
+  { title: '如何为您的家选择完美的壁炉', slug: 'choose-perfect-fireplace', date: '2026-04-28', category: '指南', excerpt: '全面指南帮助您选择适合空间、供暖需求和审美偏好的壁炉类型。' },
+  { title: '燃木壁炉 vs 燃气壁炉：优缺点对比', slug: 'wood-vs-gas-fireplaces', date: '2026-04-20', category: '对比', excerpt: '比较燃木和燃气壁炉，确定哪种选择最适合您的生活方式和家庭。' },
+  { title: '酒精壁炉在现代设计中的崛起', slug: 'bioethanol-modern-design', date: '2026-04-15', category: '趋势', excerpt: '了解为什么酒精壁炉正成为当代室内设计师的首选。' },
+  { title: '花园户外火盆创意', slug: 'outdoor-fire-pit-ideas', date: '2026-04-08', category: '灵感', excerpt: '通过这些创意火盆设计和景观美化理念改造您的户外空间。' },
+  { title: '壁炉四季维护小贴士', slug: 'fireplace-maintenance-tips', date: '2026-03-28', category: '指南', excerpt: '通过这些基本维护技巧，让您的壁炉全年保持最佳状态。' },
+];
+---
+
+<BaseLayout title="新闻资讯" description="壁炉技巧、指南和灵感。了解不同类型的壁炉、安装建议、维护技巧和设计方案。">
+
+  <section class="py-16 lg:py-20 bg-charcoal-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">新闻资讯</h1>
+      <p class="text-lg text-charcoal-300 max-w-2xl">壁炉相关的技巧、指南和灵感。获取最新趋势和专家建议。</p>
+    </div>
+  </section>
+
+  <section class="py-12 lg:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-8">
+        {posts.map((post) => (
+          <a href={`/zh/blog/${post.slug}`} class="block bg-white rounded-2xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-all group">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="text-xs font-semibold text-fire-600 bg-fire-50 px-2.5 py-1 rounded-full">{post.category}</span>
+              <span class="text-xs text-charcoal-400">{post.date}</span>
+            </div>
+            <h2 class="text-xl lg:text-2xl font-bold text-charcoal-800 group-hover:text-fire-600 transition-colors mb-3">{post.title}</h2>
+            <p class="text-charcoal-500 leading-relaxed">{post.excerpt}</p>
+            <span class="inline-flex items-center gap-1 text-sm font-medium text-fire-600 mt-4 group-hover:gap-2 transition-all">
+              阅读全文 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

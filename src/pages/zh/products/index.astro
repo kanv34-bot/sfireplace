@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProductCard from '@components/ProductCard.astro';
+import ProductFilter from '@components/ProductFilter.astro';
+
+const brands = ['RAIS', 'HAAS+SOHN', 'RUEGG', 'LACUNZA', 'ELEMENT4', 'DECOFLAME', '壁炉宗师'];
+const types = ['wood-burning', 'gas', 'alcohol', 'electric', 'outdoor', 'custom', 'accessories'];
+const installations = ['built-in', 'freestanding', 'wall-mounted', 'suspended'];
+
+const url = Astro.url;
+const currentBrand = url.searchParams.get('brand') || undefined;
+const currentType = url.searchParams.get('type') || undefined;
+const currentInstallation = url.searchParams.get('installation') || undefined;
+
+const allProducts = [
+  { title: 'RAIS 燃木壁炉', slug: 'rais-wood-burning-stove', image: '/images/product-rais.jpg', brand: 'RAIS', type: 'wood-burning', installation: 'freestanding', view: 'panoramic', description: '北欧设计的现代燃木壁炉，360度全景观火。' },
+  { title: 'HAAS+SOHN 燃气壁炉', slug: 'haas-sohn-gas-fireplace', image: '/images/product-gas.jpg', brand: 'HAAS+SOHN', type: 'gas', installation: 'built-in', view: 'double-sided', description: '高端燃气壁炉，逼真火焰技术，遥控操作。' },
+  { title: 'ELEMENT4 酒精壁炉', slug: 'element4-bioethanol', image: '/images/product-bioethanol.jpg', brand: 'ELEMENT4', type: 'alcohol', installation: 'built-in', view: 'single-sided', description: '无需烟道的环保酒精壁炉。' },
+  { title: 'RUEGG 传统壁炉', slug: 'ruegg-traditional-stove', brand: 'RUEGG', type: 'wood-burning', installation: 'freestanding', view: 'single-sided', description: '瑞士制造的传统壁炉，永恒优雅。' },
+  { title: 'LACUNZA 户外火盆', slug: 'lacunza-outdoor-fire-pit', image: '/images/product-lacunza.jpg', brand: 'LACUNZA', type: 'outdoor', installation: 'freestanding', view: 'panoramic', description: '西班牙设计户外火盆，适合花园和露台。' },
+  { title: 'DECOFLAME 电子壁炉', slug: 'decoflame-electric', brand: 'DECOFLAME', type: 'electric', installation: 'wall-mounted', view: 'single-sided', description: '现代电子壁炉，逼真火焰效果。' },
+  { title: 'RAIS 壁挂式壁炉', slug: 'rais-wall-mounted', brand: 'RAIS', type: 'electric', installation: 'wall-mounted', view: 'single-sided', description: '丹麦设计的壁挂式电子壁炉。' },
+  { title: '户外火盆', slug: 'outdoor-fire-bowl', image: '/images/product-outdoor.jpg', brand: '壁炉宗师', type: 'outdoor', installation: 'freestanding', view: 'panoramic', description: '优雅的户外火盆，耐候材料。' },
+  { title: '定制嵌入式燃气壁炉', slug: 'custom-builtin-gas', brand: '壁炉宗师', type: 'gas', installation: 'built-in', view: 'three-sided', description: '三面观火的定制燃气壁炉。' },
+  { title: '悬吊式酒精壁炉', slug: 'suspended-bioethanol', image: '/images/product-bioethanol2.jpg', brand: 'ELEMENT4', type: 'alcohol', installation: 'suspended', view: 'panoramic', description: '令人惊叹的悬吊式酒精壁炉。' },
+];
+
+let filtered = allProducts;
+if (currentBrand) filtered = filtered.filter(p => p.brand.toLowerCase() === currentBrand.toLowerCase());
+if (currentType) filtered = filtered.filter(p => p.type === currentType);
+if (currentInstallation) filtered = filtered.filter(p => p.installation === currentInstallation);
+---
+
+<BaseLayout title="产品中心" description="浏览我们精选的高端壁炉系列。燃木、燃气、酒精、电子壁炉和户外火景。">
+
+  <section class="py-16 lg:py-20 bg-charcoal-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">产品中心</h1>
+      <p class="text-lg text-charcoal-300 max-w-2xl">探索我们精选的高端壁炉系列。按类型、品牌或安装方式浏览，找到最适合您的产品。</p>
+    </div>
+  </section>
+
+  <section class="py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-4 lg:gap-8">
+        <div class="lg:col-span-1 mb-8 lg:mb-0">
+          <ProductFilter brands={brands} types={types} installations={installations} currentFilters={{ brand: currentBrand, type: currentType, installation: currentInstallation }} />
+        </div>
+        <div class="lg:col-span-3">
+          <div class="mb-6 text-sm text-charcoal-500">
+            显示 <span class="font-semibold text-charcoal-800">{filtered.length}</span> 个产品
+            {(currentBrand || currentType || currentInstallation) && (<a href="/zh/products" class="ml-3 text-fire-600 hover:text-fire-700 underline underline-offset-2">清除筛选</a>)}
+          </div>
+          {filtered.length > 0 ? (
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filtered.map((product) => <ProductCard title={product.title} slug={product.slug} image={product.image} brand={product.brand} type={product.type} description={product.description} />)}
+            </div>
+          ) : (
+            <div class="text-center py-20 bg-white rounded-2xl">
+              <span class="text-5xl block mb-4">🔍</span>
+              <h3 class="text-xl font-semibold text-charcoal-700 mb-2">未找到产品</h3>
+              <p class="text-charcoal-500 mb-6">请调整筛选条件以查看更多产品。</p>
+              <a href="/zh/products" class="text-fire-600 hover:text-fire-700 font-medium underline underline-offset-2">清除筛选</a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

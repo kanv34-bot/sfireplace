@@ -1,20 +1,28 @@
 ---
-// Navigation data
+const currentLocale = Astro.currentLocale || 'en';
+
+// Navigation data with translation keys
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Products', href: '/products' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'About', href: '/about' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
+  { label: { en: 'Home', zh: '首页' }, href: { en: '/', zh: '/zh/' } },
+  { label: { en: 'Products', zh: '产品中心' }, href: { en: '/products', zh: '/zh/products' } },
+  { label: { en: 'Projects', zh: '经典案例' }, href: { en: '/projects', zh: '/zh/projects' } },
+  { label: { en: 'About', zh: '关于我们' }, href: { en: '/about', zh: '/zh/about' } },
+  { label: { en: 'Blog', zh: '新闻资讯' }, href: { en: '/blog', zh: '/zh/blog' } },
+  { label: { en: 'Contact', zh: '联系我们' }, href: { en: '/contact', zh: '/zh/contact' } },
 ];
+
+const otherLocale = currentLocale === 'en' ? 'zh' : 'en';
+const localeLabel = { en: '中文', zh: 'English' };
+const localeIcon = { en: '🇨🇳', zh: '🇺🇸' };
+const localeHref = currentLocale === 'en' ? '/zh' : '/';
+const ctaLabel = { en: 'Get a Quote', zh: '获取报价' };
 ---
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-charcoal-100 shadow-sm">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 group">
+      <a href={currentLocale === 'en' ? '/' : '/zh/'} class="flex items-center gap-2 group">
         <span class="text-2xl">🔥</span>
         <span class="text-xl font-bold text-charcoal-800 group-hover:text-fire-600 transition-colors">
           Fireplace Master
@@ -25,17 +33,27 @@ const navItems = [
       <div class="hidden lg:flex items-center gap-8">
         {navItems.map((item) => (
           <a
-            href={item.href}
+            href={item.href[currentLocale as 'en' | 'zh']}
             class="text-sm font-medium text-charcoal-600 hover:text-fire-600 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-fire-500 after:transition-all hover:after:w-full"
           >
-            {item.label}
+            {item.label[currentLocale as 'en' | 'zh']}
           </a>
         ))}
+        
+        <!-- Language Switcher -->
         <a
-          href="/contact"
+          href={localeHref}
+          class="flex items-center gap-1.5 text-sm font-medium text-charcoal-500 hover:text-fire-600 transition-colors px-3 py-1.5 rounded-lg border border-charcoal-200 hover:border-fire-400"
+        >
+          <span>{localeIcon[currentLocale as 'en' | 'zh']}</span>
+          <span>{localeLabel[currentLocale as 'en' | 'zh']}</span>
+        </a>
+
+        <a
+          href={currentLocale === 'en' ? '/contact' : '/zh/contact'}
           class="bg-fire-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-fire-700 transition-colors shadow-sm"
         >
-          Get a Quote
+          {ctaLabel[currentLocale as 'en' | 'zh']}
         </a>
       </div>
 
@@ -53,17 +71,24 @@ const navItems = [
       <div class="flex flex-col gap-3">
         {navItems.map((item) => (
           <a
-            href={item.href}
+            href={item.href[currentLocale as 'en' | 'zh']}
             class="text-sm font-medium text-charcoal-600 hover:text-fire-600 transition-colors px-2 py-1.5 rounded hover:bg-stone-50"
           >
-            {item.label}
+            {item.label[currentLocale as 'en' | 'zh']}
           </a>
         ))}
         <a
-          href="/contact"
+          href={localeHref}
+          class="text-sm font-medium text-charcoal-500 hover:text-fire-600 transition-colors px-2 py-1.5 rounded hover:bg-stone-50 flex items-center gap-1"
+        >
+          <span>{localeIcon[currentLocale as 'en' | 'zh']}</span>
+          <span>{localeLabel[currentLocale as 'en' | 'zh']}</span>
+        </a>
+        <a
+          href={currentLocale === 'en' ? '/contact' : '/zh/contact'}
           class="bg-fire-600 text-white px-4 py-2.5 rounded-lg text-sm font-semibold text-center hover:bg-fire-700 transition-colors mt-2"
         >
-          Get a Quote
+          {ctaLabel[currentLocale as 'en' | 'zh']}
         </a>
       </div>
     </div>

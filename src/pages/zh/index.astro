@@ -1,0 +1,126 @@
+---
+import { getTranslations } from '../../i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import ProductCard from '@components/ProductCard.astro';
+
+const t = getTranslations('zh');
+
+const featuredProducts = [
+  { title: 'RAIS 燃木壁炉', slug: 'rais-wood-burning-stove', image: '/images/product-rais.jpg', brand: 'RAIS', type: 'wood-burning', description: '北欧设计的现代燃木壁炉，全景观火，卓越加热性能。', featured: true },
+  { title: 'ELEMENT4 酒精壁炉', slug: 'element4-bioethanol', image: '/images/product-bioethanol.jpg', brand: 'ELEMENT4', type: 'alcohol', description: '无需烟道的环保酒精壁炉，完美搭配现代室内空间。', featured: true },
+  { title: 'HAAS+SOHN 燃气壁炉', slug: 'haas-sohn-gas-fireplace', image: '/images/product-gas.jpg', brand: 'HAAS+SOHN', type: 'gas', description: '高端燃气壁炉，逼真火焰技术，遥控操作。', featured: true },
+  { title: '户外火盆系列', slug: 'outdoor-fire-bowl', image: '/images/product-outdoor.jpg', brand: '壁炉宗师', type: 'outdoor', description: '优雅的户外火盆，耐候材料打造，适合花园和露台。', featured: true },
+];
+
+const categories = [
+  { name: '燃木壁炉', icon: '🪵', desc: '传统魅力与现代效率的结合', slug: 'wood-burning', color: 'from-amber-900 to-amber-700' },
+  { name: '燃气壁炉', icon: '🔥', desc: '清洁、便捷、可控', slug: 'gas', color: 'from-blue-900 to-blue-700' },
+  { name: '酒精壁炉', icon: '💧', desc: '环保、无烟道、时尚', slug: 'alcohol', color: 'from-green-900 to-green-700' },
+  { name: '电子壁炉', icon: '⚡', desc: '安装简便，即时氛围', slug: 'electric', color: 'from-purple-900 to-purple-700' },
+  { name: '户外火景', icon: '🏕️', desc: '将生活空间延伸至户外', slug: 'outdoor', color: 'from-orange-900 to-orange-700' },
+  { name: '定制壁炉', icon: '✨', desc: '为独特空间量身定制', slug: 'custom', color: 'from-red-900 to-red-700' },
+];
+---
+
+<BaseLayout title="高端壁炉供应商" description="壁炉宗师提供来自世界知名品牌的高端燃木、燃气、酒精和电子壁炉。用温暖与优雅提升您的空间。">
+  
+  <Hero
+    title="用高品质壁炉提升您的空间"
+    subtitle="探索来自世界顶级品牌的燃木、燃气、酒精和电子壁炉精选系列。我们为您的家带来温暖、风格和精湛工艺。"
+    ctaText="浏览产品"
+    ctaLink="/zh/products"
+    secondaryText="查看案例"
+    secondaryLink="/zh/projects"
+  />
+
+  <!-- Featured Products -->
+  <section class="py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-fire-600 font-semibold text-sm uppercase tracking-wider">精选产品</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-charcoal-800 mt-3 mb-4">{t.homepage.featuredTitle}</h2>
+        <p class="text-charcoal-500 text-lg">{t.homepage.featuredSubtitle}</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {featuredProducts.map((product) => <ProductCard {...product} />)}
+      </div>
+      <div class="text-center mt-12">
+        <a href="/zh/products" class="inline-flex items-center gap-2 bg-fire-600 text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-fire-700 transition-all shadow-sm">
+          {t.homepage.viewAll}
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-fire-600 font-semibold text-sm uppercase tracking-wider">产品分类</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-charcoal-800 mt-3 mb-4">{t.homepage.categoriesTitle}</h2>
+        <p class="text-charcoal-500 text-lg">{t.homepage.categoriesSubtitle}</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {categories.map((cat) => (
+          <a href={`/zh/products?type=${cat.slug}`} class={`group relative rounded-2xl overflow-hidden bg-gradient-to-br ${cat.color} p-6 min-h-[200px] flex flex-col justify-end hover:scale-[1.02] transition-transform duration-300`}>
+            <span class="text-4xl mb-3">{cat.icon}</span>
+            <h3 class="text-xl font-bold text-white mb-1">{cat.name}</h3>
+            <p class="text-sm text-white/70">{cat.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands -->
+  <section class="py-20 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-fire-600 font-semibold text-sm uppercase tracking-wider">合作品牌</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-charcoal-800 mt-3 mb-4">{t.homepage.brandsTitle}</h2>
+        <p class="text-charcoal-500 text-lg">{t.homepage.brandsSubtitle}</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {['RAIS', 'HAAS+SOHN', 'RUEGG', 'LACUNZA', 'ELEMENT4', 'DECOFLAME'].map((brand) => (
+          <div class="bg-white rounded-xl p-6 flex items-center justify-center min-h-[100px] shadow-sm">
+            <span class="text-lg font-bold text-charcoal-400 text-center">{brand}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="py-20 bg-charcoal-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-fire-400 font-semibold text-sm uppercase tracking-wider">为什么选择壁炉宗师</span>
+        <h2 class="text-3xl lg:text-4xl font-bold mt-3 mb-4">{t.homepage.whyTitle}</h2>
+        <p class="text-charcoal-300 text-lg">{t.homepage.whySubtitle}</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        {t.whyUs.map((item) => (
+          <div class="text-center lg:text-left">
+            <span class="text-4xl block mb-4">{item.icon}</span>
+            <h3 class="text-lg font-semibold mb-2">{item.title}</h3>
+            <p class="text-charcoal-400 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-r from-fire-700 to-fire-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">{t.homepage.ctaTitle}</h2>
+      <p class="text-fire-100 text-lg mb-8 max-w-xl mx-auto">{t.homepage.ctaSubtitle}</p>
+      <a href="/zh/contact" class="inline-flex items-center gap-2 bg-white text-fire-700 px-8 py-3.5 rounded-xl text-lg font-semibold hover:bg-fire-50 transition-all shadow-lg">
+        {t.homepage.ctaButton}
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
