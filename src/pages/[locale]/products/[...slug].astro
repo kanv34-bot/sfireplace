@@ -1,0 +1,89 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getTranslations, nonEnglishLocales } from '../../../i18n';
+
+export async function getStaticPaths() {
+  const products = [
+    { slug: 'rais-wood-burning-stove', image: '/images/ref_rais_Qtee.jpg', title: { en:'RAIS Wood-Burning Stove', zh:'RAIS 燃木壁炉', fr:'Poêle à Bois RAIS', es:'Estufa de Leña RAIS', de:'RAIS Holzofen', it:'Stufa a Legna RAIS', ru:'Дровяная печь RAIS', ar:'موقد حطب RAIS' }, brand: 'RAIS', type: 'wood-burning', installation: 'Freestanding', view: 'Panoramic 360°', description: { en:'Modern wood-burning stove with panoramic view.', zh:'北欧设计现代燃木壁炉全景观火。', fr:'Poêle à bois moderne avec vue panoramique.', es:'Estufa de leña moderna con vista panorámica.', de:'Moderner Holzofen mit Panoramablick.', it:'Stufa a legna moderna con vista panoramica.', ru:'Современная дровяная печь с панорамным видом.', ar:'موقد حطب حديث مع إطلالة بانورامية.' } },
+    { slug: 'haas-sohn-gas-fireplace', image: '/images/ref_bio_double.jpg', title: { en:'HAAS+SOHN Gas Fireplace', zh:'HAAS+SOHN 燃气壁炉', fr:'Cheminée à Gaz HAAS+SOHN', es:'Chimenea de Gas HAAS+SOHN', de:'HAAS+SOHN Gaskamin', it:'Caminetto a Gas HAAS+SOHN', ru:'Газовый камин HAAS+SOHN', ar:'مدفأة غاز HAAS+SOHN' }, brand: 'HAAS+SOHN', type: 'Gas', installation: 'Built-in', view: 'Double-sided', description: { en:'Premium gas fireplace with realistic flame.', zh:'高端燃气壁炉，逼真火焰技术。', fr:'Cheminée à gaz premium avec flamme réaliste.', es:'Chimenea de gas premium con llama realista.', de:'Premium-Gaskamin mit realistischer Flamme.', it:'Caminetto a gas premium con fiamma realistica.', ru:'Премиальный газовый камин с реалистичным пламенем.', ar:'مدفأة غاز ممتازة مع لهب واقعي.' } },
+    { slug: 'element4-bioethanol', image: '/images/ref_bio_regular.jpg', title: { en:'ELEMENT4 Bioethanol', zh:'ELEMENT4 酒精壁炉', fr:'Bioéthanol ELEMENT4', es:'Bioetanol ELEMENT4', de:'ELEMENT4 Bioethanol', it:'Bioetanolo ELEMENT4', ru:'Биоэтанол ELEMENT4', ar:'إيثانول حيوي ELEMENT4' }, brand: 'ELEMENT4', type: 'Bioethanol', installation: 'Built-in', view: 'Single-sided', description: { en:'Eco-friendly ventless bioethanol fireplace.', zh:'无需烟道的环保酒精壁炉。', fr:'Cheminée bioéthanol écologique sans conduit.', es:'Chimenea de bioetanol ecológica sin chimenea.', de:'Umweltfreundlicher Bioethanol-Kamin ohne Schornstein.', it:'Caminetto bioetanolo ecologico senza canna fumaria.', ru:'Экологичный биоэтаноловый камин без дымохода.', ar:'مدفأة إيثانول حيوي صديقة للبيئة.' } },
+    { slug: 'ruegg-traditional-stove', image: '/images/ref_rais_Nexo.jpg', title: { en:'RUEGG Traditional Stove', zh:'RUEGG 传统壁炉', fr:'Poêle Traditionnel RUEGG', es:'Estufa Tradicional RUEGG', de:'RUEGG Traditioneller Ofen', it:'Stufa Tradizionale RUEGG', ru:'Традиционная печь RUEGG', ar:'موقد تقليدي RUEGG' }, brand: 'RUEGG', type: 'Wood-Burning', installation: 'Freestanding', view: 'Single-sided', description: { en:'Swiss-made traditional stove with timeless elegance.', zh:'瑞士制造的传统壁炉，永恒优雅。', fr:'Poêle traditionnel suisse d\'une élégance intemporelle.', es:'Estufa tradicional suiza con elegancia atemporal.', de:'Schweizer Traditionsofen mit zeitloser Eleganz.', it:'Stufa tradizionale svizzera con eleganza senza tempo.', ru:'Традиционная швейцарская печь с вечной элегантностью.', ar:'موقد سويسري تقليدي بأناقة خالدة.' } },
+    { slug: 'lacunza-outdoor-fire-pit', image: '/images/ref_lacunza_Altea.jpg', title: { en:'LACUNZA Outdoor Fire Pit', zh:'LACUNZA 户外火盆', fr:'Foyer Extérieur LACUNZA', es:'Fogata Exterior LACUNZA', de:'LACUNZA Outdoor-Feuerstelle', it:'Braciere da Esterno LACUNZA', ru:'Уличный очаг LACUNZA', ar:'حفرة نار خارجية LACUNZA' }, brand: 'LACUNZA', type: 'Outdoor', installation: 'Freestanding', view: 'Panoramic', description: { en:'Spanish-designed outdoor fire pit for garden.', zh:'西班牙设计户外火盆，适合花园。', fr:'Foyer extérieur design espagnol pour jardin.', es:'Fogata exterior de diseño español para jardín.', de:'Spanisch-designte Outdoor-Feuerstelle für den Garten.', it:'Braciere da esterno di design spagnolo per giardino.', ru:'Уличный очаг испанского дизайна для сада.', ar:'حفرة نار خارجية بتصميم إسباني.' } },
+    { slug: 'decoflame-electric', image: '/images/ref_bio_round.jpg', title: { en:'DECOFLAME Electric', zh:'DECOFLAME 电子壁炉', fr:'Électrique DECOFLAME', es:'Eléctrica DECOFLAME', de:'DECOFLAME Elektro', it:'Elettrico DECOFLAME', ru:'Электрический DECOFLAME', ar:'كهربائي DECOFLAME' }, brand: 'DECOFLAME', type: 'Electric', installation: 'Wall-mounted', view: 'Single-sided', description: { en:'Contemporary electric fireplace with realistic flame.', zh:'现代电子壁炉，逼真火焰效果。', fr:'Cheminée électrique contemporaine à flamme réaliste.', es:'Chimenea eléctrica contemporánea con llama realista.', de:'Moderner Elektrokamin mit realistischer Flamme.', it:'Caminetto elettrico contemporaneo con fiamma realistica.', ru:'Современный электрический камин с реалистичным пламенем.', ar:'مدفأة كهربائية معاصرة بلهب واقعي.' } },
+    { slug: 'outdoor-fire-bowl', image: '/images/ref_bio_panoramic.jpg', title: { en:'Outdoor Fire Bowl', zh:'户外火盆', fr:'Bol de Feu Extérieur', es:'Cuenco de Fuego Exterior', de:'Outdoor-Feuerschale', it:'Braciere da Esterno', ru:'Уличная чаша для огня', ar:'وعاء نار خارجي' }, brand: 'BILU ZONGSHI', type: 'Outdoor', installation: 'Freestanding', view: 'Panoramic', description: { en:'Elegant outdoor fire bowl for gardens.', zh:'优雅的户外火盆，适合花园。', fr:'Bol de feu extérieur élégant pour jardins.', es:'Elegante cuenco de fuego exterior para jardines.', de:'Eleganter Outdoor-Feuerschale für Gärten.', it:'Elegante braciere da esterno per giardini.', ru:'Элегантная уличная чаша для огня для сада.', ar:'وعاء نار خارجي أنيق للحدائق.' } },
+    { slug: 'custom-builtin-gas', image: '/images/ref_bio_three.jpg', title: { en:'Custom Built-in Gas', zh:'定制嵌入式燃气壁炉', fr:'Gaz Encastré sur Mesure', es:'Gas Empotrado Personalizado', de:'Maßgeschneiderter Gaskamin', it:'Gas su Misura da Incasso', ru:'Встроенный газовый камин', ar:'غاز مدمج مخصص' }, brand: 'BILU ZONGSHI', type: 'Gas', installation: 'Built-in', view: 'Three-sided', description: { en:'Bespoke three-sided gas fireplace.', zh:'三面观火定制燃气壁炉。', fr:'Cheminée à gaz sur mesure à trois faces.', es:'Chimenea de gas personalizada de tres lados.', de:'Maßgeschneiderter Gaskamin mit drei Seiten.', it:'Caminetto a gas su misura a tre lati.', ru:'Встроенный газовый камин с тремя сторонами.', ar:'مدفأة غاز مخصصة ثلاثية الجوانب.' } },
+    { slug: 'suspended-bioethanol', image: '/images/ref_bio_suspend.jpg', title: { en:'Suspended Bioethanol', zh:'悬吊式酒精壁炉', fr:'Bioéthanol Suspendu', es:'Bioetanol Suspendido', de:'Hängender Bioethanol-Kamin', it:'Bioetanolo Sospeso', ru:'Подвесной биоэтаноловый камин', ar:'إيثانول حيوي معلق' }, brand: 'ELEMENT4', type: 'Bioethanol', installation: 'Suspended', view: 'Panoramic', description: { en:'Stunning suspended bioethanol fireplace.', zh:'令人惊叹的悬吊式酒精壁炉。', fr:'Cheminée bioéthanol suspendue époustouflante.', es:'Impresionante chimenea de bioetanol suspendida.', de:'Beeindruckender hängender Bioethanol-Kamin.', it:'Spettacolare caminetto bioetanolo sospeso.', ru:'Потрясающий подвесной биоэтаноловый камин.', ar:'مدفأة إيثانول حيوي معلقة مذهلة.' } },
+    { slug: 'ruegg-corner-fireplace', image: '/images/ref_20230407145306_75657.jpg', title: { en:'Ruegg Corner Fireplace', zh:'RUEGG 转角壁炉', fr:'Cheminée d\'Angle RUEGG', es:'Chimenea de Esquina RUEGG', de:'RUEGG Eckkamin', it:'Caminetto d\'Angolo RUEGG', ru:'Угловой камин RUEGG', ar:'مدفأة زاوية RUEGG' }, brand: 'RUEGG', type: 'Wood-Burning', installation: 'Built-in', view: 'Corner', description: { en:'Space-saving corner fireplace.', zh:'节省空间的转角壁炉。', fr:'Cheminée d\'angle gain de place.', es:'Chimenea de esquina que ahorra espacio.', de:'Platzsparender Eckkamin.', it:'Caminetto d\'angolo salvaspazio.', ru:'Угловой камин, экономящий пространство.', ar:'مدفأة زاوية موفرة للمساحة.' } },
+    { slug: 'haas-sohn-double-gas', image: '/images/ref_bio_suspend.jpg', title: { en:'HAAS+SOHN Double Gas', zh:'HAAS+SOHN 双面燃气', fr:'Gaz Double Face HAAS+SOHN', es:'Gas Doble Cara HAAS+SOHN', de:'HAAS+SOHN Doppelseitig', it:'Gas Doppia Faccia HAAS+SOHN', ru:'Двухсторонний газовый HAAS+SOHN', ar:'غاز مزدوج الوجه HAAS+SOHN' }, brand: 'HAAS+SOHN', type: 'Gas', installation: 'Built-in', view: 'Double-sided', description: { en:'Double-sided gas fireplace for open spaces.', zh:'双面燃气壁炉，适合开放空间。', fr:'Cheminée à gaz double face pour espaces ouverts.', es:'Chimenea de gas de doble cara para espacios abiertos.', de:'Doppelseitiger Gaskamin für offene Räume.', it:'Caminetto a gas a doppia faccia per spazi aperti.', ru:'Двухсторонний газовый камин для открытых пространств.', ar:'مدفأة غاز مزدوجة الوجه للمساحات المفتوحة.' } },
+    { slug: 'rais-wall-mounted', image: '/images/ref_rais_Nexo.jpg', title: { en:'RAIS Wall-Mounted', zh:'RAIS 壁挂式', fr:'Mural RAIS', es:'Montaje en Pared RAIS', de:'RAIS Wandmontage', it:'A Parete RAIS', ru:'Настенный RAIS', ar:'حائطي RAIS' }, brand: 'RAIS', type: 'Electric', installation: 'Wall-mounted', view: 'Single-sided', description: { en:'Sleek wall-mounted electric fireplace.', zh:'丹麦设计壁挂式电子壁炉。', fr:'Cheminée électrique murale élégante.', es:'Elegante chimenea eléctrica de pared.', de:'Schaft montierter Elektrokamin.', it:'Elegante caminetto elettrico a parete.', ru:'Изящный настенный электрический камин.', ar:'مدفأة كهربائية حائطية أنيقة.' } },
+  ];
+
+  const paths = [];
+  for (const locale of nonEnglishLocales) {
+    for (const product of products) {
+      paths.push({ params: { locale, slug: product.slug }, props: { ...product, locale } });
+    }
+  }
+  return paths;
+}
+
+const { locale, slug, image, title, brand, type, installation, view, description } = Astro.props;
+const t = getTranslations(locale);
+const productTitle = title[locale] || title.en;
+const productDesc = description[locale] || description.en;
+const prefix = `/${locale}`;
+---
+
+<BaseLayout title={productTitle} description={productDesc} lang={locale}>
+
+  <div class="bg-[#f5f5f7] border-b border-[#f0f0f0]">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-10 py-3 text-sm text-[#86868b]">
+      <a href={prefix} class="hover:text-[#1d1d1f]">Home</a>
+      <span class="mx-2">/</span>
+      <a href={`${prefix}/products`} class="hover:text-[#1d1d1f]">{t.products.title}</a>
+      <span class="mx-2">/</span>
+      <span class="text-[#1d1d1f] font-medium">{productTitle}</span>
+    </div>
+  </div>
+
+  <section class="py-12 lg:py-20">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div>
+          <div class="rounded-2xl overflow-hidden aspect-[4/3] bg-[#f5f5f7]">
+            <img src={image} alt={productTitle} class="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="bg-[#1d1d1f] text-white text-xs font-bold px-3 py-1 rounded-full">{brand}</span>
+            <span class="bg-[#f5f5f7] text-[#86868b] text-xs px-3 py-1 rounded-full">{type}</span>
+          </div>
+          <h1 class="text-3xl lg:text-4xl font-bold tracking-tight text-[#1d1d1f] mb-4">{productTitle}</h1>
+          <p class="text-lg text-[#86868b] leading-relaxed mb-8">{productDesc}</p>
+
+          <div class="bg-[#fafafa] rounded-2xl p-6 mb-8 border border-[#f0f0f0]">
+            <h3 class="font-semibold text-[#1d1d1f] mb-4">{t.products.specs}</h3>
+            <div class="space-y-3">
+              {[
+                { label: t.products.brand, value: brand },
+                { label: t.products.type, value: type },
+                { label: t.products.installation, value: installation },
+                { label: t.products.view, value: view },
+              ].map(spec => (
+                <div class="flex justify-between py-2 border-b border-[#f0f0f0] last:border-0">
+                  <span class="text-sm text-[#86868b]">{spec.label}</span>
+                  <span class="text-sm font-medium text-[#1d1d1f]">{spec.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <a href={`${prefix}/contact`} class="block w-full text-center bg-[#1d1d1f] text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-black transition-all">
+            {t.products.requestQuote}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
