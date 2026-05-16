@@ -1,79 +1,36 @@
-# 🔥 Fireplace Master — sfireplace.com
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-> Premium Fireplace Supplier Website — Built with Astro + Decap CMS
+## Getting Started
 
-## Tech Stack
-
-- **Astro** — Static Site Generator (SSG)
-- **Tailwind CSS v4** — Styling
-- **Decap CMS** — Git-based Content Management
-- **Vercel** — Deployment (auto HTTPS, global CDN)
-
-## Quick Start
+First, run the development server:
 
 ```bash
-npm install
-npm run dev        # http://localhost:4321
-npm run build      # Build to ./dist/
-npm run preview    # Preview build
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Project Structure
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```
-src/
-├── components/     # Reusable UI components
-│   ├── Header.astro
-│   ├── Footer.astro
-│   ├── Hero.astro
-│   ├── ProductCard.astro
-│   ├── ProductFilter.astro
-│   └── ProjectCard.astro
-├── layouts/
-│   └── BaseLayout.astro    # Main layout (SEO meta, header, footer)
-├── pages/          # Route pages
-│   ├── index.astro         # Homepage
-│   ├── about.astro
-│   ├── contact.astro
-│   ├── products/
-│   │   ├── index.astro     # Product listing with filters
-│   │   └── [...slug].astro # Product detail pages
-│   ├── projects/
-│   │   └── index.astro
-│   └── blog/
-│       ├── index.astro
-│       └── [...slug].astro
-├── styles/
-│   └── global.css          # Tailwind + custom theme
-└── content/                # CMS-managed content
-    ├── products/
-    ├── projects/
-    ├── blog/
-    └── pages/
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## SEO Features
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- ✅ SSG static HTML (Core Web Vitals optimized)
-- ✅ Meta title/description per page
-- ✅ Open Graph & Twitter Card tags
-- ✅ JSON-LD structured data (Organization, Product)
-- ✅ Auto-generated sitemap.xml
-- ✅ Semantic URL slugs
-- ✅ Canonical URLs
+## Learn More
 
-## CMS
+To learn more about Next.js, take a look at the following resources:
 
-Access the content manager at `/admin/` after deployment. Add/edit products, projects, and blog posts through a clean UI.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Deployment
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Push to GitHub → Vercel auto-deploys.
+## Deploy on Vercel
 
-```bash
-git push origin main
-```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## License
-
-Private — Fireplace Master
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
