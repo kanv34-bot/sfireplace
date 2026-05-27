@@ -11,6 +11,7 @@ const fallbackColors: Record<string, string> = {
   p6: "from-pink-900/80 to-pink-700/60",
   p88: "from-green-900/80 to-green-700/60",
   p8: "from-gray-900/80 to-gray-700/60",
+  p9: "from-cyan-950/80 to-orange-700/60",
 };
 
 const fallbackIcons: Record<string, string> = {
@@ -22,6 +23,7 @@ const fallbackIcons: Record<string, string> = {
   p6: "✨",
   p88: "🏕️",
   p8: "🔧",
+  p9: "✨",
 };
 
 export default function ProductImage({

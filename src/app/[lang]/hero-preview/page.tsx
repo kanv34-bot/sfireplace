@@ -44,7 +44,7 @@ export default async function HeroPreviewPage({
               让客户第一眼看见产品、案例和厂家实力
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-white/76 sm:text-lg">
-              汇聚欧洲高端真火、燃气、雾化与定制壁炉系统，提供选型、深化、供货、安装与售后的一体化解决方案。
+              壁炉宗师自有品牌源头工厂，专注电子壁炉、雾化壁炉、酒精壁炉、全息壁炉与OEM/ODM定制，提供研发、生产、深化、供货、安装与售后一体化方案。
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -66,7 +66,7 @@ export default async function HeroPreviewPage({
               {[
                 ["50+", "产品型号"],
                 ["13", "实景案例"],
-                ["6", "欧洲品牌"],
+                ["OEM", "代工定制"],
               ].map(([value, label]) => (
                 <div key={label} className="px-4 first:pl-0">
                   <div className="text-2xl font-semibold text-white">{value}</div>

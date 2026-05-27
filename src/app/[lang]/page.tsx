@@ -46,22 +46,30 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   const langMap = await loadLangData(lang);
 
   const categoryCards = [
-    { title: "嵌入式壁炉", sub: "Built-in Fireplace", href: `/${lang}/products?category=p1`, img: categoryImage("built-in-fireplace") },
-    { title: "独立式壁炉", sub: "Freestanding Stove", href: `/${lang}/products?category=p1`, img: categoryImage("freestanding-stove") },
-    { title: "壁挂式壁炉", sub: "Wall-mounted Fireplace", href: `/${lang}/products?category=p4`, img: categoryImage("wall-mounted-fireplace") },
-    { title: "电壁炉", sub: "Electric Fireplace", href: `/${lang}/products?category=p7`, img: categoryImage("electric-fireplace") },
-    { title: "户外壁炉", sub: "Outdoor Fireplace", href: `/${lang}/products?category=p88`, img: categoryImage("outdoor-fireplace") },
-    { title: "壁炉配件", sub: "Accessories", href: `/${lang}/products?category=p8`, img: categoryImage("accessories") },
+    {
+      title: "酒精壁炉",
+      sub: "Ethanol Fireplace",
+      href: `/${lang}/products?category=p3`,
+      img: "/media/oss/%E4%BA%A7%E5%93%81/%E9%85%92%E7%B2%BE%E5%A3%81%E7%82%89/%E5%86%85%E5%AE%B9%E9%A1%B51.png",
+    },
+    {
+      title: "雾化壁炉",
+      sub: "Mist Fireplace",
+      href: `/${lang}/products?category=p4`,
+      img: "/media/oss/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/1.png",
+    },
+    { title: "电子壁炉", sub: "Electric Fireplace", href: `/${lang}/products?category=p7`, img: categoryImage("electric-fireplace") },
+    { title: "全息壁炉", sub: "Holographic Fireplace", href: `/${lang}/products?category=p9`, img: featuredImage("featured-product-4") },
   ];
 
   const featuredSolutions = [
     {
-      title: "独立式壁炉客厅方案",
-      label: "独立式壁炉",
-      href: `/${lang}/products?category=p1`,
+      title: "酒精壁炉真火定制方案",
+      label: "酒精壁炉",
+      href: `/${lang}/products?category=p3`,
       image: featuredImage("featured-product-1"),
-      alt: "现代客厅木饰面空间中的独立式壁炉，适合家用客厅和别墅休闲区",
-      description: "适合现代客厅、别墅休闲区和轻奢木饰面空间，独立摆放，火焰清晰，适合打造家庭取暖与装饰焦点。",
+      alt: "现代客厅中的酒精壁炉真火氛围，适合别墅、会所和商业空间定制",
+      description: "适合别墅、会所、餐厅和商业展示空间，支持火槽长度、外观材质、嵌入结构和OEM/ODM定制，突出真实火焰氛围。",
     },
     {
       title: "电子壁炉背景墙方案",
@@ -72,20 +80,20 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       description: "适合电视背景墙、大理石背景墙和精装住宅项目，安装维护简单，适合需要无烟道、低维护壁炉氛围的空间。",
     },
     {
-      title: "嵌入式长条壁炉方案",
-      label: "嵌入式壁炉",
-      href: `/${lang}/products?category=p1`,
+      title: "雾化壁炉定制方案",
+      label: "雾化壁炉",
+      href: `/${lang}/products?category=p4`,
       image: featuredImage("featured-product-3"),
-      alt: "现代客厅背景墙中的嵌入式长条壁炉，适合别墅和商业空间",
-      description: "适合别墅客厅、酒店会客区和高端商业空间，横向火焰视觉更强，可与石材、木饰面和隐藏灯带一体化设计。",
+      alt: "现代客厅背景墙中的长条雾化壁炉定制方案，适合酒店和商业空间",
+      description: "适合酒店大堂、会所、别墅和商业接待区，水雾火焰无明火，支持长度、结构、水电检修、背景墙和灯光效果定制。",
     },
     {
-      title: "雾化壁炉定制方案",
-      label: "雾化壁炉定制",
-      href: `/${lang}/products?category=p4`,
+      title: "全息壁炉沉浸式方案",
+      label: "全息壁炉",
+      href: `/${lang}/products?category=p9`,
       image: featuredImage("featured-product-4"),
-      alt: "豪宅和会所空间中的长条雾化壁炉定制效果，适合无明火氛围设计",
-      description: "适合豪宅、会所、酒店大堂和商业接待区，水雾火焰无明火，支持长度、结构、背景墙和灯光效果定制。",
+      alt: "酒店、展厅和会所空间中的全息壁炉沉浸式火焰效果",
+      description: "适合展厅、酒店大堂、商业橱窗、会所和沉浸式空间，可定制全息火焰影像、画面比例、安装结构和控制系统。",
     },
   ];
 
@@ -156,7 +164,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <p className="mt-2 text-sm text-[#7a746e]">多种类型壁炉，满足不同项目需求</p>
           </div>
 
-          <div className="mt-9 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+          <div className="mt-9 grid grid-cols-2 gap-4 md:grid-cols-4">
             {categoryCards.map((item) => (
               <Link
                 href={item.href}
@@ -264,7 +272,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           <div className="flex items-end justify-between gap-4">
             <div>
               <h2 className="text-2xl font-bold">精选产品</h2>
-              <p className="mt-2 text-sm text-[#7a746e]">覆盖独立式壁炉、电子壁炉、嵌入式壁炉和雾化壁炉定制方案</p>
+              <p className="mt-2 text-sm text-[#7a746e]">覆盖酒精壁炉、雾化壁炉、电子壁炉、全息壁炉与OEM/ODM定制方案</p>
             </div>
             <Link href={`/${lang}/products`} className="hidden text-sm font-bold text-[#f97316] sm:inline-flex">
               查看全部 →

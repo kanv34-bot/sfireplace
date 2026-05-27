@@ -4,6 +4,7 @@ const it_data: Record<string, string> = {
   "p3:name": "Caminetto ad Alcol",
   "p4:name": "Caminetto a Nebbia",
   "p7:name": "Caminetto Elettrico",
+  "p9:name": "Caminetto Olografico",
   "p6:name": "Caminetto Personalizzato",
   "p88:name": "Fuoco all'Aperto",
   "p8:name": "Accessori",

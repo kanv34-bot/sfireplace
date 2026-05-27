@@ -20,8 +20,8 @@ export default async function Footer({ lang }: { lang: string }) {
             </Link>
             <p className="text-sm text-[#6e6e73] leading-relaxed">
               {lang === "zh"
-                ? "汇聚欧洲六大顶级壁炉品牌，专业壁炉解决方案提供商"
-                : "Gathering six top European fireplace brands, professional fireplace solution provider"}
+                ? "壁炉宗师自有品牌源头工厂，专注电子壁炉、雾化壁炉、酒精壁炉、全息壁炉与OEM/ODM定制"
+                : "Own-brand fireplace source factory for electric, mist, ethanol, holographic fireplaces and OEM/ODM customization"}
             </p>
           </div>
 

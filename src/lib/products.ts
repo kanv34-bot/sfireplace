@@ -13,15 +13,13 @@ export interface Product {
 }
 
 export const categories = [
-  { id: "p1", name: "燃木壁炉", nameEn: "Wood Burning", icon: "🔥" },
-  { id: "p2", name: "燃气壁炉", nameEn: "Gas Fireplace", icon: "🔥" },
-  { id: "p3", name: "酒精壁炉", nameEn: "Alcohol Fireplace", icon: "🔥" },
+  { id: "p3", name: "酒精壁炉", nameEn: "Ethanol Fireplace", icon: "🔥" },
   { id: "p4", name: "雾化壁炉", nameEn: "Mist Fireplace", icon: "💨" },
   { id: "p7", name: "电子壁炉", nameEn: "Electric Fireplace", icon: "⚡" },
-  { id: "p6", name: "定制壁炉", nameEn: "Custom Fireplace", icon: "✨" },
-  { id: "p88", name: "户外火景", nameEn: "Outdoor Fire", icon: "🏕️" },
-  { id: "p8", name: "工具附件", nameEn: "Accessories", icon: "🔧" },
+  { id: "p9", name: "全息壁炉", nameEn: "Holographic Fireplace", icon: "✨" },
 ];
+
+const activeCategoryIds = new Set(categories.map((category) => category.id));
 
 export const brands = [
   { name: "壁炉宗师", country: "中国", nameEn: "Fireplace Master", countryEn: "China" },
@@ -29,7 +27,7 @@ export const brands = [
 
 const OSS = "/media/oss";
 
-export const products: Product[] = [
+const productCatalog: Product[] = [
   // === LACUNZA (燃木) ===
   {
     id: "p1_71",
@@ -522,10 +520,10 @@ export const products: Product[] = [
     brand: "壁炉宗师",
     brandCountry: "中国",
     name: "酒精壁炉（可定制）",
-    nameEn: "Alcohol Fireplace (Customizable)",
-    description: "东日圣火酒精壁炉，可定制尺寸和外观，嵌入式安装，清洁环保。",
+    nameEn: "Ethanol Fireplace (Customizable)",
+    description: "壁炉宗师酒精壁炉源头工厂产品，支持火槽、尺寸、外观和安装结构定制，适合酒店、会所、别墅和商业空间的真火氛围方案。",
     descriptionEn:
-      "Bio ethanol fireplace, customizable size and appearance, built-in installation, clean and eco-friendly.",
+      "Fireplace Master bio ethanol fireplace source-factory product, customizable burner, size, finish, and installation structure for hotels, clubs, villas, and commercial spaces.",
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%85%92%E7%B2%BE%E5%A3%81%E7%82%89/%E5%86%85%E5%AE%B9%E9%A1%B51.png`],
     coverImage: `${OSS}/%E4%BA%A7%E5%93%81/%E9%85%92%E7%B2%BE%E5%A3%81%E7%82%89/%E5%86%85%E5%AE%B9%E9%A1%B51.png`,
@@ -538,7 +536,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "悬挂-分体款雾化壁炉（可定制）",
     nameEn: "Wall-Mounted Split Mist Fireplace (Customizable)",
-    description: "东日圣火悬挂-分体款雾化壁炉，3D雾化火焰效果，可定制。",
+    description: "壁炉宗师悬挂-分体款雾化壁炉，3D雾化火焰效果，可定制。",
     descriptionEn:
       "3D mist fireplace with wall-mounted split design, customizable flame effects.",
     installation: "悬挂式",
@@ -552,7 +550,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "双面观火雾化壁炉（可定制）",
     nameEn: "Double-Sided Mist Fireplace (Customizable)",
-    description: "东日圣火双面观火雾化壁炉，双面可视火焰，适合隔断安装。",
+    description: "壁炉宗师双面观火雾化壁炉，双面可视火焰，适合隔断安装。",
     descriptionEn: "Double-sided mist fireplace, suitable for room divider installation.",
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/%E5%B8%B8%E8%A7%84%E6%AC%BE-%E5%8F%8C%E9%9D%A2%E8%A7%82%E7%81%AB/1.png`],
@@ -565,7 +563,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "全景观火雾化壁炉（可定制）",
     nameEn: "Panoramic Mist Fireplace (Customizable)",
-    description: "东日圣火全景观火雾化壁炉，超宽全景火焰效果。",
+    description: "壁炉宗师全景观火雾化壁炉，超宽全景火焰效果。",
     descriptionEn: "Panoramic mist fireplace with ultra-wide flame viewing area.",
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/%E5%B8%B8%E8%A7%84%E6%AC%BE-%E5%85%A8%E6%99%AF%E8%A7%82%E7%81%AB/1.png`],
@@ -578,7 +576,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "三面观火雾化壁炉（可定制）",
     nameEn: "Three-Sided Mist Fireplace (Customizable)",
-    description: "东日圣火三面观火雾化壁炉，270°火焰视野，视觉震撼。",
+    description: "壁炉宗师三面观火雾化壁炉，270°火焰视野，视觉震撼。",
     descriptionEn: "Three-sided mist fireplace with 270° flame view.",
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/%E5%B8%B8%E8%A7%84%E6%AC%BE-%E4%B8%89%E9%9D%A2%E8%A7%82%E7%81%AB/1.png`],
@@ -591,7 +589,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "圆形雾化壁炉（可定制）",
     nameEn: "Round Mist Fireplace (Customizable)",
-    description: "东日圣火圆形雾化壁炉，独特圆形设计，艺术感十足。",
+    description: "壁炉宗师圆形雾化壁炉，独特圆形设计，艺术感十足。",
     descriptionEn: "Round mist fireplace with unique circular design.",
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/%E5%9C%86%E5%BD%A2%E6%AC%BE/1.png`],
@@ -604,7 +602,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "飞碟款悬挂雾化壁炉（可定制）",
     nameEn: "UFO Hanging Mist Fireplace (Customizable)",
-    description: "东日圣火飞碟款悬挂雾化壁炉，悬挂设计，未来感造型。",
+    description: "壁炉宗师飞碟款悬挂雾化壁炉，悬挂设计，未来感造型。",
     descriptionEn: "UFO-shaped hanging mist fireplace with futuristic design.",
     installation: "悬挂式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/%E6%82%AC%E6%8C%82-%E9%A3%9E%E7%A2%9F%E6%AC%BE/1.png`],
@@ -617,7 +615,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "隔断/屏风雾化壁炉（可定制）",
     nameEn: "Room Divider Mist Fireplace (Customizable)",
-    description: "东日圣火可做隔断/屏风雾化壁炉，兼具隔断与装饰功能。",
+    description: "壁炉宗师可做隔断/屏风雾化壁炉，兼具隔断与装饰功能。",
     descriptionEn: "Mist fireplace that doubles as a room divider or screen.",
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/%E5%B8%B8%E8%A7%84%E6%AC%BE-%E9%9A%94%E6%96%AD%3A%E5%B1%8F%E9%A3%8E/1.png`],
@@ -630,7 +628,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: '"太阳之眼"雾化壁炉（可定制）',
     nameEn: '"Eye of the Sun" Mist Fireplace (Customizable)',
-    description: '东日圣火"太阳之眼"雾化壁炉，独特圆形造型，如太阳之眼。',
+    description: '壁炉宗师"太阳之眼"雾化壁炉，独特圆形造型，如太阳之眼。',
     descriptionEn: '"Eye of the Sun" mist fireplace with distinctive circular design.',
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/%E5%B8%B8%E8%A7%84%E6%AC%BE-%E5%A4%AA%E9%98%B3%E4%B9%8B%E7%9C%BC/1.png`],
@@ -643,7 +641,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "单面观火雾化壁炉（可定制）",
     nameEn: "Single-Sided Mist Fireplace (Customizable)",
-    description: "东日圣火单面观火雾化壁炉，经典单面设计，适合壁挂安装。",
+    description: "壁炉宗师单面观火雾化壁炉，经典单面设计，适合壁挂安装。",
     descriptionEn: "Single-sided mist fireplace, classic design for wall installation.",
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/%E5%B8%B8%E8%A7%84%E6%AC%BE-%E5%8D%95%E9%9D%A2%E8%A7%82%E7%81%AB/1.png`],
@@ -656,7 +654,7 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "智能3D雾化壁炉（可定制）",
     nameEn: "Smart 3D Mist Fireplace (Customizable)",
-    description: "东日圣火智能3D雾化壁炉，智能控制，3D立体火焰效果。",
+    description: "壁炉宗师智能3D雾化壁炉，智能控制，3D立体火焰效果。",
     descriptionEn: "Smart 3D mist fireplace with intelligent control and 3D flame effects.",
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/1.png`],
@@ -685,9 +683,9 @@ export const products: Product[] = [
     brandCountry: "中国",
     name: "电子壁炉（可定制）",
     nameEn: "Electric Fireplace (Customizable)",
-    description: "壁炉宗师电子壁炉，可定制尺寸，火焰效果逼真，安装便捷。",
+    description: "壁炉宗师电子壁炉源头工厂产品，支持电视背景墙、酒店客房、样板间和商业空间的尺寸、火焰效果、结构和OEM/ODM定制。",
     descriptionEn:
-      "Electric fireplace with realistic flame effects, customizable size, easy installation.",
+      "Fireplace Master electric fireplace source-factory product with custom size, flame effect, structure, and OEM/ODM options for TV walls, hotel rooms, show flats, and commercial spaces.",
     installation: "嵌入式",
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E7%94%B5%E5%AD%90%E5%A3%81%E7%82%89/1.png`],
     coverImage: `${OSS}/%E4%BA%A7%E5%93%81/%E7%94%B5%E5%AD%90%E5%A3%81%E7%82%89/1.png`,
@@ -720,7 +718,26 @@ export const products: Product[] = [
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E5%B7%A5%E5%85%B7%E9%99%84%E4%BB%B6/1.png`],
     coverImage: `${OSS}/%E4%BA%A7%E5%93%81/%E5%B7%A5%E5%85%B7%E9%99%84%E4%BB%B6/1.png`,
   },
+  // === 全息壁炉 ===
+  {
+    id: "p9_1",
+    category: "p9",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "全息壁炉（可定制）",
+    nameEn: "Holographic Fireplace (Customizable)",
+    description: "壁炉宗师全息壁炉源头工厂产品，适合展厅、酒店大堂、商业橱窗、会所和沉浸式空间，可定制全息火焰影像、尺寸比例、安装结构和控制系统。",
+    descriptionEn:
+      "Fireplace Master holographic fireplace source-factory product for showrooms, hotel lobbies, retail windows, clubs, and immersive spaces, with custom flame visuals, size ratio, installation structure, and control system.",
+    installation: "嵌入式",
+    images: ["/media/home/featured-products/featured-product-4.png"],
+    coverImage: "/media/home/featured-products/featured-product-4.png",
+  },
 ];
+
+export const products: Product[] = productCatalog.filter((product) =>
+  activeCategoryIds.has(product.category),
+);
 
 export function getProductsByCategory(categoryId: string): Product[] {
   return products.filter((p) => p.category === categoryId);

@@ -4,6 +4,7 @@ const pt_data: Record<string, string> = {
   "p3:name": "Lareira a Álcool",
   "p4:name": "Lareira de Névoa",
   "p7:name": "Lareira Elétrica",
+  "p9:name": "Lareira Holográfica",
   "p6:name": "Lareira Personalizada",
   "p88:name": "Fogo Externo",
   "p8:name": "Acessórios",

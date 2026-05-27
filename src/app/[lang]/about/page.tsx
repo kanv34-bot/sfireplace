@@ -17,8 +17,8 @@ export default async function AboutPage({
         title: localizedText(lang, "我们的故事", "Our Story"),
         content: localizedText(
           lang,
-          "壁炉宗师是一家专注于高端壁炉销售、设计、安装和售后服务的专业公司。我们汇聚了来自西班牙、丹麦、奥地利、瑞士、荷兰等欧洲顶级壁炉品牌，致力于为中国消费者带来最优质的壁炉产品和最专业的服务体验。",
-          "Fireplace Master is a professional company specializing in high-end fireplace sales, design, installation, and after-sales service. We bring together top European fireplace brands from Spain, Denmark, Austria, Switzerland, and the Netherlands, committed to providing Chinese consumers with the finest fireplace products and most professional service.",
+          "壁炉宗师是一家自有品牌壁炉源头工厂，专注电子壁炉、雾化壁炉、酒精壁炉、全息壁炉和OEM/ODM定制。我们为住宅、酒店、会所、展厅和商业空间提供产品研发、生产、深化设计、供货安装和售后服务。",
+          "Fireplace Master is an own-brand fireplace source factory focused on electric fireplaces, mist fireplaces, ethanol fireplaces, holographic fireplaces, and OEM/ODM customization. We provide product R&D, manufacturing, detailed design, supply, installation, and after-sales service for homes, hotels, clubs, showrooms, and commercial spaces.",
         ),
       },
       {

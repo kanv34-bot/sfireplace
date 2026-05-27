@@ -4,6 +4,7 @@ const de_data: Record<string, string> = {
   "p3:name": "Alkoholkamin",
   "p4:name": "Nebelkamin",
   "p7:name": "Elektrokamin",
+  "p9:name": "Holografischer Kamin",
   "p6:name": "Kundenspezifischer Kamin",
   "p88:name": "Außenfeuerstelle",
   "p8:name": "Zubehör",

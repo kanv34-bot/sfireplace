@@ -5,6 +5,7 @@ const ja: Record<string, string> = {
   "p3:name": "アルコール暖炉",
   "p4:name": "ミスト暖炉",
   "p7:name": "電子暖炉",
+  "p9:name": "ホログラム暖炉",
   "p6:name": "カスタム暖炉",
   "p88:name": "屋外火景",
   "p8:name": "アクセサリー",

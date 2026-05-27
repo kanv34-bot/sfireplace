@@ -4,6 +4,7 @@ const es_data: Record<string, string> = {
   "p3:name": "Chimenea de Alcohol",
   "p4:name": "Chimenea de Niebla",
   "p7:name": "Chimenea Eléctrica",
+  "p9:name": "Chimenea Holográfica",
   "p6:name": "Chimenea Personalizada",
   "p88:name": "Fuego Exterior",
   "p8:name": "Accesorios",
