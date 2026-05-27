@@ -4,6 +4,7 @@ import ProductImage from "@/components/ProductImage";
 import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
+import { formatPrice } from "@/lib/utils";
 
 export default async function ProductsPage({
   params,
@@ -84,37 +85,62 @@ export default async function ProductsPage({
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
-                {filtered.map((product) => (
-                  <Link
-                    key={product.id}
-                    href={`/${lang}/products/${product.id}`}
-                    className="group bg-white rounded-2xl overflow-hidden card-hover border border-[#e5e5ea]"
-                  >
-                    <div className="aspect-[4/3] bg-[#f5f5f7] relative overflow-hidden">
-                      <ProductImage
-                        src={product.coverImage}
-                        alt={localizedField(product, "name", lang, langMap)}
-                        category={product.category}
-                        brand={product.brand}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs text-[#c2410c] font-medium bg-[#fff7ed] px-2 py-0.5 rounded-full">
-                          {product.brand}
-                        </span>
-                        <span className="text-xs text-[#6e6e73]">{localizedField(product, "installation", lang, langMap)}</span>
+                {filtered.map((product) => {
+                  const hoverImage = product.images[1];
+                  const isEthanol = product.category === "p3";
+
+                  return (
+                    <Link
+                      key={product.id}
+                      href={`/${lang}/products/${product.id}`}
+                      className="group bg-white rounded-2xl overflow-hidden card-hover border border-[#e5e5ea]"
+                    >
+                      <div className="aspect-[4/3] bg-white relative overflow-hidden">
+                        <ProductImage
+                          src={product.coverImage}
+                          alt={localizedField(product, "name", lang, langMap)}
+                          category={product.category}
+                          brand={product.brand}
+                          className={`absolute inset-0 w-full h-full transition-all duration-500 ${
+                            isEthanol
+                              ? "object-contain p-7 sm:p-8 group-hover:opacity-0"
+                              : "object-cover group-hover:scale-105"
+                          }`}
+                        />
+                        {hoverImage && (
+                          <ProductImage
+                            src={hoverImage}
+                            alt={`${localizedField(product, "name", lang, langMap)} scene`}
+                            category={product.category}
+                            brand={product.brand}
+                            className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                          />
+                        )}
                       </div>
-                      <h3 className="text-sm font-medium text-[#1d1d1f] line-clamp-2 group-hover:text-[#c2410c] transition-colors">
-                        {localizedField(product, "name", lang, langMap)}
-                      </h3>
-                      <p className="text-xs text-[#6e6e73] mt-1 line-clamp-2">
-                        {localizedField(product, "description", lang, langMap)}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
+                      <div className="p-4">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs text-[#c2410c] font-medium bg-[#fff7ed] px-2 py-0.5 rounded-full">
+                            {product.brand}
+                          </span>
+                          <span className="text-xs text-[#6e6e73]">{localizedField(product, "installation", lang, langMap)}</span>
+                        </div>
+                        <h3 className="text-sm font-medium text-[#1d1d1f] line-clamp-2 group-hover:text-[#c2410c] transition-colors">
+                          {localizedField(product, "name", lang, langMap)}
+                        </h3>
+                        <p className="text-xs text-[#6e6e73] mt-1 line-clamp-2">
+                          {localizedField(product, "description", lang, langMap)}
+                        </p>
+                        {product.priceCny && (
+                          <p className="mt-3 text-sm font-semibold text-[#c2410c]">
+                            {lang === "zh" ? "参考价 " : "From "}
+                            {formatPrice(product.priceCny)}
+                            {lang === "zh" ? " 起" : ""}
+                          </p>
+                        )}
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </div>

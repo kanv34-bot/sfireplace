@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { locales, getDictionary, localizedText } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
+import { formatPrice } from "@/lib/utils";
 
 const ethanolImages = {
   villa: "/media/products/ethanol-fireplace/ethanol-fireplace-villa-scene.png",
@@ -190,6 +191,8 @@ export default async function ProductDetailPage({
   if (!product) notFound();
 
   const category = categories.find((c) => c.id === product.category);
+  const productHoverImage = product.images[1];
+  const isEthanolCategory = product.category === "p3";
   const isEthanol = product.id === "p3_14";
   const isMist = product.id === "p4_70";
   const ethanolFaq = lang === "zh" ? ethanolFaqZh : ethanolFaqEn;
@@ -314,14 +317,27 @@ export default async function ProductDetailPage({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Image */}
-          <div className="aspect-[4/3] bg-[#f5f5f7] rounded-2xl overflow-hidden relative">
+          <div className="group aspect-[4/3] bg-white rounded-2xl overflow-hidden relative border border-[#f0f0f0]">
             <ProductImage
               src={product.coverImage}
               alt={localizedField(product, "name", lang, langMap)}
               category={product.category}
               brand={product.brand}
-              className="absolute inset-0 w-full h-full object-cover"
+              className={`absolute inset-0 w-full h-full transition-all duration-500 ${
+                isEthanolCategory
+                  ? "object-contain p-8 sm:p-10 group-hover:opacity-0"
+                  : "object-cover"
+              }`}
             />
+            {productHoverImage && (
+              <ProductImage
+                src={productHoverImage}
+                alt={`${localizedField(product, "name", lang, langMap)} scene`}
+                category={product.category}
+                brand={product.brand}
+                className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
+            )}
           </div>
 
           {/* Info */}
@@ -366,7 +382,14 @@ export default async function ProductDetailPage({
             </div>
 
             <div className="mt-6 p-4 bg-[#fff7ed] rounded-xl border border-[#fed7aa]">
-              <p className="text-sm text-[#c2410c] font-medium">{t.contact_for_price}</p>
+              <p className="text-sm text-[#c2410c] font-medium">
+                {product.priceCny
+                  ? `${lang === "zh" ? "参考出厂价 " : "From "}${formatPrice(product.priceCny)}${lang === "zh" ? " 起" : ""}`
+                  : t.contact_for_price}
+              </p>
+              <p className="text-xs text-[#ea580c] mt-1">
+                {lang === "zh" ? "最终价格按尺寸、材质、火槽长度和批量数量确认。" : "Final price depends on size, material, burner length, and quantity."}
+              </p>
               <p className="text-xs text-[#ea580c] mt-1">+86 18028181668 | kanv34@gmail.com</p>
             </div>
 

@@ -8,6 +8,7 @@ export interface Product {
   description: string;
   descriptionEn: string;
   installation: string;
+  priceCny?: number;
   images: string[];
   coverImage: string;
 }
@@ -26,6 +27,7 @@ export const brands = [
 ];
 
 const OSS = "/media/oss";
+const ETHANOL_SERIES = "/media/products/ethanol-series";
 
 const productCatalog: Product[] = [
   // === LACUNZA (燃木) ===
@@ -525,8 +527,228 @@ const productCatalog: Product[] = [
     descriptionEn:
       "Fireplace Master bio ethanol fireplace source-factory product, customizable burner, size, finish, and installation structure for hotels, clubs, villas, and commercial spaces.",
     installation: "嵌入式",
-    images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%85%92%E7%B2%BE%E5%A3%81%E7%82%89/%E5%86%85%E5%AE%B9%E9%A1%B51.png`],
-    coverImage: `${OSS}/%E4%BA%A7%E5%93%81/%E9%85%92%E7%B2%BE%E5%A3%81%E7%82%89/%E5%86%85%E5%AE%B9%E9%A1%B51.png`,
+    priceCny: 5800,
+    images: [
+      `${ETHANOL_SERIES}/product/linear-burner.webp`,
+      `${ETHANOL_SERIES}/scene/linear-burner.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/linear-burner.webp`,
+  },
+  {
+    id: "p3_15",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "自动酒精燃烧器",
+    nameEn: "Automatic Bio Ethanol Burner",
+    description: "带自动点火和模块化结构的生物乙醇燃烧器，适合酒店、会所、别墅壁龛和批量工程定制。",
+    descriptionEn:
+      "Automatic bio ethanol burner with modular structure for hotels, clubs, villa niches, and project customization.",
+    installation: "嵌入式 / 自动控制",
+    priceCny: 12800,
+    images: [
+      `${ETHANOL_SERIES}/product/automatic-burner.webp`,
+      `${ETHANOL_SERIES}/scene/automatic-burner.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/automatic-burner.webp`,
+  },
+  {
+    id: "p3_16",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "双面隔断酒精壁炉",
+    nameEn: "Double-Sided Ethanol Fireplace Divider",
+    description: "双面观火结构，可作为餐厅、会所、客厅与商业空间的低矮隔断和真火视觉焦点。",
+    descriptionEn:
+      "Double-sided ethanol fireplace divider for restaurants, clubs, living rooms, and commercial interiors.",
+    installation: "双面 / 隔断式",
+    priceCny: 16800,
+    images: [
+      `${ETHANOL_SERIES}/product/double-sided-divider.webp`,
+      `${ETHANOL_SERIES}/scene/double-sided-divider.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/double-sided-divider.webp`,
+  },
+  {
+    id: "p3_17",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "三面观火酒精壁炉",
+    nameEn: "Three-Sided Ethanol Fireplace",
+    description: "三面可视真火结构，适合半岛式背景墙、端景墙和高端住宅会客空间。",
+    descriptionEn:
+      "Three-sided real-flame ethanol fireplace for peninsula feature walls and premium residential lounges.",
+    installation: "三面观火",
+    priceCny: 19800,
+    images: [
+      `${ETHANOL_SERIES}/product/three-sided-peninsula.webp`,
+      `${ETHANOL_SERIES}/scene/three-sided-peninsula.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/three-sided-peninsula.webp`,
+  },
+  {
+    id: "p3_18",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "桌面酒精壁炉",
+    nameEn: "Tabletop Ethanol Fireplace",
+    description: "小型桌面生物乙醇壁炉，适合样板间、民宿、公寓、餐桌和轻量级软装氛围。",
+    descriptionEn:
+      "Compact tabletop ethanol fireplace for model rooms, apartments, dining tables, and decorative atmosphere.",
+    installation: "桌面式",
+    priceCny: 2800,
+    images: [
+      `${ETHANOL_SERIES}/product/tabletop.webp`,
+      `${ETHANOL_SERIES}/scene/tabletop.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/tabletop.webp`,
+  },
+  {
+    id: "p3_19",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "独立式酒精壁炉",
+    nameEn: "Freestanding Ethanol Fireplace",
+    description: "可移动独立式酒精壁炉，适合客厅、休闲区、会所和不方便开孔的空间。",
+    descriptionEn:
+      "Freestanding ethanol fireplace for lounges, clubs, living rooms, and spaces where built-in work is difficult.",
+    installation: "独立式",
+    priceCny: 6800,
+    images: [
+      `${ETHANOL_SERIES}/product/freestanding.webp`,
+      `${ETHANOL_SERIES}/scene/freestanding.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/freestanding.webp`,
+  },
+  {
+    id: "p3_20",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "圆形酒精火盆",
+    nameEn: "Round Ethanol Fire Bowl",
+    description: "圆形真火酒精火盆，适合庭院、露台、度假酒店和户外休闲空间。",
+    descriptionEn:
+      "Round real-flame ethanol fire bowl for patios, terraces, resort hotels, and outdoor lounge spaces.",
+    installation: "户外 / 火盆",
+    priceCny: 5800,
+    images: [
+      `${ETHANOL_SERIES}/product/round-fire-bowl.webp`,
+      `${ETHANOL_SERIES}/scene/round-fire-bowl.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/round-fire-bowl.webp`,
+  },
+  {
+    id: "p3_21",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "户外酒精火桌",
+    nameEn: "Outdoor Ethanol Fire Table",
+    description: "户外长条酒精火桌，适合露台、屋顶花园、商业外摆和度假酒店项目。",
+    descriptionEn:
+      "Outdoor ethanol fire table for terraces, rooftop gardens, commercial patios, and resort projects.",
+    installation: "户外 / 火桌",
+    priceCny: 15800,
+    images: [
+      `${ETHANOL_SERIES}/product/outdoor-fire-table.webp`,
+      `${ETHANOL_SERIES}/scene/outdoor-fire-table.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/outdoor-fire-table.webp`,
+  },
+  {
+    id: "p3_22",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "岩板岛台酒精壁炉",
+    nameEn: "Stone Island Ethanol Fireplace",
+    description: "岩板或石材岛台式酒精壁炉，可与客厅、餐厅、开放式厨房和商业接待空间结合。",
+    descriptionEn:
+      "Stone island ethanol fireplace for living rooms, dining areas, open kitchens, and commercial reception spaces.",
+    installation: "岛台式",
+    priceCny: 22800,
+    images: [
+      `${ETHANOL_SERIES}/product/stone-island.webp`,
+      `${ETHANOL_SERIES}/scene/stone-island.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/stone-island.webp`,
+  },
+  {
+    id: "p3_23",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "酒店大堂长条酒精壁炉",
+    nameEn: "Hotel Lobby Linear Ethanol Fireplace",
+    description: "超长线性酒精壁炉，适合酒店大堂、会所、售楼部和商业接待区的真火主景。",
+    descriptionEn:
+      "Extra-long linear ethanol fireplace for hotel lobbies, clubs, sales centers, and commercial reception areas.",
+    installation: "工程长条",
+    priceCny: 32800,
+    images: [
+      `${ETHANOL_SERIES}/product/hotel-lobby-linear.webp`,
+      `${ETHANOL_SERIES}/scene/hotel-lobby-linear.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/hotel-lobby-linear.webp`,
+  },
+  {
+    id: "p3_24",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "嵌入式壁龛酒精壁炉套件",
+    nameEn: "Built-In Ethanol Fireplace Niche Kit",
+    description: "适合背景墙和壁龛安装的酒精壁炉套件，包含框体、火槽、玻璃挡火和安装结构。",
+    descriptionEn:
+      "Built-in ethanol fireplace niche kit with frame, burner, glass guard, and installation structure.",
+    installation: "壁龛嵌入式",
+    priceCny: 9800,
+    images: [
+      `${ETHANOL_SERIES}/product/wall-niche-kit.webp`,
+      `${ETHANOL_SERIES}/scene/wall-niche-kit.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/wall-niche-kit.webp`,
+  },
+  {
+    id: "p3_25",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "OEM酒精燃烧器套件",
+    nameEn: "OEM Ethanol Burner Kit",
+    description: "面向品牌方、工程商和批量客户的酒精燃烧器套件，可按图纸、样品和包装需求定制。",
+    descriptionEn:
+      "OEM ethanol burner kit for brands, contractors, and batch buyers, customizable by drawings, samples, and packaging needs.",
+    installation: "OEM套件",
+    priceCny: 4800,
+    images: [
+      `${ETHANOL_SERIES}/product/oem-burner-kit.webp`,
+      `${ETHANOL_SERIES}/scene/oem-burner-kit.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/oem-burner-kit.webp`,
+  },
+  {
+    id: "p3_26",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "悬挂式酒精壁炉",
+    nameEn: "Suspended Ethanol Fireplace",
+    description: "悬挂式艺术造型酒精壁炉，适合挑高客厅、会所、民宿和设计感空间。",
+    descriptionEn:
+      "Suspended sculptural ethanol fireplace for high-ceiling living rooms, clubs, boutique hotels, and design-led interiors.",
+    installation: "悬挂式",
+    priceCny: 13800,
+    images: [
+      `${ETHANOL_SERIES}/product/suspended-fireplace.webp`,
+      `${ETHANOL_SERIES}/scene/suspended-fireplace.webp`,
+    ],
+    coverImage: `${ETHANOL_SERIES}/product/suspended-fireplace.webp`,
   },
   // === 雾化壁炉 ===
   {
