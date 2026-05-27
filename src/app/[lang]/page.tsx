@@ -141,7 +141,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                 className="group rounded-[6px] border border-[#e8e3de] bg-white p-4 text-center shadow-sm hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="relative aspect-[1.12] overflow-hidden rounded-[4px] bg-[#faf8f5]">
-                  <img src={item.img} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <img src={item.img} alt={item.title} className="h-full w-full object-contain p-3" />
                 </div>
                 <h3 className="mt-4 text-sm font-bold">{item.title}</h3>
                 <div className="mx-auto mt-2 h-0.5 w-9 bg-[#f97316]" />
