@@ -103,7 +103,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <div className="mt-8 grid max-w-4xl grid-cols-2 gap-0 sm:grid-cols-4">
               {[
                 ["20+年", "生产经验"],
-                ["10000㎡+", "现代化厂房"],
+                ["2000㎡", "现代化厂房"],
                 ["CE / RoHS / ISO", "多项认证"],
                 ["60+国家", "出口全球"],
               ].map(([value, label]) => (
@@ -160,7 +160,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               坚持从项目方案、产品选型、深化设计、供货安装到售后维护的一体化服务，让客户看到真实生产能力和稳定交付能力。
             </p>
             <ul className="mt-7 space-y-4 text-sm font-semibold text-[#2c2723]">
-              {["10000㎡+现代化生产基地", "专业研发团队与先进生产设备", "严格质量检测体系", "支持定制方案与项目服务"].map((item) => (
+              {["2000㎡现代化生产基地", "专业研发团队与先进生产设备", "严格质量检测体系", "支持定制方案与项目服务"].map((item) => (
                 <li key={item} className="flex items-center gap-3">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#f97316]" />
                   {item}
@@ -180,8 +180,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <div className="bg-[#0d0c0b] py-7">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-5 lg:px-8">
             <IconTile src={icon("factory")} value="20+年" label="生产经验" />
-            <IconTile src={icon("plant-area")} value="10000㎡+" label="工厂面积" />
-            <IconTile src={icon("team")} value="150+名" label="专业员工" />
+            <IconTile src={icon("plant-area")} value="2000㎡" label="工厂面积" />
+            <IconTile src={icon("team")} value="20人" label="专业员工" />
             <IconTile src={icon("global-export")} value="60+国家" label="出口全球" />
             <IconTile src={icon("partners")} value="300+家" label="全球合作伙伴" />
           </div>
