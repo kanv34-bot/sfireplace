@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import ProductImage from "@/components/ProductImage";
 import { cases } from "@/lib/cases";
-import { products } from "@/lib/products";
 import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
@@ -28,10 +26,7 @@ const assets = {
 const icon = (name: string) => `${home}/ui-icons/${name}.svg`;
 const cert = (name: string) => `${home}/certifications/${name}.svg`;
 const categoryImage = (name: string) => `${home}/category-illustrations/${name}.png`;
-
-function getProduct(id: string) {
-  return products.find((product) => product.id === id) ?? products[0];
-}
+const featuredImage = (name: string) => `${home}/featured-products/${name}.png`;
 
 function IconTile({ src, value, label }: { src: string; value: string; label: string }) {
   return (
@@ -59,11 +54,39 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
     { title: "壁炉配件", sub: "Accessories", href: `/${lang}/products?category=p8`, img: categoryImage("accessories") },
   ];
 
-  const featuredProducts = [
-    getProduct("p1_1"),
-    getProduct("p1_61"),
-    getProduct("p2_56"),
-    getProduct("p4_70"),
+  const featuredSolutions = [
+    {
+      title: "独立式壁炉客厅方案",
+      label: "独立式壁炉",
+      href: `/${lang}/products?category=p1`,
+      image: featuredImage("featured-product-1"),
+      alt: "现代客厅木饰面空间中的独立式壁炉，适合家用客厅和别墅休闲区",
+      description: "适合现代客厅、别墅休闲区和轻奢木饰面空间，独立摆放，火焰清晰，适合打造家庭取暖与装饰焦点。",
+    },
+    {
+      title: "电子壁炉背景墙方案",
+      label: "电子壁炉",
+      href: `/${lang}/products?category=p7`,
+      image: featuredImage("featured-product-2"),
+      alt: "电视背景墙下方的嵌入式电子壁炉，适合现代住宅和精装公寓",
+      description: "适合电视背景墙、大理石背景墙和精装住宅项目，安装维护简单，适合需要无烟道、低维护壁炉氛围的空间。",
+    },
+    {
+      title: "嵌入式长条壁炉方案",
+      label: "嵌入式壁炉",
+      href: `/${lang}/products?category=p1`,
+      image: featuredImage("featured-product-3"),
+      alt: "现代客厅背景墙中的嵌入式长条壁炉，适合别墅和商业空间",
+      description: "适合别墅客厅、酒店会客区和高端商业空间，横向火焰视觉更强，可与石材、木饰面和隐藏灯带一体化设计。",
+    },
+    {
+      title: "雾化壁炉定制方案",
+      label: "雾化壁炉定制",
+      href: `/${lang}/products?category=p4`,
+      image: featuredImage("featured-product-4"),
+      alt: "豪宅和会所空间中的长条雾化壁炉定制效果，适合无明火氛围设计",
+      description: "适合豪宅、会所、酒店大堂和商业接待区，水雾火焰无明火，支持长度、结构、背景墙和灯光效果定制。",
+    },
   ];
 
   const projectCards = [
@@ -241,28 +264,28 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           <div className="flex items-end justify-between gap-4">
             <div>
               <h2 className="text-2xl font-bold">精选产品</h2>
-              <p className="mt-2 text-sm text-[#7a746e]">精选欧洲高端壁炉型号，覆盖多种空间方案</p>
+              <p className="mt-2 text-sm text-[#7a746e]">覆盖独立式壁炉、电子壁炉、嵌入式壁炉和雾化壁炉定制方案</p>
             </div>
             <Link href={`/${lang}/products`} className="hidden text-sm font-bold text-[#f97316] sm:inline-flex">
               查看全部 →
             </Link>
           </div>
           <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {featuredProducts.map((product) => (
-              <Link key={product.id} href={`/${lang}/products/${product.id}`} className="group overflow-hidden rounded-[6px] border border-[#e8e3de] bg-white shadow-sm hover:-translate-y-1 hover:shadow-xl">
-                <div className="relative aspect-[4/3] bg-[#f5f2ee]">
-                  <ProductImage
-                    src={product.coverImage}
-                    alt={localizedField(product, "name", lang, langMap)}
-                    category={product.category}
-                    brand={product.brand}
-                    className="absolute inset-0 h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+            {featuredSolutions.map((item) => (
+              <Link key={item.title} href={item.href} className="group overflow-hidden rounded-[6px] border border-[#e8e3de] bg-white shadow-sm hover:-translate-y-1 hover:shadow-xl">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#f5f2ee]">
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-4">
-                  <div className="text-xs font-bold text-[#f97316]">{localizedField(product, "brandCountry", lang, langMap)}</div>
-                  <h3 className="mt-2 min-h-12 text-sm font-bold leading-6">{localizedField(product, "name", lang, langMap)}</h3>
-                  <p className="mt-2 line-clamp-2 text-xs leading-5 text-[#7a746e]">{localizedField(product, "description", lang, langMap)}</p>
+                  <div className="text-xs font-bold text-[#f97316]">{item.label}</div>
+                  <h3 className="mt-2 min-h-12 text-sm font-bold leading-6">{item.title}</h3>
+                  <p className="mt-2 line-clamp-3 text-xs leading-5 text-[#7a746e]">{item.description}</p>
                 </div>
               </Link>
             ))}
