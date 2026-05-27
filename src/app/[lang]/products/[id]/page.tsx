@@ -14,6 +14,12 @@ const ethanolImages = {
   hotel: "/media/products/ethanol-fireplace/ethanol-fireplace-hotel-lounge.png",
 };
 
+const mistImages = {
+  villa: "/media/products/mist-fireplace/mist-fireplace-villa-scene.png",
+  module: "/media/products/mist-fireplace/mist-fireplace-module-detail.png",
+  hotel: "/media/products/mist-fireplace/mist-fireplace-hotel-lounge.png",
+};
+
 const ethanolFaqZh = [
   {
     q: "酒精壁炉需要烟道吗？",
@@ -30,6 +36,44 @@ const ethanolFaqZh = [
   {
     q: "酒精壁炉和雾化壁炉、电子壁炉有什么区别？",
     a: "酒精壁炉是真火氛围，视觉更接近真实燃烧；雾化壁炉无明火，更适合长时间展示和商业运营；电子壁炉安装维护更简单，适合背景墙和酒店客房。",
+  },
+];
+
+const mistFaqZh = [
+  {
+    q: "雾化壁炉是真火吗？",
+    a: "雾化壁炉不是真火，它通过水雾、灯光和结构风道形成火焰视觉效果。它没有明火，更适合酒店、会所、展厅和住宅中需要长时间展示的氛围空间。",
+  },
+  {
+    q: "雾化壁炉适合做定制吗？",
+    a: "适合。雾化壁炉常用于长条背景墙、中岛、隔断、屏风、悬挂造型和商业装置，可定制长度、分段控制、出雾方式、灯光效果、补水排水和检修结构。",
+  },
+  {
+    q: "雾化壁炉需要预留什么条件？",
+    a: "设计阶段应确认电源、给水、排水、雾气出口、检修口、周边防潮、风口干扰和日常维护方式。商业项目还要考虑长时间运行后的补水和清洁周期。",
+  },
+  {
+    q: "雾化壁炉和酒精壁炉有什么区别？",
+    a: "雾化壁炉无明火，适合长时间展示和商业运营；酒精壁炉是真火，适合需要真实燃烧仪式感的可控场景。两者都可以定制，但安全和维护重点不同。",
+  },
+];
+
+const mistFaqEn = [
+  {
+    q: "Is a mist fireplace a real fire?",
+    a: "No. A mist fireplace uses water vapor, lighting, and airflow structure to create a flame-like visual effect. It has no open flame and is suitable for long display hours in hotels, clubs, showrooms, and homes.",
+  },
+  {
+    q: "Can a mist fireplace be customized?",
+    a: "Yes. Mist fireplaces are often customized for linear feature walls, islands, room dividers, screens, suspended forms, and commercial installations, including length, zone control, mist outlet, lighting, water supply, drainage, and service access.",
+  },
+  {
+    q: "What should be reserved before installing a mist fireplace?",
+    a: "Power, water supply, drainage, mist outlet, service access, moisture protection, airflow interference, and maintenance method should be confirmed during design. Commercial projects should also plan water refilling and cleaning cycles.",
+  },
+  {
+    q: "What is the difference between a mist fireplace and an ethanol fireplace?",
+    a: "A mist fireplace has no open flame and is suitable for long commercial display hours. An ethanol fireplace provides a real flame and is better for controlled spaces that need real-flame atmosphere. Both can be customized, but their safety and maintenance requirements differ.",
   },
 ];
 
@@ -89,6 +133,34 @@ export async function generateMetadata({
     };
   }
 
+  if (id === "p4_70") {
+    return {
+      title:
+        lang === "zh"
+          ? "雾化壁炉（可定制）| 3D水雾壁炉源头工厂 OEM/ODM"
+          : "Custom Mist Fireplace | 3D Water Vapor Fireplace OEM/ODM Source Factory",
+      description:
+        lang === "zh"
+          ? "壁炉宗师雾化壁炉源头工厂，支持3D水雾壁炉、长条雾化壁炉、悬挂分体雾化壁炉、酒店会所别墅项目和OEM/ODM定制。"
+          : "Fireplace Master is a source factory for custom 3D mist fireplaces, linear water vapor fireplaces, wall-mounted split mist fireplaces, hotel, club, villa projects, and OEM/ODM production.",
+      keywords:
+        lang === "zh"
+          ? ["雾化壁炉", "3D水雾壁炉", "水雾壁炉定制", "长条雾化壁炉", "壁炉源头工厂", "OEM ODM 雾化壁炉"]
+          : ["mist fireplace", "3D water vapor fireplace", "custom mist fireplace", "linear mist fireplace", "fireplace source factory", "OEM ODM mist fireplace"],
+      openGraph: {
+        title:
+          lang === "zh"
+            ? "雾化壁炉（可定制）| 壁炉宗师源头工厂"
+            : "Custom Mist Fireplace | Fireplace Master Source Factory",
+        description:
+          lang === "zh"
+            ? "支持长度、结构、出雾方式、水电检修、灯光效果和批量 OEM/ODM 定制。"
+            : "Custom length, structure, mist outlet, water and power access, lighting effect, and OEM/ODM production.",
+        images: [mistImages.villa],
+      },
+    };
+  }
+
   return {
     title: `${product.name} | 壁炉宗师`,
     description: product.description,
@@ -119,7 +191,9 @@ export default async function ProductDetailPage({
 
   const category = categories.find((c) => c.id === product.category);
   const isEthanol = product.id === "p3_14";
+  const isMist = product.id === "p4_70";
   const ethanolFaq = lang === "zh" ? ethanolFaqZh : ethanolFaqEn;
+  const mistFaq = lang === "zh" ? mistFaqZh : mistFaqEn;
   const ethanolProductSchema = isEthanol
     ? {
         "@context": "https://schema.org",
@@ -142,11 +216,47 @@ export default async function ProductDetailPage({
         ],
       }
     : null;
+  const mistProductSchema = isMist
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: localizedText(lang, "悬挂-分体款雾化壁炉（可定制）", "Custom Wall-Mounted Split Mist Fireplace"),
+        brand: { "@type": "Brand", name: "壁炉宗师" },
+        manufacturer: { "@type": "Organization", name: "壁炉宗师" },
+        category: localizedText(lang, "雾化壁炉 / 3D水雾壁炉", "Mist Fireplace / 3D Water Vapor Fireplace"),
+        description: localizedText(
+          lang,
+          "壁炉宗师雾化壁炉源头工厂产品，支持长度、结构、出雾方式、灯光效果、水电检修、酒店会所别墅项目和 OEM/ODM 批量定制。",
+          "Fireplace Master custom mist fireplace source-factory product with length, structure, mist outlet, lighting effect, water and power access, project, and OEM/ODM customization.",
+        ),
+        image: Object.values(mistImages).map((src) => `https://sfireplace.com${src}`),
+        additionalProperty: [
+          { "@type": "PropertyValue", name: "Product type", value: "3D water vapor mist fireplace" },
+          { "@type": "PropertyValue", name: "Customization", value: "Length, structure, mist outlet, lighting, water access, OEM/ODM" },
+          { "@type": "PropertyValue", name: "Applications", value: "Villa, hotel, club, showroom, commercial lobby" },
+          { "@type": "PropertyValue", name: "Installation", value: "Wall-mounted, built-in, island, divider, suspended, custom structure" },
+        ],
+      }
+    : null;
   const ethanolFaqSchema = isEthanol
     ? {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         mainEntity: ethanolFaq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
+          },
+        })),
+      }
+    : null;
+  const mistFaqSchema = isMist
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: mistFaq.map((item) => ({
           "@type": "Question",
           name: item.q,
           acceptedAnswer: {
@@ -169,6 +279,18 @@ export default async function ProductDetailPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ethanolFaqSchema) }}
+        />
+      )}
+      {mistProductSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(mistProductSchema) }}
+        />
+      )}
+      {mistFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(mistFaqSchema) }}
         />
       )}
       {/* Breadcrumb */}
@@ -445,6 +567,193 @@ export default async function ProductDetailPage({
               </h2>
               <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
                 {ethanolFaq.map((item) => (
+                  <div key={item.q} className="rounded-[8px] border border-[#ece7e1] bg-white p-5">
+                    <h3 className="text-sm font-bold text-[#1d1d1f]">{item.q}</h3>
+                    <p className="mt-2 text-sm leading-7 text-[#6e6e73]">{item.a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+        </div>
+      )}
+
+      {isMist && (
+        <div className="bg-white border-t border-[#f2f2f3]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.62fr_0.38fr] gap-8 lg:gap-12">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#c2410c]">
+                  {localizedText(lang, "3D Water Vapor Fireplace OEM/ODM", "3D Water Vapor Fireplace OEM/ODM")}
+                </p>
+                <h2 className="mt-3 text-2xl sm:text-3xl font-bold text-[#1d1d1f]">
+                  {localizedText(lang, "雾化壁炉是什么？适合做什么项目？", "What is a 3D mist fireplace and where is it used?")}
+                </h2>
+                <p className="mt-4 text-sm sm:text-base leading-8 text-[#5f5f64]">
+                  {localizedText(
+                    lang,
+                    "雾化壁炉，也常被称为3D水雾壁炉，是通过水雾、灯光和风道结构模拟火焰视觉的壁炉产品。它没有明火，适合酒店大堂、会所、展厅、别墅客厅、商业接待区和样板间等需要长时间展示火焰氛围的空间。壁炉宗师作为自有品牌源头工厂，可围绕长度、出雾方式、灯光效果、补水排水、安装结构和批量交付进行 OEM/ODM 定制。",
+                    "A 3D mist fireplace, also called a water vapor fireplace, creates a flame-like visual effect through water vapor, lighting, and airflow structure. With no open flame, it is suitable for hotel lobbies, clubs, showrooms, villa living rooms, reception areas, and model rooms that need long display hours. As an own-brand source factory, Fireplace Master supports OEM/ODM customization for length, mist outlet, lighting effect, water supply, drainage, installation structure, and batch delivery.",
+                  )}
+                </p>
+
+                <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    [localizedText(lang, "无明火氛围", "No open flame"), localizedText(lang, "适合酒店、会所、展厅和住宅中需要长期展示的火焰视觉。", "For hotels, clubs, showrooms, and homes that need long-hour flame visuals.")],
+                    [localizedText(lang, "水雾火焰效果", "Water vapor flame effect"), localizedText(lang, "通过水雾与灯光形成柔和火焰观感，空间表现力强。", "Soft flame-like visuals created by water vapor and lighting.")],
+                    [localizedText(lang, "支持工程定制", "Project customization"), localizedText(lang, "可定制长度、分段控制、出雾结构、灯光和检修方式。", "Custom length, zone control, mist outlet, lighting, and service access.")],
+                    [localizedText(lang, "适合商业运营", "Commercial operation"), localizedText(lang, "便于长时间展示，适合大堂、接待区和展示空间。", "Designed for long display hours in lobbies, reception areas, and display spaces.")],
+                  ].map(([title, desc]) => (
+                    <div key={title} className="rounded-[8px] border border-[#ece7e1] bg-[#fbfaf8] p-4">
+                      <h3 className="text-sm font-bold text-[#1d1d1f]">{title}</h3>
+                      <p className="mt-2 text-xs leading-5 text-[#6e6e73]">{desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative min-h-[280px] overflow-hidden rounded-[8px] bg-[#f5f2ee]">
+                <Image
+                  src={mistImages.villa}
+                  alt={localizedText(
+                    lang,
+                    "别墅客厅长条雾化壁炉水雾火焰场景，适合3D水雾壁炉定制和背景墙方案",
+                    "Long 3D water vapor mist fireplace in a villa living room for custom feature wall design",
+                  )}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-5">
+              {[
+                {
+                  title: localizedText(lang, "应用场景", "Applications"),
+                  items: [
+                    localizedText(lang, "酒店大堂、会所、商业接待区", "Hotel lobbies, clubs, commercial reception areas"),
+                    localizedText(lang, "别墅客厅、开放式住宅、样板间", "Villa living rooms, open-plan homes, model rooms"),
+                    localizedText(lang, "展厅、品牌展示、沉浸式空间", "Showrooms, brand displays, immersive spaces"),
+                    localizedText(lang, "中岛、隔断、屏风、长条背景墙", "Islands, dividers, screens, linear feature walls"),
+                  ],
+                },
+                {
+                  title: localizedText(lang, "可定制内容", "Customization"),
+                  items: [
+                    localizedText(lang, "长度、出雾段数、火焰高度和灯光颜色", "Length, mist sections, flame height, and lighting color"),
+                    localizedText(lang, "悬挂式、嵌入式、双面、三面、隔断式结构", "Suspended, built-in, double-sided, three-sided, divider structures"),
+                    localizedText(lang, "给水、排水、水箱、检修口和防潮处理", "Water supply, drainage, tank, access panel, moisture protection"),
+                    localizedText(lang, "按工程图纸、样品或品牌需求做 OEM/ODM", "OEM/ODM by drawings, samples, or brand requirements"),
+                  ],
+                },
+                {
+                  title: localizedText(lang, "设计预留重点", "Design Checks"),
+                  items: [
+                    localizedText(lang, "确认电源、给水、排水和检修空间", "Confirm power, water supply, drainage, and service access"),
+                    localizedText(lang, "确认雾气出口、风口干扰和周边防潮", "Confirm mist outlet, airflow interference, and moisture protection"),
+                    localizedText(lang, "预留雾化模块、灯光和水路维护方式", "Reserve maintenance access for mist modules, lighting, and water lines"),
+                    localizedText(lang, "商业空间应规划补水、清洁和运行周期", "Commercial spaces need refilling, cleaning, and operation schedules"),
+                  ],
+                },
+              ].map((section) => (
+                <section key={section.title} className="rounded-[8px] border border-[#ece7e1] bg-white p-5">
+                  <h2 className="text-lg font-bold text-[#1d1d1f]">{section.title}</h2>
+                  <ul className="mt-4 space-y-3">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex gap-3 text-sm leading-6 text-[#5f5f64]">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <figure className="overflow-hidden rounded-[8px] border border-[#ece7e1] bg-white">
+                <div className="relative aspect-[16/9] bg-[#f5f2ee]">
+                  <Image
+                    src={mistImages.module}
+                    alt={localizedText(
+                      lang,
+                      "雾化壁炉模块与出雾结构细节，支持水路检修、灯光效果和长度定制",
+                      "3D mist fireplace module and mist outlet detail with water access, lighting, and custom length",
+                    )}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="p-5">
+                  <h2 className="text-lg font-bold text-[#1d1d1f]">
+                    {localizedText(lang, "模块、水路和检修结构可定制", "Custom module, water line, and service structure")}
+                  </h2>
+                  <p className="mt-2 text-sm leading-7 text-[#6e6e73]">
+                    {localizedText(
+                      lang,
+                      "雾化壁炉的重点在于雾化模块、灯光、风道、水路和检修口的综合设计。设计阶段应提前确认给排水位置、设备深度、雾气出口、灯光维护和长期运行后的清洁方式。",
+                      "A mist fireplace depends on the combined design of mist modules, lighting, airflow, water lines, and service access. Water supply, drainage, equipment depth, mist outlet, lighting maintenance, and cleaning method should be confirmed during design.",
+                    )}
+                  </p>
+                </figcaption>
+              </figure>
+
+              <figure className="overflow-hidden rounded-[8px] border border-[#ece7e1] bg-white">
+                <div className="relative aspect-[16/9] bg-[#f5f2ee]">
+                  <Image
+                    src={mistImages.hotel}
+                    alt={localizedText(
+                      lang,
+                      "酒店会所长条雾化壁炉项目场景，适合商业空间无明火氛围和OEM定制",
+                      "Long 3D mist fireplace for hotel lounge and club commercial project customization",
+                    )}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="p-5">
+                  <h2 className="text-lg font-bold text-[#1d1d1f]">
+                    {localizedText(lang, "适合酒店、会所和展示空间", "Suitable for hotels, clubs, and display spaces")}
+                  </h2>
+                  <p className="mt-2 text-sm leading-7 text-[#6e6e73]">
+                    {localizedText(
+                      lang,
+                      "在酒店大堂、会所和展厅项目中，雾化壁炉常用于长时间展示火焰氛围。它不依赖明火，便于运营人员管理，也更适合开放式客流区域和需要稳定视觉效果的商业空间。",
+                      "In hotel lobbies, clubs, and showrooms, mist fireplaces are often used for long-hour flame atmosphere. With no open flame, they are easier for operators to manage and suitable for open traffic areas and commercial interiors that need stable visual effects.",
+                    )}
+                  </p>
+                </figcaption>
+              </figure>
+            </div>
+
+            <section className="mt-12 rounded-[8px] border border-[#ece7e1] bg-[#fbfaf8] p-5 sm:p-6">
+              <h2 className="text-xl font-bold text-[#1d1d1f]">
+                {localizedText(lang, "雾化壁炉项目流程", "Mist Fireplace Project Process")}
+              </h2>
+              <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  [localizedText(lang, "1. 方案确认", "1. Planning"), localizedText(lang, "确认空间用途、安装位置、展示时长、雾化长度和控制方式。", "Confirm use, location, display hours, mist length, and control method.")],
+                  [localizedText(lang, "2. 水电深化", "2. MEP Detail"), localizedText(lang, "确认电源、给排水、设备深度、检修口和防潮处理。", "Confirm power, water supply, drainage, equipment depth, access, and moisture protection.")],
+                  [localizedText(lang, "3. 工厂生产", "3. Factory Production"), localizedText(lang, "按项目参数生产雾化模块、结构件、灯光和控制系统。", "Produce mist modules, structure, lighting, and control system by project parameters.")],
+                  [localizedText(lang, "4. 调试交付", "4. Commissioning"), localizedText(lang, "提供安装建议、出雾调试、使用说明和后期维护支持。", "Provide installation advice, mist adjustment, usage guidance, and maintenance support.")],
+                ].map(([title, desc]) => (
+                  <div key={title} className="rounded-[8px] bg-white p-4 border border-[#ece7e1]">
+                    <h3 className="text-sm font-bold text-[#c2410c]">{title}</h3>
+                    <p className="mt-2 text-xs leading-5 text-[#6e6e73]">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="mt-12">
+              <h2 className="text-xl font-bold text-[#1d1d1f]">
+                {localizedText(lang, "雾化壁炉常见问题", "Mist Fireplace FAQ")}
+              </h2>
+              <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {mistFaq.map((item) => (
                   <div key={item.q} className="rounded-[8px] border border-[#ece7e1] bg-white p-5">
                     <h3 className="text-sm font-bold text-[#1d1d1f]">{item.q}</h3>
                     <p className="mt-2 text-sm leading-7 text-[#6e6e73]">{item.a}</p>
