@@ -87,7 +87,7 @@ export default async function ProductsPage({
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                 {filtered.map((product) => {
                   const hoverImage = product.images[1];
-                  const isEthanol = product.category === "p3";
+                  const hasProductScenePair = Boolean(hoverImage?.includes("/scene/"));
 
                   return (
                     <Link
@@ -102,7 +102,7 @@ export default async function ProductsPage({
                           category={product.category}
                           brand={product.brand}
                           className={`absolute inset-0 w-full h-full transition-all duration-500 ${
-                            isEthanol
+                            hasProductScenePair
                               ? "object-contain p-7 sm:p-8 group-hover:opacity-0"
                               : "object-cover group-hover:scale-105"
                           }`}

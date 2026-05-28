@@ -97,6 +97,109 @@ const ethanolFaqEn = [
   },
 ];
 
+function getEnhancedContent(categoryId: string, lang: string, productName: string) {
+  const common = {
+    p3: {
+      eyebrow: localizedText(lang, "Bio Ethanol Fireplace Product Detail", "Bio Ethanol Fireplace Product Detail"),
+      title: localizedText(lang, `${productName} 详细方案`, `${productName} Detail Solution`),
+      intro: localizedText(
+        lang,
+        `${productName} 属于壁炉宗师酒精壁炉产品线，适合需要真实火焰、灵活安装和空间高级感的住宅及商业项目。页面展示的是标准方向，实际可根据尺寸、火槽长度、材质、控制方式和批量需求做 OEM/ODM 定制。`,
+        `${productName} belongs to Fireplace Master's bio ethanol fireplace line for residential and commercial projects that need real flame, flexible installation, and premium atmosphere. The shown product is a standard direction and can be customized by size, burner length, material, control method, and OEM/ODM quantity.`,
+      ),
+      features: [
+        localizedText(lang, "真实生物乙醇火焰，不依赖传统烟道。", "Real bio ethanol flame without a traditional chimney."),
+        localizedText(lang, "支持嵌入、岛台、桌面、隔断、户外火景等结构。", "Supports built-in, island, tabletop, divider, and outdoor structures."),
+        localizedText(lang, "适合别墅、酒店、会所、餐厅和商业展示。", "Suitable for villas, hotels, clubs, restaurants, and commercial displays."),
+        localizedText(lang, "可按工程图纸和品牌需求批量定制。", "Batch customization by project drawings and brand requirements."),
+      ],
+      checks: [
+        localizedText(lang, "确认通风、可燃物距离、台面耐热和操作空间。", "Confirm ventilation, combustible distance, heat-resistant surface, and operation space."),
+        localizedText(lang, "确认燃料管理、点火流程、玻璃挡火和检修方式。", "Confirm fuel management, ignition process, glass guard, and maintenance access."),
+        localizedText(lang, "商业项目需明确使用人员和日常管理规则。", "Commercial projects need clear operator and daily management rules."),
+      ],
+      faq: [
+        [localizedText(lang, "价格为什么是参考价？", "Why is the price indicative?"), localizedText(lang, "酒精壁炉价格受火槽长度、材质、玻璃、控制方式、包装和采购数量影响，最终按图纸和数量报价。", "Ethanol fireplace pricing depends on burner length, material, glass, control method, packaging, and quantity. Final quotation is based on drawings and order volume.")],
+        [localizedText(lang, "是否能做自有品牌？", "Can it be made for private label?"), localizedText(lang, "可以。支持外观、铭牌、说明书、包装和批量参数的 OEM/ODM 定制。", "Yes. Appearance, nameplate, manual, packaging, and batch parameters can be customized for OEM/ODM.")],
+      ],
+    },
+    p4: {
+      eyebrow: localizedText(lang, "3D Mist Fireplace Product Detail", "3D Mist Fireplace Product Detail"),
+      title: localizedText(lang, `${productName} 详细方案`, `${productName} Detail Solution`),
+      intro: localizedText(
+        lang,
+        `${productName} 属于3D水雾壁炉产品，利用水雾、灯光和风道结构形成火焰视觉效果。它没有明火，更适合酒店大堂、会所、展厅、样板间和住宅空间做长时间展示。`,
+        `${productName} is a 3D water vapor fireplace product that creates flame-like visuals through mist, lighting, and airflow. With no open flame, it suits hotel lobbies, clubs, showrooms, model rooms, and residential interiors for long display hours.`,
+      ),
+      features: [
+        localizedText(lang, "无明火，适合长时间展示和商业运营。", "No open flame, suitable for long display hours and commercial operation."),
+        localizedText(lang, "支持长度、出雾段数、灯光颜色和控制方式定制。", "Custom length, mist sections, lighting color, and control method."),
+        localizedText(lang, "可做背景墙、中岛、隔断、悬挂和异形装置。", "Can be used for feature walls, islands, dividers, suspended forms, and custom installations."),
+        localizedText(lang, "适合水电深化和批量工程供货。", "Suitable for MEP detailing and batch project supply."),
+      ],
+      checks: [
+        localizedText(lang, "确认电源、给水、排水、水箱和检修口。", "Confirm power, water supply, drainage, tank, and access panel."),
+        localizedText(lang, "确认雾气出口、风口干扰、周边防潮和清洁周期。", "Confirm mist outlet, airflow interference, moisture protection, and cleaning cycle."),
+        localizedText(lang, "商业项目需规划补水和长期维护方式。", "Commercial projects need water refilling and long-term maintenance planning."),
+      ],
+      faq: [
+        [localizedText(lang, "雾化壁炉是真火吗？", "Is a mist fireplace real fire?"), localizedText(lang, "不是。它通过水雾和灯光模拟火焰视觉效果，没有明火。", "No. It uses water vapor and lighting to simulate flame visuals with no open flame.")],
+        [localizedText(lang, "能否做非标长度？", "Can it be made in custom length?"), localizedText(lang, "可以。长度、分段、结构、水路和控制系统都可按项目深化。", "Yes. Length, sections, structure, water lines, and control system can be customized by project.")],
+      ],
+    },
+    p7: {
+      eyebrow: localizedText(lang, "Electric Fireplace Product Detail", "Electric Fireplace Product Detail"),
+      title: localizedText(lang, `${productName} 详细方案`, `${productName} Detail Solution`),
+      intro: localizedText(
+        lang,
+        `${productName} 属于电子壁炉产品线，适合电视背景墙、酒店客房、公寓、样板间和商业展示空间。它安装门槛低、维护简单，可围绕尺寸、火焰屏、炭床、加热功能和控制方式进行定制。`,
+        `${productName} belongs to the electric fireplace line for media walls, hotel rooms, apartments, show flats, and commercial displays. It is easy to install and maintain, with customization for size, flame screen, ember bed, heating function, and controls.`,
+      ),
+      features: [
+        localizedText(lang, "无需烟道和燃料，适合已装修空间。", "No chimney or fuel required, suitable for finished interiors."),
+        localizedText(lang, "支持电视墙、柜体、壁龛和独立式应用。", "Supports media walls, cabinetry, niches, and freestanding use."),
+        localizedText(lang, "可定制火焰颜色、炭床、尺寸和控制方式。", "Custom flame color, ember bed, size, and control method."),
+        localizedText(lang, "适合酒店、公寓和批量工程交付。", "Suitable for hotels, apartments, and batch project delivery."),
+      ],
+      checks: [
+        localizedText(lang, "确认开孔尺寸、嵌入深度、电源位置和散热空间。", "Confirm opening size, built-in depth, power location, and ventilation space."),
+        localizedText(lang, "确认检修方式、遥控/智能控制和加热需求。", "Confirm service access, remote/smart control, and heating requirements."),
+        localizedText(lang, "与电视墙结合时需提前规划线路和设备间距。", "Plan wiring and appliance distance when integrated with a media wall."),
+      ],
+      faq: [
+        [localizedText(lang, "电子壁炉可以不加热只看火焰吗？", "Can the flame run without heat?"), localizedText(lang, "可以，具体功能按机芯和控制方案配置。", "Yes, depending on the core module and control configuration.")],
+        [localizedText(lang, "适合酒店批量采购吗？", "Is it suitable for hotel bulk purchase?"), localizedText(lang, "适合。尺寸、包装、控制方式和交付标准都可按项目统一。", "Yes. Size, packaging, control method, and delivery standard can be unified for projects.")],
+      ],
+    },
+    p9: {
+      eyebrow: localizedText(lang, "Holographic / Projection Fireplace Product Detail", "Holographic / Projection Fireplace Product Detail"),
+      title: localizedText(lang, `${productName} 详细方案`, `${productName} Detail Solution`),
+      intro: localizedText(
+        lang,
+        `${productName} 属于全息壁炉和投影壁炉产品线，重点是大画面火焰视觉和沉浸式氛围。它适合展厅、商业橱窗、酒店大堂、影音室、舞台和品牌展示空间。`,
+        `${productName} belongs to the holographic and projection fireplace line, focused on large-scale flame visuals and immersive atmosphere for showrooms, retail windows, hotel lobbies, cinema rooms, stages, and brand spaces.`,
+      ),
+      features: [
+        localizedText(lang, "无真实明火，适合视觉展示和内容变化。", "No real open flame, suitable for visual display and content changes."),
+        localizedText(lang, "支持画面比例、播放内容、控制系统和安装结构定制。", "Custom image ratio, media content, control system, and installation structure."),
+        localizedText(lang, "可做橱窗、展厅、沉浸式空间和商业主景。", "Can be used for windows, showrooms, immersive spaces, and commercial focal features."),
+        localizedText(lang, "适合与灯光、音响和空间装置联动。", "Suitable for integration with lighting, audio, and spatial installations."),
+      ],
+      checks: [
+        localizedText(lang, "确认环境亮度、投影距离、屏幕材料和检修通道。", "Confirm ambient light, projection distance, screen material, and service access."),
+        localizedText(lang, "确认播放内容、控制方式、散热和设备隐藏方案。", "Confirm media content, control method, heat dissipation, and equipment concealment."),
+        localizedText(lang, "商业项目需提前规划安全、维护和日常开关流程。", "Commercial projects need safety, maintenance, and daily operation planning."),
+      ],
+      faq: [
+        [localizedText(lang, "全息壁炉和投影壁炉有热量吗？", "Do holographic and projection fireplaces produce heat?"), localizedText(lang, "通常以视觉氛围为主，不作为取暖设备，具体可按项目搭配其他系统。", "They are usually visual atmosphere products, not heating equipment, though other systems can be combined by project.")],
+        [localizedText(lang, "火焰内容可以定制吗？", "Can the flame content be customized?"), localizedText(lang, "可以。可按空间比例、品牌活动和播放设备制作不同火焰内容。", "Yes. Flame content can be created for space ratio, brand events, and playback equipment.")],
+      ],
+    },
+  } as const;
+
+  return common[categoryId as keyof typeof common] ?? common.p7;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -192,9 +295,10 @@ export default async function ProductDetailPage({
 
   const category = categories.find((c) => c.id === product.category);
   const productHoverImage = product.images[1];
-  const isEthanolCategory = product.category === "p3";
+  const hasProductScenePair = Boolean(productHoverImage?.includes("/scene/"));
   const isEthanol = product.id === "p3_14";
   const isMist = product.id === "p4_70";
+  const enhancedContent = getEnhancedContent(product.category, lang, localizedField(product, "name", lang, langMap));
   const ethanolFaq = lang === "zh" ? ethanolFaqZh : ethanolFaqEn;
   const mistFaq = lang === "zh" ? mistFaqZh : mistFaqEn;
   const ethanolProductSchema = isEthanol
@@ -324,7 +428,7 @@ export default async function ProductDetailPage({
               category={product.category}
               brand={product.brand}
               className={`absolute inset-0 w-full h-full transition-all duration-500 ${
-                isEthanolCategory
+                hasProductScenePair
                   ? "object-contain p-8 sm:p-10 group-hover:opacity-0"
                   : "object-cover"
               }`}
@@ -780,6 +884,141 @@ export default async function ProductDetailPage({
                   <div key={item.q} className="rounded-[8px] border border-[#ece7e1] bg-white p-5">
                     <h3 className="text-sm font-bold text-[#1d1d1f]">{item.q}</h3>
                     <p className="mt-2 text-sm leading-7 text-[#6e6e73]">{item.a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+        </div>
+      )}
+
+      {!isEthanol && !isMist && (
+        <div className="bg-white border-t border-[#f2f2f3]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.58fr_0.42fr] gap-8 lg:gap-12">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#c2410c]">
+                  {enhancedContent.eyebrow}
+                </p>
+                <h2 className="mt-3 text-2xl sm:text-3xl font-bold text-[#1d1d1f]">
+                  {enhancedContent.title}
+                </h2>
+                <p className="mt-4 text-sm sm:text-base leading-8 text-[#5f5f64]">
+                  {enhancedContent.intro}
+                </p>
+                <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {enhancedContent.features.map((feature) => (
+                    <div key={feature} className="rounded-[8px] border border-[#ece7e1] bg-[#fbfaf8] p-4">
+                      <p className="text-sm leading-6 text-[#1d1d1f]">{feature}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4">
+                <figure className="overflow-hidden rounded-[8px] border border-[#ece7e1] bg-white">
+                  <div className="relative aspect-[16/10] bg-white">
+                    <Image
+                      src={product.coverImage}
+                      alt={`${localizedField(product, "name", lang, langMap)} product image`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 42vw"
+                      className="object-contain p-8"
+                    />
+                  </div>
+                </figure>
+                {productHoverImage && (
+                  <figure className="overflow-hidden rounded-[8px] border border-[#ece7e1] bg-white">
+                    <div className="relative aspect-[16/10] bg-[#f5f2ee]">
+                      <Image
+                        src={productHoverImage}
+                        alt={`${localizedField(product, "name", lang, langMap)} application scene`}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 42vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </figure>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-5">
+              <section className="rounded-[8px] border border-[#ece7e1] bg-white p-5">
+                <h2 className="text-lg font-bold text-[#1d1d1f]">
+                  {localizedText(lang, "核心优势", "Key Advantages")}
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {enhancedContent.features.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-6 text-[#5f5f64]">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className="rounded-[8px] border border-[#ece7e1] bg-white p-5">
+                <h2 className="text-lg font-bold text-[#1d1d1f]">
+                  {localizedText(lang, "定制内容", "Customization")}
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {[
+                    localizedText(lang, "尺寸比例、外观材质和安装结构", "Size ratio, finish material, and installation structure"),
+                    localizedText(lang, "控制方式、功能配置和工程批量参数", "Control method, function configuration, and project batch parameters"),
+                    localizedText(lang, "品牌铭牌、说明书、包装和 OEM/ODM 交付", "Brand label, manual, packaging, and OEM/ODM delivery"),
+                  ].map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-6 text-[#5f5f64]">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className="rounded-[8px] border border-[#ece7e1] bg-white p-5">
+                <h2 className="text-lg font-bold text-[#1d1d1f]">
+                  {localizedText(lang, "设计预留重点", "Design Checks")}
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {enhancedContent.checks.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-6 text-[#5f5f64]">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
+
+            <section className="mt-12 rounded-[8px] border border-[#ece7e1] bg-[#fbfaf8] p-5 sm:p-6">
+              <h2 className="text-xl font-bold text-[#1d1d1f]">
+                {localizedText(lang, "项目配合流程", "Project Workflow")}
+              </h2>
+              <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  [localizedText(lang, "1. 需求确认", "1. Requirement"), localizedText(lang, "确认空间用途、安装位置、目标效果、数量和预算。", "Confirm space use, location, desired effect, quantity, and budget.")],
+                  [localizedText(lang, "2. 方案深化", "2. Detailing"), localizedText(lang, "根据图纸确认尺寸、结构、材料、电源和检修方式。", "Confirm size, structure, material, power, and service access by drawings.")],
+                  [localizedText(lang, "3. 工厂生产", "3. Production"), localizedText(lang, "按确认参数生产样品或批量产品，并控制包装与交付标准。", "Produce samples or batch products by confirmed parameters, packaging, and delivery standard.")],
+                  [localizedText(lang, "4. 交付支持", "4. Support"), localizedText(lang, "提供供货、安装建议、使用说明和后期维护支持。", "Provide supply, installation advice, user guide, and maintenance support.")],
+                ].map(([title, desc]) => (
+                  <div key={title} className="rounded-[8px] bg-white p-4 border border-[#ece7e1]">
+                    <h3 className="text-sm font-bold text-[#c2410c]">{title}</h3>
+                    <p className="mt-2 text-xs leading-5 text-[#6e6e73]">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="mt-12">
+              <h2 className="text-xl font-bold text-[#1d1d1f]">
+                {localizedText(lang, "常见问题", "FAQ")}
+              </h2>
+              <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {enhancedContent.faq.map(([question, answer]) => (
+                  <div key={question} className="rounded-[8px] border border-[#ece7e1] bg-white p-5">
+                    <h3 className="text-sm font-bold text-[#1d1d1f]">{question}</h3>
+                    <p className="mt-2 text-sm leading-7 text-[#6e6e73]">{answer}</p>
                   </div>
                 ))}
               </div>
