@@ -21,6 +21,9 @@ const mistImages = {
   hotel: "/media/products/mist-fireplace/mist-fireplace-hotel-lounge.png",
 };
 
+const whatsappWholesaleUrl =
+  "https://wa.me/8618028181668?text=Hello%2C%20I%20am%20interested%20in%20the%20linear%20bio%20ethanol%20burner.%20Please%20send%20me%20your%20wholesale%20quotation%2C%20MOQ%2C%20and%20catalog.";
+
 const ethanolWholesaleModels = [
   {
     model: "FM-EB600",
@@ -565,10 +568,22 @@ export default async function ProductDetailPage({
                   ? localizedText(lang, "FOB 中国参考价；最终报价按型号、数量、包装及定制要求确认。", "Indicative FOB China price; final quote depends on model, quantity, packaging, and customization.")
                   : lang === "zh" ? "最终价格按尺寸、材质、火槽长度和批量数量确认。" : "Final price depends on size, material, burner length, and quantity."}
               </p>
-              <p className="text-xs text-[#ea580c] mt-1">+86 18028181668 | kanv34@gmail.com</p>
+              <p className="text-xs text-[#ea580c] mt-1">
+                WhatsApp: +86 180 2818 1668 | kanv34@gmail.com
+              </p>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
+              {isEthanol && (
+                <a
+                  href={whatsappWholesaleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#128c4a] text-white rounded-[6px] text-sm font-medium hover:bg-[#0d6f3a] transition-colors"
+                >
+                  {localizedText(lang, "WhatsApp 批发询价", "WhatsApp Wholesale Inquiry")}
+                </a>
+              )}
               <Link
                 href={`/${lang}/contact`}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#c2410c] text-white rounded-[6px] text-sm font-medium hover:bg-[#ea580c] transition-colors shadow-lg shadow-[#c2410c]/20"
@@ -696,6 +711,9 @@ export default async function ProductDetailPage({
                   ))}
                 </div>
                 <div className="mt-6 flex flex-wrap gap-3">
+                  <a href={whatsappWholesaleUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-[6px] bg-[#128c4a] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0d6f3a]">
+                    {localizedText(lang, "通过 WhatsApp 获取报价", "Get a Quote on WhatsApp")}
+                  </a>
                   <Link href={`/${lang}/contact`} className="inline-flex items-center rounded-[6px] bg-[#c2410c] px-5 py-3 text-sm font-semibold text-white hover:bg-[#ea580c]">
                     {localizedText(lang, "发送采购数量，获取正式报价", "Send Quantity for a Formal Quote")}
                   </Link>

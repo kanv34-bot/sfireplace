@@ -1,4 +1,7 @@
-import { getDictionary } from "@/lib/dictionary";
+import { getDictionary, localizedText } from "@/lib/dictionary";
+
+const whatsappUrl =
+  "https://wa.me/8618028181668?text=Hello%2C%20I%20am%20interested%20in%20your%20fireplace%20products.%20Please%20send%20me%20your%20wholesale%20catalog%20and%20quotation.";
 
 export default async function ContactPage({
   params,
@@ -46,6 +49,28 @@ export default async function ContactPage({
               </div>
 
               <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-[8px] bg-[#e9f8ef] flex items-center justify-center shrink-0 text-[#128c4a] font-bold">
+                  W
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-[#1d1d1f]">
+                    WhatsApp
+                  </p>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[#128c4a] hover:text-[#0d6f3a] transition-colors"
+                  >
+                    +86 180 2818 1668
+                  </a>
+                  <p className="mt-1 text-xs text-[#6e6e73]">
+                    {localizedText(lang, "点击直接发送批发询价", "Click to send a wholesale inquiry")}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-[#fff7ed] flex items-center justify-center shrink-0">
                   <svg className="w-5 h-5 text-[#c2410c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -81,20 +106,12 @@ export default async function ContactPage({
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href={`/${lang}`}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#e5e5ea] text-sm text-[#1d1d1f] rounded-full hover:bg-[#f5f5f7] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#128c4a] text-sm font-semibold text-white rounded-[6px] hover:bg-[#0d6f3a] transition-colors"
               >
-                {t.weibo}
-              </a>
-              <a
-                href={`/${lang}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#e5e5ea] text-sm text-[#1d1d1f] rounded-full hover:bg-[#f5f5f7] transition-colors"
-              >
-                {t.taobao}
+                {localizedText(lang, "WhatsApp 批发询价", "Wholesale Inquiry on WhatsApp")}
               </a>
             </div>
           </div>
