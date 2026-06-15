@@ -841,7 +841,7 @@ export default async function ProductDetailPage({
                   [localizedText(lang, "样品交期", "Sample lead time"), localizedText(lang, "约 7–12 天", "Approx. 7–12 days")],
                   [localizedText(lang, "量产交期", "Production lead time"), localizedText(lang, "约 20–30 天", "Approx. 20–30 days")],
                   [localizedText(lang, "付款方式", "Payment"), "30% deposit / 70% before shipment"],
-                  [localizedText(lang, "质保期", "Warranty"), localizedText(lang, "12 个月（建议模板）", "12 months (template)")],
+                  [localizedText(lang, "质保期", "Warranty"), localizedText(lang, "12 个月", "12 months")],
                   [localizedText(lang, "验货", "Inspection"), localizedText(lang, "支持视频验货或第三方验货", "Video or third-party inspection")],
                   [localizedText(lang, "认证", "Certification"), localizedText(lang, "按目标市场和订单要求确认", "Confirmed by target market and order")],
                   [localizedText(lang, "包装定制", "Custom packaging"), localizedText(lang, "铭牌、说明书、条码、彩箱", "Nameplate, manual, barcode, color box")],
