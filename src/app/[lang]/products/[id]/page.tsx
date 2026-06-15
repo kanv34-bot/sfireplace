@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ProductImage from "@/components/ProductImage";
+import ProductGallery from "@/components/ProductGallery";
 import { getProductById, categories, products } from "@/lib/products";
 import { notFound } from "next/navigation";
 import { locales, getDictionary, localizedText } from "@/lib/dictionary";
@@ -30,6 +31,11 @@ const ethanolWholesaleModels = [
     size: "600 × 180 × 100 mm",
     capacity: "3.5 L",
     burnTime: "4–6 h",
+    netWeight: "≈6.3 kg",
+    packing: "660 × 240 × 170 mm",
+    grossWeight: "≈7.8 kg",
+    load20: "≈800 pcs",
+    load40: "≈1,900 pcs",
     price10: "US$285",
     price30: "US$258",
     price100: "US$228",
@@ -39,6 +45,11 @@ const ethanolWholesaleModels = [
     size: "800 × 180 × 100 mm",
     capacity: "5.0 L",
     burnTime: "4–6 h",
+    netWeight: "≈8.3 kg",
+    packing: "860 × 240 × 170 mm",
+    grossWeight: "≈9.8 kg",
+    load20: "≈620 pcs",
+    load40: "≈1,500 pcs",
     price10: "US$355",
     price30: "US$325",
     price100: "US$292",
@@ -48,6 +59,11 @@ const ethanolWholesaleModels = [
     size: "1000 × 180 × 100 mm",
     capacity: "6.5 L",
     burnTime: "4–6 h",
+    netWeight: "≈10.3 kg",
+    packing: "1060 × 240 × 170 mm",
+    grossWeight: "≈11.8 kg",
+    load20: "≈500 pcs",
+    load40: "≈1,200 pcs",
     price10: "US$425",
     price30: "US$388",
     price100: "US$348",
@@ -243,6 +259,12 @@ export async function generateMetadata({
   if (!product) return {};
 
   if (id === "p3_14") {
+    const languageAlternates = Object.fromEntries(
+      locales.map((locale) => [
+        locale,
+        `https://sfireplace.com/${locale}/products/p3_14`,
+      ]),
+    );
     return {
       title:
         lang === "zh"
@@ -266,6 +288,13 @@ export async function generateMetadata({
             ? "MOQ 10 台，提供阶梯出厂价，支持尺寸、外观、铭牌、说明书和出口包装定制。"
             : "MOQ 10 units with tiered factory pricing and custom size, finish, private label, manual, and export packaging.",
         images: [ethanolImages.villa],
+      },
+      alternates: {
+        canonical: `https://sfireplace.com/${lang}/products/p3_14`,
+        languages: {
+          ...languageAlternates,
+          "x-default": "https://sfireplace.com/en/products/p3_14",
+        },
       },
     };
   }
@@ -334,6 +363,32 @@ export default async function ProductDetailPage({
   const enhancedContent = getEnhancedContent(product.category, lang, localizedField(product, "name", lang, langMap));
   const ethanolFaq = lang === "zh" ? ethanolFaqZh : ethanolFaqEn;
   const mistFaq = lang === "zh" ? mistFaqZh : mistFaqEn;
+  const ethanolGallery = [
+    {
+      src: product.coverImage,
+      alt: localizedText(lang, "线性生物乙醇燃烧器白底产品图", "Linear bio ethanol burner product view"),
+      label: localizedText(lang, "白底产品图", "Product"),
+      fit: "contain" as const,
+    },
+    {
+      src: productHoverImage,
+      alt: localizedText(lang, "线性生物乙醇燃烧器安装场景", "Linear bio ethanol burner installation scene"),
+      label: localizedText(lang, "安装场景", "Application"),
+      fit: "cover" as const,
+    },
+    {
+      src: ethanolImages.burner,
+      alt: localizedText(lang, "生物乙醇燃烧器结构细节", "Bio ethanol burner structure detail"),
+      label: localizedText(lang, "结构细节", "Structure"),
+      fit: "cover" as const,
+    },
+    {
+      src: ethanolImages.hotel,
+      alt: localizedText(lang, "酒店商业空间酒精壁炉项目", "Hotel commercial ethanol fireplace project"),
+      label: localizedText(lang, "商业项目", "Commercial"),
+      fit: "cover" as const,
+    },
+  ];
   const ethanolProductSchema = isEthanol
     ? {
         "@context": "https://schema.org",
@@ -464,7 +519,13 @@ export default async function ProductDetailPage({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Image */}
-          <div className="group aspect-[4/3] bg-white rounded-[8px] overflow-hidden relative border border-[#f0f0f0]">
+          {isEthanol ? (
+            <ProductGallery
+              images={ethanolGallery}
+              category={product.category}
+              brand={product.brand}
+            />
+          ) : <div className="group aspect-[4/3] bg-white rounded-[8px] overflow-hidden relative border border-[#f0f0f0]">
             <ProductImage
               src={product.coverImage}
               alt={localizedField(product, "name", lang, langMap)}
@@ -485,7 +546,7 @@ export default async function ProductDetailPage({
                 className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               />
             )}
-          </div>
+          </div>}
 
           {/* Info */}
           <div>
@@ -558,7 +619,7 @@ export default async function ProductDetailPage({
             <div className="mt-6 p-4 bg-[#fff7ed] rounded-[8px] border border-[#fed7aa]">
               <p className="text-sm text-[#c2410c] font-medium">
                 {isEthanol
-                  ? localizedText(lang, "批发价 US$228–425 / 台", "Wholesale US$228–425 / unit")
+                  ? localizedText(lang, "厂家批发价 US$228 / 台起", "Factory wholesale price from US$228 / unit")
                   : product.priceCny
                   ? `${lang === "zh" ? "参考出厂价 " : "From "}${formatPrice(product.priceCny)}${lang === "zh" ? " 起" : ""}`
                   : t.contact_for_price}
@@ -630,7 +691,7 @@ export default async function ProductDetailPage({
               </div>
 
               <div className="mt-6 overflow-x-auto rounded-[8px] border border-[#e5e5ea]">
-                <table className="w-full min-w-[860px] border-collapse text-left text-sm">
+                <table className="w-full min-w-[1120px] border-collapse text-left text-sm">
                   <thead className="bg-[#1d1d1f] text-white">
                     <tr>
                       {[
@@ -638,6 +699,8 @@ export default async function ProductDetailPage({
                         localizedText(lang, "产品尺寸", "Product size"),
                         localizedText(lang, "燃料容量", "Fuel capacity"),
                         localizedText(lang, "燃烧时间", "Burning time"),
+                        localizedText(lang, "净重（预估）", "N.W. (est.)"),
+                        localizedText(lang, "包装尺寸（预估）", "Packing (est.)"),
                         "10–29 pcs",
                         "30–99 pcs",
                         "100+ pcs",
@@ -653,6 +716,8 @@ export default async function ProductDetailPage({
                         <td className="px-4 py-4 whitespace-nowrap text-[#5f5f64]">{model.size}</td>
                         <td className="px-4 py-4 text-[#5f5f64]">{model.capacity}</td>
                         <td className="px-4 py-4 text-[#5f5f64]">{model.burnTime}</td>
+                        <td className="px-4 py-4 text-[#5f5f64]">{model.netWeight}</td>
+                        <td className="px-4 py-4 whitespace-nowrap text-[#5f5f64]">{model.packing}</td>
                         <td className="px-4 py-4 font-semibold text-[#c2410c]">{model.price10}</td>
                         <td className="px-4 py-4 font-semibold text-[#c2410c]">{model.price30}</td>
                         <td className="px-4 py-4 font-semibold text-[#c2410c]">{model.price100}</td>
@@ -670,6 +735,47 @@ export default async function ProductDetailPage({
               </p>
             </section>
 
+            <section className="mt-10">
+              <h2 className="text-xl font-bold text-[#1d1d1f]">
+                {localizedText(lang, "包装、装柜与交易参数（预估模板）", "Packing, Container Loading & Trade Terms (Estimated Template)")}
+              </h2>
+              <div className="mt-5 overflow-x-auto rounded-[8px] border border-[#e5e5ea]">
+                <table className="w-full min-w-[820px] border-collapse text-left text-sm">
+                  <thead className="bg-[#f5f5f7] text-[#1d1d1f]">
+                    <tr>
+                      {[
+                        localizedText(lang, "型号", "Model"),
+                        localizedText(lang, "毛重", "G.W."),
+                        localizedText(lang, "单台包装", "Unit packing"),
+                        "20GP",
+                        "40HQ",
+                      ].map((heading) => (
+                        <th key={heading} className="whitespace-nowrap px-4 py-3 font-semibold">{heading}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ethanolWholesaleModels.map((model) => (
+                      <tr key={model.model} className="border-t border-[#e5e5ea]">
+                        <td className="px-4 py-4 font-bold">{model.model}</td>
+                        <td className="px-4 py-4">{model.grossWeight}</td>
+                        <td className="px-4 py-4">{model.packing}</td>
+                        <td className="px-4 py-4">{model.load20}</td>
+                        <td className="px-4 py-4">{model.load40}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3 text-xs leading-5 text-[#86868b]">
+                {localizedText(
+                  lang,
+                  "以上重量、包装尺寸和装柜量由产品外形及常规出口纸箱估算，仅用于前期采购预算。请在量产报价前以实物称重、包装跌落测试和最终装柜方案为准。",
+                  "Weights, carton sizes, and loading quantities are estimated from product dimensions and standard export cartons for preliminary purchasing only. Confirm them by physical weighing, carton testing, and the final loading plan before mass-production quotation.",
+                )}
+              </p>
+            </section>
+
             <section className="mt-12 grid grid-cols-1 lg:grid-cols-[0.42fr_0.58fr] gap-6">
               <div className="rounded-[8px] bg-[#f5f5f7] p-5 sm:p-6">
                 <h2 className="text-xl font-bold text-[#1d1d1f]">
@@ -680,6 +786,8 @@ export default async function ProductDetailPage({
                     [localizedText(lang, "产品类型", "Product type"), localizedText(lang, "手动嵌入式线性燃烧器", "Manual built-in linear burner")],
                     [localizedText(lang, "主体材质", "Main material"), localizedText(lang, "304 不锈钢 + 喷粉钢制外壳", "304 stainless steel + powder-coated steel housing")],
                     [localizedText(lang, "适用燃料", "Fuel"), localizedText(lang, "纯度 ≥95% 的生物乙醇", "Bio ethanol with purity ≥95%")],
+                    [localizedText(lang, "燃料容量", "Fuel capacity"), localizedText(lang, "3.5–6.5 L，按型号", "3.5–6.5 L by model")],
+                    [localizedText(lang, "参考燃烧时间", "Estimated burn time"), localizedText(lang, "约 4–6 小时", "Approx. 4–6 hours")],
                     [localizedText(lang, "点火方式", "Ignition"), localizedText(lang, "手动点火与滑盖熄火", "Manual ignition and sliding-lid extinguishing")],
                     [localizedText(lang, "玻璃挡火", "Glass guard"), localizedText(lang, "可选配 / 可按图定制", "Optional / customizable")],
                     [localizedText(lang, "安装方式", "Installation"), localizedText(lang, "嵌入台面、壁龛、岛台或定制框体", "Countertop recess, niche, island, or custom casing")],
@@ -724,95 +832,28 @@ export default async function ProductDetailPage({
               </div>
             </section>
 
-            <div className="mt-12 grid grid-cols-1 lg:grid-cols-[0.62fr_0.38fr] gap-8 lg:gap-12">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#c2410c]">
-                  {localizedText(lang, "Bio Ethanol Fireplace OEM/ODM", "Bio Ethanol Fireplace OEM/ODM")}
-                </p>
-                <h2 className="mt-3 text-2xl sm:text-3xl font-bold text-[#1d1d1f]">
-                  {localizedText(lang, "酒精壁炉是什么？适合做什么项目？", "What is a bio ethanol fireplace and where is it used?")}
-                </h2>
-                <p className="mt-4 text-sm sm:text-base leading-8 text-[#5f5f64]">
-                  {localizedText(
-                    lang,
-                    "酒精壁炉，也常被称为生物乙醇壁炉，是以生物乙醇为燃料的真火壁炉产品。它不依赖传统烟道和燃气管线，适合在别墅客厅、酒店大堂、会所、餐厅、商业展厅和样板间中打造真实火焰氛围。壁炉宗师作为自有品牌源头工厂，可围绕火槽长度、外观材质、安装结构、控制方式和批量交付需求进行 OEM/ODM 定制。",
-                    "A bio ethanol fireplace is a real-flame fireplace powered by bio ethanol fuel. It usually does not rely on a traditional chimney or gas line, making it suitable for villa living rooms, hotel lobbies, clubs, restaurants, showrooms, and model rooms. As an own-brand source factory, Fireplace Master supports OEM/ODM customization for burner length, finish, installation structure, control method, and batch delivery.",
-                  )}
-                </p>
-
-                <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {[
-                    [localizedText(lang, "真实火焰氛围", "Real flame atmosphere"), localizedText(lang, "适合重视仪式感和高级氛围的住宅及商业空间。", "For residential and commercial interiors that need a real flame atmosphere.")],
-                    [localizedText(lang, "无需传统烟道", "No traditional chimney"), localizedText(lang, "便于在改造项目、背景墙、岛台和展示装置中深化设计。", "Useful for retrofit projects, feature walls, islands, and display installations.")],
-                    [localizedText(lang, "支持 OEM/ODM", "OEM/ODM ready"), localizedText(lang, "可按图纸、样品、批量尺寸和项目风格定制生产。", "Custom production by drawings, samples, batch size, and project style.")],
-                    [localizedText(lang, "厂家直供", "Factory direct supply"), localizedText(lang, "从研发、生产、供货到安装建议，减少中间沟通成本。", "R&D, manufacturing, supply, and installation advice from one factory team.")],
-                  ].map(([title, desc]) => (
-                    <div key={title} className="rounded-[8px] border border-[#ece7e1] bg-[#fbfaf8] p-4">
-                      <h3 className="text-sm font-bold text-[#1d1d1f]">{title}</h3>
-                      <p className="mt-2 text-xs leading-5 text-[#6e6e73]">{desc}</p>
-                    </div>
-                  ))}
-                </div>
+            <section className="mt-10 border-y border-[#e5e5ea] py-8">
+              <h2 className="text-xl font-bold text-[#1d1d1f]">
+                {localizedText(lang, "批发订单条件", "Wholesale Order Terms")}
+              </h2>
+              <div className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-[#e5e5ea] bg-[#e5e5ea] lg:grid-cols-4">
+                {[
+                  [localizedText(lang, "样品交期", "Sample lead time"), localizedText(lang, "约 7–12 天", "Approx. 7–12 days")],
+                  [localizedText(lang, "量产交期", "Production lead time"), localizedText(lang, "约 20–30 天", "Approx. 20–30 days")],
+                  [localizedText(lang, "付款方式", "Payment"), "30% deposit / 70% before shipment"],
+                  [localizedText(lang, "质保期", "Warranty"), localizedText(lang, "12 个月（建议模板）", "12 months (template)")],
+                  [localizedText(lang, "验货", "Inspection"), localizedText(lang, "支持视频验货或第三方验货", "Video or third-party inspection")],
+                  [localizedText(lang, "认证", "Certification"), localizedText(lang, "按目标市场和订单要求确认", "Confirmed by target market and order")],
+                  [localizedText(lang, "包装定制", "Custom packaging"), localizedText(lang, "铭牌、说明书、条码、彩箱", "Nameplate, manual, barcode, color box")],
+                  [localizedText(lang, "报价有效期", "Quote validity"), localizedText(lang, "通常 15 天", "Normally 15 days")],
+                ].map(([label, value]) => (
+                  <div key={label} className="bg-white p-4">
+                    <p className="text-xs text-[#6e6e73]">{label}</p>
+                    <p className="mt-2 text-sm font-semibold leading-5 text-[#1d1d1f]">{value}</p>
+                  </div>
+                ))}
               </div>
-
-              <div className="relative min-h-[280px] overflow-hidden rounded-[8px] bg-[#f5f2ee]">
-                <Image
-                  src={ethanolImages.villa}
-                  alt={localizedText(
-                    lang,
-                    "别墅客厅嵌入式酒精壁炉真火场景，适合酒精壁炉定制和背景墙方案",
-                    "Built-in bio ethanol fireplace in a villa living room for custom fireplace wall design",
-                  )}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-
-            <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-5">
-              {[
-                {
-                  title: localizedText(lang, "应用场景", "Applications"),
-                  items: [
-                    localizedText(lang, "别墅客厅、地下会客厅、家庭休闲区", "Villa living rooms, basement lounges, family rooms"),
-                    localizedText(lang, "酒店大堂、精品酒店客房、度假空间", "Hotel lobbies, boutique rooms, resort spaces"),
-                    localizedText(lang, "会所、餐厅、酒吧、商业接待区", "Clubs, restaurants, bars, reception areas"),
-                    localizedText(lang, "展厅、样板间、品牌展示和景观火装置", "Showrooms, model rooms, brand displays, flame features"),
-                  ],
-                },
-                {
-                  title: localizedText(lang, "可定制内容", "Customization"),
-                  items: [
-                    localizedText(lang, "火槽长度、火焰段数、燃烧器结构", "Burner length, flame sections, burner structure"),
-                    localizedText(lang, "嵌入式、台面式、岛台式、长条壁龛式安装", "Built-in, tabletop, island, and linear niche installation"),
-                    localizedText(lang, "不锈钢、黑色金属、石材、玻璃挡火结构", "Stainless steel, black metal, stone, glass flame guard structure"),
-                    localizedText(lang, "按工程图纸、样品或品牌需求做 OEM/ODM", "OEM/ODM by drawings, samples, or brand requirements"),
-                  ],
-                },
-                {
-                  title: localizedText(lang, "设计预留重点", "Design Checks"),
-                  items: [
-                    localizedText(lang, "确认通风条件、操作空间和使用管理方式", "Confirm ventilation, operation space, and usage management"),
-                    localizedText(lang, "确认周边材料耐热性和安全距离", "Confirm heat-resistant materials and safety distance"),
-                    localizedText(lang, "预留检修、加注、清洁和后期维护空间", "Reserve access for inspection, refilling, cleaning, and maintenance"),
-                    localizedText(lang, "商业空间应明确人员管理和使用规范", "Commercial spaces need clear operation and management rules"),
-                  ],
-                },
-              ].map((section) => (
-                <section key={section.title} className="rounded-[8px] border border-[#ece7e1] bg-white p-5">
-                  <h2 className="text-lg font-bold text-[#1d1d1f]">{section.title}</h2>
-                  <ul className="mt-4 space-y-3">
-                    {section.items.map((item) => (
-                      <li key={item} className="flex gap-3 text-sm leading-6 text-[#5f5f64]">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c2410c]" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
+            </section>
 
             <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
               <figure className="overflow-hidden rounded-[8px] border border-[#ece7e1] bg-white">
