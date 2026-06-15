@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductImage from "@/components/ProductImage";
 import ProductGallery from "@/components/ProductGallery";
+import CoreWholesaleDetails from "@/components/CoreWholesaleDetails";
 import { getProductById, categories, products } from "@/lib/products";
 import { notFound } from "next/navigation";
 import { locales, getDictionary, localizedText } from "@/lib/dictionary";
@@ -13,6 +14,13 @@ import {
   getEthanolWholesaleCopy,
   getEthanolWholesaleKeywords,
 } from "@/lib/ethanol-wholesale-i18n";
+import {
+  coreCategoryIds,
+  getCoreProductName,
+  getCoreWholesaleConfig,
+  getCoreWholesaleCopy,
+  getWholesaleUsd,
+} from "@/lib/core-wholesale";
 
 const ethanolImages = {
   villa: "/media/products/ethanol-fireplace/ethanol-fireplace-villa-scene.png",
@@ -289,30 +297,31 @@ export async function generateMetadata({
     };
   }
 
-  if (id === "p4_70") {
+  if (coreCategoryIds.has(product.category)) {
+    const langMap = await loadLangData(lang);
+    const t = getCoreWholesaleCopy(lang);
+    const localizedName = getCoreProductName(
+      product.id,
+      lang,
+      localizedField(product, "name", lang, langMap),
+    );
     return {
-      title:
-        lang === "zh"
-          ? "雾化壁炉（可定制）| 3D水雾壁炉源头工厂 OEM/ODM"
-          : "Custom Mist Fireplace | 3D Water Vapor Fireplace OEM/ODM Source Factory",
-      description:
-        lang === "zh"
-          ? "壁炉宗师雾化壁炉源头工厂，支持3D水雾壁炉、长条雾化壁炉、悬挂分体雾化壁炉、酒店会所别墅项目和OEM/ODM定制。"
-          : "Fireplace Master is a source factory for custom 3D mist fireplaces, linear water vapor fireplaces, wall-mounted split mist fireplaces, hotel, club, villa projects, and OEM/ODM production.",
-      keywords:
-        lang === "zh"
-          ? ["雾化壁炉", "3D水雾壁炉", "水雾壁炉定制", "长条雾化壁炉", "壁炉源头工厂", "OEM ODM 雾化壁炉"]
-          : ["mist fireplace", "3D water vapor fireplace", "custom mist fireplace", "linear mist fireplace", "fireplace source factory", "OEM ODM mist fireplace"],
+      title: `${localizedName} | OEM/ODM ${t.wholesaleOnly}`,
+      description: `${localizedName}. ${t.oemText} ${t.indicative}`,
       openGraph: {
-        title:
-          lang === "zh"
-            ? "雾化壁炉（可定制）| 壁炉宗师源头工厂"
-            : "Custom Mist Fireplace | Fireplace Master Source Factory",
-        description:
-          lang === "zh"
-            ? "支持长度、结构、出雾方式、水电检修、灯光效果和批量 OEM/ODM 定制。"
-            : "Custom length, structure, mist outlet, water and power access, lighting effect, and OEM/ODM production.",
-        images: [mistImages.villa],
+        title: `${localizedName} | Fireplace Master`,
+        description: t.oemText,
+        images: [product.coverImage],
+      },
+      alternates: {
+        canonical: `https://sfireplace.com/${lang}/products/${product.id}`,
+        languages: Object.fromEntries([
+          ...locales.map((locale) => [
+            locale,
+            `https://sfireplace.com/${locale}/products/${product.id}`,
+          ]),
+          ["x-default", `https://sfireplace.com/en/products/${product.id}`],
+        ]),
       },
     };
   }
@@ -349,14 +358,23 @@ export default async function ProductDetailPage({
   const productHoverImage = product.images[1];
   const hasProductScenePair = Boolean(productHoverImage?.includes("/scene/"));
   const isEthanol = product.id === "p3_14";
-  const isMist = product.id === "p4_70";
+  const isMist = false;
+  const isCoreWholesale = coreCategoryIds.has(product.category);
+  const coreCopy = getCoreWholesaleCopy(lang);
+  const coreConfig = getCoreWholesaleConfig(product.id);
+  const coreUsdPrice = getWholesaleUsd(product.priceCny);
   const ethanolCopy = getEthanolWholesaleCopy(lang);
+  const localizedProductName = localizedField(product, "name", lang, langMap);
   const productName = isEthanol
     ? ethanolCopy.name
-    : localizedField(product, "name", lang, langMap);
+    : isCoreWholesale
+      ? getCoreProductName(product.id, lang, localizedProductName)
+      : localizedProductName;
   const productDescription = isEthanol
     ? ethanolCopy.description
-    : localizedField(product, "description", lang, langMap);
+    : isCoreWholesale
+      ? `${productName}. ${coreCopy.oemText}`
+      : localizedField(product, "description", lang, langMap);
   const enhancedContent = getEnhancedContent(product.category, lang, localizedField(product, "name", lang, langMap));
   const ethanolFaq = ethanolCopy.faq;
   const mistFaq = lang === "zh" ? mistFaqZh : mistFaqEn;
@@ -464,6 +482,47 @@ export default async function ProductDetailPage({
         })),
       }
     : null;
+  const coreProductSchema = isCoreWholesale && !isEthanol
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: productName,
+        description: productDescription,
+        image: product.images.map((src) => `https://sfireplace.com${src}`),
+        brand: { "@type": "Brand", name: "Fireplace Master" },
+        manufacturer: { "@type": "Organization", name: "Fireplace Master" },
+        sku: product.id,
+        additionalProperty: [
+          { "@type": "PropertyValue", name: coreCopy.moq, value: `${coreConfig.moq} units` },
+          { "@type": "PropertyValue", name: coreCopy.size, value: coreConfig.size },
+          { "@type": "PropertyValue", name: coreCopy.keySpec, value: coreConfig.keySpec },
+          { "@type": "PropertyValue", name: coreCopy.leadTime, value: coreConfig.leadTime },
+          { "@type": "PropertyValue", name: coreCopy.packing, value: coreConfig.packing },
+        ],
+        ...(coreUsdPrice
+          ? {
+              offers: {
+                "@type": "AggregateOffer",
+                priceCurrency: "USD",
+                lowPrice: String(coreUsdPrice),
+                offerCount: "1",
+                availability: "https://schema.org/InStock",
+              },
+            }
+          : {}),
+      }
+    : null;
+  const coreFaqSchema = isCoreWholesale && !isEthanol
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: coreCopy.faqs.map(([question, answer]) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      }
+    : null;
 
   return (
     <div dir={lang === "ar" ? "rtl" : "ltr"}>
@@ -489,6 +548,18 @@ export default async function ProductDetailPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(mistFaqSchema) }}
+        />
+      )}
+      {coreProductSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(coreProductSchema) }}
+        />
+      )}
+      {coreFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(coreFaqSchema) }}
         />
       )}
       {/* Breadcrumb */}
@@ -555,13 +626,15 @@ export default async function ProductDetailPage({
               <span className="text-xs text-[#6e6e73] bg-[#f5f5f7] px-2.5 py-1 rounded-full">
                 {isEthanol
                   ? ethanolCopy.manualBurner
+                  : isCoreWholesale
+                    ? coreCopy.specs
                   : localizedField(product, "installation", lang, langMap)}
               </span>
             </div>
 
-            {isEthanol && (
+            {isCoreWholesale && (
               <p className="mt-4 text-xs font-semibold uppercase text-[#c2410c]">
-                {ethanolCopy.wholesaleOnly}
+                {isEthanol ? ethanolCopy.wholesaleOnly : coreCopy.wholesaleOnly}
               </p>
             )}
 
@@ -574,12 +647,24 @@ export default async function ProductDetailPage({
             </p>
 
             <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-[#e5e5ea] bg-[#e5e5ea]">
-              {(isEthanol
+              {(isCoreWholesale
                 ? [
-                    [ethanolCopy.moq, ethanolCopy.tenUnits],
-                    [ethanolCopy.sampleOrder, ethanolCopy.oneUnit],
-                    [ethanolCopy.leadTime, ethanolCopy.days15],
-                    [ethanolCopy.tradeTerms, "EXW / FOB / CIF"],
+                    [
+                      isEthanol ? ethanolCopy.moq : coreCopy.moq,
+                      isEthanol ? ethanolCopy.tenUnits : `${coreConfig.moq} units`,
+                    ],
+                    [
+                      isEthanol ? ethanolCopy.sampleOrder : coreCopy.sample,
+                      isEthanol ? ethanolCopy.oneUnit : `${coreConfig.sample} unit`,
+                    ],
+                    [
+                      isEthanol ? ethanolCopy.leadTime : coreCopy.leadTime,
+                      isEthanol ? ethanolCopy.days15 : coreConfig.leadTime,
+                    ],
+                    [
+                      isEthanol ? ethanolCopy.tradeTerms : coreCopy.trade,
+                      "EXW / FOB / CIF",
+                    ],
                   ]
                 : [
                     [t.brand, product.brand],
@@ -594,7 +679,7 @@ export default async function ProductDetailPage({
               ))}
             </div>
 
-            {!isEthanol && <div className="mt-6 space-y-3">
+            {!isCoreWholesale && <div className="mt-6 space-y-3">
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-[#6e6e73] w-16">{t.brand}</span>
                 <span className="font-medium text-[#1d1d1f]">{product.brand}</span>
@@ -613,15 +698,21 @@ export default async function ProductDetailPage({
 
             <div className="mt-6 p-4 bg-[#fff7ed] rounded-[8px] border border-[#fed7aa]">
               <p className="text-sm text-[#c2410c] font-medium">
-                {isEthanol
-                  ? ethanolCopy.priceFrom
+                {isCoreWholesale
+                  ? isEthanol
+                    ? ethanolCopy.priceFrom
+                    : coreUsdPrice
+                      ? `${coreCopy.factoryPrice}: US$${coreUsdPrice} / unit`
+                      : coreCopy.requestQuote
                   : product.priceCny
                   ? `${lang === "zh" ? "参考出厂价 " : "From "}${formatPrice(product.priceCny)}${lang === "zh" ? " 起" : ""}`
                   : t.contact_for_price}
               </p>
               <p className="text-xs text-[#ea580c] mt-1">
-                {isEthanol
-                  ? ethanolCopy.priceNote
+                {isCoreWholesale
+                  ? isEthanol
+                    ? ethanolCopy.priceNote
+                    : coreCopy.indicative
                   : lang === "zh" ? "最终价格按尺寸、材质、火槽长度和批量数量确认。" : "Final price depends on size, material, burner length, and quantity."}
               </p>
               <p className="text-xs text-[#ea580c] mt-1">
@@ -630,22 +721,24 @@ export default async function ProductDetailPage({
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              {isEthanol && (
+              {isCoreWholesale && (
                 <a
                   href={whatsappWholesaleUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#128c4a] text-white rounded-[6px] text-sm font-medium hover:bg-[#0d6f3a] transition-colors"
                 >
-                  {ethanolCopy.whatsapp}
+                  {isEthanol ? ethanolCopy.whatsapp : coreCopy.whatsapp}
                 </a>
               )}
               <Link
                 href={`/${lang}/contact`}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#c2410c] text-white rounded-[6px] text-sm font-medium hover:bg-[#ea580c] transition-colors shadow-lg shadow-[#c2410c]/20"
               >
-                {isEthanol
-                  ? ethanolCopy.quoteCatalog
+                {isCoreWholesale
+                  ? isEthanol
+                    ? ethanolCopy.quoteCatalog
+                    : coreCopy.requestQuote
                   : t.inquire_now}
               </Link>
               <Link
@@ -911,6 +1004,15 @@ export default async function ProductDetailPage({
         </div>
       )}
 
+      {isCoreWholesale && !isEthanol && (
+        <CoreWholesaleDetails
+          lang={lang}
+          productId={product.id}
+          productName={productName}
+          priceCny={product.priceCny}
+        />
+      )}
+
       {isMist && (
         <div className="bg-white border-t border-[#f2f2f3]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
@@ -1098,7 +1200,7 @@ export default async function ProductDetailPage({
         </div>
       )}
 
-      {!isEthanol && !isMist && (
+      {!isCoreWholesale && !isMist && (
         <div className="bg-white border-t border-[#f2f2f3]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
             <div className="grid grid-cols-1 lg:grid-cols-[0.58fr_0.42fr] gap-8 lg:gap-12">
