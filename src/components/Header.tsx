@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { localeNames, locales } from "@/lib/dictionary";
+import { getSiteCopy } from "@/lib/site-i18n";
 
 const navKeys = ["home", "products", "cases", "about", "contact", "news", "videos"] as const;
 
@@ -17,6 +18,7 @@ const dictionaries: Record<string, Record<string, string>> = {
   ru: { home: "Главная", products: "Продукты", cases: "Проекты", about: "О нас", contact: "Контакты", news: "Новости", videos: "Видео" },
   ja: { home: "ホーム", products: "製品", cases: "施工事例", about: "私たち", contact: "お問い合わせ", news: "お知らせ", videos: "動画" },
   pt: { home: "Início", products: "Produtos", cases: "Projetos", about: "Sobre", contact: "Contato", news: "Notícias", videos: "Vídeos" },
+  ar: { home: "الرئيسية", products: "المنتجات", cases: "المشاريع", about: "من نحن", contact: "اتصل بنا", news: "الأخبار", videos: "الفيديوهات" },
 };
 
 const navPaths: Record<string, string> = {
@@ -35,6 +37,7 @@ export default function Header({ lang }: { lang: string }) {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const nav = dictionaries[lang] || dictionaries.zh;
+  const site = getSiteCopy(lang);
   const isHomePage = pathname === `/${lang}` || pathname === `/${lang}/`;
 
   const isActive = (path: string) => {
@@ -148,7 +151,7 @@ export default function Header({ lang }: { lang: string }) {
                 href={`/${lang}/contact`}
                 className="ml-2 rounded-[4px] bg-[#f97316] px-4 py-2 text-sm font-semibold text-white hover:bg-[#ea580c]"
               >
-                获取报价
+                {site.consultNow}
               </Link>
             )}
           </nav>

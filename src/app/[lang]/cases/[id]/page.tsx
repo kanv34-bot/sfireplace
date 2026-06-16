@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { locales, getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
+import { getProductTypeName, getSiteCopy } from "@/lib/site-i18n";
 
 export async function generateStaticParams() {
   const params: { lang: string; id: string }[] = [];
@@ -63,11 +64,27 @@ export default async function CaseDetailPage({
   const { lang, id } = await params;
   const t = await getDictionary(lang);
   const langMap = await loadLangData(lang);
+  const site = getSiteCopy(lang);
 
   const c = cases.find((c) => c.id === id);
   if (!c) notFound();
-  const detailParagraphs = lang === "zh" ? c.content : [localizedField(c, "description", lang, langMap)];
-  const productName = localizedField(c, "product", lang, langMap);
+  const productName = lang === "zh" || lang === "en"
+    ? localizedField(c, "product", lang, langMap)
+    : getProductTypeName(c.product, lang);
+  const caseTitle = lang === "zh" || lang === "en"
+    ? localizedField(c, "title", lang, langMap)
+    : `${productName} · ${site.caseStoryTitle}`;
+  const caseDescription = lang === "zh" || lang === "en"
+    ? localizedField(c, "description", lang, langMap)
+    : site.caseStoryParagraph;
+  const caseLocation = lang === "zh" || lang === "en"
+    ? localizedField(c, "location", lang, langMap)
+    : "China";
+  const detailParagraphs = lang === "zh"
+    ? c.content
+    : lang === "en"
+      ? [localizedField(c, "description", lang, langMap)]
+      : [site.caseStoryParagraph];
 
   return (
     <div>
@@ -82,7 +99,7 @@ export default async function CaseDetailPage({
               {t.cases}
             </Link>
             <span>/</span>
-            <span className="text-[#1d1d1f]">{localizedField(c, "title", lang, langMap)}</span>
+            <span className="text-[#1d1d1f]">{caseTitle}</span>
           </nav>
         </div>
       </div>
@@ -91,21 +108,21 @@ export default async function CaseDetailPage({
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-3">
             <span className="text-xs text-[#6e6e73] bg-[#f5f5f7] px-2.5 py-1 rounded-full">
-              {localizedField(c, "location", lang, langMap)}
+              {caseLocation}
             </span>
             <span className="text-xs text-[#c2410c] bg-[#fff7ed] px-2.5 py-1 rounded-full font-medium">
               {productName}
             </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold text-[#1d1d1f]">
-            {localizedField(c, "title", lang, langMap)}
+            {caseTitle}
           </h1>
         </div>
 
         <div className="aspect-video bg-[#e8e8ed] rounded-2xl overflow-hidden relative mb-6">
           <Image
             src={c.images[0]}
-            alt={localizedField(c, "title", lang, langMap)}
+            alt={caseTitle}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 768px"
@@ -114,7 +131,7 @@ export default async function CaseDetailPage({
 
         <div className="prose prose-sm max-w-none">
           <p className="text-base text-[#4b4b50] leading-8 font-medium">
-            {localizedField(c, "description", lang, langMap)}
+            {caseDescription}
           </p>
           <div className="mt-6 space-y-5">
             {detailParagraphs.map((paragraph, index) => (
@@ -144,7 +161,7 @@ export default async function CaseDetailPage({
               <div key={image} className="relative aspect-video overflow-hidden rounded-2xl bg-[#e8e8ed]">
                 <Image
                   src={image}
-                  alt={`${localizedField(c, "title", lang, langMap)} ${index + 2}`}
+                  alt={`${caseTitle} ${index + 2}`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 384px"

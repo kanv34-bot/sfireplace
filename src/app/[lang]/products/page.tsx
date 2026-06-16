@@ -5,6 +5,7 @@ import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { formatPrice } from "@/lib/utils";
+import { getSiteCopy } from "@/lib/site-i18n";
 
 export default async function ProductsPage({
   params,
@@ -17,6 +18,7 @@ export default async function ProductsPage({
   const sp = await searchParams;
   const t = await getDictionary(lang);
   const langMap = await loadLangData(lang);
+  const site = getSiteCopy(lang);
 
   let filtered = [...products];
   if (sp.category) {
@@ -132,9 +134,9 @@ export default async function ProductsPage({
                         </p>
                         {product.priceCny && (
                           <p className="mt-3 text-sm font-semibold text-[#c2410c]">
-                            {lang === "zh" ? "参考价 " : "From "}
+                            {site.pricePrefix}
                             {formatPrice(product.priceCny)}
-                            {lang === "zh" ? " 起" : ""}
+                            {site.priceSuffix}
                           </p>
                         )}
                       </div>

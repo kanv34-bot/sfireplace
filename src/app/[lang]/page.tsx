@@ -5,6 +5,7 @@ import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { newsArticles } from "@/lib/news";
+import { getSiteCopy } from "@/lib/site-i18n";
 
 const home = "/media/home";
 
@@ -40,69 +41,74 @@ function IconTile({ src, value, label }: { src: string; value: string; label: st
   );
 }
 
+function siteDescription(site: ReturnType<typeof getSiteCopy>, productType: string) {
+  return `${productType} · ${site.wholesaleFactory} · OEM/ODM`;
+}
+
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getDictionary(lang);
   const langMap = await loadLangData(lang);
+  const s = getSiteCopy(lang);
 
   const categoryCards = [
     {
-      title: "酒精壁炉",
+      title: s.ethanol,
       sub: "Ethanol Fireplace",
       href: `/${lang}/products?category=p3`,
       img: "/media/oss/%E4%BA%A7%E5%93%81/%E9%85%92%E7%B2%BE%E5%A3%81%E7%82%89/%E5%86%85%E5%AE%B9%E9%A1%B51.png",
     },
     {
-      title: "雾化壁炉",
+      title: s.mist,
       sub: "Mist Fireplace",
       href: `/${lang}/products?category=p4`,
       img: "/media/oss/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/1.png",
     },
-    { title: "电子壁炉", sub: "Electric Fireplace", href: `/${lang}/products?category=p7`, img: categoryImage("electric-fireplace") },
-    { title: "全息壁炉", sub: "Holographic Fireplace", href: `/${lang}/products?category=p9`, img: featuredImage("featured-product-4") },
+    { title: s.electric, sub: "Electric Fireplace", href: `/${lang}/products?category=p7`, img: categoryImage("electric-fireplace") },
+    { title: s.holographic, sub: "Holographic Fireplace", href: `/${lang}/products?category=p9`, img: featuredImage("featured-product-4") },
   ];
 
   const featuredSolutions = [
     {
-      title: "酒精壁炉真火定制方案",
-      label: "酒精壁炉",
+      title: lang === "zh" ? "酒精壁炉真火定制方案" : `${s.ethanol} OEM/ODM`,
+      label: s.ethanol,
       href: `/${lang}/products?category=p3`,
       image: featuredImage("featured-product-1"),
-      alt: "现代客厅中的酒精壁炉真火氛围，适合别墅、会所和商业空间定制",
-      description: "适合别墅、会所、餐厅和商业展示空间，支持火槽长度、外观材质、嵌入结构和OEM/ODM定制，突出真实火焰氛围。",
+      alt: lang === "zh" ? "现代客厅中的酒精壁炉真火氛围，适合别墅、会所和商业空间定制" : `${s.ethanol} project solution`,
+      description: lang === "zh" ? "适合别墅、会所、餐厅和商业展示空间，支持火槽长度、外观材质、嵌入结构和OEM/ODM定制，突出真实火焰氛围。" : siteDescription(s, s.ethanol),
     },
     {
-      title: "电子壁炉背景墙方案",
-      label: "电子壁炉",
+      title: lang === "zh" ? "电子壁炉背景墙方案" : `${s.electric} OEM/ODM`,
+      label: s.electric,
       href: `/${lang}/products?category=p7`,
       image: featuredImage("featured-product-2"),
-      alt: "电视背景墙下方的嵌入式电子壁炉，适合现代住宅和精装公寓",
-      description: "适合电视背景墙、大理石背景墙和精装住宅项目，安装维护简单，适合需要无烟道、低维护壁炉氛围的空间。",
+      alt: lang === "zh" ? "电视背景墙下方的嵌入式电子壁炉，适合现代住宅和精装公寓" : `${s.electric} project solution`,
+      description: lang === "zh" ? "适合电视背景墙、大理石背景墙和精装住宅项目，安装维护简单，适合需要无烟道、低维护壁炉氛围的空间。" : siteDescription(s, s.electric),
     },
     {
-      title: "雾化壁炉定制方案",
-      label: "雾化壁炉",
+      title: lang === "zh" ? "雾化壁炉定制方案" : `${s.mist} OEM/ODM`,
+      label: s.mist,
       href: `/${lang}/products?category=p4`,
       image: featuredImage("featured-product-3"),
-      alt: "现代客厅背景墙中的长条雾化壁炉定制方案，适合酒店和商业空间",
-      description: "适合酒店大堂、会所、别墅和商业接待区，水雾火焰无明火，支持长度、结构、水电检修、背景墙和灯光效果定制。",
+      alt: lang === "zh" ? "现代客厅背景墙中的长条雾化壁炉定制方案，适合酒店和商业空间" : `${s.mist} project solution`,
+      description: lang === "zh" ? "适合酒店大堂、会所、别墅和商业接待区，水雾火焰无明火，支持长度、结构、水电检修、背景墙和灯光效果定制。" : siteDescription(s, s.mist),
     },
     {
-      title: "全息壁炉沉浸式方案",
-      label: "全息壁炉",
+      title: lang === "zh" ? "全息壁炉沉浸式方案" : `${s.holographic} OEM/ODM`,
+      label: s.holographic,
       href: `/${lang}/products?category=p9`,
       image: featuredImage("featured-product-4"),
-      alt: "酒店、展厅和会所空间中的全息壁炉沉浸式火焰效果",
-      description: "适合展厅、酒店大堂、商业橱窗、会所和沉浸式空间，可定制全息火焰影像、画面比例、安装结构和控制系统。",
+      alt: lang === "zh" ? "酒店、展厅和会所空间中的全息壁炉沉浸式火焰效果" : `${s.holographic} project solution`,
+      description: lang === "zh" ? "适合展厅、酒店大堂、商业橱窗、会所和沉浸式空间，可定制全息火焰影像、画面比例、安装结构和控制系统。" : siteDescription(s, s.holographic),
     },
   ];
 
   const projectCards = [
-    { image: assets.projectCozy, title: "小资住宅项目", location: "现代家居" },
-    { image: assets.projectCigar, title: "雪茄会所项目", location: "商业空间" },
-    { image: assets.projectNordic, title: "北欧住宅项目", location: "别墅空间" },
-    { image: assets.projectNew, title: "新款壁炉项目", location: "客厅空间" },
-    { image: assets.projectCozyTwo, title: "小资生活项目", location: "精品住宅" },
+    { image: assets.projectCozy, title: lang === "zh" ? "小资住宅项目" : s.projectTitle, location: lang === "zh" ? "现代家居" : s.electric },
+    { image: assets.projectCigar, title: lang === "zh" ? "雪茄会所项目" : s.projectTitle, location: lang === "zh" ? "商业空间" : s.mist },
+    { image: assets.projectNordic, title: lang === "zh" ? "北欧住宅项目" : s.projectTitle, location: lang === "zh" ? "别墅空间" : s.ethanol },
+    { image: assets.projectNew, title: lang === "zh" ? "新款壁炉项目" : s.projectTitle, location: lang === "zh" ? "客厅空间" : s.holographic },
+    { image: assets.projectCozyTwo, title: lang === "zh" ? "小资生活项目" : s.projectTitle, location: lang === "zh" ? "精品住宅" : s.wholesaleFactory },
   ];
 
   const news = newsArticles.slice(0, 4);
@@ -123,20 +129,20 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
         <div className="relative mx-auto flex min-h-[640px] max-w-7xl items-center px-4 py-16 sm:px-6 lg:min-h-[700px] lg:px-8">
           <div className="max-w-[1040px]">
-            <p className="text-sm font-bold text-[#fb923c]">20年专注壁炉研发制造</p>
+            <p className="text-sm font-bold text-[#fb923c]">{s.yearsFocus}</p>
             <h1 className="mt-5 text-[40px] font-bold leading-[1.12] tracking-normal text-white sm:text-[58px] lg:text-[70px] xl:text-[76px]">
-              温暖生活 · 源自<span className="text-[#f97316]">壁炉宗师</span>
+              {s.heroTitleBefore}<span className="text-[#f97316]">{s.heroTitleBrand}</span>
             </h1>
             <p className="mt-6 max-w-4xl text-base font-semibold leading-8 text-white sm:text-xl">
-              源头工厂 | 支持 OEM/ODM 定制 | 畅销全球 60+ 国家和地区
+              {s.heroLine}
             </p>
 
             <div className="mt-8 grid max-w-4xl grid-cols-2 gap-0 sm:grid-cols-4">
               {[
-                ["20+年", "生产经验"],
-                ["2000㎡", "现代化厂房"],
-                ["CE / RoHS / ISO", "多项认证"],
-                ["60+国家", "出口全球"],
+                ["20+", s.productionExperience],
+                ["2000㎡", s.factoryArea],
+                ["CE / RoHS / ISO", t.footer_products],
+                ["60+", s.exportGlobal],
               ].map(([value, label]) => (
                 <div key={label} className="border-l border-[#f97316]/60 bg-black/34 px-5 py-4 backdrop-blur-sm">
                   <div className="text-lg font-bold text-white sm:text-xl">{value}</div>
@@ -147,10 +153,10 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
             <div className="mt-9 flex flex-wrap gap-4">
               <Link href={`/${lang}/products`} className="rounded-[4px] bg-[#f97316] px-10 py-4 text-sm font-bold text-white shadow-lg shadow-black/30 hover:bg-[#ea580c]">
-                浏览产品 →
+                {s.browseProducts}
               </Link>
               <Link href={`/${lang}/contact`} className="rounded-[4px] border border-white/42 bg-black/20 px-10 py-4 text-sm font-bold text-white backdrop-blur hover:bg-white/10">
-                联系咨询 →
+                {s.contactConsult}
               </Link>
             </div>
           </div>
@@ -160,8 +166,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <section className="bg-white py-12 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold sm:text-3xl">产品分类</h2>
-            <p className="mt-2 text-sm text-[#7a746e]">多种类型壁炉，满足不同项目需求</p>
+            <h2 className="text-2xl font-bold sm:text-3xl">{s.productCategories}</h2>
+            <p className="mt-2 text-sm text-[#7a746e]">{s.productCategoriesDesc}</p>
           </div>
 
           <div className="mt-9 grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -186,12 +192,12 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <section className="bg-[#f4f1ec]">
         <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
           <div className="flex flex-col justify-center px-4 py-12 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold tracking-normal text-[#1f1c19]">源头工厂 · 实力保障</h2>
+            <h2 className="text-3xl font-bold tracking-normal text-[#1f1c19]">{s.factoryTitle}</h2>
             <p className="mt-5 text-sm leading-8 text-[#625b55]">
-              坚持从项目方案、产品选型、深化设计、供货安装到售后维护的一体化服务，让客户看到真实生产能力和稳定交付能力。
+              {s.factoryDesc}
             </p>
             <ul className="mt-7 space-y-4 text-sm font-semibold text-[#2c2723]">
-              {["2000㎡现代化生产基地", "专业研发团队与先进生产设备", "严格质量检测体系", "支持定制方案与项目服务"].map((item) => (
+              {s.factoryBullets.map((item) => (
                 <li key={item} className="flex items-center gap-3">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#f97316]" />
                   {item}
@@ -199,22 +205,22 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               ))}
             </ul>
             <Link href={`/${lang}/about`} className="mt-8 inline-flex w-fit rounded-[4px] bg-[#f97316] px-8 py-3 text-sm font-bold text-white hover:bg-[#ea580c]">
-              了解更多关于我们
+              {s.learnAbout}
             </Link>
           </div>
 
           <div className="relative min-h-[520px] overflow-hidden bg-white">
-            <Image src={assets.factory} alt="壁炉宗师工厂实力" fill sizes="(max-width: 1024px) 100vw, 62vw" className="object-cover" />
+            <Image src={assets.factory} alt={s.factoryTitle} fill sizes="(max-width: 1024px) 100vw, 62vw" className="object-cover" />
           </div>
         </div>
 
         <div className="bg-[#0d0c0b] py-7">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-5 lg:px-8">
-            <IconTile src={icon("factory")} value="20+年" label="生产经验" />
-            <IconTile src={icon("plant-area")} value="2000㎡" label="工厂面积" />
-            <IconTile src={icon("team")} value="20人" label="专业员工" />
-            <IconTile src={icon("global-export")} value="60+国家" label="出口全球" />
-            <IconTile src={icon("partners")} value="300+家" label="全球合作伙伴" />
+            <IconTile src={icon("factory")} value="20+" label={s.productionExperience} />
+            <IconTile src={icon("plant-area")} value="2000㎡" label={s.factoryArea} />
+            <IconTile src={icon("team")} value="20" label={s.staff} />
+            <IconTile src={icon("global-export")} value="60+" label={s.exportGlobal} />
+            <IconTile src={icon("partners")} value="300+" label={s.partners} />
           </div>
         </div>
       </section>
@@ -222,8 +228,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <section className="bg-white py-12 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div>
-            <h2 className="text-2xl font-bold">权威认证 · 品质保障</h2>
-            <p className="mt-2 text-sm text-[#7a746e]">产品通过多项国际认证，安全可靠，畅销全球</p>
+            <h2 className="text-2xl font-bold">{s.certTitle}</h2>
+            <p className="mt-2 text-sm text-[#7a746e]">{s.certDesc}</p>
           </div>
 
           <div className="mt-7 grid grid-cols-2 gap-4 md:grid-cols-6">
@@ -240,22 +246,22 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             ))}
             <div className="rounded-[6px] border border-[#fed7aa] bg-[#fff7ed] p-4">
               <img src={icon("shield-cert")} alt="" className="h-12 w-12" />
-              <h3 className="mt-3 text-sm font-bold">严格检测</h3>
-              <p className="mt-1 text-xs leading-5 text-[#7a746e]">每一台壁炉出厂前多重检测</p>
+              <h3 className="mt-3 text-sm font-bold">{s.strictInspection}</h3>
+              <p className="mt-1 text-xs leading-5 text-[#7a746e]">{s.strictInspectionDesc}</p>
             </div>
           </div>
 
           <div className="mt-12 text-center">
-            <h2 className="text-2xl font-bold">为什么选择壁炉宗师</h2>
-            <p className="mt-2 text-sm text-[#7a746e]">我们不仅提供优质产品，更提供专业服务与支持</p>
+            <h2 className="text-2xl font-bold">{s.whyTitle}</h2>
+            <p className="mt-2 text-sm text-[#7a746e]">{s.whyDesc}</p>
           </div>
           <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              [icon("factory"), "源头工厂", "价格优势，质量可控，供货稳定"],
-              [icon("custom-service"), "支持定制服务", "OEM/ODM，满足个性化需求"],
-              [icon("shield-cert"), "品质严格把控", "多重检测，确保每一台壁炉品质"],
-              [icon("delivery"), "快速交付", "完善供应链，按时交付"],
-              [icon("after-sales"), "售后无忧", "安装指导，维护支持"],
+              [icon("factory"), ...s.advantages[0]],
+              [icon("custom-service"), ...s.advantages[1]],
+              [icon("shield-cert"), ...s.advantages[2]],
+              [icon("delivery"), ...s.advantages[3]],
+              [icon("after-sales"), ...s.advantages[4]],
             ].map(([src, title, desc]) => (
               <div key={title} className="rounded-[6px] border border-[#e8e3de] bg-white p-5 shadow-sm">
                 <img src={src} alt="" className="h-11 w-11" />
@@ -271,11 +277,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold">精选产品</h2>
-              <p className="mt-2 text-sm text-[#7a746e]">覆盖酒精壁炉、雾化壁炉、电子壁炉、全息壁炉与OEM/ODM定制方案</p>
+              <h2 className="text-2xl font-bold">{s.featuredTitle}</h2>
+              <p className="mt-2 text-sm text-[#7a746e]">{s.featuredDesc}</p>
             </div>
             <Link href={`/${lang}/products`} className="hidden text-sm font-bold text-[#f97316] sm:inline-flex">
-              查看全部 →
+              {s.viewAll}
             </Link>
           </div>
           <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -305,11 +311,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold">项目案例</h2>
-              <p className="mt-2 text-sm text-[#7a746e]">我们的产品已广泛应用于家装、酒店、别墅、商业空间等</p>
+              <h2 className="text-2xl font-bold">{s.projectTitle}</h2>
+              <p className="mt-2 text-sm text-[#7a746e]">{s.projectDesc}</p>
             </div>
             <Link href={`/${lang}/cases`} className="hidden text-sm font-bold text-[#f97316] sm:inline-flex">
-              查看更多案例 →
+              {s.moreCases}
             </Link>
           </div>
           <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
@@ -330,11 +336,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold">新闻中心</h2>
-              <p className="mt-2 text-sm text-[#7a746e]">了解行业动态与公司最新资讯</p>
+              <h2 className="text-2xl font-bold">{s.newsTitle}</h2>
+              <p className="mt-2 text-sm text-[#7a746e]">{s.newsDesc}</p>
             </div>
             <Link href={`/${lang}/news`} className="hidden text-sm font-bold text-[#f97316] sm:inline-flex">
-              查看更多新闻 →
+              {s.moreNews}
             </Link>
           </div>
           <div className="mt-7 grid grid-cols-1 gap-5 md:grid-cols-4">
@@ -359,15 +365,15 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         <div className="absolute inset-0 bg-black/58" />
         <div className="relative mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
-            <h2 className="text-2xl font-bold text-white">准备好为您的项目选择合适的壁炉了吗？</h2>
-            <p className="mt-2 text-sm text-white/68">联系我们的专业团队，获取产品目录和专属解决方案</p>
+            <h2 className="text-2xl font-bold text-white">{s.ctaTitle}</h2>
+            <p className="mt-2 text-sm text-white/68">{s.ctaDesc}</p>
           </div>
           <div className="flex flex-wrap gap-4">
             <Link href={`/${lang}/contact`} className="rounded-[4px] bg-[#f97316] px-10 py-3 text-sm font-bold text-white hover:bg-[#ea580c]">
-              立即咨询
+              {s.consultNow}
             </Link>
             <Link href={`/${lang}/products`} className="rounded-[4px] border border-white/35 px-10 py-3 text-sm font-bold text-white hover:bg-white/10">
-              下载产品手册
+              {s.catalog}
             </Link>
           </div>
         </div>

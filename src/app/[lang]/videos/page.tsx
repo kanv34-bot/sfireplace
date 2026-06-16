@@ -1,4 +1,5 @@
 import { getDictionary } from "@/lib/dictionary";
+import { getSiteCopy } from "@/lib/site-i18n";
 
 const OSS = "/media/oss";
 
@@ -41,6 +42,7 @@ export default async function VideosPage({
 }) {
   const { lang } = await params;
   const t = await getDictionary(lang);
+  const site = getSiteCopy(lang);
 
   return (
     <div>
@@ -80,7 +82,7 @@ export default async function VideosPage({
                   </span>
                 </div>
                 <h3 className="text-sm font-medium text-[#1d1d1f]">
-                  {lang === "zh" ? video.titleZh : video.title}
+                  {lang === "zh" ? video.titleZh : lang === "en" ? video.title : `${site.wholesaleFactory} · ${t.videos_title}`}
                 </h3>
               </div>
             </div>
