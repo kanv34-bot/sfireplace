@@ -9,7 +9,12 @@ import { notFound } from "next/navigation";
 import { locales, getDictionary, localizedText } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
-import { formatPrice } from "@/lib/utils";
+import {
+  convertCnyPrice,
+  formatReferencePrice,
+  getPriceCopy,
+  getPricingRule,
+} from "@/lib/product-pricing";
 import {
   getEthanolWholesaleCopy,
   getEthanolWholesaleKeywords,
@@ -22,7 +27,6 @@ import {
   getCoreWholesaleConfig,
   getCoreWholesaleCopy,
   getCoreWholesaleValueCopy,
-  getWholesaleUsd,
 } from "@/lib/core-wholesale";
 
 const ethanolImages = {
@@ -367,8 +371,10 @@ export default async function ProductDetailPage({
   const coreConfig = getCoreWholesaleConfig(product.id);
   const coreDisplayConfig = getCoreWholesaleDisplayConfig(product.id, lang);
   const coreValues = getCoreWholesaleValueCopy(lang);
-  const coreUsdPrice = getWholesaleUsd(product.priceCny);
   const coreProductDetail = getCoreProductDetail(product.id, lang);
+  const priceCopy = getPriceCopy(lang);
+  const pricingRule = getPricingRule(lang);
+  const localizedOfferPrice = convertCnyPrice(product.priceCny, lang);
   const ethanolCopy = getEthanolWholesaleCopy(lang);
   const localizedBrand = localizedField(product, "brand", lang, langMap);
   const localizedProductName = localizedField(product, "name", lang, langMap);
@@ -509,12 +515,12 @@ export default async function ProductDetailPage({
           { "@type": "PropertyValue", name: coreCopy.leadTime, value: coreDisplayConfig.leadTime },
           { "@type": "PropertyValue", name: coreCopy.packing, value: coreDisplayConfig.packing },
         ],
-        ...(coreUsdPrice
+        ...(localizedOfferPrice
           ? {
               offers: {
                 "@type": "AggregateOffer",
-                priceCurrency: "USD",
-                lowPrice: String(coreUsdPrice),
+                priceCurrency: pricingRule.currency,
+                lowPrice: String(localizedOfferPrice),
                 offerCount: "1",
                 availability: "https://schema.org/InStock",
               },
@@ -711,19 +717,19 @@ export default async function ProductDetailPage({
                 {isCoreWholesale
                   ? isEthanol
                     ? ethanolCopy.priceFrom
-                    : coreUsdPrice
-                      ? `${coreCopy.factoryPrice}: US$${coreUsdPrice} / ${coreValues.unit}`
+                    : product.priceCny
+                      ? formatReferencePrice(product.priceCny, lang)
                       : coreCopy.requestQuote
                   : product.priceCny
-                  ? `${lang === "zh" ? "参考出厂价 " : "From "}${formatPrice(product.priceCny)}${lang === "zh" ? " 起" : ""}`
+                  ? formatReferencePrice(product.priceCny, lang)
                   : t.contact_for_price}
               </p>
               <p className="text-xs text-[#ea580c] mt-1">
                 {isCoreWholesale
                   ? isEthanol
                     ? ethanolCopy.priceNote
-                    : coreCopy.indicative
-                  : lang === "zh" ? "最终价格按尺寸、材质、火槽长度和批量数量确认。" : "Final price depends on size, material, burner length, and quantity."}
+                    : priceCopy.note
+                  : priceCopy.note}
               </p>
               <p className="text-xs text-[#ea580c] mt-1">
                 WhatsApp: +86 180 2818 1668 | kanv34@gmail.com

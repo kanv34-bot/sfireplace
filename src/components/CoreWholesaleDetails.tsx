@@ -5,8 +5,8 @@ import {
   getCoreWholesaleDisplayConfig,
   getCoreWholesaleCopy,
   getCoreWholesaleValueCopy,
-  getWholesaleUsd,
 } from "@/lib/core-wholesale";
+import { formatLocalizedPrice, getPriceCopy } from "@/lib/product-pricing";
 
 type Props = {
   lang: string;
@@ -28,10 +28,10 @@ export default function CoreWholesaleDetails({
   const container = getCoreContainerCopy(lang);
   const values = getCoreWholesaleValueCopy(lang);
   const config = getCoreWholesaleDisplayConfig(productId, lang);
-  const usd = getWholesaleUsd(priceCny);
   const hasContainerData = Boolean(config.packingSize && config.grossWeight && config.load20 && config.load40);
   const containerRows = config.containerRows;
   const productDetail = getCoreProductDetail(productId, lang);
+  const priceCopy = getPriceCopy(lang);
 
   return (
     <div className="border-t border-[#ece7e1] bg-white">
@@ -48,9 +48,9 @@ export default function CoreWholesaleDetails({
             <div className="rounded-[8px] bg-[#fff7ed] p-5">
               <p className="text-xs text-[#9a3412]">{t.factoryPrice}</p>
               <p className="mt-2 text-2xl font-bold text-[#c2410c]">
-                {usd ? `US$${usd} / ${values.unit}` : t.requestQuote}
+                {priceCny ? `${formatLocalizedPrice(priceCny, lang)} / ${values.unit}` : t.requestQuote}
               </p>
-              <p className="mt-2 text-xs leading-5 text-[#9a3412]">{t.indicative}</p>
+              <p className="mt-2 text-xs leading-5 text-[#9a3412]">{priceCopy.note}</p>
             </div>
           </div>
 
