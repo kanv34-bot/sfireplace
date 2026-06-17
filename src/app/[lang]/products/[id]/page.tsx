@@ -18,6 +18,7 @@ import {
   coreCategoryIds,
   getCoreWholesaleDisplayConfig,
   getCoreProductName,
+  getCoreProductDetail,
   getCoreWholesaleConfig,
   getCoreWholesaleCopy,
   getCoreWholesaleValueCopy,
@@ -367,6 +368,7 @@ export default async function ProductDetailPage({
   const coreDisplayConfig = getCoreWholesaleDisplayConfig(product.id, lang);
   const coreValues = getCoreWholesaleValueCopy(lang);
   const coreUsdPrice = getWholesaleUsd(product.priceCny);
+  const coreProductDetail = getCoreProductDetail(product.id, lang);
   const ethanolCopy = getEthanolWholesaleCopy(lang);
   const localizedBrand = localizedField(product, "brand", lang, langMap);
   const localizedProductName = localizedField(product, "name", lang, langMap);
@@ -378,7 +380,7 @@ export default async function ProductDetailPage({
   const productDescription = isEthanol
     ? ethanolCopy.description
     : isCoreWholesale
-      ? `${productName}. ${coreCopy.oemText}`
+      ? coreProductDetail?.description ?? `${productName}. ${coreCopy.oemText}`
       : localizedField(product, "description", lang, langMap);
   const enhancedContent = getEnhancedContent(product.category, lang, localizedField(product, "name", lang, langMap));
   const ethanolFaq = ethanolCopy.faq;

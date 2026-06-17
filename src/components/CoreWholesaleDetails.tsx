@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   getCoreContainerCopy,
+  getCoreProductDetail,
   getCoreWholesaleDisplayConfig,
   getCoreWholesaleCopy,
   getCoreWholesaleValueCopy,
@@ -29,6 +30,7 @@ export default function CoreWholesaleDetails({
   const config = getCoreWholesaleDisplayConfig(productId, lang);
   const usd = getWholesaleUsd(priceCny);
   const hasContainerData = Boolean(config.packingSize && config.grossWeight && config.load20 && config.load40);
+  const productDetail = getCoreProductDetail(productId, lang);
 
   return (
     <div className="border-t border-[#ece7e1] bg-white">
@@ -142,6 +144,44 @@ export default function CoreWholesaleDetails({
               </table>
             </div>
             <p className="mt-3 text-xs leading-5 text-[#86868b]">{container.note}</p>
+          </section>
+        )}
+
+        {productDetail && (
+          <section className="mt-12 rounded-[8px] border border-[#ece7e1] bg-[#fbfaf8] p-5 sm:p-7">
+            <p className="text-xs font-semibold uppercase text-[#c2410c]">{productDetail.eyebrow}</p>
+            <div className="mt-3 grid gap-7 lg:grid-cols-[0.4fr_0.6fr]">
+              <div>
+                <h2 className="text-2xl font-bold text-[#1d1d1f]">{productDetail.title}</h2>
+                <p className="mt-3 text-sm leading-7 text-[#6e6e73]">{productDetail.description}</p>
+              </div>
+
+              <div className="grid gap-5">
+                <div className="rounded-[8px] border border-[#e5e5ea] bg-white p-5">
+                  <h3 className="text-base font-bold text-[#1d1d1f]">{productDetail.specTitle}</h3>
+                  <dl className="mt-4 divide-y divide-[#ededf0]">
+                    {productDetail.specRows.map(([term, value]) => (
+                      <div key={term} className="grid gap-2 py-3 text-sm sm:grid-cols-[0.28fr_0.72fr]">
+                        <dt className="font-medium text-[#6e6e73]">{term}</dt>
+                        <dd className="leading-6 text-[#1d1d1f]">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+
+                <div className="rounded-[8px] border border-[#fed7aa] bg-[#fff7ed] p-5">
+                  <h3 className="text-base font-bold text-[#9a3412]">{productDetail.tradeTitle}</h3>
+                  <dl className="mt-4 divide-y divide-[#fed7aa]">
+                    {productDetail.tradeRows.map(([term, value]) => (
+                      <div key={term} className="grid gap-2 py-3 text-sm sm:grid-cols-[0.28fr_0.72fr]">
+                        <dt className="font-medium text-[#c2410c]">{term}</dt>
+                        <dd className="leading-6 text-[#7c2d12]">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+            </div>
           </section>
         )}
 

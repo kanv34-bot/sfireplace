@@ -17,7 +17,7 @@ type WholesaleConfig = {
 
 const configs: Record<string, WholesaleConfig> = {
   p3_14: { moq: 10, sample: 1, leadTime: "20–30 days", size: "600 / 800 / 1000 mm", keySpec: "3.5–6.5 L · 4–6 h", packing: "Export carton / wooden crate optional" },
-  p3_15: { moq: 5, sample: 1, leadTime: "25–35 days", size: "600–1800 mm customizable", keySpec: "Automatic ignition · sensors · remote control", packing: "Export carton + protective foam", packingSize: "1880 × 360 × 260 mm", grossWeight: "≈42 kg", load20: "≈210 pcs", load40: "≈500 pcs" },
+  p3_15: { moq: 5, sample: 1, leadTime: "25–35 days", size: "600 / 800 / 1000 / 1200 / 1500 / 1800 mm customizable", keySpec: "Automatic ignition · flame failure protection · sensors · remote control", packing: "Protective foam + reinforced export carton / wooden crate optional", packingSize: "1920 × 420 × 320 mm", grossWeight: "≈48 kg", load20: "≈135 pcs", load40: "≈330 pcs" },
   p3_16: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2400 mm customizable", keySpec: "Double-sided real flame", packing: "Knock-down export crate", packingSize: "2500 × 520 × 620 mm", grossWeight: "≈95 kg", load20: "≈70 pcs", load40: "≈170 pcs" },
   p3_17: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2200 mm customizable", keySpec: "Three-sided real flame", packing: "Wooden export crate", packingSize: "2300 × 620 × 680 mm", grossWeight: "≈105 kg", load20: "≈58 pcs", load40: "≈145 pcs" },
   p3_18: { moq: 20, sample: 1, leadTime: "15–25 days", size: "300–600 mm", keySpec: "0.5–1.5 L · manual burner", packing: "Individual carton", packingSize: "680 × 260 × 240 mm", grossWeight: "≈8 kg", load20: "≈1200 pcs", load40: "≈2850 pcs" },
@@ -46,6 +46,71 @@ const configs: Record<string, WholesaleConfig> = {
   p9_1: { moq: 3, sample: 1, leadTime: "25–35 days", size: "800–2400 mm", keySpec: "Holographic flame display · remote control", packing: "Flight case / wooden crate", packingSize: "1450 × 420 × 520 mm", grossWeight: "≈62 kg", load20: "≈170 pcs", load40: "≈410 pcs" },
   p9_2: { moq: 1, sample: 1, leadTime: "30–45 days", size: "Project-based", keySpec: "Projection system · custom flame media", packing: "Flight cases", packingSize: "720 × 520 × 420 mm / case", grossWeight: "≈38 kg / case", load20: "≈330 cases", load40: "≈790 cases" },
   p9_3: { moq: 1, sample: 1, leadTime: "30–45 days", size: "Modular 2–10 m+", keySpec: "Modular immersive flame wall", packing: "Sectional flight cases", packingSize: "980 × 680 × 520 mm / module", grossWeight: "≈55 kg / module", load20: "≈150 modules", load40: "≈360 modules" },
+};
+
+type CoreProductDetail = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  specTitle: string;
+  specRows: [string, string][];
+  tradeTitle: string;
+  tradeRows: [string, string][];
+};
+
+const coreProductDetails: Record<string, Partial<Record<Locale, CoreProductDetail>>> = {
+  p3_15: {
+    zh: {
+      eyebrow: "自动酒精燃烧器 · 外贸批发资料",
+      title: "面向品牌商和工程项目的自动生物乙醇燃烧器",
+      description:
+        "这款产品不是零售装饰品，而是用于壁龛、台面、岛台、酒店会所和定制壁炉结构的自动真火燃烧器。页面参数按海外批发采购、OEM/ODM 打样和工程报价场景整理，方便客户快速判断尺寸、控制、安全、包装和装柜条件。",
+      specTitle: "建议给客户确认的核心技术参数",
+      specRows: [
+        ["产品类型", "嵌入式自动生物乙醇燃烧器 / 酒精壁炉核心模块"],
+        ["常规长度", "600 / 800 / 1000 / 1200 / 1500 / 1800 mm，可按图纸微调"],
+        ["燃料容量", "约 4–12 L，随长度、箱体深度和项目结构调整"],
+        ["参考燃烧时间", "约 4–8 小时，受燃料容量、火焰档位和现场通风影响"],
+        ["控制方式", "遥控器 + 面板按键，可按项目讨论智能控制接口"],
+        ["安全配置", "液位检测、温度保护、异常状态保护和自动熄火逻辑"],
+        ["主体材质", "304 不锈钢燃烧槽，外露面板可做黑色喷涂或拉丝饰面"],
+        ["适用客户", "进口商、壁炉品牌、酒店工程、设计公司和当地安装商"],
+      ],
+      tradeTitle: "批发采购与打样建议",
+      tradeRows: [
+        ["起订方式", "建议 5 台起订；项目款可先按 1 台样品确认控制、火焰和包装"],
+        ["报价资料", "请提供目标长度、数量、安装结构、目的港、认证要求和包装要求"],
+        ["包装方案", "常规为珍珠棉防护 + 加厚出口纸箱；长尺寸或工程件建议加木箱"],
+        ["贴牌支持", "支持铭牌、说明书、外箱标签、条码、控制面板语言和包装文件定制"],
+        ["参数说明", "装柜量按 1800 mm 代表型号估算，最终以实际包装尺寸和装柜图为准"],
+      ],
+    },
+    en: {
+      eyebrow: "Automatic Ethanol Burner · Wholesale Data",
+      title: "Automatic bio ethanol burner for brands and project buyers",
+      description:
+        "This is not a retail decorative item. It is an automatic real-flame burner module for niches, counters, islands, hotel lounges, clubs, and custom fireplace structures. The data is organized for overseas wholesale quotation, OEM/ODM sampling, and project purchasing.",
+      specTitle: "Core technical parameters to confirm",
+      specRows: [
+        ["Product type", "Built-in automatic bio ethanol burner / ethanol fireplace core module"],
+        ["Standard lengths", "600 / 800 / 1000 / 1200 / 1500 / 1800 mm, adjustable by drawing"],
+        ["Fuel capacity", "Approx. 4–12 L depending on length, box depth, and project structure"],
+        ["Burning time", "Approx. 4–8 hours, depending on fuel volume, flame level, and ventilation"],
+        ["Control", "Remote control + panel button; smart control interface can be discussed"],
+        ["Safety", "Level detection, temperature protection, abnormal-state protection, auto shut-off"],
+        ["Main material", "304 stainless steel burner tray with black coated or brushed visible panel"],
+        ["Buyer type", "Importers, fireplace brands, hotel projects, design firms, local installers"],
+      ],
+      tradeTitle: "Wholesale purchasing notes",
+      tradeRows: [
+        ["Order basis", "MOQ 5 units; one paid sample can confirm control, flame, and packing"],
+        ["Quotation data", "Send target length, quantity, installation structure, destination port, certification, and packing needs"],
+        ["Packing", "Protective foam + reinforced export carton; wooden crate recommended for long or project units"],
+        ["Private label", "Nameplate, manual, carton label, barcode, panel language, and packing documents available"],
+        ["Loading note", "Container loading is estimated from the 1800 mm reference model and confirmed by final packing plan"],
+      ],
+    },
+  },
 };
 
 const translatedNames: Partial<Record<Locale, Record<string, string>>> = {
@@ -101,6 +166,69 @@ export function getCoreWholesaleConfig(id: string): WholesaleConfig {
 }
 
 function localizeCoreValue(value: string, lang: string): string {
+  if (lang === "zh") {
+    return value
+      .replace(/(\d+)[–-](\d+) days/g, "$1-$2 天")
+      .replace(/customizable/g, "可定制")
+      .replace(/Customizable/g, "可定制")
+      .replace(/Project-based/g, "按项目定制")
+      .replace(/Configured by project/g, "按项目配置")
+      .replace(/Export carton \/ wooden crate optional/g, "出口纸箱 / 可选木箱")
+      .replace(/Protective foam \+ reinforced export carton \/ wooden crate optional/g, "珍珠棉防护 + 加厚出口纸箱 / 可选木箱")
+      .replace(/Knock-down export crate/g, "拆装式出口木箱")
+      .replace(/Wooden export crate/g, "出口木箱")
+      .replace(/Export carton \/ crate/g, "出口纸箱 / 木箱")
+      .replace(/Export carton \/ wooden crate/g, "出口纸箱 / 木箱")
+      .replace(/Individual carton/g, "单台纸箱")
+      .replace(/Reinforced wooden crate/g, "加固木箱")
+      .replace(/Sectional wooden crates/g, "分段木箱")
+      .replace(/Custom branded carton/g, "定制品牌纸箱")
+      .replace(/Custom wooden crate/g, "定制木箱")
+      .replace(/Sectional export crate/g, "分段出口箱")
+      .replace(/Foam \+ export carton/g, "泡沫防护 + 出口纸箱")
+      .replace(/Reinforced export carton/g, "加固出口纸箱")
+      .replace(/Individual export carton/g, "单台出口纸箱")
+      .replace(/Flight case \/ wooden crate/g, "航空箱 / 木箱")
+      .replace(/Sectional flight cases/g, "分段航空箱")
+      .replace(/Flight cases/g, "航空箱")
+      .replace(/Automatic ignition · flame failure protection · sensors · remote control/g, "自动点火 · 熄火保护 · 传感器 · 遥控控制")
+      .replace(/Automatic ignition · sensors · remote control/g, "自动点火 · 传感器 · 遥控控制")
+      .replace(/Double-sided real flame/g, "双面真火")
+      .replace(/Three-sided real flame/g, "三面真火")
+      .replace(/manual burner/g, "手动燃烧器")
+      .replace(/Freestanding · no chimney/g, "独立式 · 无需烟囱")
+      .replace(/Round real-flame fire bowl/g, "圆形真火火盆")
+      .replace(/Outdoor linear fire table/g, "户外线性火桌")
+      .replace(/Stone island \+ ethanol burner/g, "石材岛台 + 酒精燃烧器")
+      .replace(/Multi-burner project system/g, "多燃烧器工程系统")
+      .replace(/Frame \+ burner \+ glass guard/g, "框架 + 燃烧器 + 防护玻璃")
+      .replace(/Private-label burner kit/g, "贴牌燃烧器套件")
+      .replace(/Suspended sculptural fireplace/g, "悬挂式造型壁炉")
+      .replace(/water vapor/g, "水雾")
+      .replace(/Double-sided water-vapor flame/g, "双面水雾火焰")
+      .replace(/Panoramic water-vapor flame/g, "全景水雾火焰")
+      .replace(/Three-sided 270° view/g, "三面 270° 观火")
+      .replace(/Round mist flame system/g, "圆形水雾火焰系统")
+      .replace(/Suspended mist fireplace/g, "悬挂式雾化壁炉")
+      .replace(/Divider \/ screen structure/g, "隔断 / 屏风结构")
+      .replace(/Circular art mist installation/g, "圆形艺术雾化装置")
+      .replace(/Single-sided water-vapor flame/g, "单面水雾火焰")
+      .replace(/Smart control · LED · water vapor/g, "智能控制 · LED · 水雾")
+      .replace(/flame-only \/ heating option/g, "单火焰效果 / 可选加热")
+      .replace(/Panoramic flame screen · optional heat/g, "全景火焰屏 · 可选加热")
+      .replace(/Freestanding · plug-in/g, "独立式 · 插电即用")
+      .replace(/OEM core · control board · flame screen/g, "OEM 核心模块 · 控制板 · 火焰屏")
+      .replace(/Holographic flame display · remote control/g, "全息火焰显示 · 遥控控制")
+      .replace(/Projection system · custom flame media/g, "投影系统 · 定制火焰内容")
+      .replace(/Modular immersive flame wall/g, "模块化沉浸式火焰墙")
+      .replace(/pcs/g, "台")
+      .replace(/sections/g, "段")
+      .replace(/section/g, "段")
+      .replace(/modules/g, "模块")
+      .replace(/module/g, "模块")
+      .replace(/cases/g, "箱")
+      .replace(/case/g, "箱");
+  }
   if (lang !== "de") return value;
   return value
     .replace(/(\d+)[–-](\d+) days/g, "$1-$2 Tage")
@@ -233,4 +361,10 @@ const containerCopy: Record<Locale, {
 
 export function getCoreContainerCopy(lang: string) {
   return containerCopy[(lang in containerCopy ? lang : "en") as Locale];
+}
+
+export function getCoreProductDetail(id: string, lang: string): CoreProductDetail | null {
+  const detail = coreProductDetails[id];
+  if (!detail) return null;
+  return detail[lang as Locale] ?? detail.en ?? null;
 }
