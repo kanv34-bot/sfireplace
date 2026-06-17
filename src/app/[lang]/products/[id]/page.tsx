@@ -19,6 +19,7 @@ import {
   getCoreProductName,
   getCoreWholesaleConfig,
   getCoreWholesaleCopy,
+  getCoreWholesaleValueCopy,
   getWholesaleUsd,
 } from "@/lib/core-wholesale";
 
@@ -362,8 +363,10 @@ export default async function ProductDetailPage({
   const isCoreWholesale = coreCategoryIds.has(product.category);
   const coreCopy = getCoreWholesaleCopy(lang);
   const coreConfig = getCoreWholesaleConfig(product.id);
+  const coreValues = getCoreWholesaleValueCopy(lang);
   const coreUsdPrice = getWholesaleUsd(product.priceCny);
   const ethanolCopy = getEthanolWholesaleCopy(lang);
+  const localizedBrand = localizedField(product, "brand", lang, langMap);
   const localizedProductName = localizedField(product, "name", lang, langMap);
   const productName = isEthanol
     ? ethanolCopy.name
@@ -587,14 +590,14 @@ export default async function ProductDetailPage({
             <ProductGallery
               images={ethanolGallery}
               category={product.category}
-              brand={product.brand}
+              brand={localizedBrand}
             />
           ) : <div className="group aspect-[4/3] bg-white rounded-[8px] overflow-hidden relative border border-[#f0f0f0]">
             <ProductImage
               src={product.coverImage}
               alt={localizedField(product, "name", lang, langMap)}
               category={product.category}
-              brand={product.brand}
+              brand={localizedBrand}
               className={`absolute inset-0 w-full h-full transition-all duration-500 ${
                 hasProductScenePair
                   ? "object-contain p-8 sm:p-10 group-hover:opacity-0"
@@ -606,7 +609,7 @@ export default async function ProductDetailPage({
                 src={productHoverImage}
                 alt={`${localizedField(product, "name", lang, langMap)} scene`}
                 category={product.category}
-                brand={product.brand}
+                brand={localizedBrand}
                 className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               />
             )}
@@ -651,11 +654,11 @@ export default async function ProductDetailPage({
                 ? [
                     [
                       isEthanol ? ethanolCopy.moq : coreCopy.moq,
-                      isEthanol ? ethanolCopy.tenUnits : `${coreConfig.moq} units`,
+                      isEthanol ? ethanolCopy.tenUnits : `${coreConfig.moq} ${coreValues.units}`,
                     ],
                     [
                       isEthanol ? ethanolCopy.sampleOrder : coreCopy.sample,
-                      isEthanol ? ethanolCopy.oneUnit : `${coreConfig.sample} unit`,
+                      isEthanol ? ethanolCopy.oneUnit : `${coreConfig.sample} ${coreValues.unit}`,
                     ],
                     [
                       isEthanol ? ethanolCopy.leadTime : coreCopy.leadTime,
@@ -667,7 +670,7 @@ export default async function ProductDetailPage({
                     ],
                   ]
                 : [
-                    [t.brand, product.brand],
+                    [t.brand, localizedField(product, "brand", lang, langMap)],
                     [t.origin, localizedField(product, "brandCountry", lang, langMap)],
                     [t.installation, localizedField(product, "installation", lang, langMap)],
                   ]
@@ -682,7 +685,7 @@ export default async function ProductDetailPage({
             {!isCoreWholesale && <div className="mt-6 space-y-3">
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-[#6e6e73] w-16">{t.brand}</span>
-                <span className="font-medium text-[#1d1d1f]">{product.brand}</span>
+                <span className="font-medium text-[#1d1d1f]">{localizedField(product, "brand", lang, langMap)}</span>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-[#6e6e73] w-16">{t.origin}</span>

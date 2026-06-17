@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { products, categories } from "@/lib/products";
 import ProductImage from "@/components/ProductImage";
 import { getDictionary } from "@/lib/dictionary";
@@ -6,6 +7,19 @@ import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { formatPrice } from "@/lib/utils";
 import { getSiteCopy } from "@/lib/site-i18n";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const t = await getDictionary(lang);
+  return {
+    title: `${t.products_title} | Fireplace Master`,
+    description: t.products_desc,
+  };
+}
 
 export default async function ProductsPage({
   params,
@@ -90,6 +104,7 @@ export default async function ProductsPage({
                 {filtered.map((product) => {
                   const hoverImage = product.images[1];
                   const hasProductScenePair = Boolean(hoverImage?.includes("/scene/"));
+                  const localizedBrand = localizedField(product, "brand", lang, langMap);
 
                   return (
                     <Link
@@ -102,7 +117,7 @@ export default async function ProductsPage({
                           src={product.coverImage}
                           alt={localizedField(product, "name", lang, langMap)}
                           category={product.category}
-                          brand={product.brand}
+                          brand={localizedBrand}
                           className={`absolute inset-0 w-full h-full transition-all duration-500 ${
                             hasProductScenePair
                               ? "object-contain p-7 sm:p-8 group-hover:opacity-0"
@@ -114,7 +129,7 @@ export default async function ProductsPage({
                             src={hoverImage}
                             alt={`${localizedField(product, "name", lang, langMap)} scene`}
                             category={product.category}
-                            brand={product.brand}
+                            brand={localizedBrand}
                             className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                           />
                         )}
@@ -122,7 +137,7 @@ export default async function ProductsPage({
                       <div className="p-4">
                         <div className="flex items-center gap-2 mb-1">
                           <span className="text-xs text-[#c2410c] font-medium bg-[#fff7ed] px-2 py-0.5 rounded-full">
-                            {product.brand}
+                            {localizedBrand}
                           </span>
                           <span className="text-xs text-[#6e6e73]">{localizedField(product, "installation", lang, langMap)}</span>
                         </div>

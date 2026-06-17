@@ -3,10 +3,12 @@ import { categories } from "@/lib/products";
 import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
+import { getSiteCopy } from "@/lib/site-i18n";
 
 export default async function Footer({ lang }: { lang: string }) {
   const t = await getDictionary(lang);
   const langMap = await loadLangData(lang);
+  const site = getSiteCopy(lang);
 
   return (
     <footer className="bg-[#f5f5f7] border-t border-[#e5e5ea]">
@@ -16,12 +18,12 @@ export default async function Footer({ lang }: { lang: string }) {
           <div className="col-span-2 md:col-span-1">
             <Link href={`/${lang}`} className="flex items-center gap-2 text-lg font-semibold mb-4">
               <span className="text-[#c2410c] text-xl">🔥</span>
-              <span>壁炉宗师</span>
+              <span>{lang === "zh" ? "壁炉宗师" : "Fireplace Master"}</span>
             </Link>
             <p className="text-sm text-[#6e6e73] leading-relaxed">
               {lang === "zh"
                 ? "壁炉宗师自有品牌源头工厂，专注电子壁炉、雾化壁炉、酒精壁炉、全息壁炉与OEM/ODM定制"
-                : "Own-brand fireplace source factory for electric, mist, ethanol, holographic fireplaces and OEM/ODM customization"}
+                : site.featuredDesc}
             </p>
           </div>
 
