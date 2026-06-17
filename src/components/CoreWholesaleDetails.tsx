@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  getCoreWholesaleConfig,
+  getCoreWholesaleDisplayConfig,
   getCoreWholesaleCopy,
   getCoreWholesaleValueCopy,
   getWholesaleUsd,
@@ -24,7 +24,7 @@ export default function CoreWholesaleDetails({
 }: Props) {
   const t = getCoreWholesaleCopy(lang);
   const values = getCoreWholesaleValueCopy(lang);
-  const config = getCoreWholesaleConfig(productId);
+  const config = getCoreWholesaleDisplayConfig(productId, lang);
   const usd = getWholesaleUsd(priceCny);
 
   return (
@@ -42,7 +42,7 @@ export default function CoreWholesaleDetails({
             <div className="rounded-[8px] bg-[#fff7ed] p-5">
               <p className="text-xs text-[#9a3412]">{t.factoryPrice}</p>
               <p className="mt-2 text-2xl font-bold text-[#c2410c]">
-                {usd ? `US$${usd} / unit` : t.requestQuote}
+                {usd ? `US$${usd} / ${values.unit}` : t.requestQuote}
               </p>
               <p className="mt-2 text-xs leading-5 text-[#9a3412]">{t.indicative}</p>
             </div>

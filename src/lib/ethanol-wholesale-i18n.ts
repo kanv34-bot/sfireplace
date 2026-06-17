@@ -153,7 +153,7 @@ const copies: Record<string, LocaleCopy> = {
   },
   de: { ...en,
     name: "Manueller linearer Bioethanol-Brenner (OEM/ODM-Großhandel)", description: "Einbau-Bioethanol-Brenner für Marken, Importeure, Händler und Projektkunden mit kundenspezifischen Maßen, Oberfläche, Glasschutz, Private Label und Exportverpackung.",
-    wholesaleOnly: "Nur Großhandel · Direkt ab Werk · Kein Einzelhandel", moq: "Mindestbestellmenge", tenUnits: "10 Stück", sampleOrder: "Musterbestellung", oneUnit: "1 Stück möglich", leadTime: "Lieferzeit", days15: "15–25 Tage", tradeTerms: "Lieferbedingungen",
+    wholesaleOnly: "Nur für Großhandel · Direkt ab Werk · Kein Einzelhandel", moq: "Mindestbestellmenge", tenUnits: "10 Stück", sampleOrder: "Musterbestellung", oneUnit: "1 Stück möglich", leadTime: "Lieferzeit", days15: "15–25 Tage", tradeTerms: "Lieferbedingungen",
     priceFrom: "Werkspreis ab 228 US$ / Stück", priceNote: "Unverbindlicher FOB-China-Preis; das endgültige Angebot richtet sich nach Modell, Menge, Verpackung und Anpassung.", whatsapp: "Großhandelsanfrage per WhatsApp", quoteCatalog: "Großhandelsangebot und Katalog anfordern",
     standardModels: "Standardmodelle und Staffelpreise", specsTitle: "Großhandelsspezifikationen für lineare Bioethanol-Brenner", specsIntro: "Standard-Exportmodelle mit unverbindlichen FOB-China-Preisen. Sonderlängen, Oberflächen, Glasschutz, Private Label, Anleitung und Karton sind möglich.",
     minimumOrder: "Mindestbestellmenge", tenPerModel: "10 Stück / Modell", model: "Modell", productSize: "Produktmaß", fuelCapacity: "Tankinhalt", burnTime: "Brenndauer", netWeight: "Nettogewicht (ca.)", packingEstimated: "Verpackung (ca.)",

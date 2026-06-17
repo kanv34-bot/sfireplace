@@ -16,6 +16,7 @@ import {
 } from "@/lib/ethanol-wholesale-i18n";
 import {
   coreCategoryIds,
+  getCoreWholesaleDisplayConfig,
   getCoreProductName,
   getCoreWholesaleConfig,
   getCoreWholesaleCopy,
@@ -363,6 +364,7 @@ export default async function ProductDetailPage({
   const isCoreWholesale = coreCategoryIds.has(product.category);
   const coreCopy = getCoreWholesaleCopy(lang);
   const coreConfig = getCoreWholesaleConfig(product.id);
+  const coreDisplayConfig = getCoreWholesaleDisplayConfig(product.id, lang);
   const coreValues = getCoreWholesaleValueCopy(lang);
   const coreUsdPrice = getWholesaleUsd(product.priceCny);
   const ethanolCopy = getEthanolWholesaleCopy(lang);
@@ -407,6 +409,9 @@ export default async function ProductDetailPage({
       fit: "cover" as const,
     },
   ];
+  const ethanolQuantityUnit = lang === "de" ? "Stück" : "pcs";
+  const formatEthanolLoad = (value: string) =>
+    lang === "de" ? value.replace("pcs", "Stück") : value;
   const ethanolProductSchema = isEthanol
     ? {
         "@context": "https://schema.org",
@@ -497,10 +502,10 @@ export default async function ProductDetailPage({
         sku: product.id,
         additionalProperty: [
           { "@type": "PropertyValue", name: coreCopy.moq, value: `${coreConfig.moq} units` },
-          { "@type": "PropertyValue", name: coreCopy.size, value: coreConfig.size },
-          { "@type": "PropertyValue", name: coreCopy.keySpec, value: coreConfig.keySpec },
-          { "@type": "PropertyValue", name: coreCopy.leadTime, value: coreConfig.leadTime },
-          { "@type": "PropertyValue", name: coreCopy.packing, value: coreConfig.packing },
+          { "@type": "PropertyValue", name: coreCopy.size, value: coreDisplayConfig.size },
+          { "@type": "PropertyValue", name: coreCopy.keySpec, value: coreDisplayConfig.keySpec },
+          { "@type": "PropertyValue", name: coreCopy.leadTime, value: coreDisplayConfig.leadTime },
+          { "@type": "PropertyValue", name: coreCopy.packing, value: coreDisplayConfig.packing },
         ],
         ...(coreUsdPrice
           ? {
@@ -662,7 +667,7 @@ export default async function ProductDetailPage({
                     ],
                     [
                       isEthanol ? ethanolCopy.leadTime : coreCopy.leadTime,
-                      isEthanol ? ethanolCopy.days15 : coreConfig.leadTime,
+                      isEthanol ? ethanolCopy.days15 : coreDisplayConfig.leadTime,
                     ],
                     [
                       isEthanol ? ethanolCopy.tradeTerms : coreCopy.trade,
@@ -705,7 +710,7 @@ export default async function ProductDetailPage({
                   ? isEthanol
                     ? ethanolCopy.priceFrom
                     : coreUsdPrice
-                      ? `${coreCopy.factoryPrice}: US$${coreUsdPrice} / unit`
+                      ? `${coreCopy.factoryPrice}: US$${coreUsdPrice} / ${coreValues.unit}`
                       : coreCopy.requestQuote
                   : product.priceCny
                   ? `${lang === "zh" ? "参考出厂价 " : "From "}${formatPrice(product.priceCny)}${lang === "zh" ? " 起" : ""}`
@@ -788,9 +793,9 @@ export default async function ProductDetailPage({
                         ethanolCopy.burnTime,
                         ethanolCopy.netWeight,
                         ethanolCopy.packingEstimated,
-                        "10–29 pcs",
-                        "30–99 pcs",
-                        "100+ pcs",
+                        `10–29 ${ethanolQuantityUnit}`,
+                        `30–99 ${ethanolQuantityUnit}`,
+                        `100+ ${ethanolQuantityUnit}`,
                       ].map((heading) => (
                         <th key={heading} className="whitespace-nowrap px-4 py-3 font-semibold">{heading}</th>
                       ))}
@@ -843,8 +848,8 @@ export default async function ProductDetailPage({
                         <td className="px-4 py-4 font-bold">{model.model}</td>
                         <td className="px-4 py-4">{model.grossWeight}</td>
                         <td className="px-4 py-4">{model.packing}</td>
-                        <td className="px-4 py-4">{model.load20}</td>
-                        <td className="px-4 py-4">{model.load40}</td>
+                        <td className="px-4 py-4">{formatEthanolLoad(model.load20)}</td>
+                        <td className="px-4 py-4">{formatEthanolLoad(model.load40)}</td>
                       </tr>
                     ))}
                   </tbody>
