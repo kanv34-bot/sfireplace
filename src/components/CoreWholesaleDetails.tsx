@@ -30,6 +30,7 @@ export default function CoreWholesaleDetails({
   const config = getCoreWholesaleDisplayConfig(productId, lang);
   const usd = getWholesaleUsd(priceCny);
   const hasContainerData = Boolean(config.packingSize && config.grossWeight && config.load20 && config.load40);
+  const containerRows = config.containerRows;
   const productDetail = getCoreProductDetail(productId, lang);
 
   return (
@@ -125,21 +126,41 @@ export default function CoreWholesaleDetails({
           <section className="mt-12 rounded-[8px] border border-[#ece7e1] bg-white p-5 sm:p-6">
             <h2 className="text-xl font-bold text-[#1d1d1f]">{container.title}</h2>
             <div className="mt-5 overflow-x-auto rounded-[8px] border border-[#e5e5ea]">
-              <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+              <table className="w-full min-w-[820px] border-collapse text-left text-sm">
                 <thead className="bg-[#f5f5f7] text-[#1d1d1f]">
                   <tr>
-                    {[container.packingSize, container.grossWeight, container.load20, container.load40].map((heading) => (
+                    {[
+                      ...(containerRows?.length ? [container.model] : []),
+                      container.packingSize,
+                      container.grossWeight,
+                      container.load20,
+                      container.load40,
+                    ].map((heading) => (
                       <th key={heading} className="whitespace-nowrap px-4 py-3 font-semibold">{heading}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-[#e5e5ea]">
-                    <td className="px-4 py-4 font-medium text-[#1d1d1f]">{config.packingSize}</td>
-                    <td className="px-4 py-4 text-[#5f5f64]">{config.grossWeight}</td>
-                    <td className="px-4 py-4 text-[#5f5f64]">{config.load20}</td>
-                    <td className="px-4 py-4 text-[#5f5f64]">{config.load40}</td>
-                  </tr>
+                  {(containerRows?.length
+                    ? containerRows
+                    : [{
+                        model: "",
+                        packingSize: config.packingSize,
+                        grossWeight: config.grossWeight,
+                        load20: config.load20,
+                        load40: config.load40,
+                      }]
+                  ).map((row) => (
+                    <tr key={`${row.model}-${row.packingSize}`} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
+                      {containerRows?.length && (
+                        <td className="px-4 py-4 font-bold text-[#1d1d1f]">{row.model}</td>
+                      )}
+                      <td className="px-4 py-4 font-medium text-[#1d1d1f]">{row.packingSize}</td>
+                      <td className="px-4 py-4 text-[#5f5f64]">{row.grossWeight}</td>
+                      <td className="px-4 py-4 text-[#5f5f64]">{row.load20}</td>
+                      <td className="px-4 py-4 text-[#5f5f64]">{row.load40}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

@@ -13,11 +13,39 @@ type WholesaleConfig = {
   grossWeight?: string;
   load20?: string;
   load40?: string;
+  containerRows?: ContainerRow[];
+};
+
+type ContainerRow = {
+  model: string;
+  packingSize: string;
+  grossWeight: string;
+  load20: string;
+  load40: string;
 };
 
 const configs: Record<string, WholesaleConfig> = {
   p3_14: { moq: 10, sample: 1, leadTime: "20–30 days", size: "600 / 800 / 1000 mm", keySpec: "3.5–6.5 L · 4–6 h", packing: "Export carton / wooden crate optional" },
-  p3_15: { moq: 5, sample: 1, leadTime: "25–35 days", size: "600 / 800 / 1000 / 1200 / 1500 / 1800 mm customizable", keySpec: "Automatic ignition · flame failure protection · sensors · remote control", packing: "Protective foam + reinforced export carton / wooden crate optional", packingSize: "1920 × 420 × 320 mm", grossWeight: "≈48 kg", load20: "≈135 pcs", load40: "≈330 pcs" },
+  p3_15: {
+    moq: 5,
+    sample: 1,
+    leadTime: "25–35 days",
+    size: "600 / 800 / 1000 / 1200 / 1500 / 1800 mm customizable",
+    keySpec: "Automatic ignition · flame failure protection · sensors · remote control",
+    packing: "Protective foam + reinforced export carton / wooden crate optional",
+    packingSize: "Based on standard length",
+    grossWeight: "Based on standard length",
+    load20: "Based on standard length",
+    load40: "Based on standard length",
+    containerRows: [
+      { model: "600 mm", packingSize: "720 × 360 × 260 mm", grossWeight: "≈22 kg", load20: "≈360 pcs", load40: "≈880 pcs" },
+      { model: "800 mm", packingSize: "920 × 360 × 260 mm", grossWeight: "≈27 kg", load20: "≈280 pcs", load40: "≈690 pcs" },
+      { model: "1000 mm", packingSize: "1120 × 360 × 260 mm", grossWeight: "≈32 kg", load20: "≈230 pcs", load40: "≈565 pcs" },
+      { model: "1200 mm", packingSize: "1320 × 360 × 260 mm", grossWeight: "≈36 kg", load20: "≈195 pcs", load40: "≈480 pcs" },
+      { model: "1500 mm", packingSize: "1620 × 360 × 260 mm", grossWeight: "≈42 kg", load20: "≈160 pcs", load40: "≈390 pcs" },
+      { model: "1800 mm", packingSize: "1920 × 360 × 260 mm", grossWeight: "≈48 kg", load20: "≈135 pcs", load40: "≈330 pcs" },
+    ],
+  },
   p3_16: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2400 mm customizable", keySpec: "Double-sided real flame", packing: "Knock-down export crate", packingSize: "2500 × 520 × 620 mm", grossWeight: "≈95 kg", load20: "≈70 pcs", load40: "≈170 pcs" },
   p3_17: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2200 mm customizable", keySpec: "Three-sided real flame", packing: "Wooden export crate", packingSize: "2300 × 620 × 680 mm", grossWeight: "≈105 kg", load20: "≈58 pcs", load40: "≈145 pcs" },
   p3_18: { moq: 20, sample: 1, leadTime: "15–25 days", size: "300–600 mm", keySpec: "0.5–1.5 L · manual burner", packing: "Individual carton", packingSize: "680 × 260 × 240 mm", grossWeight: "≈8 kg", load20: "≈1200 pcs", load40: "≈2850 pcs" },
@@ -82,7 +110,7 @@ const coreProductDetails: Record<string, Partial<Record<Locale, CoreProductDetai
         ["报价资料", "请提供目标长度、数量、安装结构、目的港、认证要求和包装要求"],
         ["包装方案", "常规为珍珠棉防护 + 加厚出口纸箱；长尺寸或工程件建议加木箱"],
         ["贴牌支持", "支持铭牌、说明书、外箱标签、条码、控制面板语言和包装文件定制"],
-        ["参数说明", "装柜量按 1800 mm 代表型号估算，最终以实际包装尺寸和装柜图为准"],
+        ["参数说明", "装柜表已按 600–1800 mm 标准长度分别估算，最终以实际包装尺寸和装柜图为准"],
       ],
     },
     en: {
@@ -107,7 +135,7 @@ const coreProductDetails: Record<string, Partial<Record<Locale, CoreProductDetai
         ["Quotation data", "Send target length, quantity, installation structure, destination port, certification, and packing needs"],
         ["Packing", "Protective foam + reinforced export carton; wooden crate recommended for long or project units"],
         ["Private label", "Nameplate, manual, carton label, barcode, panel language, and packing documents available"],
-        ["Loading note", "Container loading is estimated from the 1800 mm reference model and confirmed by final packing plan"],
+        ["Loading note", "Container loading is estimated by each 600–1800 mm standard length and confirmed by final packing plan"],
       ],
     },
   },
@@ -171,6 +199,7 @@ function localizeCoreValue(value: string, lang: string): string {
       .replace(/(\d+)[–-](\d+) days/g, "$1-$2 天")
       .replace(/customizable/g, "可定制")
       .replace(/Customizable/g, "可定制")
+      .replace(/Based on standard length/g, "按标准长度分别计算")
       .replace(/Project-based/g, "按项目定制")
       .replace(/Configured by project/g, "按项目配置")
       .replace(/Export carton \/ wooden crate optional/g, "出口纸箱 / 可选木箱")
@@ -234,6 +263,7 @@ function localizeCoreValue(value: string, lang: string): string {
     .replace(/(\d+)[–-](\d+) days/g, "$1-$2 Tage")
     .replace(/customizable/g, "anpassbar")
     .replace(/Customizable/g, "Anpassbar")
+    .replace(/Based on standard length/g, "Nach Standardlänge")
     .replace(/Project-based/g, "Projektbezogen")
     .replace(/Configured by project/g, "Projektbezogen konfiguriert")
     .replace(/Export carton \/ wooden crate optional/g, "Exportkarton / Holzkiste optional")
@@ -304,6 +334,13 @@ export function getCoreWholesaleDisplayConfig(id: string, lang: string): Wholesa
     grossWeight: config.grossWeight ? localizeCoreValue(config.grossWeight, lang) : undefined,
     load20: config.load20 ? localizeCoreValue(config.load20, lang) : undefined,
     load40: config.load40 ? localizeCoreValue(config.load40, lang) : undefined,
+    containerRows: config.containerRows?.map((row) => ({
+      model: localizeCoreValue(row.model, lang),
+      packingSize: localizeCoreValue(row.packingSize, lang),
+      grossWeight: localizeCoreValue(row.grossWeight, lang),
+      load20: localizeCoreValue(row.load20, lang),
+      load40: localizeCoreValue(row.load40, lang),
+    })),
   };
 }
 
@@ -341,22 +378,23 @@ export function getCoreWholesaleValueCopy(lang: string) {
 
 const containerCopy: Record<Locale, {
   title: string;
+  model: string;
   packingSize: string;
   grossWeight: string;
   load20: string;
   load40: string;
   note: string;
 }> = {
-  en: { title: "Packing, Container Loading & Trade Terms (Estimated)", packingSize: "Unit packing", grossWeight: "G.W.", load20: "20GP", load40: "40HQ", note: "Packing size, gross weight and container loading are estimated for preliminary wholesale planning. Final data should be confirmed with the approved sample and packing plan." },
-  zh: { title: "包装、装柜与交易参数（预估）", packingSize: "单台包装", grossWeight: "毛重", load20: "20GP", load40: "40HQ", note: "包装尺寸、毛重和装柜量为前期批发采购估算，最终以确认样品和实际包装方案为准。" },
-  de: { title: "Verpackung, Containerbeladung und Handelsdaten (geschätzt)", packingSize: "Einzelverpackung", grossWeight: "Bruttogewicht", load20: "20GP", load40: "40HQ", note: "Verpackungsmaß, Bruttogewicht und Containerbeladung sind Schätzwerte für die vorläufige Großhandelsplanung. Endgültige Daten sollten mit freigegebenem Muster und Verpackungsplan bestätigt werden." },
-  fr: { title: "Emballage, chargement conteneur et conditions commerciales (estimations)", packingSize: "Emballage unitaire", grossWeight: "Poids brut", load20: "20GP", load40: "40HQ", note: "Les dimensions d'emballage, poids bruts et chargements sont estimatifs et doivent être confirmés avec l'échantillon et le plan d'emballage approuvés." },
-  it: { title: "Imballo, carico container e condizioni commerciali (stima)", packingSize: "Imballo unitario", grossWeight: "Peso lordo", load20: "20GP", load40: "40HQ", note: "Dimensioni imballo, peso lordo e carico container sono stime per la pianificazione all'ingrosso e vanno confermati con campione e piano imballo approvati." },
-  es: { title: "Embalaje, carga de contenedor y condiciones comerciales (estimado)", packingSize: "Embalaje unitario", grossWeight: "Peso bruto", load20: "20GP", load40: "40HQ", note: "Dimensiones de embalaje, peso bruto y carga de contenedor son estimaciones para planificación mayorista y deben confirmarse con muestra y plan de embalaje aprobados." },
-  pt: { title: "Embalagem, carregamento e condições comerciais (estimado)", packingSize: "Embalagem unitária", grossWeight: "Peso bruto", load20: "20GP", load40: "40HQ", note: "Dimensões da embalagem, peso bruto e carregamento são estimativas para planejamento de atacado e devem ser confirmados com amostra e plano de embalagem aprovados." },
-  ru: { title: "Упаковка, загрузка контейнера и условия сделки (оценка)", packingSize: "Упаковка 1 шт.", grossWeight: "Вес брутто", load20: "20GP", load40: "40HQ", note: "Размеры упаковки, вес брутто и загрузка контейнера являются оценочными и уточняются по утверждённому образцу и плану упаковки." },
-  ja: { title: "梱包・コンテナ積載・取引条件（推定）", packingSize: "個装", grossWeight: "総重量", load20: "20GP", load40: "40HQ", note: "梱包寸法、総重量、積載数は卸売計画用の概算であり、承認サンプルと梱包計画で確定します。" },
-  ar: { title: "التغليف وتحميل الحاويات وشروط التجارة (تقديري)", packingSize: "تغليف الوحدة", grossWeight: "الوزن الإجمالي", load20: "20GP", load40: "40HQ", note: "أبعاد التغليف والوزن الإجمالي وكميات التحميل تقديرية للتخطيط المبدئي للجملة، وتؤكد حسب العينة وخطة التغليف المعتمدة." },
+  en: { title: "Packing, Container Loading & Trade Terms (Estimated)", model: "Standard size", packingSize: "Unit packing", grossWeight: "G.W.", load20: "20GP", load40: "40HQ", note: "Packing size, gross weight and container loading are estimated for preliminary wholesale planning. Final data should be confirmed with the approved sample and packing plan." },
+  zh: { title: "包装、装柜与交易参数（预估）", model: "标准尺寸", packingSize: "单台包装", grossWeight: "毛重", load20: "20GP", load40: "40HQ", note: "包装尺寸、毛重和装柜量为前期批发采购估算，最终以确认样品和实际包装方案为准。" },
+  de: { title: "Verpackung, Containerbeladung und Handelsdaten (geschätzt)", model: "Standardgröße", packingSize: "Einzelverpackung", grossWeight: "Bruttogewicht", load20: "20GP", load40: "40HQ", note: "Verpackungsmaß, Bruttogewicht und Containerbeladung sind Schätzwerte für die vorläufige Großhandelsplanung. Endgültige Daten sollten mit freigegebenem Muster und Verpackungsplan bestätigt werden." },
+  fr: { title: "Emballage, chargement conteneur et conditions commerciales (estimations)", model: "Taille standard", packingSize: "Emballage unitaire", grossWeight: "Poids brut", load20: "20GP", load40: "40HQ", note: "Les dimensions d'emballage, poids bruts et chargements sont estimatifs et doivent être confirmés avec l'échantillon et le plan d'emballage approuvés." },
+  it: { title: "Imballo, carico container e condizioni commerciali (stima)", model: "Misura standard", packingSize: "Imballo unitario", grossWeight: "Peso lordo", load20: "20GP", load40: "40HQ", note: "Dimensioni imballo, peso lordo e carico container sono stime per la pianificazione all'ingrosso e vanno confermati con campione e piano imballo approvati." },
+  es: { title: "Embalaje, carga de contenedor y condiciones comerciales (estimado)", model: "Tamaño estándar", packingSize: "Embalaje unitario", grossWeight: "Peso bruto", load20: "20GP", load40: "40HQ", note: "Dimensiones de embalaje, peso bruto y carga de contenedor son estimaciones para planificación mayorista y deben confirmarse con muestra y plan de embalaje aprobados." },
+  pt: { title: "Embalagem, carregamento e condições comerciais (estimado)", model: "Tamanho padrão", packingSize: "Embalagem unitária", grossWeight: "Peso bruto", load20: "20GP", load40: "40HQ", note: "Dimensões da embalagem, peso bruto e carregamento são estimativas para planejamento de atacado e devem ser confirmados com amostra e plano de embalagem aprovados." },
+  ru: { title: "Упаковка, загрузка контейнера и условия сделки (оценка)", model: "Стандартный размер", packingSize: "Упаковка 1 шт.", grossWeight: "Вес брутто", load20: "20GP", load40: "40HQ", note: "Размеры упаковки, вес брутто и загрузка контейнера являются оценочными и уточняются по утверждённому образцу и плану упаковки." },
+  ja: { title: "梱包・コンテナ積載・取引条件（推定）", model: "標準サイズ", packingSize: "個装", grossWeight: "総重量", load20: "20GP", load40: "40HQ", note: "梱包寸法、総重量、積載数は卸売計画用の概算であり、承認サンプルと梱包計画で確定します。" },
+  ar: { title: "التغليف وتحميل الحاويات وشروط التجارة (تقديري)", model: "المقاس القياسي", packingSize: "تغليف الوحدة", grossWeight: "الوزن الإجمالي", load20: "20GP", load40: "40HQ", note: "أبعاد التغليف والوزن الإجمالي وكميات التحميل تقديرية للتخطيط المبدئي للجملة، وتؤكد حسب العينة وخطة التغليف المعتمدة." },
 };
 
 export function getCoreContainerCopy(lang: string) {
