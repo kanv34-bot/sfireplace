@@ -1,10 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { newsArticles } from "@/lib/news";
 import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { getProductTypeName, getSiteCopy } from "@/lib/site-i18n";
+import { pageMetadata } from "@/lib/page-seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return pageMetadata(lang, "news");
+}
 
 export default async function NewsPage({
   params,

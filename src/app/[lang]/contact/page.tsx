@@ -1,7 +1,18 @@
+import type { Metadata } from "next";
 import { getDictionary, localizedText } from "@/lib/dictionary";
+import { pageMetadata } from "@/lib/page-seo";
 
 const whatsappUrl =
   "https://wa.me/8618028181668?text=Hello%2C%20I%20am%20interested%20in%20your%20fireplace%20products.%20Please%20send%20me%20your%20wholesale%20catalog%20and%20quotation.";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return pageMetadata(lang, "contact");
+}
 
 export default async function ContactPage({
   params,

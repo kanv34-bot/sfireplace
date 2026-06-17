@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { cases } from "@/lib/cases";
 import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { newsArticles } from "@/lib/news";
-import { getSiteCopy } from "@/lib/site-i18n";
+import { getProductTypeName, getSiteCopy } from "@/lib/site-i18n";
+import { pageMetadata } from "@/lib/page-seo";
 
 const home = "/media/home";
 
@@ -45,6 +47,15 @@ function siteDescription(site: ReturnType<typeof getSiteCopy>, productType: stri
   return `${productType} · ${site.wholesaleFactory} · OEM/ODM`;
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return pageMetadata(lang, "home");
+}
+
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getDictionary(lang);
@@ -54,18 +65,18 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   const categoryCards = [
     {
       title: s.ethanol,
-      sub: "Ethanol Fireplace",
+      sub: lang === "en" ? "Ethanol Fireplace" : s.ethanol,
       href: `/${lang}/products?category=p3`,
       img: "/media/oss/%E4%BA%A7%E5%93%81/%E9%85%92%E7%B2%BE%E5%A3%81%E7%82%89/%E5%86%85%E5%AE%B9%E9%A1%B51.png",
     },
     {
       title: s.mist,
-      sub: "Mist Fireplace",
+      sub: lang === "en" ? "Mist Fireplace" : s.mist,
       href: `/${lang}/products?category=p4`,
       img: "/media/oss/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/1.png",
     },
-    { title: s.electric, sub: "Electric Fireplace", href: `/${lang}/products?category=p7`, img: categoryImage("electric-fireplace") },
-    { title: s.holographic, sub: "Holographic Fireplace", href: `/${lang}/products?category=p9`, img: featuredImage("featured-product-4") },
+    { title: s.electric, sub: lang === "en" ? "Electric Fireplace" : s.electric, href: `/${lang}/products?category=p7`, img: categoryImage("electric-fireplace") },
+    { title: s.holographic, sub: lang === "en" ? "Holographic Fireplace" : s.holographic, href: `/${lang}/products?category=p9`, img: featuredImage("featured-product-4") },
   ];
 
   const featuredSolutions = [
@@ -344,18 +355,25 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             </Link>
           </div>
           <div className="mt-7 grid grid-cols-1 gap-5 md:grid-cols-4">
-            {news.map((item, index) => (
+            {news.map((item) => {
+              const title = lang === "zh" || lang === "en"
+                ? localizedField(item, "title", lang, langMap)
+                : `${s.newsInsightTitle}: ${getProductTypeName(item.category, lang)}`;
+              const summary = lang === "zh" || lang === "en"
+                ? localizedField(item, "summary", lang, langMap)
+                : s.newsInsightParagraph;
+              return (
               <Link key={item.id} href={`/${lang}/news/${item.id}`} className="group overflow-hidden rounded-[6px] border border-[#e8e3de] bg-white shadow-sm hover:shadow-xl">
                 <div className="relative aspect-[16/10] overflow-hidden bg-[#e8e3de]">
-                  <Image src={`/media/news/${item.date}.png`} alt={localizedField(item, "title", lang, langMap)} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <Image src={`/media/news/${item.date}.png`} alt={title} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <div className="p-4">
                   <p className="text-xs text-[#7a746e]">{item.date}</p>
-                  <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-6">{localizedField(item, "title", lang, langMap)}</h3>
-                  <p className="mt-2 line-clamp-2 text-xs leading-5 text-[#7a746e]">{localizedField(item, "summary", lang, langMap)}</p>
+                  <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-6">{title}</h3>
+                  <p className="mt-2 line-clamp-2 text-xs leading-5 text-[#7a746e]">{summary}</p>
                 </div>
               </Link>
-            ))}
+            )})}
           </div>
         </div>
       </section>

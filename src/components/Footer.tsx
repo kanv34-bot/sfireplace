@@ -90,7 +90,7 @@ export default async function Footer({ lang }: { lang: string }) {
           <p className="text-xs text-[#6e6e73]">{t.footer_copyright}</p>
           <p className="text-xs text-[#6e6e73]">
             <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="hover:text-[#c2410c]">
-              京ICP备12031994号-3
+              {lang === "zh" ? "京ICP备12031994号-3" : "ICP 12031994-3"}
             </a>
           </p>
         </div>

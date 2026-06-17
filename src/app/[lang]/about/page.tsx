@@ -1,6 +1,17 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getDictionary, localizedText } from "@/lib/dictionary";
 import { getSiteCopy } from "@/lib/site-i18n";
+import { pageMetadata } from "@/lib/page-seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return pageMetadata(lang, "about");
+}
 
 export default async function AboutPage({
   params,

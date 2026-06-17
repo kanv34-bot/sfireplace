@@ -7,6 +7,7 @@ import { locales, getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { getProductTypeName, getSiteCopy } from "@/lib/site-i18n";
+import { pageMetadata } from "@/lib/page-seo";
 
 export async function generateStaticParams() {
   const params: { lang: string; id: string }[] = [];
@@ -40,6 +41,20 @@ export async function generateMetadata({
       openGraph: {
         title: c.seoTitle,
         description: c.seoDescription,
+        images: [c.images[0]],
+      },
+    };
+  }
+
+  if (lang === "de") {
+    const product = getProductTypeName(c.product, lang);
+    const meta = pageMetadata(lang, "caseDetail");
+    return {
+      ...meta,
+      title: `${product} · Projektbeispiel | Fireplace Master`,
+      openGraph: {
+        ...meta.openGraph,
+        title: `${product} · Projektbeispiel | Fireplace Master`,
         images: [c.images[0]],
       },
     };

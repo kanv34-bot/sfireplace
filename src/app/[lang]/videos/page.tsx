@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { getDictionary } from "@/lib/dictionary";
 import { getSiteCopy } from "@/lib/site-i18n";
+import { pageMetadata } from "@/lib/page-seo";
 
 const OSS = "/media/oss";
 
@@ -34,6 +36,15 @@ const brandColors: Record<string, string> = {
   "Element 4": "bg-amber-50 text-amber-700",
   "Lacunza": "bg-red-50 text-red-700",
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return pageMetadata(lang, "videos");
+}
 
 export default async function VideosPage({
   params,

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { newsArticles } from "@/lib/news";
 import { notFound } from "next/navigation";
 import { locales, getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { getProductTypeName, getSiteCopy } from "@/lib/site-i18n";
+import { pageMetadata } from "@/lib/page-seo";
 
 export async function generateStaticParams() {
   const params: { lang: string; id: string }[] = [];
@@ -15,6 +17,15 @@ export async function generateStaticParams() {
     }
   }
   return params;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string; id: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return pageMetadata(lang, "newsDetail");
 }
 
 export default async function NewsDetailPage({

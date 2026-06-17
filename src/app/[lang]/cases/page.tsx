@@ -6,6 +6,7 @@ import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { getProductTypeName, getSiteCopy } from "@/lib/site-i18n";
+import { pageMetadata } from "@/lib/page-seo";
 
 export async function generateMetadata({
   params,
@@ -15,12 +16,11 @@ export async function generateMetadata({
   const { lang } = await params;
 
   if (lang === "zh") {
-    return {
-      title: "经典案例 | 电子壁炉、雾化壁炉定制、酒精壁炉与投影壁炉项目",
-      description:
-        "壁炉宗师经典案例，覆盖电子壁炉、雾化壁炉、雾化壁炉定制、酒精壁炉和投影壁炉在住宅、酒店、会所、商业空间中的应用。",
-      keywords: ["电子壁炉案例", "雾化壁炉定制案例", "酒精壁炉案例", "投影壁炉案例", "壁炉厂家案例"],
-    };
+    return pageMetadata(lang, "cases");
+  }
+
+  if (lang === "de") {
+    return pageMetadata(lang, "cases");
   }
 
   return {
