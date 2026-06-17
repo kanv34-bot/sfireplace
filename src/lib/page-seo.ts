@@ -6,7 +6,7 @@ const german: Record<PageKey, { title: string; description: string }> = {
   home: {
     title: "Fireplace Master | Kaminhersteller für Bioethanol-, Wasserdampf-, Elektro- und holografische Kamine",
     description:
-      "Fireplace Master ist ein Kaminhersteller für OEM/ODM, Projektgroßhandel und Exportlieferungen. Wir liefern Bioethanol-Kamine, Wasserdampf-Kamine, Elektrokamine und holografische Kamine für internationale Projekte.",
+      "Fireplace Master ist ein Kaminhersteller für OEM/ODM, Projektgeschäft, Großhandel und Exportlieferungen. Wir liefern Bioethanol-Kamine, Wasserdampf-Kamine, Elektrokamine und holografische Kamine für internationale Projekte.",
   },
   news: {
     title: "Kaminwissen und Beschaffungshinweise | Fireplace Master",

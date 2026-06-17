@@ -79,7 +79,7 @@ export default function Header({ lang }: { lang: string }) {
             <span className="leading-none">
               <span className="block">{lang === "zh" ? "壁炉宗师" : "Fireplace Master"}</span>
               <span className={`hidden text-[9px] uppercase tracking-[0.18em] sm:block ${isHomePage ? "text-white/55" : "text-[#6e6e73]"}`}>
-                Master Fireplace
+                {lang === "zh" ? "MASTER FIREPLACE" : "FIREPLACE MASTER"}
               </span>
             </span>
           </Link>
