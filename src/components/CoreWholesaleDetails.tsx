@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  getCoreContainerCopy,
   getCoreWholesaleDisplayConfig,
   getCoreWholesaleCopy,
   getCoreWholesaleValueCopy,
@@ -23,9 +24,11 @@ export default function CoreWholesaleDetails({
   priceCny,
 }: Props) {
   const t = getCoreWholesaleCopy(lang);
+  const container = getCoreContainerCopy(lang);
   const values = getCoreWholesaleValueCopy(lang);
   const config = getCoreWholesaleDisplayConfig(productId, lang);
   const usd = getWholesaleUsd(priceCny);
+  const hasContainerData = Boolean(config.packingSize && config.grossWeight && config.load20 && config.load40);
 
   return (
     <div className="border-t border-[#ece7e1] bg-white">
@@ -115,6 +118,32 @@ export default function CoreWholesaleDetails({
             {t.requestQuote}
           </Link>
         </div>
+
+        {hasContainerData && (
+          <section className="mt-12 rounded-[8px] border border-[#ece7e1] bg-white p-5 sm:p-6">
+            <h2 className="text-xl font-bold text-[#1d1d1f]">{container.title}</h2>
+            <div className="mt-5 overflow-x-auto rounded-[8px] border border-[#e5e5ea]">
+              <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                <thead className="bg-[#f5f5f7] text-[#1d1d1f]">
+                  <tr>
+                    {[container.packingSize, container.grossWeight, container.load20, container.load40].map((heading) => (
+                      <th key={heading} className="whitespace-nowrap px-4 py-3 font-semibold">{heading}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-[#e5e5ea]">
+                    <td className="px-4 py-4 font-medium text-[#1d1d1f]">{config.packingSize}</td>
+                    <td className="px-4 py-4 text-[#5f5f64]">{config.grossWeight}</td>
+                    <td className="px-4 py-4 text-[#5f5f64]">{config.load20}</td>
+                    <td className="px-4 py-4 text-[#5f5f64]">{config.load40}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-xs leading-5 text-[#86868b]">{container.note}</p>
+          </section>
+        )}
 
         <section className="mt-12 rounded-[8px] border border-[#ece7e1] bg-[#fbfaf8] p-5 sm:p-6">
           <h2 className="text-xl font-bold text-[#1d1d1f]">{t.workflow}</h2>

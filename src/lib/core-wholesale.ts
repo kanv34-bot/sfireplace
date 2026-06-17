@@ -9,39 +9,43 @@ type WholesaleConfig = {
   size: string;
   keySpec: string;
   packing: string;
+  packingSize?: string;
+  grossWeight?: string;
+  load20?: string;
+  load40?: string;
 };
 
 const configs: Record<string, WholesaleConfig> = {
   p3_14: { moq: 10, sample: 1, leadTime: "20–30 days", size: "600 / 800 / 1000 mm", keySpec: "3.5–6.5 L · 4–6 h", packing: "Export carton / wooden crate optional" },
-  p3_15: { moq: 5, sample: 1, leadTime: "25–35 days", size: "600–1800 mm customizable", keySpec: "Automatic ignition · sensors · remote control", packing: "Export carton + protective foam" },
-  p3_16: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2400 mm customizable", keySpec: "Double-sided real flame", packing: "Knock-down export crate" },
-  p3_17: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2200 mm customizable", keySpec: "Three-sided real flame", packing: "Wooden export crate" },
-  p3_18: { moq: 20, sample: 1, leadTime: "15–25 days", size: "300–600 mm", keySpec: "0.5–1.5 L · manual burner", packing: "Individual carton" },
-  p3_19: { moq: 5, sample: 1, leadTime: "20–30 days", size: "500–1000 mm", keySpec: "Freestanding · no chimney", packing: "Export carton / crate" },
-  p3_20: { moq: 5, sample: 1, leadTime: "20–30 days", size: "Ø600–1200 mm", keySpec: "Round real-flame fire bowl", packing: "Wooden export crate" },
-  p3_21: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1200–2400 mm", keySpec: "Outdoor linear fire table", packing: "Wooden export crate" },
-  p3_22: { moq: 1, sample: 1, leadTime: "30–40 days", size: "1200–2600 mm", keySpec: "Stone island + ethanol burner", packing: "Reinforced wooden crate" },
-  p3_23: { moq: 1, sample: 1, leadTime: "30–45 days", size: "2000–6000 mm", keySpec: "Multi-burner project system", packing: "Sectional wooden crates" },
-  p3_24: { moq: 3, sample: 1, leadTime: "25–35 days", size: "800–2000 mm", keySpec: "Frame + burner + glass guard", packing: "Export carton / crate" },
-  p3_25: { moq: 10, sample: 1, leadTime: "20–30 days", size: "400–1600 mm", keySpec: "Private-label burner kit", packing: "Custom branded carton" },
-  p3_26: { moq: 2, sample: 1, leadTime: "30–40 days", size: "Ø800–1200 mm", keySpec: "Suspended sculptural fireplace", packing: "Custom wooden crate" },
-  p4_70: { moq: 5, sample: 1, leadTime: "20–30 days", size: "800–3000 mm", keySpec: "220–240 V · water vapor · LED", packing: "Export carton / wooden crate" },
-  p4_69: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–3000 mm", keySpec: "Double-sided water-vapor flame", packing: "Wooden export crate" },
-  p4_68: { moq: 3, sample: 1, leadTime: "25–35 days", size: "1200–3000 mm", keySpec: "Panoramic water-vapor flame", packing: "Export carton / crate" },
-  p4_67: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2400 mm", keySpec: "Three-sided 270° view", packing: "Wooden export crate" },
-  p4_66: { moq: 3, sample: 1, leadTime: "25–35 days", size: "Ø600–1200 mm", keySpec: "Round mist flame system", packing: "Wooden export crate" },
-  p4_65: { moq: 2, sample: 1, leadTime: "30–40 days", size: "Ø800–1200 mm", keySpec: "Suspended mist fireplace", packing: "Custom wooden crate" },
-  p4_64: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1200–3000 mm", keySpec: "Divider / screen structure", packing: "Sectional export crate" },
-  p4_63: { moq: 2, sample: 1, leadTime: "30–40 days", size: "Ø1000–1800 mm", keySpec: "Circular art mist installation", packing: "Custom wooden crate" },
-  p4_62: { moq: 5, sample: 1, leadTime: "20–30 days", size: "800–2400 mm", keySpec: "Single-sided water-vapor flame", packing: "Export carton / crate" },
-  p4_11: { moq: 5, sample: 1, leadTime: "20–30 days", size: "800–3000 mm", keySpec: "Smart control · LED · water vapor", packing: "Export carton / crate" },
-  p7_6: { moq: 10, sample: 1, leadTime: "20–30 days", size: "800–2400 mm", keySpec: "110–240 V · flame-only / heating option", packing: "Foam + export carton" },
-  p7_7: { moq: 5, sample: 1, leadTime: "25–35 days", size: "1200–3000 mm", keySpec: "Panoramic flame screen · optional heat", packing: "Reinforced export carton" },
-  p7_8: { moq: 20, sample: 1, leadTime: "20–30 days", size: "450–700 mm", keySpec: "Freestanding · plug-in", packing: "Individual export carton" },
-  p7_9: { moq: 20, sample: 1, leadTime: "20–30 days", size: "600–2400 mm", keySpec: "OEM core · control board · flame screen", packing: "Custom branded carton" },
-  p9_1: { moq: 3, sample: 1, leadTime: "25–35 days", size: "800–2400 mm", keySpec: "Holographic flame display · remote control", packing: "Flight case / wooden crate" },
-  p9_2: { moq: 1, sample: 1, leadTime: "30–45 days", size: "Project-based", keySpec: "Projection system · custom flame media", packing: "Flight cases" },
-  p9_3: { moq: 1, sample: 1, leadTime: "30–45 days", size: "Modular 2–10 m+", keySpec: "Modular immersive flame wall", packing: "Sectional flight cases" },
+  p3_15: { moq: 5, sample: 1, leadTime: "25–35 days", size: "600–1800 mm customizable", keySpec: "Automatic ignition · sensors · remote control", packing: "Export carton + protective foam", packingSize: "1880 × 360 × 260 mm", grossWeight: "≈42 kg", load20: "≈210 pcs", load40: "≈500 pcs" },
+  p3_16: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2400 mm customizable", keySpec: "Double-sided real flame", packing: "Knock-down export crate", packingSize: "2500 × 520 × 620 mm", grossWeight: "≈95 kg", load20: "≈70 pcs", load40: "≈170 pcs" },
+  p3_17: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2200 mm customizable", keySpec: "Three-sided real flame", packing: "Wooden export crate", packingSize: "2300 × 620 × 680 mm", grossWeight: "≈105 kg", load20: "≈58 pcs", load40: "≈145 pcs" },
+  p3_18: { moq: 20, sample: 1, leadTime: "15–25 days", size: "300–600 mm", keySpec: "0.5–1.5 L · manual burner", packing: "Individual carton", packingSize: "680 × 260 × 240 mm", grossWeight: "≈8 kg", load20: "≈1200 pcs", load40: "≈2850 pcs" },
+  p3_19: { moq: 5, sample: 1, leadTime: "20–30 days", size: "500–1000 mm", keySpec: "Freestanding · no chimney", packing: "Export carton / crate", packingSize: "1120 × 520 × 760 mm", grossWeight: "≈45 kg", load20: "≈135 pcs", load40: "≈320 pcs" },
+  p3_20: { moq: 5, sample: 1, leadTime: "20–30 days", size: "Ø600–1200 mm", keySpec: "Round real-flame fire bowl", packing: "Wooden export crate", packingSize: "1280 × 1280 × 620 mm", grossWeight: "≈85 kg", load20: "≈54 pcs", load40: "≈130 pcs" },
+  p3_21: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1200–2400 mm", keySpec: "Outdoor linear fire table", packing: "Wooden export crate", packingSize: "2500 × 900 × 760 mm", grossWeight: "≈145 kg", load20: "≈32 pcs", load40: "≈78 pcs" },
+  p3_22: { moq: 1, sample: 1, leadTime: "30–40 days", size: "1200–2600 mm", keySpec: "Stone island + ethanol burner", packing: "Reinforced wooden crate", packingSize: "2700 × 980 × 920 mm", grossWeight: "≈260 kg", load20: "≈22 pcs", load40: "≈52 pcs" },
+  p3_23: { moq: 1, sample: 1, leadTime: "30–45 days", size: "2000–6000 mm", keySpec: "Multi-burner project system", packing: "Sectional wooden crates", packingSize: "2200 × 680 × 620 mm / section", grossWeight: "≈120 kg / section", load20: "≈48 sections", load40: "≈116 sections" },
+  p3_24: { moq: 3, sample: 1, leadTime: "25–35 days", size: "800–2000 mm", keySpec: "Frame + burner + glass guard", packing: "Export carton / crate", packingSize: "2100 × 420 × 360 mm", grossWeight: "≈55 kg", load20: "≈125 pcs", load40: "≈300 pcs" },
+  p3_25: { moq: 10, sample: 1, leadTime: "20–30 days", size: "400–1600 mm", keySpec: "Private-label burner kit", packing: "Custom branded carton", packingSize: "1680 × 300 × 220 mm", grossWeight: "≈24 kg", load20: "≈430 pcs", load40: "≈1020 pcs" },
+  p3_26: { moq: 2, sample: 1, leadTime: "30–40 days", size: "Ø800–1200 mm", keySpec: "Suspended sculptural fireplace", packing: "Custom wooden crate", packingSize: "1280 × 1280 × 1500 mm", grossWeight: "≈155 kg", load20: "≈22 pcs", load40: "≈54 pcs" },
+  p4_70: { moq: 5, sample: 1, leadTime: "20–30 days", size: "800–3000 mm", keySpec: "220–240 V · water vapor · LED", packing: "Export carton / wooden crate", packingSize: "1580 × 360 × 280 mm", grossWeight: "≈38 kg", load20: "≈270 pcs", load40: "≈650 pcs" },
+  p4_69: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–3000 mm", keySpec: "Double-sided water-vapor flame", packing: "Wooden export crate", packingSize: "2100 × 520 × 520 mm", grossWeight: "≈82 kg", load20: "≈95 pcs", load40: "≈230 pcs" },
+  p4_68: { moq: 3, sample: 1, leadTime: "25–35 days", size: "1200–3000 mm", keySpec: "Panoramic water-vapor flame", packing: "Export carton / crate", packingSize: "1880 × 430 × 360 mm", grossWeight: "≈58 kg", load20: "≈185 pcs", load40: "≈440 pcs" },
+  p4_67: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1000–2400 mm", keySpec: "Three-sided 270° view", packing: "Wooden export crate", packingSize: "2200 × 620 × 620 mm", grossWeight: "≈96 kg", load20: "≈65 pcs", load40: "≈156 pcs" },
+  p4_66: { moq: 3, sample: 1, leadTime: "25–35 days", size: "Ø600–1200 mm", keySpec: "Round mist flame system", packing: "Wooden export crate", packingSize: "1280 × 1280 × 580 mm", grossWeight: "≈80 kg", load20: "≈58 pcs", load40: "≈138 pcs" },
+  p4_65: { moq: 2, sample: 1, leadTime: "30–40 days", size: "Ø800–1200 mm", keySpec: "Suspended mist fireplace", packing: "Custom wooden crate", packingSize: "1280 × 1280 × 1480 mm", grossWeight: "≈145 kg", load20: "≈24 pcs", load40: "≈56 pcs" },
+  p4_64: { moq: 2, sample: 1, leadTime: "25–35 days", size: "1200–3000 mm", keySpec: "Divider / screen structure", packing: "Sectional export crate", packingSize: "2200 × 560 × 620 mm / section", grossWeight: "≈95 kg / section", load20: "≈58 sections", load40: "≈138 sections" },
+  p4_63: { moq: 2, sample: 1, leadTime: "30–40 days", size: "Ø1000–1800 mm", keySpec: "Circular art mist installation", packing: "Custom wooden crate", packingSize: "1900 × 420 × 1900 mm", grossWeight: "≈180 kg", load20: "≈18 pcs", load40: "≈42 pcs" },
+  p4_62: { moq: 5, sample: 1, leadTime: "20–30 days", size: "800–2400 mm", keySpec: "Single-sided water-vapor flame", packing: "Export carton / crate", packingSize: "1680 × 360 × 300 mm", grossWeight: "≈42 kg", load20: "≈260 pcs", load40: "≈620 pcs" },
+  p4_11: { moq: 5, sample: 1, leadTime: "20–30 days", size: "800–3000 mm", keySpec: "Smart control · LED · water vapor", packing: "Export carton / crate", packingSize: "1680 × 380 × 320 mm", grossWeight: "≈46 kg", load20: "≈230 pcs", load40: "≈550 pcs" },
+  p7_6: { moq: 10, sample: 1, leadTime: "20–30 days", size: "800–2400 mm", keySpec: "110–240 V · flame-only / heating option", packing: "Foam + export carton", packingSize: "1600 × 280 × 520 mm", grossWeight: "≈34 kg", load20: "≈260 pcs", load40: "≈620 pcs" },
+  p7_7: { moq: 5, sample: 1, leadTime: "25–35 days", size: "1200–3000 mm", keySpec: "Panoramic flame screen · optional heat", packing: "Reinforced export carton", packingSize: "2200 × 320 × 620 mm", grossWeight: "≈58 kg", load20: "≈125 pcs", load40: "≈300 pcs" },
+  p7_8: { moq: 20, sample: 1, leadTime: "20–30 days", size: "450–700 mm", keySpec: "Freestanding · plug-in", packing: "Individual export carton", packingSize: "760 × 420 × 690 mm", grossWeight: "≈22 kg", load20: "≈250 pcs", load40: "≈600 pcs" },
+  p7_9: { moq: 20, sample: 1, leadTime: "20–30 days", size: "600–2400 mm", keySpec: "OEM core · control board · flame screen", packing: "Custom branded carton", packingSize: "1280 × 260 × 360 mm", grossWeight: "≈24 kg", load20: "≈520 pcs", load40: "≈1240 pcs" },
+  p9_1: { moq: 3, sample: 1, leadTime: "25–35 days", size: "800–2400 mm", keySpec: "Holographic flame display · remote control", packing: "Flight case / wooden crate", packingSize: "1450 × 420 × 520 mm", grossWeight: "≈62 kg", load20: "≈170 pcs", load40: "≈410 pcs" },
+  p9_2: { moq: 1, sample: 1, leadTime: "30–45 days", size: "Project-based", keySpec: "Projection system · custom flame media", packing: "Flight cases", packingSize: "720 × 520 × 420 mm / case", grossWeight: "≈38 kg / case", load20: "≈330 cases", load40: "≈790 cases" },
+  p9_3: { moq: 1, sample: 1, leadTime: "30–45 days", size: "Modular 2–10 m+", keySpec: "Modular immersive flame wall", packing: "Sectional flight cases", packingSize: "980 × 680 × 520 mm / module", grossWeight: "≈55 kg / module", load20: "≈150 modules", load40: "≈360 modules" },
 };
 
 const translatedNames: Partial<Record<Locale, Record<string, string>>> = {
@@ -119,9 +123,9 @@ function localizeCoreValue(value: string, lang: string): string {
     .replace(/Foam \+ export carton/g, "Schaumstoff + Exportkarton")
     .replace(/Reinforced export carton/g, "Verstärkter Exportkarton")
     .replace(/Individual export carton/g, "Einzelner Exportkarton")
-    .replace(/Flight case \/ wooden crate/g, "Flightcase / Holzkiste")
-    .replace(/Flight cases/g, "Flightcases")
-    .replace(/Sectional flight cases/g, "Segmentierte Flightcases")
+    .replace(/Flight case \/ wooden crate/g, "Transportkoffer / Holzkiste")
+    .replace(/Sectional flight cases/g, "Segmentierte Transportkoffer")
+    .replace(/Flight cases/g, "Transportkoffer")
     .replace(/Automatic ignition · sensors · remote control/g, "Automatische Zündung · Sensorik · Fernsteuerung")
     .replace(/Double-sided real flame/g, "Doppelseitige echte Flamme")
     .replace(/Three-sided real flame/g, "Dreiseitige echte Flamme")
@@ -150,7 +154,14 @@ function localizeCoreValue(value: string, lang: string): string {
     .replace(/OEM core · control board · flame screen/g, "OEM-Kernmodul · Steuerplatine · Flammendisplay")
     .replace(/Holographic flame display · remote control/g, "Holografisches Flammendisplay · Fernsteuerung")
     .replace(/Projection system · custom flame media/g, "Projektionssystem · kundenspezifische Flammenmedien")
-    .replace(/Modular immersive flame wall/g, "Modulare immersive Flammenwand");
+    .replace(/Modular immersive flame wall/g, "Modulare immersive Flammenwand")
+    .replace(/pcs/g, "Stück")
+    .replace(/sections/g, "Segmente")
+    .replace(/section/g, "Segment")
+    .replace(/modules/g, "Module")
+    .replace(/module/g, "Modul")
+    .replace(/cases/g, "Kisten")
+    .replace(/case/g, "Kiste");
 }
 
 export function getCoreWholesaleDisplayConfig(id: string, lang: string): WholesaleConfig {
@@ -161,6 +172,10 @@ export function getCoreWholesaleDisplayConfig(id: string, lang: string): Wholesa
     size: localizeCoreValue(config.size, lang),
     keySpec: localizeCoreValue(config.keySpec, lang),
     packing: localizeCoreValue(config.packing, lang),
+    packingSize: config.packingSize ? localizeCoreValue(config.packingSize, lang) : undefined,
+    grossWeight: config.grossWeight ? localizeCoreValue(config.grossWeight, lang) : undefined,
+    load20: config.load20 ? localizeCoreValue(config.load20, lang) : undefined,
+    load40: config.load40 ? localizeCoreValue(config.load40, lang) : undefined,
   };
 }
 
@@ -194,4 +209,28 @@ const valueCopy: Record<Locale, {
 
 export function getCoreWholesaleValueCopy(lang: string) {
   return valueCopy[(lang in valueCopy ? lang : "en") as Locale];
+}
+
+const containerCopy: Record<Locale, {
+  title: string;
+  packingSize: string;
+  grossWeight: string;
+  load20: string;
+  load40: string;
+  note: string;
+}> = {
+  en: { title: "Packing, Container Loading & Trade Terms (Estimated)", packingSize: "Unit packing", grossWeight: "G.W.", load20: "20GP", load40: "40HQ", note: "Packing size, gross weight and container loading are estimated for preliminary wholesale planning. Final data should be confirmed with the approved sample and packing plan." },
+  zh: { title: "包装、装柜与交易参数（预估）", packingSize: "单台包装", grossWeight: "毛重", load20: "20GP", load40: "40HQ", note: "包装尺寸、毛重和装柜量为前期批发采购估算，最终以确认样品和实际包装方案为准。" },
+  de: { title: "Verpackung, Containerbeladung und Handelsdaten (geschätzt)", packingSize: "Einzelverpackung", grossWeight: "Bruttogewicht", load20: "20GP", load40: "40HQ", note: "Verpackungsmaß, Bruttogewicht und Containerbeladung sind Schätzwerte für die vorläufige Großhandelsplanung. Endgültige Daten sollten mit freigegebenem Muster und Verpackungsplan bestätigt werden." },
+  fr: { title: "Emballage, chargement conteneur et conditions commerciales (estimations)", packingSize: "Emballage unitaire", grossWeight: "Poids brut", load20: "20GP", load40: "40HQ", note: "Les dimensions d'emballage, poids bruts et chargements sont estimatifs et doivent être confirmés avec l'échantillon et le plan d'emballage approuvés." },
+  it: { title: "Imballo, carico container e condizioni commerciali (stima)", packingSize: "Imballo unitario", grossWeight: "Peso lordo", load20: "20GP", load40: "40HQ", note: "Dimensioni imballo, peso lordo e carico container sono stime per la pianificazione all'ingrosso e vanno confermati con campione e piano imballo approvati." },
+  es: { title: "Embalaje, carga de contenedor y condiciones comerciales (estimado)", packingSize: "Embalaje unitario", grossWeight: "Peso bruto", load20: "20GP", load40: "40HQ", note: "Dimensiones de embalaje, peso bruto y carga de contenedor son estimaciones para planificación mayorista y deben confirmarse con muestra y plan de embalaje aprobados." },
+  pt: { title: "Embalagem, carregamento e condições comerciais (estimado)", packingSize: "Embalagem unitária", grossWeight: "Peso bruto", load20: "20GP", load40: "40HQ", note: "Dimensões da embalagem, peso bruto e carregamento são estimativas para planejamento de atacado e devem ser confirmados com amostra e plano de embalagem aprovados." },
+  ru: { title: "Упаковка, загрузка контейнера и условия сделки (оценка)", packingSize: "Упаковка 1 шт.", grossWeight: "Вес брутто", load20: "20GP", load40: "40HQ", note: "Размеры упаковки, вес брутто и загрузка контейнера являются оценочными и уточняются по утверждённому образцу и плану упаковки." },
+  ja: { title: "梱包・コンテナ積載・取引条件（推定）", packingSize: "個装", grossWeight: "総重量", load20: "20GP", load40: "40HQ", note: "梱包寸法、総重量、積載数は卸売計画用の概算であり、承認サンプルと梱包計画で確定します。" },
+  ar: { title: "التغليف وتحميل الحاويات وشروط التجارة (تقديري)", packingSize: "تغليف الوحدة", grossWeight: "الوزن الإجمالي", load20: "20GP", load40: "40HQ", note: "أبعاد التغليف والوزن الإجمالي وكميات التحميل تقديرية للتخطيط المبدئي للجملة، وتؤكد حسب العينة وخطة التغليف المعتمدة." },
+};
+
+export function getCoreContainerCopy(lang: string) {
+  return containerCopy[(lang in containerCopy ? lang : "en") as Locale];
 }
