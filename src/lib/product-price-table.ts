@@ -4,6 +4,8 @@ export type ProductPriceRow = {
   note?: string;
 };
 
+// Source file: /Users/x/Desktop/sfireplace产品价格总表.csv
+// Edit the local CSV on the Desktop, then run: npm run sync:prices
 export const productPriceTable: ProductPriceRow[] = [
   { productId: "p3_14", priceCny: 1650, note: "手动线性生物乙醇燃烧器" },
   { productId: "p3_15", priceCny: 12800, note: "自动酒精燃烧器" },

@@ -39,7 +39,7 @@ export default async function PriceMatrixPage({
             <p className="text-xs font-semibold uppercase text-[#c2410c]">Internal Admin</p>
             <h1 className="mt-2 text-3xl font-bold text-[#1d1d1f]">国家价格对比表</h1>
             <p className="mt-2 max-w-4xl text-sm leading-7 text-[#6e6e73]">
-              这个表用于检查每个产品在不同国家/语言页面显示的参考批发价。源价格只改人民币列：src/lib/product-price-table.ts。
+              这个表用于检查每个产品在不同国家/语言页面显示的参考批发价。源价格只改桌面表格：/Users/x/Desktop/sfireplace产品价格总表.csv。
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -107,9 +107,9 @@ export default async function PriceMatrixPage({
         <div className="mt-6 rounded-[8px] border border-[#fed7aa] bg-[#fff7ed] p-5">
           <h2 className="text-base font-bold text-[#9a3412]">你以后怎么改价格</h2>
           <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-6 text-[#7c2d12]">
-            <li>打开 src/lib/product-price-table.ts。</li>
-            <li>只修改对应产品的 priceCny，例如 p3_15 的 12800。</li>
-            <li>保存、构建、部署后，产品列表页、详情页、日语/德语/英语等价格会自动同步。</li>
+            <li>打开桌面文件 sfireplace产品价格总表.csv。</li>
+            <li>只修改“人民币源价”这一列，例如 p3_15 的 12800。</li>
+            <li>我运行 npm run sync:prices 后，产品列表页、详情页、日语/德语/英语等价格会自动同步。</li>
           </ol>
         </div>
       </section>
