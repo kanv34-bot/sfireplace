@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { products, categories } from "@/lib/products";
 import { formatLocalizedPrice, formatReferencePrice } from "@/lib/product-pricing";
+import { getProductBasePriceCny } from "@/lib/product-price-table";
 
 export const metadata: Metadata = {
   title: "Product Pricing Admin | Fireplace Master",
@@ -26,7 +27,7 @@ export default async function AdminProductsPage({
             <p className="text-xs font-semibold uppercase text-[#c2410c]">Internal Admin</p>
             <h1 className="mt-2 text-3xl font-bold text-[#1d1d1f]">产品价格总览</h1>
             <p className="mt-2 text-sm text-[#6e6e73]">
-              人民币为唯一源价格，前台按语言自动换算。修改源价格位置：src/lib/products.ts 的 priceCny 字段。
+              人民币为唯一源价格，前台按语言自动换算。修改源价格位置：src/lib/product-price-table.ts 的 productPriceTable。
             </p>
           </div>
           <Link href={`/${lang}/admin/exchange-rates`} className="text-sm font-semibold text-[#c2410c]">
@@ -47,30 +48,36 @@ export default async function AdminProductsPage({
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.id} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
-                  <td className="px-4 py-3 font-mono text-xs text-[#6e6e73]">{product.id}</td>
-                  <td className="px-4 py-3 text-[#6e6e73]">{categoryName.get(product.category) ?? product.category}</td>
-                  <td className="px-4 py-3">
-                    <p className="font-semibold text-[#1d1d1f]">{product.name}</p>
-                    <p className="mt-1 text-xs text-[#6e6e73]">{product.nameEn}</p>
-                  </td>
-                  <td className="px-4 py-3 font-semibold text-[#1d1d1f]">
-                    {product.priceCny ? `¥${product.priceCny.toLocaleString("zh-CN")}` : "面议"}
-                  </td>
-                  {previewLangs.map((locale) => (
-                    <td key={locale} className="px-4 py-3 text-[#5f5f64]">
-                      {formatLocalizedPrice(product.priceCny, locale)}
-                    </td>
-                  ))}
-                  <td className="px-4 py-3">
-                    <Link
-                      href={`/${lang}/products/${product.id}`}
-                      className="font-semibold text-[#c2410c] hover:text-[#ea580c]"
-                    >
-                      打开
-                    </Link>
-                  </td>
-                </tr>
+                (() => {
+                  const priceCny = getProductBasePriceCny(product.id, product.priceCny);
+
+                  return (
+                    <tr key={product.id} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
+                      <td className="px-4 py-3 font-mono text-xs text-[#6e6e73]">{product.id}</td>
+                      <td className="px-4 py-3 text-[#6e6e73]">{categoryName.get(product.category) ?? product.category}</td>
+                      <td className="px-4 py-3">
+                        <p className="font-semibold text-[#1d1d1f]">{product.name}</p>
+                        <p className="mt-1 text-xs text-[#6e6e73]">{product.nameEn}</p>
+                      </td>
+                      <td className="px-4 py-3 font-semibold text-[#1d1d1f]">
+                        {priceCny ? `¥${priceCny.toLocaleString("zh-CN")}` : "面议"}
+                      </td>
+                      {previewLangs.map((locale) => (
+                        <td key={locale} className="px-4 py-3 text-[#5f5f64]">
+                          {formatLocalizedPrice(priceCny, locale)}
+                        </td>
+                      ))}
+                      <td className="px-4 py-3">
+                        <Link
+                          href={`/${lang}/products/${product.id}`}
+                          className="font-semibold text-[#c2410c] hover:text-[#ea580c]"
+                        >
+                          打开
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })()
               ))}
             </tbody>
           </table>
@@ -80,6 +87,7 @@ export default async function AdminProductsPage({
           <h2 className="text-base font-bold text-[#9a3412]">前台显示规则</h2>
           <ul className="mt-3 space-y-2 text-sm leading-6 text-[#7c2d12]">
             <li>产品列表页和详情页统一调用价格模块，不再手工拼接 ¥、US$ 或日元。</li>
+            <li>价格源头是 src/lib/product-price-table.ts，改完提交部署后会同步到对应产品页面。</li>
             <li>示例：p3_15 人民币 ¥12,800，在日语页显示为 {formatReferencePrice(12800, "ja")}。</li>
             <li>最终成交价仍需按规格、数量、包装、汇率和贸易条款确认。</li>
           </ul>

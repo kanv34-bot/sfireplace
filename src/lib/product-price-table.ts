@@ -1,0 +1,48 @@
+export type ProductPriceRow = {
+  productId: string;
+  priceCny: number;
+  note?: string;
+};
+
+export const productPriceTable: ProductPriceRow[] = [
+  { productId: "p3_14", priceCny: 1650, note: "手动线性生物乙醇燃烧器" },
+  { productId: "p3_15", priceCny: 12800, note: "自动酒精燃烧器" },
+  { productId: "p3_16", priceCny: 16800, note: "双面隔断酒精壁炉" },
+  { productId: "p3_17", priceCny: 19800, note: "三面观火酒精壁炉" },
+  { productId: "p3_18", priceCny: 2800, note: "桌面酒精壁炉" },
+  { productId: "p3_19", priceCny: 6800, note: "独立式酒精壁炉" },
+  { productId: "p3_20", priceCny: 5800, note: "圆形酒精火盆" },
+  { productId: "p3_21", priceCny: 15800, note: "户外酒精火桌" },
+  { productId: "p3_22", priceCny: 22800, note: "岩板岛台酒精壁炉" },
+  { productId: "p3_23", priceCny: 32800, note: "酒店大堂长条酒精壁炉" },
+  { productId: "p3_24", priceCny: 9800, note: "嵌入式壁龛酒精壁炉套件" },
+  { productId: "p3_25", priceCny: 4800, note: "OEM酒精燃烧器套件" },
+  { productId: "p3_26", priceCny: 13800, note: "悬挂式酒精壁炉" },
+  { productId: "p4_70", priceCny: 11800, note: "雾化壁炉标准款" },
+  { productId: "p4_69", priceCny: 16800, note: "双面雾化壁炉" },
+  { productId: "p4_68", priceCny: 14800, note: "全景雾化壁炉" },
+  { productId: "p4_67", priceCny: 17800, note: "三面雾化壁炉" },
+  { productId: "p4_66", priceCny: 9800, note: "圆形雾化壁炉" },
+  { productId: "p4_65", priceCny: 18800, note: "悬挂式雾化壁炉" },
+  { productId: "p4_64", priceCny: 15800, note: "隔断式雾化壁炉" },
+  { productId: "p4_63", priceCny: 23800, note: "太阳之眼雾化壁炉" },
+  { productId: "p4_62", priceCny: 12800, note: "单面雾化壁炉" },
+  { productId: "p4_11", priceCny: 13800, note: "智能雾化壁炉" },
+  { productId: "p7_6", priceCny: 5800, note: "嵌入式电子壁炉" },
+  { productId: "p7_7", priceCny: 9800, note: "全景电子壁炉" },
+  { productId: "p7_8", priceCny: 3600, note: "独立式电子壁炉" },
+  { productId: "p7_9", priceCny: 2600, note: "OEM电子壁炉核心模块" },
+  { productId: "p9_1", priceCny: 16800, note: "全息壁炉显示模块" },
+  { productId: "p9_2", priceCny: 22800, note: "投影壁炉系统" },
+  { productId: "p9_3", priceCny: 36800, note: "沉浸式火焰影像墙" },
+];
+
+const productPriceMap = new Map(productPriceTable.map((row) => [row.productId, row]));
+
+export function getProductPriceRow(productId: string): ProductPriceRow | undefined {
+  return productPriceMap.get(productId);
+}
+
+export function getProductBasePriceCny(productId: string, fallbackPriceCny?: number): number | undefined {
+  return getProductPriceRow(productId)?.priceCny ?? fallbackPriceCny;
+}

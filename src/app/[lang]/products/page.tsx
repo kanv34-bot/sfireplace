@@ -6,6 +6,7 @@ import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { formatReferencePrice } from "@/lib/product-pricing";
+import { getProductBasePriceCny } from "@/lib/product-price-table";
 
 export async function generateMetadata({
   params,
@@ -103,6 +104,7 @@ export default async function ProductsPage({
                   const hoverImage = product.images[1];
                   const hasProductScenePair = Boolean(hoverImage?.includes("/scene/"));
                   const localizedBrand = localizedField(product, "brand", lang, langMap);
+                  const priceCny = getProductBasePriceCny(product.id, product.priceCny);
 
                   return (
                     <Link
@@ -145,9 +147,9 @@ export default async function ProductsPage({
                         <p className="text-xs text-[#6e6e73] mt-1 line-clamp-2">
                           {localizedField(product, "description", lang, langMap)}
                         </p>
-                        {product.priceCny && (
+                        {priceCny && (
                           <p className="mt-3 text-sm font-semibold text-[#c2410c]">
-                            {formatReferencePrice(product.priceCny, lang)}
+                            {formatReferencePrice(priceCny, lang)}
                           </p>
                         )}
                       </div>

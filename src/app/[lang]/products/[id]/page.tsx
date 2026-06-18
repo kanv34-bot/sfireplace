@@ -15,6 +15,7 @@ import {
   getPriceCopy,
   getPricingRule,
 } from "@/lib/product-pricing";
+import { getProductBasePriceCny } from "@/lib/product-price-table";
 import {
   getEthanolWholesaleCopy,
   getEthanolWholesaleKeywords,
@@ -372,9 +373,10 @@ export default async function ProductDetailPage({
   const coreDisplayConfig = getCoreWholesaleDisplayConfig(product.id, lang);
   const coreValues = getCoreWholesaleValueCopy(lang);
   const coreProductDetail = getCoreProductDetail(product.id, lang);
+  const displayPriceCny = getProductBasePriceCny(product.id, product.priceCny);
   const priceCopy = getPriceCopy(lang);
   const pricingRule = getPricingRule(lang);
-  const localizedOfferPrice = convertCnyPrice(product.priceCny, lang);
+  const localizedOfferPrice = convertCnyPrice(displayPriceCny, lang);
   const ethanolCopy = getEthanolWholesaleCopy(lang);
   const localizedBrand = localizedField(product, "brand", lang, langMap);
   const localizedProductName = localizedField(product, "name", lang, langMap);
@@ -717,11 +719,11 @@ export default async function ProductDetailPage({
                 {isCoreWholesale
                   ? isEthanol
                     ? ethanolCopy.priceFrom
-                    : product.priceCny
-                      ? formatReferencePrice(product.priceCny, lang)
+                    : displayPriceCny
+                      ? formatReferencePrice(displayPriceCny, lang)
                       : coreCopy.requestQuote
-                  : product.priceCny
-                  ? formatReferencePrice(product.priceCny, lang)
+                  : displayPriceCny
+                  ? formatReferencePrice(displayPriceCny, lang)
                   : t.contact_for_price}
               </p>
               <p className="text-xs text-[#ea580c] mt-1">
@@ -1025,7 +1027,7 @@ export default async function ProductDetailPage({
           lang={lang}
           productId={product.id}
           productName={productName}
-          priceCny={product.priceCny}
+          priceCny={displayPriceCny}
         />
       )}
 
