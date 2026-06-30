@@ -381,6 +381,9 @@ export default async function ProductDetailPage({
   const priceCopy = getPriceCopy(lang);
   const pricingRule = getPricingRule(lang);
   const localizedOfferPrice = convertCnyPrice(displayPriceCny, lang);
+  const modelProperty = productModel
+    ? { "@type": "PropertyValue", name: modelLabel, value: productModel }
+    : null;
   const ethanolCopy = getEthanolWholesaleCopy(lang);
   const localizedBrand = localizedField(product, "brand", lang, langMap);
   const localizedProductName = localizedField(product, "name", lang, langMap);
@@ -436,7 +439,9 @@ export default async function ProductDetailPage({
         category: localizedText(lang, "酒精壁炉 / 生物乙醇壁炉", "Ethanol Fireplace / Bio Ethanol Fireplace"),
         description: ethanolCopy.description,
         image: Object.values(ethanolImages).map((src) => `https://sfireplace.com${src}`),
+        ...(productModel ? { sku: productModel, mpn: productModel } : {}),
         additionalProperty: [
+          ...(modelProperty ? [modelProperty] : []),
           { "@type": "PropertyValue", name: "Product type", value: "Bio ethanol fireplace" },
           { "@type": "PropertyValue", name: "Customization", value: "Burner length, size, finish, structure, OEM/ODM" },
           { "@type": "PropertyValue", name: "Applications", value: "Villa, hotel, club, restaurant, commercial showroom" },
@@ -468,7 +473,9 @@ export default async function ProductDetailPage({
           "Fireplace Master custom mist fireplace source-factory product with length, structure, mist outlet, lighting effect, water and power access, project, and OEM/ODM customization.",
         ),
         image: Object.values(mistImages).map((src) => `https://sfireplace.com${src}`),
+        ...(productModel ? { sku: productModel, mpn: productModel } : {}),
         additionalProperty: [
+          ...(modelProperty ? [modelProperty] : []),
           { "@type": "PropertyValue", name: "Product type", value: "3D water vapor mist fireplace" },
           { "@type": "PropertyValue", name: "Customization", value: "Length, structure, mist outlet, lighting, water access, OEM/ODM" },
           { "@type": "PropertyValue", name: "Applications", value: "Villa, hotel, club, showroom, commercial lobby" },
@@ -513,8 +520,10 @@ export default async function ProductDetailPage({
         image: product.images.map((src) => `https://sfireplace.com${src}`),
         brand: { "@type": "Brand", name: "Fireplace Master" },
         manufacturer: { "@type": "Organization", name: "Fireplace Master" },
-        sku: product.id,
+        sku: productModel ?? product.id,
+        ...(productModel ? { mpn: productModel } : {}),
         additionalProperty: [
+          ...(modelProperty ? [modelProperty] : []),
           { "@type": "PropertyValue", name: coreCopy.moq, value: `${coreConfig.moq} units` },
           { "@type": "PropertyValue", name: coreCopy.size, value: coreDisplayConfig.size },
           { "@type": "PropertyValue", name: coreCopy.keySpec, value: coreDisplayConfig.keySpec },

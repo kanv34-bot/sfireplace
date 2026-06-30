@@ -7,6 +7,7 @@ import {
   getCoreWholesaleValueCopy,
 } from "@/lib/core-wholesale";
 import { formatLocalizedPrice, getPriceCopy } from "@/lib/product-pricing";
+import { getModelLabel, getProductModel } from "@/lib/product-models";
 
 type Props = {
   lang: string;
@@ -32,6 +33,8 @@ export default function CoreWholesaleDetails({
   const containerRows = config.containerRows;
   const productDetail = getCoreProductDetail(productId, lang);
   const priceCopy = getPriceCopy(lang);
+  const modelLabel = getModelLabel(lang);
+  const productModel = getProductModel(productId);
 
   return (
     <div className="border-t border-[#ece7e1] bg-white">
@@ -74,6 +77,7 @@ export default function CoreWholesaleDetails({
             <h2 className="text-xl font-bold text-[#1d1d1f]">{t.specs}</h2>
             <dl className="mt-5 divide-y divide-[#dedee3]">
               {[
+                ...(productModel ? [[modelLabel, productModel]] : []),
                 [t.size, config.size],
                 [t.keySpec, config.keySpec],
                 [t.voltage, t.voltageValue],
