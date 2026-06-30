@@ -3,6 +3,7 @@ import Link from "next/link";
 import { products, categories } from "@/lib/products";
 import { formatLocalizedPrice, formatReferencePrice } from "@/lib/product-pricing";
 import { getProductBasePriceCny } from "@/lib/product-price-table";
+import { getProductModel } from "@/lib/product-models";
 
 export const metadata: Metadata = {
   title: "Product Pricing Admin | Fireplace Master",
@@ -39,7 +40,7 @@ export default async function AdminProductsPage({
           <table className="w-full min-w-[1180px] border-collapse text-left text-sm">
             <thead className="bg-[#1d1d1f] text-white">
               <tr>
-                {["ID", "分类", "产品", "人民币源价", "中文", "英文", "德语", "日语", "页面预览"].map((heading) => (
+                {["ID", "型号", "分类", "产品", "人民币源价", "中文", "英文", "德语", "日语", "页面预览"].map((heading) => (
                   <th key={heading} className="whitespace-nowrap px-4 py-3 font-semibold">
                     {heading}
                   </th>
@@ -50,10 +51,12 @@ export default async function AdminProductsPage({
               {products.map((product) => (
                 (() => {
                   const priceCny = getProductBasePriceCny(product.id, product.priceCny);
+                  const model = getProductModel(product.id);
 
                   return (
                     <tr key={product.id} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
                       <td className="px-4 py-3 font-mono text-xs text-[#6e6e73]">{product.id}</td>
+                      <td className="px-4 py-3 font-mono font-bold text-[#1d1d1f]">{model ?? "-"}</td>
                       <td className="px-4 py-3 text-[#6e6e73]">{categoryName.get(product.category) ?? product.category}</td>
                       <td className="px-4 py-3">
                         <p className="font-semibold text-[#1d1d1f]">{product.name}</p>

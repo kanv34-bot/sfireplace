@@ -3,6 +3,7 @@ import Link from "next/link";
 import { products, categories } from "@/lib/products";
 import { formatLocalizedPrice } from "@/lib/product-pricing";
 import { getProductBasePriceCny, productPriceTable } from "@/lib/product-price-table";
+import { getProductModel } from "@/lib/product-models";
 
 export const metadata: Metadata = {
   title: "Product Price Matrix | Fireplace Master",
@@ -57,6 +58,7 @@ export default async function PriceMatrixPage({
             <thead className="bg-[#1d1d1f] text-white">
               <tr>
                 <th className="sticky left-0 z-10 whitespace-nowrap bg-[#1d1d1f] px-4 py-3 font-semibold">产品</th>
+                <th className="whitespace-nowrap px-4 py-3 font-semibold">型号</th>
                 <th className="whitespace-nowrap px-4 py-3 font-semibold">分类</th>
                 <th className="whitespace-nowrap px-4 py-3 font-semibold">人民币源价</th>
                 {marketColumns.map((market) => (
@@ -72,6 +74,7 @@ export default async function PriceMatrixPage({
               {products.map((product) => {
                 const priceCny = getProductBasePriceCny(product.id, product.priceCny);
                 const hasSourceRow = pricedProductIds.has(product.id);
+                const model = getProductModel(product.id);
 
                 return (
                   <tr key={product.id} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
@@ -79,6 +82,7 @@ export default async function PriceMatrixPage({
                       <p className="font-semibold text-[#1d1d1f]">{product.name}</p>
                       <p className="mt-1 font-mono text-xs text-[#86868b]">{product.id}</p>
                     </td>
+                    <td className="px-4 py-3 font-mono font-bold text-[#1d1d1f]">{model ?? "-"}</td>
                     <td className="px-4 py-3 text-[#6e6e73]">{categoryName.get(product.category) ?? product.category}</td>
                     <td className="px-4 py-3 font-bold text-[#1d1d1f]">
                       {priceCny ? `¥${priceCny.toLocaleString("zh-CN")}` : "面议"}

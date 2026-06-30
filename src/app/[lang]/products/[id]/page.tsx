@@ -16,6 +16,7 @@ import {
   getPricingRule,
 } from "@/lib/product-pricing";
 import { getProductBasePriceCny } from "@/lib/product-price-table";
+import { getModelLabel, getProductModel, getProductSizeModels } from "@/lib/product-models";
 import {
   getEthanolWholesaleCopy,
   getEthanolWholesaleKeywords,
@@ -374,6 +375,9 @@ export default async function ProductDetailPage({
   const coreValues = getCoreWholesaleValueCopy(lang);
   const coreProductDetail = getCoreProductDetail(product.id, lang);
   const displayPriceCny = getProductBasePriceCny(product.id, product.priceCny);
+  const modelLabel = getModelLabel(lang);
+  const productModel = getProductModel(product.id);
+  const sizeModels = getProductSizeModels(product.id);
   const priceCopy = getPriceCopy(lang);
   const pricingRule = getPricingRule(lang);
   const localizedOfferPrice = convertCnyPrice(displayPriceCny, lang);
@@ -641,6 +645,11 @@ export default async function ProductDetailPage({
                   {localizedField(category, "name", lang, langMap)}
                 </Link>
               )}
+              {productModel && (
+                <span className="text-xs text-[#1d1d1f] bg-[#f5f5f7] px-2.5 py-1 rounded-full font-semibold">
+                  {modelLabel} {productModel}
+                </span>
+              )}
               <span className="text-xs text-[#6e6e73] bg-[#f5f5f7] px-2.5 py-1 rounded-full">
                 {isEthanol
                   ? ethanolCopy.manualBurner
@@ -668,6 +677,10 @@ export default async function ProductDetailPage({
               {(isCoreWholesale
                 ? [
                     [
+                      modelLabel,
+                      productModel ?? "-",
+                    ],
+                    [
                       isEthanol ? ethanolCopy.moq : coreCopy.moq,
                       isEthanol ? ethanolCopy.tenUnits : `${coreConfig.moq} ${coreValues.units}`,
                     ],
@@ -685,6 +698,7 @@ export default async function ProductDetailPage({
                     ],
                   ]
                 : [
+                    [modelLabel, productModel ?? "-"],
                     [t.brand, localizedField(product, "brand", lang, langMap)],
                     [t.origin, localizedField(product, "brandCountry", lang, langMap)],
                     [t.installation, localizedField(product, "installation", lang, langMap)],
@@ -1029,6 +1043,50 @@ export default async function ProductDetailPage({
           productName={productName}
           priceCny={displayPriceCny}
         />
+      )}
+
+      {sizeModels.length > 0 && (
+        <section className="border-t border-[#ece7e1] bg-white">
+          <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase text-[#c2410c]">{modelLabel}</p>
+                <h2 className="mt-2 text-2xl font-bold text-[#1d1d1f]">
+                  {lang === "zh" ? "尺寸详细型号" : "Size Model Codes"}
+                </h2>
+              </div>
+              {productModel && (
+                <p className="text-sm text-[#6e6e73]">
+                  {lang === "zh" ? "基础型号" : "Base model"}:{" "}
+                  <span className="font-semibold text-[#1d1d1f]">{productModel}</span>
+                </p>
+              )}
+            </div>
+            <div className="mt-5 overflow-x-auto rounded-[8px] border border-[#e5e5ea]">
+              <table className="w-full min-w-[520px] border-collapse text-left text-sm">
+                <thead className="bg-[#f5f5f7] text-[#1d1d1f]">
+                  <tr>
+                    <th className="px-4 py-3 font-semibold">{lang === "zh" ? "尺寸" : "Size"}</th>
+                    <th className="px-4 py-3 font-semibold">{modelLabel}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sizeModels.map((item) => (
+                    <tr key={item.model} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
+                      <td className="px-4 py-3 text-[#5f5f64]">{item.size}</td>
+                      <td className="px-4 py-3 font-mono font-bold text-[#1d1d1f]">{item.model}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-xs leading-5 text-[#86868b]">
+              {lang === "zh"
+                ? "型号均为英文开头，同系列同前缀；基础型号不超过 3 字节，尺寸型号不超过 5 字节。"
+                : "Codes start with an English letter. Products in the same series share the same prefix; size codes stay within 5 ASCII bytes."}
+            </p>
+          </div>
+        </section>
       )}
 
       {isMist && (

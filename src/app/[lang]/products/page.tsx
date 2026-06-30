@@ -7,6 +7,7 @@ import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import { formatReferencePrice } from "@/lib/product-pricing";
 import { getProductBasePriceCny } from "@/lib/product-price-table";
+import { getModelLabel, getProductModel } from "@/lib/product-models";
 
 export async function generateMetadata({
   params,
@@ -105,6 +106,7 @@ export default async function ProductsPage({
                   const hasProductScenePair = Boolean(hoverImage?.includes("/scene/"));
                   const localizedBrand = localizedField(product, "brand", lang, langMap);
                   const priceCny = getProductBasePriceCny(product.id, product.priceCny);
+                  const model = getProductModel(product.id);
 
                   return (
                     <Link
@@ -139,6 +141,11 @@ export default async function ProductsPage({
                           <span className="text-xs text-[#c2410c] font-medium bg-[#fff7ed] px-2 py-0.5 rounded-full">
                             {localizedBrand}
                           </span>
+                          {model && (
+                            <span className="text-xs font-semibold text-[#1d1d1f] bg-[#f5f5f7] px-2 py-0.5 rounded-full">
+                              {getModelLabel(lang)} {model}
+                            </span>
+                          )}
                           <span className="text-xs text-[#6e6e73]">{localizedField(product, "installation", lang, langMap)}</span>
                         </div>
                         <h3 className="text-sm font-medium text-[#1d1d1f] line-clamp-2 group-hover:text-[#c2410c] transition-colors">
