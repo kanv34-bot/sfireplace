@@ -48,7 +48,7 @@ const whatsappWholesaleUrl =
 
 const ethanolWholesaleModels = [
   {
-    model: "FM-EB600",
+    model: "A0106",
     size: "600 × 180 × 100 mm",
     capacity: "3.5 L",
     burnTime: "4–6 h",
@@ -62,7 +62,7 @@ const ethanolWholesaleModels = [
     price100: "US$228",
   },
   {
-    model: "FM-EB800",
+    model: "A0108",
     size: "800 × 180 × 100 mm",
     capacity: "5.0 L",
     burnTime: "4–6 h",
@@ -76,7 +76,7 @@ const ethanolWholesaleModels = [
     price100: "US$292",
   },
   {
-    model: "FM-EB1000",
+    model: "A0110",
     size: "1000 × 180 × 100 mm",
     capacity: "6.5 L",
     burnTime: "4–6 h",
