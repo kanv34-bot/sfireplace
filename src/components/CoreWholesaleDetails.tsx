@@ -7,7 +7,7 @@ import {
   getCoreWholesaleValueCopy,
 } from "@/lib/core-wholesale";
 import { formatLocalizedPrice, getPriceCopy } from "@/lib/product-pricing";
-import { getModelLabel, getProductModel } from "@/lib/product-models";
+import { getModelLabel, getProductModel, getProductSizeModels } from "@/lib/product-models";
 
 type Props = {
   lang: string;
@@ -35,6 +35,20 @@ export default function CoreWholesaleDetails({
   const priceCopy = getPriceCopy(lang);
   const modelLabel = getModelLabel(lang);
   const productModel = getProductModel(productId);
+  const sizeModelBySize = new Map(getProductSizeModels(productId).map((item) => [item.size, item.model]));
+  const hasModelColumn = Boolean(productModel || containerRows?.length);
+  const displayContainerRows = containerRows?.length
+    ? containerRows.map((row) => ({
+        ...row,
+        model: sizeModelBySize.get(row.model) ?? row.model,
+      }))
+    : [{
+        model: productModel ?? "",
+        packingSize: config.packingSize,
+        grossWeight: config.grossWeight,
+        load20: config.load20,
+        load40: config.load40,
+      }];
 
   return (
     <div className="border-t border-[#ece7e1] bg-white">
@@ -134,7 +148,7 @@ export default function CoreWholesaleDetails({
                 <thead className="bg-[#f5f5f7] text-[#1d1d1f]">
                   <tr>
                     {[
-                      ...(containerRows?.length ? [container.model] : []),
+                      ...(hasModelColumn ? [container.model] : []),
                       container.packingSize,
                       container.grossWeight,
                       container.load20,
@@ -145,18 +159,9 @@ export default function CoreWholesaleDetails({
                   </tr>
                 </thead>
                 <tbody>
-                  {(containerRows?.length
-                    ? containerRows
-                    : [{
-                        model: "",
-                        packingSize: config.packingSize,
-                        grossWeight: config.grossWeight,
-                        load20: config.load20,
-                        load40: config.load40,
-                      }]
-                  ).map((row) => (
+                  {displayContainerRows.map((row) => (
                     <tr key={`${row.model}-${row.packingSize}`} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
-                      {containerRows?.length && (
+                      {hasModelColumn && (
                         <td className="px-4 py-4 font-bold text-[#1d1d1f]">{row.model}</td>
                       )}
                       <td className="px-4 py-4 font-medium text-[#1d1d1f]">{row.packingSize}</td>
