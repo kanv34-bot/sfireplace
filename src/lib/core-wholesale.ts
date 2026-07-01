@@ -252,7 +252,7 @@ const coreProductDetails: Record<string, Partial<Record<Locale, CoreProductDetai
       eyebrow: "M10 Smart 3D Water Vapor Fireplace · Factory Wholesale Data",
       title: "Smart mist fireplace wholesale page organized from the M10 quotation sheet",
       description:
-        "M10 is a smart 3D water vapor fireplace series for overseas distributors, design firms, hotel projects, and private-label buyers. The page now follows the full 600–3000 mm quotation sheet, including size model, wholesale price, retail reference, product dimensions, packing dimensions, gross weight, wooden-crate add-on, and container loading reference.",
+        "M10 is a smart 3D water vapor fireplace series for overseas distributors, design firms, hotel projects, and private-label buyers. The page now follows the full 600–3000 mm quotation sheet, including size model, wholesale price, sample price, product dimensions, packing dimensions, gross weight, wooden-crate add-on, and container loading reference.",
       specTitle: "Core parameters linked to the M10 quotation",
       specRows: [
         ["Product type", "Smart 3D water vapor fireplace / mist fireplace core module"],
