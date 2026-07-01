@@ -782,7 +782,7 @@ const productCatalog: Product[] = [
     description: "双面水雾火焰结构，可作为餐厅、会所、售楼部和开放式空间隔断，适合长时间展示。",
     descriptionEn: "Double-sided mist fireplace divider for restaurants, clubs, sales centers, and open-plan spaces.",
     installation: "双面 / 隔断式",
-    priceCny: 16800,
+    priceCny: 1004.9582,
     images: [
       `${MIST_SERIES}/product/double-sided-divider.webp`,
       `${MIST_SERIES}/scene/double-sided-divider.webp`,

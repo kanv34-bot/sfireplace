@@ -21,7 +21,7 @@ export const productPriceTable: ProductPriceRow[] = [
   { productId: "p3_25", priceCny: 4800, note: "OEM酒精燃烧器套件" },
   { productId: "p3_26", priceCny: 13800, note: "悬挂式酒精壁炉" },
   { productId: "p4_70", priceCny: 913.5984, note: "长条雾化壁炉模块 M01 600mm 起，人民币报价" },
-  { productId: "p4_69", priceCny: 16800, note: "双面雾化壁炉" },
+  { productId: "p4_69", priceCny: 1004.9582, note: "双面隔断雾化壁炉 M02 600mm 起，人民币报价" },
   { productId: "p4_68", priceCny: 14800, note: "全景雾化壁炉" },
   { productId: "p4_67", priceCny: 17800, note: "三面雾化壁炉" },
   { productId: "p4_66", priceCny: 9800, note: "圆形雾化壁炉" },
