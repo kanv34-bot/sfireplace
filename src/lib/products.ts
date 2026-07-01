@@ -773,6 +773,24 @@ const productCatalog: Product[] = [
     coverImage: `${MIST_SERIES}/product/linear-mist-module.webp`,
   },
   {
+    id: "p4_61",
+    category: "p4",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "仿木炭长条3D雾化壁炉",
+    nameEn: "Linear 3D Mist Fireplace with Charcoal Logs",
+    description: "带仿木炭装饰的长条3D雾化壁炉，适合酒店、别墅、会所和商业空间批量项目，火焰层次更接近真火视觉。",
+    descriptionEn:
+      "Linear 3D water vapor fireplace with decorative charcoal logs for hotels, villas, clubs, and commercial projects, creating a richer real-flame visual effect without heat or open fire.",
+    installation: "嵌入式 / 长条 / 仿木炭",
+    priceCny: 1086.194,
+    images: [
+      `${MIST_SERIES}/product/charcoal-linear-mist.webp`,
+      `${MIST_SERIES}/scene/linear-mist-module.webp`,
+    ],
+    coverImage: `${MIST_SERIES}/product/charcoal-linear-mist.webp`,
+  },
+  {
     id: "p4_69",
     category: "p4",
     brand: "壁炉宗师",

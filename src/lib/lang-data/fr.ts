@@ -95,6 +95,8 @@ const fr_data: Record<string, string> = {
   "p3_14:description": "Cheminée bioéthanol, taille et apparence personnalisables, écologique.",
   "p4_70:name": "Cheminée à Brume Murale Divisée (Personnalisable)",
   "p4_70:description": "Cheminée à brume 3D design mural divisé, effets de flamme personnalisables.",
+  "p4_61:name": "Cheminée linéaire 3D à brume avec bûches charbon décoratives",
+  "p4_61:description": "Cheminée linéaire à vapeur d'eau 3D avec effet charbon décoratif, conçue pour hôtels, villas, clubs et projets commerciaux en gros ou OEM/ODM.",
   "p4_69:name": "Cheminée à Brume Double Face (Personnalisable)",
   "p4_69:description": "Cheminée à brume double face, idéale pour séparation de pièces.",
   "p4_68:name": "Cheminée à Brume Panoramique (Personnalisable)",

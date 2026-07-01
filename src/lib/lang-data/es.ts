@@ -95,6 +95,8 @@ const es_data: Record<string, string> = {
   "p3_14:description": "Chimenea de bioetanol, tamaño y apariencia personalizables, ecológica.",
   "p4_70:name": "Chimenea de Niebla Montada Dividida (Personalizable)",
   "p4_70:description": "Chimenea de niebla 3D montada dividida, efectos personalizables.",
+  "p4_61:name": "Chimenea lineal 3D de vapor con troncos de carbón decorativos",
+  "p4_61:description": "Chimenea lineal de vapor de agua 3D con efecto de carbón decorativo para hoteles, villas, clubes y proyectos comerciales al por mayor u OEM/ODM.",
   "p4_69:name": "Chimenea de Niebla Doble Cara (Personalizable)",
   "p4_69:description": "Chimenea de niebla doble cara, ideal para división de ambientes.",
   "p4_68:name": "Chimenea de Niebla Panorámica (Personalizable)",

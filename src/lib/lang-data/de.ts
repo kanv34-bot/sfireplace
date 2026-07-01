@@ -144,6 +144,8 @@ const de_data: Record<string, string> = {
 
   "p4_70:name": "Lineares Wasserdampf-Kaminmodul",
   "p4_70:description": "Langes 3D-Wasserdampf-Kaminmodul für Hotellobbys, Clubs, Villen und gewerbliche Medienwände. Länge, Beleuchtung, Wasseranschluss und OEM-Spezifikation sind anpassbar.",
+  "p4_61:name": "Linearer 3D-Wasserdampf-Kamin mit Dekor-Holzkohle",
+  "p4_61:description": "Linearer 3D-Wasserdampf-Kamin mit dekorativer Holzkohleoptik für Hotels, Villen, Clubs und gewerbliche Projekte. Geeignet für Serienbestellungen und OEM/ODM-Anpassung.",
   "p4_69:name": "Doppelseitiger Wasserdampf-Kamin als Raumteiler",
   "p4_69:description": "Raumteiler-Kamin mit Wasserdampf-Flammeneffekt auf beiden Seiten für Restaurants, Clubs, Verkaufszentren und offene Raumkonzepte.",
   "p4_68:name": "Panorama-Wasserdampf-Kamin nach Maß",

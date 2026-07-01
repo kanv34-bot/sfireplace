@@ -95,6 +95,8 @@ const it_data: Record<string, string> = {
   "p3_14:description": "Caminetto bioetanolo, dimensioni personalizzabili, ecologico.",
   "p4_70:name": "Caminetto a Nebbia Sospeso Diviso (Personalizzabile)",
   "p4_70:description": "Caminetto a nebbia 3D sospeso diviso, effetti personalizzabili.",
+  "p4_61:name": "Caminetto lineare 3D a vapore con carbone decorativo",
+  "p4_61:description": "Caminetto lineare 3D a vapore acqueo con effetto carbone decorativo per hotel, ville, club e progetti commerciali wholesale o OEM/ODM.",
   "p4_69:name": "Caminetto a Nebbia Bifacciale (Personalizzabile)",
   "p4_69:description": "Caminetto a nebbia bifacciale, ideale per divisori.",
   "p4_68:name": "Caminetto a Nebbia Panoramico (Personalizzabile)",

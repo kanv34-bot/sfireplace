@@ -95,6 +95,8 @@ const pt_data: Record<string, string> = {
   "p3_14:description": "Lareira a bioetanol, tamanho personalizável, ecológica.",
   "p4_70:name": "Lareira de Névoa Suspensa Dividida (Personalizável)",
   "p4_70:description": "Lareira de névoa 3D suspensa dividida, efeitos personalizáveis.",
+  "p4_61:name": "Lareira linear 3D a vapor com carvão decorativo",
+  "p4_61:description": "Lareira linear 3D a vapor de água com efeito de carvão decorativo para hotéis, villas, clubes e projetos comerciais em atacado ou OEM/ODM.",
   "p4_69:name": "Lareira de Névoa Dupla Face (Personalizável)",
   "p4_69:description": "Lareira de névoa dupla face, ideal para divisórias.",
   "p4_68:name": "Lareira de Névoa Panorâmica (Personalizável)",
