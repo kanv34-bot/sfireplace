@@ -903,7 +903,7 @@ const productCatalog: Product[] = [
     description: "壁炉宗师智能3D雾化壁炉，智能控制，3D立体火焰效果。",
     descriptionEn: "Smart 3D mist fireplace with intelligent control and 3D flame effects.",
     installation: "嵌入式",
-    priceCny: 13800,
+    priceCny: 6530,
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/1.png`],
     coverImage: `${OSS}/%E4%BA%A7%E5%93%81/%E9%9B%BE%E5%8C%96%E5%A3%81%E7%82%89/1.png`,
   },

@@ -29,7 +29,7 @@ export const productPriceTable: ProductPriceRow[] = [
   { productId: "p4_64", priceCny: 15800, note: "隔断式雾化壁炉" },
   { productId: "p4_63", priceCny: 23800, note: "太阳之眼雾化壁炉" },
   { productId: "p4_62", priceCny: 12800, note: "单面雾化壁炉" },
-  { productId: "p4_11", priceCny: 13800, note: "智能雾化壁炉" },
+  { productId: "p4_11", priceCny: 6530, note: "智能雾化壁炉 M10 600mm 起" },
   { productId: "p7_6", priceCny: 5800, note: "嵌入式电子壁炉" },
   { productId: "p7_7", priceCny: 9800, note: "全景电子壁炉" },
   { productId: "p7_8", priceCny: 3600, note: "独立式电子壁炉" },

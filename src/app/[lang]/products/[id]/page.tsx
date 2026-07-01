@@ -11,11 +11,13 @@ import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
 import {
   convertCnyPrice,
+  formatLocalizedPrice,
   formatReferencePrice,
   getPriceCopy,
   getPricingRule,
 } from "@/lib/product-pricing";
 import { getProductBasePriceCny } from "@/lib/product-price-table";
+import { getProductSizePrice, getProductSizePrices } from "@/lib/product-size-prices";
 import { getModelLabel, getProductModel, getProductSizeModels } from "@/lib/product-models";
 import {
   getEthanolWholesaleCopy,
@@ -379,6 +381,7 @@ export default async function ProductDetailPage({
   const productModel = getProductModel(product.id);
   const sizeModels = getProductSizeModels(product.id);
   const priceCopy = getPriceCopy(lang);
+  const hasSizePrices = getProductSizePrices(product.id).length > 0;
   const pricingRule = getPricingRule(lang);
   const localizedOfferPrice = convertCnyPrice(displayPriceCny, lang);
   const modelProperty = productModel
@@ -1072,20 +1075,31 @@ export default async function ProductDetailPage({
               )}
             </div>
             <div className="mt-5 overflow-x-auto rounded-[8px] border border-[#e5e5ea]">
-              <table className="w-full min-w-[520px] border-collapse text-left text-sm">
+              <table className="w-full min-w-[640px] border-collapse text-left text-sm">
                 <thead className="bg-[#f5f5f7] text-[#1d1d1f]">
                   <tr>
                     <th className="px-4 py-3 font-semibold">{lang === "zh" ? "尺寸" : "Size"}</th>
                     <th className="px-4 py-3 font-semibold">{modelLabel}</th>
+                    {hasSizePrices && (
+                      <th className="px-4 py-3 font-semibold">{priceCopy.reference}</th>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
-                  {sizeModels.map((item) => (
-                    <tr key={item.model} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
-                      <td className="px-4 py-3 text-[#5f5f64]">{item.size}</td>
-                      <td className="px-4 py-3 font-mono font-bold text-[#1d1d1f]">{item.model}</td>
-                    </tr>
-                  ))}
+                  {sizeModels.map((item) => {
+                    const sizePrice = getProductSizePrice(product.id, item.model);
+                    return (
+                      <tr key={item.model} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
+                        <td className="px-4 py-3 text-[#5f5f64]">{item.size}</td>
+                        <td className="px-4 py-3 font-mono font-bold text-[#1d1d1f]">{item.model}</td>
+                        {hasSizePrices && (
+                          <td className="px-4 py-3 font-semibold text-[#c2410c]">
+                            {sizePrice ? `${formatLocalizedPrice(sizePrice.wholesalePriceCny, lang)} / ${priceCopy.perUnit}` : "-"}
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
