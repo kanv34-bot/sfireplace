@@ -8,6 +8,7 @@ import {
 } from "@/lib/core-wholesale";
 import { formatLocalizedPrice, getPriceCopy } from "@/lib/product-pricing";
 import { getModelLabel, getProductModel, getProductSizeModels } from "@/lib/product-models";
+import { getProductSizePrices } from "@/lib/product-size-prices";
 
 type Props = {
   lang: string;
@@ -18,6 +19,149 @@ type Props = {
 
 const whatsappUrl =
   "https://wa.me/8618028181668?text=Hello%2C%20I%20would%20like%20a%20wholesale%20quotation.%20Please%20send%20MOQ%2C%20specifications%2C%20lead%20time%2C%20and%20OEM%2FODM%20options.";
+
+const sizeQuoteCopy = {
+  zh: {
+    title: "尺寸报价明细",
+    note: "价格来自 M10 人民币报价表，页面按网站固定汇率换算为各语种参考价；最终报价按规格、数量、包装和贸易条款确认。",
+    model: "型号",
+    size: "尺寸",
+    productSize: "产品尺寸",
+    packingSize: "包装尺寸",
+    grossWeight: "毛重",
+    wholesale: "批发价（起订量10）",
+    retail: "零售价参考",
+    woodCrate: "木架加价",
+    woodCrateSize: "木架尺寸 / 重量",
+    kg: "kg",
+  },
+  en: {
+    title: "Size Quotation Details",
+    note: "Prices are imported from the M10 quotation sheet in CNY and converted by the website's fixed reference rates. Final quotation depends on specification, quantity, packing, and trade terms.",
+    model: "Model",
+    size: "Size",
+    productSize: "Product size",
+    packingSize: "Packing size",
+    grossWeight: "G.W.",
+    wholesale: "Wholesale price (MOQ 10)",
+    retail: "Retail reference",
+    woodCrate: "Wood crate add-on",
+    woodCrateSize: "Wood crate size / weight",
+    kg: "kg",
+  },
+  de: {
+    title: "Preisdetails nach Größe",
+    note: "Die Preise stammen aus dem M10-Angebotsblatt in CNY und werden mit den festen Referenzkursen der Website umgerechnet. Das endgültige Angebot hängt von Spezifikation, Menge, Verpackung und Handelsbedingungen ab.",
+    model: "Modell",
+    size: "Größe",
+    productSize: "Produktgröße",
+    packingSize: "Verpackungsmaß",
+    grossWeight: "Bruttogewicht",
+    wholesale: "Großhandelspreis (MOQ 10)",
+    retail: "Retail-Referenz",
+    woodCrate: "Aufpreis Holzkiste",
+    woodCrateSize: "Holzkistenmaß / Gewicht",
+    kg: "kg",
+  },
+  fr: {
+    title: "Détails de prix par taille",
+    note: "Les prix proviennent de la feuille de devis M10 en CNY et sont convertis avec les taux de référence fixes du site. Le devis final dépend des spécifications, de la quantité, de l'emballage et des conditions commerciales.",
+    model: "Modèle",
+    size: "Taille",
+    productSize: "Dimensions produit",
+    packingSize: "Dimensions colis",
+    grossWeight: "Poids brut",
+    wholesale: "Prix de gros (MOQ 10)",
+    retail: "Référence détail",
+    woodCrate: "Supplément caisse bois",
+    woodCrateSize: "Caisse bois / poids",
+    kg: "kg",
+  },
+  it: {
+    title: "Dettagli prezzo per misura",
+    note: "I prezzi derivano dal foglio di quotazione M10 in CNY e sono convertiti con i tassi di riferimento fissi del sito. Il preventivo finale dipende da specifiche, quantità, imballo e condizioni commerciali.",
+    model: "Modello",
+    size: "Misura",
+    productSize: "Dimensioni prodotto",
+    packingSize: "Dimensioni imballo",
+    grossWeight: "Peso lordo",
+    wholesale: "Prezzo wholesale (MOQ 10)",
+    retail: "Riferimento retail",
+    woodCrate: "Supplemento cassa legno",
+    woodCrateSize: "Cassa legno / peso",
+    kg: "kg",
+  },
+  es: {
+    title: "Detalles de precio por tamaño",
+    note: "Los precios provienen de la hoja de cotización M10 en CNY y se convierten con los tipos de referencia fijos del sitio. La cotización final depende de especificación, cantidad, embalaje y términos comerciales.",
+    model: "Modelo",
+    size: "Tamaño",
+    productSize: "Medida producto",
+    packingSize: "Medida embalaje",
+    grossWeight: "Peso bruto",
+    wholesale: "Precio mayorista (MOQ 10)",
+    retail: "Referencia minorista",
+    woodCrate: "Extra caja madera",
+    woodCrateSize: "Caja madera / peso",
+    kg: "kg",
+  },
+  pt: {
+    title: "Detalhes de preço por tamanho",
+    note: "Os preços vêm da planilha de cotação M10 em CNY e são convertidos pelas taxas fixas de referência do site. A cotação final depende de especificação, quantidade, embalagem e termos comerciais.",
+    model: "Modelo",
+    size: "Tamanho",
+    productSize: "Dimensão produto",
+    packingSize: "Dimensão embalagem",
+    grossWeight: "Peso bruto",
+    wholesale: "Preço atacado (MOQ 10)",
+    retail: "Referência varejo",
+    woodCrate: "Adicional caixa madeira",
+    woodCrateSize: "Caixa madeira / peso",
+    kg: "kg",
+  },
+  ru: {
+    title: "Цены по размерам",
+    note: "Цены импортированы из прайс-листа M10 в CNY и пересчитаны по фиксированным справочным курсам сайта. Итоговое предложение зависит от спецификации, количества, упаковки и условий поставки.",
+    model: "Модель",
+    size: "Размер",
+    productSize: "Размер изделия",
+    packingSize: "Размер упаковки",
+    grossWeight: "Вес брутто",
+    wholesale: "Оптовая цена (MOQ 10)",
+    retail: "Розничный ориентир",
+    woodCrate: "Доплата за обрешетку",
+    woodCrateSize: "Обрешетка / вес",
+    kg: "кг",
+  },
+  ja: {
+    title: "サイズ別見積詳細",
+    note: "価格は M10 の CNY 見積表から取り込み、サイト固定の参考レートで各言語の通貨へ換算しています。最終見積は仕様、数量、梱包、取引条件により確定します。",
+    model: "型番",
+    size: "サイズ",
+    productSize: "製品寸法",
+    packingSize: "梱包寸法",
+    grossWeight: "総重量",
+    wholesale: "卸売価格（MOQ 10）",
+    retail: "小売参考",
+    woodCrate: "木枠追加費",
+    woodCrateSize: "木枠寸法 / 重量",
+    kg: "kg",
+  },
+  ar: {
+    title: "تفاصيل السعر حسب المقاس",
+    note: "تم استيراد الأسعار من جدول عرض M10 باليوان الصيني وتحويلها حسب أسعار الصرف المرجعية الثابتة في الموقع. يعتمد السعر النهائي على المواصفات والكمية والتغليف وشروط التجارة.",
+    model: "الموديل",
+    size: "المقاس",
+    productSize: "مقاس المنتج",
+    packingSize: "مقاس التغليف",
+    grossWeight: "الوزن الإجمالي",
+    wholesale: "سعر الجملة (MOQ 10)",
+    retail: "مرجع التجزئة",
+    woodCrate: "إضافة صندوق خشبي",
+    woodCrateSize: "مقاس الصندوق / الوزن",
+    kg: "كجم",
+  },
+};
 
 export default function CoreWholesaleDetails({
   lang,
@@ -33,8 +177,10 @@ export default function CoreWholesaleDetails({
   const containerRows = config.containerRows;
   const productDetail = getCoreProductDetail(productId, lang);
   const priceCopy = getPriceCopy(lang);
+  const quoteCopy = sizeQuoteCopy[(lang in sizeQuoteCopy ? lang : "en") as keyof typeof sizeQuoteCopy];
   const modelLabel = getModelLabel(lang);
   const productModel = getProductModel(productId);
+  const sizePriceRows = getProductSizePrices(productId);
   const sizeModelBySize = new Map(getProductSizeModels(productId).map((item) => [item.size, item.model]));
   const hasModelColumn = Boolean(productModel || containerRows?.length);
   const displayContainerRows = containerRows?.length
@@ -139,6 +285,61 @@ export default function CoreWholesaleDetails({
             {t.requestQuote}
           </Link>
         </div>
+
+        {sizePriceRows.length > 0 && (
+          <section className="mt-12 rounded-[8px] border border-[#ece7e1] bg-white p-5 sm:p-6">
+            <h2 className="text-xl font-bold text-[#1d1d1f]">{quoteCopy.title}</h2>
+            <div className="mt-5 overflow-x-auto rounded-[8px] border border-[#e5e5ea]">
+              <table className="w-full min-w-[1220px] border-collapse text-left text-sm">
+                <thead className="bg-[#f5f5f7] text-[#1d1d1f]">
+                  <tr>
+                    {[
+                      quoteCopy.model,
+                      quoteCopy.size,
+                      quoteCopy.productSize,
+                      quoteCopy.packingSize,
+                      quoteCopy.grossWeight,
+                      quoteCopy.wholesale,
+                      quoteCopy.retail,
+                      quoteCopy.woodCrate,
+                      quoteCopy.woodCrateSize,
+                    ].map((heading) => (
+                      <th key={heading} className="whitespace-nowrap px-4 py-3 font-semibold">{heading}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {sizePriceRows.map((row) => (
+                    <tr key={row.sizeModel} className="border-t border-[#e5e5ea] odd:bg-white even:bg-[#fafafa]">
+                      <td className="px-4 py-4 font-mono font-bold text-[#1d1d1f]">{row.sizeModel}</td>
+                      <td className="px-4 py-4 font-medium text-[#1d1d1f]">{row.size}</td>
+                      <td className="px-4 py-4 text-[#5f5f64]">{row.productSize ?? "-"}</td>
+                      <td className="px-4 py-4 text-[#5f5f64]">{row.packingSize ?? "-"}</td>
+                      <td className="px-4 py-4 text-[#5f5f64]">
+                        {row.grossWeightKg ? `${row.grossWeightKg} ${quoteCopy.kg}` : "-"}
+                      </td>
+                      <td className="px-4 py-4 font-semibold text-[#c2410c]">
+                        {formatLocalizedPrice(row.wholesalePriceCny, lang)} / {priceCopy.perUnit}
+                      </td>
+                      <td className="px-4 py-4 text-[#5f5f64]">
+                        {row.retailPriceCny ? formatLocalizedPrice(row.retailPriceCny, lang) : "-"}
+                      </td>
+                      <td className="px-4 py-4 text-[#5f5f64]">
+                        {row.woodCratePriceCny ? formatLocalizedPrice(row.woodCratePriceCny, lang) : "-"}
+                      </td>
+                      <td className="px-4 py-4 text-[#5f5f64]">
+                        {row.woodCrateSize
+                          ? `${row.woodCrateSize}${row.woodCrateWeightKg ? ` / ${row.woodCrateWeightKg} ${quoteCopy.kg}` : ""}`
+                          : "-"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-xs leading-5 text-[#86868b]">{quoteCopy.note}</p>
+          </section>
+        )}
 
         {hasContainerData && (
           <section className="mt-12 rounded-[8px] border border-[#ece7e1] bg-white p-5 sm:p-6">

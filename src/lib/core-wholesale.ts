@@ -167,6 +167,56 @@ const coreProductDetails: Record<string, Partial<Record<Locale, CoreProductDetai
       ],
     },
   },
+  p4_11: {
+    zh: {
+      eyebrow: "M10 智能3D雾化壁炉 · 工厂批发资料",
+      title: "按 M10 报价表整理的智能雾化壁炉批发页面",
+      description:
+        "M10 是面向海外经销商、设计公司、酒店工程和品牌客户的智能 3D 雾化壁炉系列。页面已按 600–3000 mm 全尺寸报价表整理，客户可以直接查看尺寸型号、批发价、零售参考价、产品尺寸、包装尺寸、毛重、木架加价和装柜参考，方便做进口采购、项目报价和 OEM/ODM 选型。",
+      specTitle: "M10 报价对应核心参数",
+      specRows: [
+        ["产品类型", "智能 3D 雾化壁炉 / 水雾壁炉核心模块"],
+        ["尺寸范围", "600 / 700 / 800 / 900 / 1000 / 1200 / 1400 / 1500 / 1600 / 1800 / 2000 / 2400 / 2500 / 2800 / 3000 mm"],
+        ["产品截面", "深度 210 mm，高度 200 mm，长度按尺寸型号变化"],
+        ["包装截面", "270 × 270 mm，包装长度按产品长度增加约 80 mm"],
+        ["毛重范围", "约 14–56 kg，随长度增加"],
+        ["木架包装", "可选木架加固包装，木架加价和重量已按尺寸型号单独列出"],
+        ["适用客户", "海外进口商、壁炉品牌、室内设计项目、酒店会所工程和定制安装商"],
+      ],
+      tradeTitle: "报价、包装和采购说明",
+      tradeRows: [
+        ["价格口径", "尺寸报价按 M10 报价表人民币“批发价 起订量10”导入，页面自动换算各语种参考货币"],
+        ["起订数量", "10 台起订；可先购买 1 台样品确认雾化火焰、控制方式、包装和安装细节"],
+        ["包装方式", "常规为出口纸箱，长尺寸或工程采购建议选择木架加固包装"],
+        ["定制支持", "支持长度组合、控制方式、外箱标签、说明书语言、品牌铭牌和项目包装文件定制"],
+        ["最终确认", "最终成交价以确认尺寸、数量、包装方式、目的港、贸易条款和订单合同为准"],
+      ],
+    },
+    en: {
+      eyebrow: "M10 Smart 3D Water Vapor Fireplace · Factory Wholesale Data",
+      title: "Smart mist fireplace wholesale page organized from the M10 quotation sheet",
+      description:
+        "M10 is a smart 3D water vapor fireplace series for overseas distributors, design firms, hotel projects, and private-label buyers. The page now follows the full 600–3000 mm quotation sheet, including size model, wholesale price, retail reference, product dimensions, packing dimensions, gross weight, wooden-crate add-on, and container loading reference.",
+      specTitle: "Core parameters linked to the M10 quotation",
+      specRows: [
+        ["Product type", "Smart 3D water vapor fireplace / mist fireplace core module"],
+        ["Size range", "600 / 700 / 800 / 900 / 1000 / 1200 / 1400 / 1500 / 1600 / 1800 / 2000 / 2400 / 2500 / 2800 / 3000 mm"],
+        ["Product section", "210 mm depth, 200 mm height, length varies by size model"],
+        ["Packing section", "270 × 270 mm; packing length is about 80 mm longer than product length"],
+        ["Gross weight range", "Approx. 14–56 kg depending on length"],
+        ["Wooden crate packing", "Optional reinforced wooden-crate packing; add-on price and weight are listed by size model"],
+        ["Buyer type", "Overseas importers, fireplace brands, interior design projects, hotel projects, and custom installers"],
+      ],
+      tradeTitle: "Quotation, packing, and purchasing notes",
+      tradeRows: [
+        ["Price basis", "Size prices are imported from the M10 quotation sheet in CNY as wholesale prices for MOQ 10 and converted by the website into reference currencies"],
+        ["MOQ", "MOQ 10 units; one paid sample can be ordered first to confirm mist flame, control, packing, and installation details"],
+        ["Packing", "Standard export carton; reinforced wooden crate is recommended for long sizes or project purchasing"],
+        ["Customization", "Length combination, control method, carton label, manual language, brand nameplate, and project packing documents can be customized"],
+        ["Final confirmation", "Final price depends on confirmed size, quantity, packing method, destination port, trade terms, and sales contract"],
+      ],
+    },
+  },
 };
 
 const translatedNames: Partial<Record<Locale, Record<string, string>>> = {

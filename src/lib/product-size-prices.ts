@@ -2,28 +2,33 @@ export type ProductSizePriceRow = {
   productId: string;
   sizeModel: string;
   size: string;
+  productSize?: string;
+  packingSize?: string;
+  grossWeightKg?: number;
   wholesalePriceCny: number;
   retailPriceCny?: number;
   woodCratePriceCny?: number;
-  sourceWholesaleUsd?: number;
+  woodCrateSize?: string;
+  woodCrateWeightKg?: number;
+  sourceWholesaleCny?: number;
 };
 
 export const productSizePriceTable: ProductSizePriceRow[] = [
-  { productId: "p4_11", sizeModel: "M1006", size: "600 mm", wholesalePriceCny: 6530, retailPriceCny: 7180, woodCratePriceCny: 270, sourceWholesaleUsd: 913.60 },
-  { productId: "p4_11", sizeModel: "M1007", size: "700 mm", wholesalePriceCny: 6900, retailPriceCny: 7590, woodCratePriceCny: 290, sourceWholesaleUsd: 966.31 },
-  { productId: "p4_11", sizeModel: "M1008", size: "800 mm", wholesalePriceCny: 7140, retailPriceCny: 7860, woodCratePriceCny: 310, sourceWholesaleUsd: 999.85 },
-  { productId: "p4_11", sizeModel: "M1009", size: "900 mm", wholesalePriceCny: 7550, retailPriceCny: 8310, woodCratePriceCny: 340, sourceWholesaleUsd: 1057.35 },
-  { productId: "p4_11", sizeModel: "M1010", size: "1000 mm", wholesalePriceCny: 7960, retailPriceCny: 8760, woodCratePriceCny: 360, sourceWholesaleUsd: 1114.85 },
-  { productId: "p4_11", sizeModel: "M1012", size: "1200 mm", wholesalePriceCny: 9200, retailPriceCny: 10110, woodCratePriceCny: 400, sourceWholesaleUsd: 1287.34 },
-  { productId: "p4_11", sizeModel: "M1014", size: "1400 mm", wholesalePriceCny: 10170, retailPriceCny: 11180, woodCratePriceCny: 440, sourceWholesaleUsd: 1423.11 },
-  { productId: "p4_11", sizeModel: "M1015", size: "1500 mm", wholesalePriceCny: 10670, retailPriceCny: 11730, woodCratePriceCny: 460, sourceWholesaleUsd: 1493.38 },
-  { productId: "p4_11", sizeModel: "M1016", size: "1600 mm", wholesalePriceCny: 11120, retailPriceCny: 12240, woodCratePriceCny: 490, sourceWholesaleUsd: 1557.27 },
-  { productId: "p4_11", sizeModel: "M1018", size: "1800 mm", wholesalePriceCny: 11590, retailPriceCny: 12750, woodCratePriceCny: 530, sourceWholesaleUsd: 1622.76 },
-  { productId: "p4_11", sizeModel: "M1020", size: "2000 mm", wholesalePriceCny: 11960, retailPriceCny: 13150, woodCratePriceCny: 570, sourceWholesaleUsd: 1673.87 },
-  { productId: "p4_11", sizeModel: "M1024", size: "2400 mm", wholesalePriceCny: 14400, retailPriceCny: 15840, woodCratePriceCny: 660, sourceWholesaleUsd: 2015.67 },
-  { productId: "p4_11", sizeModel: "M1025", size: "2500 mm", wholesalePriceCny: 14830, retailPriceCny: 16310, woodCratePriceCny: 680, sourceWholesaleUsd: 2076.36 },
-  { productId: "p4_11", sizeModel: "M1028", size: "2800 mm", wholesalePriceCny: 16140, retailPriceCny: 17760, woodCratePriceCny: 740, sourceWholesaleUsd: 2260.04 },
-  { productId: "p4_11", sizeModel: "M1030", size: "3000 mm", wholesalePriceCny: 17000, retailPriceCny: 18700, woodCratePriceCny: 790, sourceWholesaleUsd: 2379.83 },
+  { productId: "p4_11", sizeModel: "M1006", size: "600 mm", productSize: "600 × 210 × 200 mm", packingSize: "680 × 270 × 270 mm", grossWeightKg: 14, wholesalePriceCny: 913.5984, retailPriceCny: 1004.95824, woodCratePriceCny: 38, woodCrateSize: "700 × 310 × 320 mm", woodCrateWeightKg: 15, sourceWholesaleCny: 913.5984 },
+  { productId: "p4_11", sizeModel: "M1007", size: "700 mm", productSize: "700 × 210 × 200 mm", packingSize: "780 × 270 × 270 mm", grossWeightKg: 15, wholesalePriceCny: 966.306, retailPriceCny: 1062.9366, woodCratePriceCny: 41, woodCrateSize: "780 × 270 × 270 mm", woodCrateWeightKg: 16, sourceWholesaleCny: 966.306 },
+  { productId: "p4_11", sizeModel: "M1008", size: "800 mm", productSize: "800 × 210 × 200 mm", packingSize: "880 × 270 × 270 mm", grossWeightKg: 16, wholesalePriceCny: 999.8472, retailPriceCny: 1099.83192, woodCratePriceCny: 44, woodCrateSize: "880 × 270 × 270 mm", woodCrateWeightKg: 17, sourceWholesaleCny: 999.8472 },
+  { productId: "p4_11", sizeModel: "M1009", size: "900 mm", productSize: "900 × 210 × 200 mm", packingSize: "980 × 270 × 270 mm", grossWeightKg: 17, wholesalePriceCny: 1057.3464, retailPriceCny: 1163.08104, woodCratePriceCny: 47, woodCrateSize: "980 × 270 × 270 mm", woodCrateWeightKg: 18, sourceWholesaleCny: 1057.3464 },
+  { productId: "p4_11", sizeModel: "M1010", size: "1000 mm", productSize: "1000 × 210 × 200 mm", packingSize: "1080 × 270 × 270 mm", grossWeightKg: 18, wholesalePriceCny: 1114.8456, retailPriceCny: 1226.33016, woodCratePriceCny: 50, woodCrateSize: "1080 × 270 × 270 mm", woodCrateWeightKg: 19, sourceWholesaleCny: 1114.8456 },
+  { productId: "p4_11", sizeModel: "M1012", size: "1200 mm", productSize: "1200 × 210 × 200 mm", packingSize: "1280 × 270 × 270 mm", grossWeightKg: 21, wholesalePriceCny: 1287.3432, retailPriceCny: 1416.07752, woodCratePriceCny: 56, woodCrateSize: "1280 × 270 × 270 mm", woodCrateWeightKg: 22, sourceWholesaleCny: 1287.3432 },
+  { productId: "p4_11", sizeModel: "M1014", size: "1400 mm", productSize: "1400 × 210 × 200 mm", packingSize: "1480 × 270 × 270 mm", grossWeightKg: 24, wholesalePriceCny: 1423.1052, retailPriceCny: 1565.41572, woodCratePriceCny: 62, woodCrateSize: "1480 × 270 × 270 mm", woodCrateWeightKg: 25, sourceWholesaleCny: 1423.1052 },
+  { productId: "p4_11", sizeModel: "M1015", size: "1500 mm", productSize: "1500 × 210 × 200 mm", packingSize: "1580 × 270 × 270 mm", grossWeightKg: 26, wholesalePriceCny: 1493.382, retailPriceCny: 1642.7202, woodCratePriceCny: 65, woodCrateSize: "1580 × 270 × 270 mm", woodCrateWeightKg: 27, sourceWholesaleCny: 1493.382 },
+  { productId: "p4_11", sizeModel: "M1016", size: "1600 mm", productSize: "1600 × 210 × 200 mm", packingSize: "1680 × 270 × 270 mm", grossWeightKg: 28, wholesalePriceCny: 1557.27, retailPriceCny: 1712.997, woodCratePriceCny: 68, woodCrateSize: "1680 × 270 × 270 mm", woodCrateWeightKg: 29, sourceWholesaleCny: 1557.27 },
+  { productId: "p4_11", sizeModel: "M1018", size: "1800 mm", productSize: "1800 × 210 × 200 mm", packingSize: "1880 × 270 × 270 mm", grossWeightKg: 32, wholesalePriceCny: 1622.7552, retailPriceCny: 1785.03072, woodCratePriceCny: 74, woodCrateSize: "1880 × 270 × 270 mm", woodCrateWeightKg: 33, sourceWholesaleCny: 1622.7552 },
+  { productId: "p4_11", sizeModel: "M1020", size: "2000 mm", productSize: "2000 × 210 × 200 mm", packingSize: "2080 × 270 × 270 mm", grossWeightKg: 36, wholesalePriceCny: 1673.8656, retailPriceCny: 1841.25216, woodCratePriceCny: 80, woodCrateSize: "2080 × 270 × 270 mm", woodCrateWeightKg: 37, sourceWholesaleCny: 1673.8656 },
+  { productId: "p4_11", sizeModel: "M1024", size: "2400 mm", productSize: "2400 × 210 × 200 mm", packingSize: "2480 × 270 × 270 mm", grossWeightKg: 42, wholesalePriceCny: 2015.6664, retailPriceCny: 2217.23304, woodCratePriceCny: 92, woodCrateSize: "2480 × 270 × 270 mm", woodCrateWeightKg: 43, sourceWholesaleCny: 2015.6664 },
+  { productId: "p4_11", sizeModel: "M1025", size: "2500 mm", productSize: "2500 × 210 × 200 mm", packingSize: "2580 × 270 × 270 mm", grossWeightKg: 45, wholesalePriceCny: 2076.36, retailPriceCny: 2283.996, woodCratePriceCny: 95, woodCrateSize: "2580 × 270 × 270 mm", woodCrateWeightKg: 46, sourceWholesaleCny: 2076.36 },
+  { productId: "p4_11", sizeModel: "M1028", size: "2800 mm", productSize: "2800 × 210 × 200 mm", packingSize: "2880 × 270 × 270 mm", grossWeightKg: 52, wholesalePriceCny: 2260.038, retailPriceCny: 2486.0418, woodCratePriceCny: 104, woodCrateSize: "2880 × 270 × 270 mm", woodCrateWeightKg: 53, sourceWholesaleCny: 2260.038 },
+  { productId: "p4_11", sizeModel: "M1030", size: "3000 mm", productSize: "3000 × 210 × 200 mm", packingSize: "3080 × 270 × 270 mm", grossWeightKg: 56, wholesalePriceCny: 2379.828, retailPriceCny: 2617.8108, woodCratePriceCny: 110, woodCrateSize: "3080 × 270 × 270 mm", woodCrateWeightKg: 57, sourceWholesaleCny: 2379.828 },
 ];
 
 const productSizePriceMap = new Map(productSizePriceTable.map((row) => [`${row.productId}:${row.sizeModel}`, row]));
