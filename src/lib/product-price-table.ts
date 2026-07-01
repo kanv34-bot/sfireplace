@@ -24,7 +24,7 @@ export const productPriceTable: ProductPriceRow[] = [
   { productId: "p4_69", priceCny: 1004.9582, note: "双面隔断雾化壁炉 M02 600mm 起，人民币报价" },
   { productId: "p4_68", priceCny: 14800, note: "全景雾化壁炉" },
   { productId: "p4_67", priceCny: 17800, note: "三面雾化壁炉" },
-  { productId: "p4_66", priceCny: 9800, note: "圆形雾化壁炉" },
+  { productId: "p4_66", priceCny: 960, note: "圆形雾化壁炉 M05 R300mm 起，人民币报价" },
   { productId: "p4_65", priceCny: 18800, note: "悬挂式雾化壁炉" },
   { productId: "p4_64", priceCny: 15800, note: "隔断式雾化壁炉" },
   { productId: "p4_63", priceCny: 23800, note: "太阳之眼雾化壁炉" },

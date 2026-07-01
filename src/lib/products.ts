@@ -827,7 +827,7 @@ const productCatalog: Product[] = [
     description: "圆形3D雾化火盆，适合会所、展厅、庭院半户外区域和艺术装置空间。",
     descriptionEn: "Round 3D mist fire bowl for clubs, showrooms, semi-outdoor patios, and art feature spaces.",
     installation: "圆形 / 火盆",
-    priceCny: 9800,
+    priceCny: 960,
     images: [
       `${MIST_SERIES}/product/round-mist-bowl.webp`,
       `${MIST_SERIES}/scene/round-mist-bowl.webp`,
