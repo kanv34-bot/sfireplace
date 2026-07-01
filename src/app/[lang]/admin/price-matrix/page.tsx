@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 const marketColumns = [
   { key: "zh", label: "中国", currency: "CNY" },
   { key: "en", label: "英语", currency: "USD" },
-  { key: "de", label: "德语", currency: "USD" },
-  { key: "fr", label: "法语", currency: "USD" },
-  { key: "es", label: "西班牙语", currency: "USD" },
-  { key: "pt", label: "葡萄牙语", currency: "USD" },
-  { key: "it", label: "意大利语", currency: "USD" },
-  { key: "ru", label: "俄语", currency: "USD" },
-  { key: "ja", label: "日语", currency: "USD" },
-  { key: "ar", label: "阿拉伯语", currency: "USD" },
+  { key: "de", label: "德语", currency: "EUR" },
+  { key: "fr", label: "法语", currency: "EUR" },
+  { key: "es", label: "西班牙语", currency: "EUR" },
+  { key: "pt", label: "葡萄牙语", currency: "EUR" },
+  { key: "it", label: "意大利语", currency: "EUR" },
+  { key: "ru", label: "俄语", currency: "RUB" },
+  { key: "ja", label: "日语", currency: "JPY" },
+  { key: "ar", label: "阿拉伯语", currency: "AED" },
 ] as const;
 
 export default async function PriceMatrixPage({

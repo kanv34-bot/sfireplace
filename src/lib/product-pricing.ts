@@ -1,6 +1,6 @@
 type Locale = "en" | "de" | "fr" | "it" | "es" | "ru" | "ja" | "zh" | "pt" | "ar";
 
-export type DisplayCurrency = "CNY" | "USD";
+export type DisplayCurrency = "CNY" | "USD" | "EUR" | "JPY" | "RUB" | "AED";
 
 type CurrencyRule = {
   currency: DisplayCurrency;
@@ -11,15 +11,15 @@ type CurrencyRule = {
 
 const currencyByLang: Record<Locale, CurrencyRule> = {
   zh: { currency: "CNY", rateFromCny: 1, roundTo: 10, locale: "zh-CN" },
-  en: { currency: "USD", rateFromCny: 0.14, roundTo: 10, locale: "en-US" },
-  de: { currency: "USD", rateFromCny: 0.14, roundTo: 10, locale: "en-US" },
-  fr: { currency: "USD", rateFromCny: 0.14, roundTo: 10, locale: "en-US" },
-  it: { currency: "USD", rateFromCny: 0.14, roundTo: 10, locale: "en-US" },
-  es: { currency: "USD", rateFromCny: 0.14, roundTo: 10, locale: "en-US" },
-  pt: { currency: "USD", rateFromCny: 0.14, roundTo: 10, locale: "en-US" },
-  ru: { currency: "USD", rateFromCny: 0.14, roundTo: 10, locale: "en-US" },
-  ja: { currency: "USD", rateFromCny: 0.14, roundTo: 10, locale: "en-US" },
-  ar: { currency: "USD", rateFromCny: 0.14, roundTo: 10, locale: "en-US" },
+  en: { currency: "USD", rateFromCny: 0.15, roundTo: 10, locale: "en-US" },
+  de: { currency: "EUR", rateFromCny: 0.13, roundTo: 10, locale: "de-DE" },
+  fr: { currency: "EUR", rateFromCny: 0.13, roundTo: 10, locale: "fr-FR" },
+  it: { currency: "EUR", rateFromCny: 0.13, roundTo: 10, locale: "it-IT" },
+  es: { currency: "EUR", rateFromCny: 0.13, roundTo: 10, locale: "es-ES" },
+  pt: { currency: "EUR", rateFromCny: 0.13, roundTo: 10, locale: "pt-PT" },
+  ru: { currency: "RUB", rateFromCny: 11.5, roundTo: 100, locale: "ru-RU" },
+  ja: { currency: "JPY", rateFromCny: 24, roundTo: 100, locale: "ja-JP" },
+  ar: { currency: "AED", rateFromCny: 0.54, roundTo: 10, locale: "ar-AE" },
 };
 
 const priceCopy: Record<Locale, {
