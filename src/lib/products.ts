@@ -765,7 +765,7 @@ const productCatalog: Product[] = [
     descriptionEn:
       "Linear 3D water vapor fireplace module for hotel lobbies, clubs, villas, and commercial feature walls, customizable by length, lighting, water access, and OEM/ODM requirements.",
     installation: "嵌入式 / 长条",
-    priceCny: 11800,
+    priceCny: 913.5984,
     images: [
       `${MIST_SERIES}/product/linear-mist-module.webp`,
       `${MIST_SERIES}/scene/linear-mist-module.webp`,

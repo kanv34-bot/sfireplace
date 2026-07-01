@@ -23,7 +23,7 @@ const whatsappUrl =
 const sizeQuoteCopy = {
   zh: {
     title: "尺寸报价明细",
-    note: "价格来自 M10 人民币报价表，页面按网站固定汇率换算为各语种参考价；最终报价按规格、数量、包装和贸易条款确认。",
+    note: "价格来自产品人民币报价表，页面按网站固定汇率换算为各语种参考价；最终报价按规格、数量、包装和贸易条款确认。",
     model: "型号",
     size: "尺寸",
     productSize: "产品尺寸",
@@ -37,7 +37,7 @@ const sizeQuoteCopy = {
   },
   en: {
     title: "Size Quotation Details",
-    note: "Prices are imported from the M10 quotation sheet in CNY and converted by the website's fixed reference rates. Final quotation depends on specification, quantity, packing, and trade terms.",
+    note: "Prices are imported from the product quotation sheet in CNY and converted by the website's fixed reference rates. Final quotation depends on specification, quantity, packing, and trade terms.",
     model: "Model",
     size: "Size",
     productSize: "Product size",
@@ -51,7 +51,7 @@ const sizeQuoteCopy = {
   },
   de: {
     title: "Preisdetails nach Größe",
-    note: "Die Preise stammen aus dem M10-Angebotsblatt in CNY und werden mit den festen Referenzkursen der Website umgerechnet. Das endgültige Angebot hängt von Spezifikation, Menge, Verpackung und Handelsbedingungen ab.",
+    note: "Die Preise stammen aus dem Produkt-Angebotsblatt in CNY und werden mit den festen Referenzkursen der Website umgerechnet. Das endgültige Angebot hängt von Spezifikation, Menge, Verpackung und Handelsbedingungen ab.",
     model: "Modell",
     size: "Größe",
     productSize: "Produktgröße",
@@ -65,7 +65,7 @@ const sizeQuoteCopy = {
   },
   fr: {
     title: "Détails de prix par taille",
-    note: "Les prix proviennent de la feuille de devis M10 en CNY et sont convertis avec les taux de référence fixes du site. Le devis final dépend des spécifications, de la quantité, de l'emballage et des conditions commerciales.",
+    note: "Les prix proviennent de la feuille de devis produit en CNY et sont convertis avec les taux de référence fixes du site. Le devis final dépend des spécifications, de la quantité, de l'emballage et des conditions commerciales.",
     model: "Modèle",
     size: "Taille",
     productSize: "Dimensions produit",
@@ -79,7 +79,7 @@ const sizeQuoteCopy = {
   },
   it: {
     title: "Dettagli prezzo per misura",
-    note: "I prezzi derivano dal foglio di quotazione M10 in CNY e sono convertiti con i tassi di riferimento fissi del sito. Il preventivo finale dipende da specifiche, quantità, imballo e condizioni commerciali.",
+    note: "I prezzi derivano dal foglio di quotazione prodotto in CNY e sono convertiti con i tassi di riferimento fissi del sito. Il preventivo finale dipende da specifiche, quantità, imballo e condizioni commerciali.",
     model: "Modello",
     size: "Misura",
     productSize: "Dimensioni prodotto",
@@ -93,7 +93,7 @@ const sizeQuoteCopy = {
   },
   es: {
     title: "Detalles de precio por tamaño",
-    note: "Los precios provienen de la hoja de cotización M10 en CNY y se convierten con los tipos de referencia fijos del sitio. La cotización final depende de especificación, cantidad, embalaje y términos comerciales.",
+    note: "Los precios provienen de la hoja de cotización del producto en CNY y se convierten con los tipos de referencia fijos del sitio. La cotización final depende de especificación, cantidad, embalaje y términos comerciales.",
     model: "Modelo",
     size: "Tamaño",
     productSize: "Medida producto",
@@ -107,7 +107,7 @@ const sizeQuoteCopy = {
   },
   pt: {
     title: "Detalhes de preço por tamanho",
-    note: "Os preços vêm da planilha de cotação M10 em CNY e são convertidos pelas taxas fixas de referência do site. A cotação final depende de especificação, quantidade, embalagem e termos comerciais.",
+    note: "Os preços vêm da planilha de cotação do produto em CNY e são convertidos pelas taxas fixas de referência do site. A cotação final depende de especificação, quantidade, embalagem e termos comerciais.",
     model: "Modelo",
     size: "Tamanho",
     productSize: "Dimensão produto",
@@ -121,7 +121,7 @@ const sizeQuoteCopy = {
   },
   ru: {
     title: "Цены по размерам",
-    note: "Цены импортированы из прайс-листа M10 в CNY и пересчитаны по фиксированным справочным курсам сайта. Итоговое предложение зависит от спецификации, количества, упаковки и условий поставки.",
+    note: "Цены импортированы из прайс-листа продукта в CNY и пересчитаны по фиксированным справочным курсам сайта. Итоговое предложение зависит от спецификации, количества, упаковки и условий поставки.",
     model: "Модель",
     size: "Размер",
     productSize: "Размер изделия",
@@ -135,7 +135,7 @@ const sizeQuoteCopy = {
   },
   ja: {
     title: "サイズ別見積詳細",
-    note: "価格は M10 の CNY 見積表から取り込み、サイト固定の参考レートで各言語の通貨へ換算しています。最終見積は仕様、数量、梱包、取引条件により確定します。",
+    note: "価格は製品の CNY 見積表から取り込み、サイト固定の参考レートで各言語の通貨へ換算しています。最終見積は仕様、数量、梱包、取引条件により確定します。",
     model: "型番",
     size: "サイズ",
     productSize: "製品寸法",
@@ -149,7 +149,7 @@ const sizeQuoteCopy = {
   },
   ar: {
     title: "تفاصيل السعر حسب المقاس",
-    note: "تم استيراد الأسعار من جدول عرض M10 باليوان الصيني وتحويلها حسب أسعار الصرف المرجعية الثابتة في الموقع. يعتمد السعر النهائي على المواصفات والكمية والتغليف وشروط التجارة.",
+    note: "تم استيراد الأسعار من جدول عرض المنتج باليوان الصيني وتحويلها حسب أسعار الصرف المرجعية الثابتة في الموقع. يعتمد السعر النهائي على المواصفات والكمية والتغليف وشروط التجارة.",
     model: "الموديل",
     size: "المقاس",
     productSize: "مقاس المنتج",
