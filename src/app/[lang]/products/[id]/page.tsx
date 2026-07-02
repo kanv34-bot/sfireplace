@@ -429,6 +429,25 @@ export default async function ProductDetailPage({
       fit: "cover" as const,
     },
   ];
+  const productGallery = product.images.map((src, index) => {
+    const isSceneImage = src.includes("/scene/");
+    const isDetailImage = src.includes("detail");
+    const label = [
+      localizedText(lang, "产品正面", "Product front"),
+      localizedText(lang, "产品角度", "Product angle"),
+      localizedText(lang, "细节特写", "Detail view"),
+      localizedText(lang, "住宅场景", "Residential scene"),
+      localizedText(lang, "商业场景", "Commercial scene"),
+      localizedText(lang, "安装场景", "Installation scene"),
+    ][index] ?? localizedText(lang, `图片 ${index + 1}`, `Image ${index + 1}`);
+
+    return {
+      src,
+      alt: `${productName} - ${label}`,
+      label,
+      fit: isSceneImage || isDetailImage ? "cover" as const : "contain" as const,
+    };
+  });
   const ethanolQuantityUnit = lang === "de" ? "Stück" : "pcs";
   const formatEthanolLoad = (value: string) =>
     lang === "de" ? value.replace("pcs", "Stück") : value;
@@ -620,6 +639,12 @@ export default async function ProductDetailPage({
           {isEthanol ? (
             <ProductGallery
               images={ethanolGallery}
+              category={product.category}
+              brand={localizedBrand}
+            />
+          ) : product.images.length > 2 ? (
+            <ProductGallery
+              images={productGallery}
               category={product.category}
               brand={localizedBrand}
             />
