@@ -785,10 +785,14 @@ const productCatalog: Product[] = [
     installation: "嵌入式 / 长条 / 仿木炭",
     priceCny: 1086.194,
     images: [
-      `${MIST_SERIES}/product/charcoal-linear-mist.webp`,
-      `${MIST_SERIES}/scene/linear-mist-module.webp`,
+      `${MIST_SERIES}/product/charcoal-linear-mist-front.webp`,
+      `${MIST_SERIES}/product/charcoal-linear-mist-angle.webp`,
+      `${MIST_SERIES}/product/charcoal-linear-mist-detail.webp`,
+      `${MIST_SERIES}/scene/charcoal-linear-mist-living-room.webp`,
+      `${MIST_SERIES}/scene/charcoal-linear-mist-hotel-lobby.webp`,
+      `${MIST_SERIES}/scene/charcoal-linear-mist-installation.webp`,
     ],
-    coverImage: `${MIST_SERIES}/product/charcoal-linear-mist.webp`,
+    coverImage: `${MIST_SERIES}/product/charcoal-linear-mist-front.webp`,
   },
   {
     id: "p4_69",
