@@ -44,6 +44,21 @@ const en: Record<string, string> = {
   "p7_19:description": "Triangle electric fireplace for design-focused interiors, display installations, and special wall structures with 500-700 mm side-length wholesale specifications.",
   "p7_20:name": "Arch Electric Fireplace",
   "p7_20:description": "Arch electric fireplace for European-style, luxury, and commercial display interiors, with 2DN500-2DN600 standard sizes and project customization support.",
+  "嵌入式 / 语音控制": "Built-in / voice control",
+  "嵌入式 / 音乐播放": "Built-in / music playback",
+  "嵌入式 / 户外防水": "Built-in / outdoor waterproof",
+  "圆形 / 仿真木柴": "Round / decorative logs",
+  "独立式 / 半球装饰": "Freestanding / hemisphere decorative",
+  "p4_71:name": "Voice-Control Linear Built-In 3D Mist Fireplace",
+  "p4_71:description": "Voice-control linear built-in 3D water vapor fireplace for hotels, villas, clubs, showrooms, and commercial feature walls. Length, lighting, packing, and OEM/ODM details can be customized for wholesale projects.",
+  "p4_72:name": "Music Playback Linear Built-In 3D Mist Fireplace",
+  "p4_72:description": "Music playback linear built-in 3D mist fireplace for show flats, hotel suites, clubs, and display spaces where atmosphere and flame presentation matter.",
+  "p4_73:name": "Outdoor Waterproof Linear Built-In 3D Mist Fireplace",
+  "p4_73:description": "Outdoor waterproof linear built-in 3D mist fireplace for patios, terraces, hotel outdoor seating, commercial lounge areas, and semi-outdoor projects.",
+  "p4_74:name": "Round Built-In 3D Mist Fireplace with Decorative Logs",
+  "p4_74:description": "Round built-in 3D mist fireplace with decorative logs for clubs, showrooms, hotel lounge areas, and decorative project installations.",
+  "p4_75:name": "Freestanding Hemisphere Decorative Mist Fireplace",
+  "p4_75:description": "Freestanding hemisphere decorative 3D mist fireplace for hotel lobbies, clubs, showrooms, commercial spaces, and interior display areas without chimney work.",
 };
 
 export default en;
