@@ -368,6 +368,8 @@ export default async function ProductDetailPage({
   const category = categories.find((c) => c.id === product.category);
   const productHoverImage = product.images[1];
   const hasProductScenePair = Boolean(productHoverImage?.includes("/scene/"));
+  const shouldContainPrimaryImage =
+    hasProductScenePair || product.coverImage.includes("/art-fireplace-series/original/");
   const isEthanol = product.id === "p3_14";
   const isMist = false;
   const isCoreWholesale = coreCategoryIds.has(product.category);
@@ -655,7 +657,7 @@ export default async function ProductDetailPage({
               category={product.category}
               brand={localizedBrand}
               className={`absolute inset-0 w-full h-full transition-all duration-500 ${
-                hasProductScenePair
+                shouldContainPrimaryImage
                   ? "object-contain p-8 sm:p-10 group-hover:opacity-0"
                   : "object-cover"
               }`}

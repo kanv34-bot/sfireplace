@@ -165,6 +165,22 @@ const pt_data: Record<string, string> = {
   "p88_51:description": "Fogo externo para jardim e pátio, designs personalizáveis.",
   "p8_52:name": "Kit de Ferramentas para Lareira",
   "p8_52:description": "Kit de ferramentas para lareira dinamarquês Rais.",
+  "燃木壁炉": "Lareira a lenha",
+  "悬挂式 / 烟囱款": "Suspensa / com chaminé",
+  "装饰 / 落地款": "Decorativa / independente",
+  "球形 / 装饰款": "Esférica / decorativa",
+  "p1_72:name": "Lareira a lenha suspensa tipo disco",
+  "p1_72:description": "Lareira a lenha suspensa tipo disco para moradias, lodges, clubes e lounges comerciais. Inclui chaminé padrão de 2 m; flange, cor, seções, embalagem e detalhes OEM/ODM são confirmados por projeto.",
+  "p3_27:name": "Lareira a etanol suspensa tipo disco",
+  "p3_27:description": "Lareira a bioetanol suspensa tipo disco para moradias, hotéis, clubes, apartamentos modelo e projetos decorativos comerciais, com dados de atacado e embalagem de exportação.",
+  "p4_76:name": "Lareira 3D a vapor de água suspensa tipo disco",
+  "p4_76:description": "Lareira 3D a vapor de água suspensa para lobbies de hotéis, clubes, moradias e interiores comerciais que precisam de efeito de chama sem fogo aberto.",
+  "p3_28:name": "Lareira decorativa independente a etanol",
+  "p3_28:description": "Lareira decorativa independente a etanol para salas de moradias, lounges de hotéis, clubes, restaurantes e showrooms com tamanhos de atacado e dados de embalagem.",
+  "p4_77:name": "Lareira decorativa independente 3D a vapor de água",
+  "p4_77:description": "Lareira decorativa independente 3D a vapor de água para hotéis, clubes, showrooms e projetos residenciais onde não se deseja chama aberta.",
+  "p3_29:name": "Lareira decorativa esférica a etanol",
+  "p3_29:description": "Lareira decorativa esférica a etanol para moradias, hotéis, restaurantes, clubes e showrooms, com vários diâmetros para fornecimento no atacado.",
 };
 
 export default pt_data;

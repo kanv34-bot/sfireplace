@@ -229,6 +229,22 @@ const de_data: Record<string, string> = {
   "p9_2:description": "Projektionssystem für Heimkino, Ausstellungen, Schaufenster und immersive Raumkonzepte mit großformatigen Flammen- und Themenvideos.",
   "p9_3:name": "Immersive Flammen-Videowand",
   "p9_3:description": "Modulare Flammen-Videowand für Marken-Showrooms, Hotellobbys, Bühnenhintergründe und Gewerbeflächen.",
+  "燃木壁炉": "Holzkamin",
+  "悬挂式 / 烟囱款": "Hängend / mit Schornstein",
+  "装饰 / 落地款": "Dekorativ / freistehend",
+  "球形 / 装饰款": "Kugelförmig / dekorativ",
+  "p1_72:name": "Hängender Holzkamin in Scheibenform",
+  "p1_72:description": "Hängender Holzkamin in Scheibenform für Villen, Lodges, Clubs und gewerbliche Loungebereiche. Standardmäßig mit 2 m Schornstein; Flansch, Farbe, Schornsteinsegmente, Verpackung und OEM/ODM-Details werden projektbezogen bestätigt.",
+  "p3_27:name": "Hängender Ethanolkamin in Scheibenform",
+  "p3_27:description": "Hängender Bioethanol-Kamin in Scheibenform für Villen, Hotels, Clubs, Musterwohnungen und dekorative Gewerbeprojekte mit Großhandelsdaten, Musterpreis und Exportverpackung.",
+  "p4_76:name": "Hängender 3D-Wasserdampf-Kamin in Scheibenform",
+  "p4_76:description": "Hängender 3D-Wasserdampf-Kamin für Hotellobbys, Clubs, Villen und Innenräume, in denen Flammenatmosphäre ohne offene Flamme gewünscht ist.",
+  "p3_28:name": "Dekorativer freistehender Ethanolkamin",
+  "p3_28:description": "Dekorativer freistehender Ethanolkamin für Villen, Hotellounges, Clubs, Restaurants und Showrooms mit Großhandelsgrößen und Exportverpackungsdaten.",
+  "p4_77:name": "Dekorativer freistehender 3D-Wasserdampf-Kamin",
+  "p4_77:description": "Dekorativer freistehender 3D-Wasserdampf-Kamin für Hotels, Clubs, Showrooms und Wohnprojekte ohne offene Flamme.",
+  "p3_29:name": "Kugelförmiger dekorativer Ethanolkamin",
+  "p3_29:description": "Kugelförmiger dekorativer Ethanolkamin für Villen, Hotels, Restaurants, Clubs und Showrooms mit mehreren Durchmesseroptionen für den Großhandel.",
 };
 
 export default de_data;

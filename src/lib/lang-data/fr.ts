@@ -165,6 +165,22 @@ const fr_data: Record<string, string> = {
   "p88_51:description": "Foyer extérieur pour jardin et terrasse, designs personnalisables.",
   "p8_52:name": "Kit d'Outils de Cheminée",
   "p8_52:description": "Kit d'outils de cheminée danois Rais, accessoires de haute qualité.",
+  "燃木壁炉": "Cheminée à bois",
+  "悬挂式 / 烟囱款": "Suspendue / avec conduit",
+  "装饰 / 落地款": "Décorative / autonome",
+  "球形 / 装饰款": "Sphérique / décorative",
+  "p1_72:name": "Cheminée à bois suspendue en forme de soucoupe",
+  "p1_72:description": "Cheminée à bois suspendue en forme de soucoupe pour villas, lodges, clubs et espaces lounge commerciaux. Conduit de 2 m inclus; bride, couleur, sections de conduit, emballage et détails OEM/ODM à confirmer par projet.",
+  "p3_27:name": "Cheminée éthanol suspendue en forme de soucoupe",
+  "p3_27:description": "Cheminée bioéthanol suspendue en forme de soucoupe pour villas, hôtels, clubs, appartements témoins et projets décoratifs commerciaux, avec données de gros et emballage export.",
+  "p4_76:name": "Cheminée 3D à vapeur d’eau suspendue en forme de soucoupe",
+  "p4_76:description": "Cheminée 3D à vapeur d’eau suspendue pour halls d’hôtel, clubs, villas et espaces intérieurs recherchant une ambiance flamme sans feu ouvert.",
+  "p3_28:name": "Cheminée éthanol décorative autonome",
+  "p3_28:description": "Cheminée éthanol décorative autonome pour salons de villa, lounges d’hôtel, clubs, restaurants et showrooms, avec tailles de gros et données d’emballage export.",
+  "p4_77:name": "Cheminée 3D à vapeur d’eau décorative autonome",
+  "p4_77:description": "Cheminée 3D à vapeur d’eau décorative autonome pour hôtels, clubs, showrooms et projets résidentiels sans flamme ouverte.",
+  "p3_29:name": "Cheminée éthanol décorative sphérique",
+  "p3_29:description": "Cheminée éthanol décorative sphérique pour villas, hôtels, restaurants, clubs et showrooms, avec plusieurs diamètres pour la fourniture en gros.",
 };
 
 export default fr_data;

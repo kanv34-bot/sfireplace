@@ -104,6 +104,8 @@ export default async function ProductsPage({
                 {filtered.map((product) => {
                   const hoverImage = product.images[1];
                   const hasProductScenePair = Boolean(hoverImage?.includes("/scene/"));
+                  const shouldContainPrimaryImage =
+                    hasProductScenePair || product.coverImage.includes("/art-fireplace-series/original/");
                   const localizedBrand = localizedField(product, "brand", lang, langMap);
                   const priceCny = getProductBasePriceCny(product.id, product.priceCny);
                   const model = getProductModel(product.id);
@@ -121,7 +123,7 @@ export default async function ProductsPage({
                           category={product.category}
                           brand={localizedBrand}
                           className={`absolute inset-0 w-full h-full transition-all duration-500 ${
-                            hasProductScenePair
+                            shouldContainPrimaryImage
                               ? "object-contain p-7 sm:p-8 group-hover:opacity-0"
                               : "object-cover group-hover:scale-105"
                           }`}

@@ -165,6 +165,22 @@ const it_data: Record<string, string> = {
   "p88_51:description": "Fuoco all'aperto per giardino e patio, design personalizzabili.",
   "p8_52:name": "Set di Utensili per Caminetto",
   "p8_52:description": "Set di utensili per caminetto danese Rais, accessori di qualità.",
+  "燃木壁炉": "Camino a legna",
+  "悬挂式 / 烟囱款": "Sospeso / con camino",
+  "装饰 / 落地款": "Decorativo / freestanding",
+  "球形 / 装饰款": "Sferico / decorativo",
+  "p1_72:name": "Camino a legna sospeso a disco",
+  "p1_72:description": "Camino a legna sospeso a disco per ville, lodge, club e lounge commerciali. Include camino standard da 2 m; flangia, colore, sezioni camino, imballo e dettagli OEM/ODM da confermare per progetto.",
+  "p3_27:name": "Camino a etanolo sospeso a disco",
+  "p3_27:description": "Camino a bioetanolo sospeso a disco per ville, hotel, club, appartamenti campione e progetti decorativi commerciali con dati all’ingrosso e imballo export.",
+  "p4_76:name": "Camino 3D a vapore acqueo sospeso a disco",
+  "p4_76:description": "Camino 3D a vapore acqueo sospeso per lobby hotel, club, ville e interni commerciali che richiedono atmosfera di fiamma senza fuoco aperto.",
+  "p3_28:name": "Camino decorativo freestanding a etanolo",
+  "p3_28:description": "Camino decorativo freestanding a etanolo per salotti di ville, lounge hotel, club, ristoranti e showroom con misure wholesale e dati di imballo export.",
+  "p4_77:name": "Camino decorativo freestanding 3D a vapore acqueo",
+  "p4_77:description": "Camino decorativo freestanding 3D a vapore acqueo per hotel, club, showroom e progetti residenziali dove si preferisce evitare fiamma aperta.",
+  "p3_29:name": "Camino decorativo sferico a etanolo",
+  "p3_29:description": "Camino decorativo sferico a etanolo per ville, hotel, ristoranti, club e showroom con vari diametri per fornitura wholesale.",
 };
 
 export default it_data;

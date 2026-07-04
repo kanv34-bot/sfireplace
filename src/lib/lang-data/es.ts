@@ -165,6 +165,22 @@ const es_data: Record<string, string> = {
   "p88_51:description": "Fuego exterior para jardín y patio, diseños personalizables.",
   "p8_52:name": "Juego de Herramientas de Chimenea",
   "p8_52:description": "Juego de herramientas de chimenea danés Rais, accesorios de alta calidad.",
+  "燃木壁炉": "Chimenea de leña",
+  "悬挂式 / 烟囱款": "Suspendida / con chimenea",
+  "装饰 / 落地款": "Decorativa / independiente",
+  "球形 / 装饰款": "Esférica / decorativa",
+  "p1_72:name": "Chimenea de leña suspendida tipo platillo",
+  "p1_72:description": "Chimenea de leña suspendida tipo platillo para villas, lodges, clubes y lounges comerciales. Incluye chimenea estándar de 2 m; brida, color, secciones, embalaje y detalles OEM/ODM se confirman por proyecto.",
+  "p3_27:name": "Chimenea de etanol suspendida tipo platillo",
+  "p3_27:description": "Chimenea de bioetanol suspendida tipo platillo para villas, hoteles, clubes, pisos piloto y proyectos decorativos comerciales con datos mayoristas y embalaje de exportación.",
+  "p4_76:name": "Chimenea 3D de vapor de agua suspendida tipo platillo",
+  "p4_76:description": "Chimenea 3D de vapor de agua suspendida para lobbies de hotel, clubes, villas y espacios interiores que necesitan ambiente de llama sin fuego abierto.",
+  "p3_28:name": "Chimenea decorativa independiente de etanol",
+  "p3_28:description": "Chimenea decorativa independiente de etanol para salones de villa, lounges de hotel, clubes, restaurantes y showrooms con tallas mayoristas y datos de embalaje.",
+  "p4_77:name": "Chimenea decorativa independiente 3D de vapor de agua",
+  "p4_77:description": "Chimenea decorativa independiente 3D de vapor de agua para hoteles, clubes, showrooms y proyectos residenciales donde se prefiere evitar llama abierta.",
+  "p3_29:name": "Chimenea decorativa esférica de etanol",
+  "p3_29:description": "Chimenea decorativa esférica de etanol para villas, hoteles, restaurantes, clubes y showrooms, con varios diámetros para suministro mayorista.",
 };
 
 export default es_data;

@@ -5,12 +5,19 @@ export type ProductSizeModel = {
 
 export type ProductModelRow = {
   productId: string;
-  series: "A" | "M" | "E" | "H";
+  series: "A" | "M" | "E" | "H" | "W";
   model: string;
   sizeModels?: ProductSizeModel[];
 };
 
 export const productModelTable: ProductModelRow[] = [
+  { productId: "p1_72", series: "W", model: "W1", sizeModels: [{ size: "Ø600 mm", model: "W106" }, { size: "Ø700 mm", model: "W107" }, { size: "Ø800 mm", model: "W108" }, { size: "Ø900 mm", model: "W109" }, { size: "Ø1000 mm", model: "W110" }, { size: "Ø1200 mm", model: "W112" }] },
+  { productId: "p3_27", series: "A", model: "A14", sizeModels: [{ size: "Ø600 mm", model: "A1406" }, { size: "Ø700 mm", model: "A1407" }, { size: "Ø800 mm", model: "A1408" }, { size: "Ø900 mm", model: "A1409" }, { size: "Ø1000 mm", model: "A1410" }, { size: "Ø1200 mm", model: "A1412" }] },
+  { productId: "p4_76", series: "M", model: "M17", sizeModels: [{ size: "Ø800 mm", model: "M1708" }, { size: "Ø900 mm", model: "M1709" }, { size: "Ø1000 mm", model: "M1710" }, { size: "Ø1200 mm", model: "M1712" }] },
+  { productId: "p3_28", series: "A", model: "A15", sizeModels: [{ size: "Ø600 mm", model: "A1506" }, { size: "Ø650 mm", model: "A1565" }, { size: "Ø700 mm", model: "A1507" }, { size: "Ø750 mm", model: "A1575" }, { size: "Ø800 mm", model: "A1508" }, { size: "Ø850 mm", model: "A1585" }, { size: "Ø900 mm", model: "A1509" }, { size: "Ø950 mm", model: "A1595" }, { size: "Ø1000 mm", model: "A1510" }] },
+  { productId: "p4_77", series: "M", model: "M18", sizeModels: [{ size: "Ø600 mm", model: "M1806" }, { size: "Ø650 mm", model: "M1865" }, { size: "Ø700 mm", model: "M1807" }, { size: "Ø750 mm", model: "M1875" }, { size: "Ø800 mm", model: "M1808" }, { size: "Ø850 mm", model: "M1885" }, { size: "Ø900 mm", model: "M1809" }, { size: "Ø950 mm", model: "M1895" }, { size: "Ø1000 mm", model: "M1810" }] },
+  { productId: "p3_29", series: "A", model: "A16", sizeModels: [{ size: "Ø450 mm", model: "A1604" }, { size: "Ø500 mm", model: "A1645" }, { size: "Ø550 mm", model: "A1605" }, { size: "Ø600 mm", model: "A1655" }, { size: "Ø650 mm", model: "A1606" }, { size: "Ø700 mm", model: "A1665" }, { size: "Ø750 mm", model: "A1607" }] },
+
   {
     productId: "p3_14",
     series: "A",

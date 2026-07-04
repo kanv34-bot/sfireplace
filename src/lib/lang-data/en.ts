@@ -59,6 +59,22 @@ const en: Record<string, string> = {
   "p4_74:description": "Round built-in 3D mist fireplace with decorative logs for clubs, showrooms, hotel lounge areas, and decorative project installations.",
   "p4_75:name": "Freestanding Hemisphere Decorative Mist Fireplace",
   "p4_75:description": "Freestanding hemisphere decorative 3D mist fireplace for hotel lobbies, clubs, showrooms, commercial spaces, and interior display areas without chimney work.",
+  "燃木壁炉": "Wood Fireplace",
+  "悬挂式 / 烟囱款": "Suspended / chimney type",
+  "装饰 / 落地款": "Decorative / freestanding",
+  "球形 / 装饰款": "Spherical / decorative",
+  "p1_72:name": "Saucer Suspended Wood-Burning Fireplace",
+  "p1_72:description": "Suspended wood-burning saucer fireplace for villas, lodges, clubs, and commercial lounge projects. Standard 2 m chimney is included; flange, color, chimney sections, packing, and OEM/ODM details can be confirmed for wholesale orders.",
+  "p3_27:name": "Saucer Suspended Ethanol Fireplace",
+  "p3_27:description": "Suspended bioethanol saucer fireplace for villas, hotels, clubs, show flats, and commercial decorative projects. It is supplied for wholesale orders with standard chimney, sample price, packing data, and project customization support.",
+  "p4_76:name": "Saucer Suspended 3D Mist Fireplace",
+  "p4_76:description": "Suspended 3D water vapor saucer fireplace for hotel lobbies, clubs, villas, and indoor commercial spaces needing flame ambience without open fire.",
+  "p3_28:name": "Decorative Freestanding Ethanol Fireplace",
+  "p3_28:description": "Decorative freestanding ethanol fireplace for villa living rooms, hotel lounges, clubs, restaurants, and showroom projects with wholesale size options and export packing data.",
+  "p4_77:name": "Decorative Freestanding 3D Mist Fireplace",
+  "p4_77:description": "Decorative freestanding 3D mist fireplace with water-vapor flame effect for hotels, clubs, showrooms, and residential projects where no open flame is preferred.",
+  "p3_29:name": "Spherical Decorative Ethanol Fireplace",
+  "p3_29:description": "Spherical decorative ethanol fireplace for villas, hotels, restaurants, clubs, and showroom spaces, with multiple diameter options for wholesale and project supply.",
 };
 
 export default en;

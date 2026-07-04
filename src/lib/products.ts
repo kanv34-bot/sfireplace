@@ -14,6 +14,7 @@ export interface Product {
 }
 
 export const categories = [
+  { id: "p1", name: "燃木壁炉", nameEn: "Wood Fireplace", icon: "🔥" },
   { id: "p3", name: "酒精壁炉", nameEn: "Ethanol Fireplace", icon: "🔥" },
   { id: "p4", name: "雾化壁炉", nameEn: "Mist Fireplace", icon: "💨" },
   { id: "p7", name: "电子壁炉", nameEn: "Electric Fireplace", icon: "⚡" },
@@ -21,6 +22,7 @@ export const categories = [
 ];
 
 const activeCategoryIds = new Set(categories.map((category) => category.id));
+const activeLegacyWoodProductIds = new Set(["p1_72"]);
 
 export const brands = [
   { name: "壁炉宗师", country: "中国", nameEn: "Fireplace Master", countryEn: "China" },
@@ -1381,6 +1383,92 @@ const productCatalog: Product[] = [
     images: [`${OSS}/%E4%BA%A7%E5%93%81/%E5%B7%A5%E5%85%B7%E9%99%84%E4%BB%B6/1.png`],
     coverImage: `${OSS}/%E4%BA%A7%E5%93%81/%E5%B7%A5%E5%85%B7%E9%99%84%E4%BB%B6/1.png`,
   },
+
+  // === 艺术壁炉报价新增系列 ===
+  {
+    id: "p1_72",
+    category: "p1",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "飞碟悬挂式燃木壁炉",
+    nameEn: "Saucer Suspended Wood-Burning Fireplace",
+    description: "飞碟悬挂式燃木壁炉，适合别墅、民宿、会所和商业休闲空间的真火取暖项目。标准配置 2 米烟囱，不含法兰，可按工程需求确认颜色、吊装高度、烟囱段和出口包装。",
+    descriptionEn: "Saucer suspended wood-burning fireplace for villas, lodges, clubs, and commercial lounge projects. Standard supply includes a 2 m chimney without flange; color, hanging height, chimney sections, and export packing can be confirmed by project.",
+    installation: "悬挂式 / 烟囱款",
+    priceCny: 4220,
+    images: ["/media/products/art-fireplace-series/original/saucer-suspended-wood.webp"],
+    coverImage: "/media/products/art-fireplace-series/original/saucer-suspended-wood.webp",
+  },
+  {
+    id: "p3_27",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "飞碟悬挂式酒精壁炉",
+    nameEn: "Saucer Suspended Ethanol Fireplace",
+    description: "飞碟悬挂式酒精壁炉，适合海外别墅、酒店休息区、会所和样板间项目。采用生物乙醇真火方案，标准配置 2 米烟囱，不含法兰，支持外观颜色、包装和项目尺寸确认。",
+    descriptionEn: "Saucer suspended ethanol fireplace for villas, hotel lounges, clubs, and show-flat projects. It uses a real-flame bioethanol solution, includes a 2 m chimney without flange, and supports color, packing, and project-size confirmation.",
+    installation: "悬挂式 / 烟囱款",
+    priceCny: 4480,
+    images: ["/media/products/art-fireplace-series/original/saucer-suspended-ethanol.webp"],
+    coverImage: "/media/products/art-fireplace-series/original/saucer-suspended-ethanol.webp",
+  },
+  {
+    id: "p4_76",
+    category: "p4",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "飞碟悬挂式3D雾化壁炉",
+    nameEn: "Saucer Suspended 3D Mist Fireplace",
+    description: "飞碟悬挂式3D雾化壁炉，适合室内商业空间、酒店大堂、会所和别墅项目。无明火，强调水雾火焰视觉效果，标准配置 2 米烟囱，不含法兰，可做项目化外观和包装确认。",
+    descriptionEn: "Saucer suspended 3D mist fireplace for indoor commercial spaces, hotel lobbies, clubs, and villa projects. It creates a water-vapor flame effect without open flame, includes a 2 m chimney without flange, and supports project-based appearance and packing confirmation.",
+    installation: "悬挂式 / 烟囱款",
+    priceCny: 6770,
+    images: ["/media/products/art-fireplace-series/original/saucer-suspended-mist.webp"],
+    coverImage: "/media/products/art-fireplace-series/original/saucer-suspended-mist.webp",
+  },
+  {
+    id: "p3_28",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "装饰落地式酒精壁炉",
+    nameEn: "Decorative Freestanding Ethanol Fireplace",
+    description: "装饰落地式酒精壁炉，适合别墅客厅、酒店休息区、会所和展示空间。标准配置 1 米烟囱，不含法兰，适合做项目批发、样板间陈列和品牌定制。",
+    descriptionEn: "Decorative freestanding ethanol fireplace for villa living rooms, hotel lounges, clubs, and display spaces. Standard supply includes a 1 m chimney without flange, suitable for project wholesale, show-flat display, and private-label customization.",
+    installation: "装饰 / 落地款",
+    priceCny: 3020,
+    images: ["/media/products/art-fireplace-series/original/decorative-freestanding-ethanol.webp"],
+    coverImage: "/media/products/art-fireplace-series/original/decorative-freestanding-ethanol.webp",
+  },
+  {
+    id: "p4_77",
+    category: "p4",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "装饰落地式3D雾化壁炉",
+    nameEn: "Decorative Freestanding 3D Mist Fireplace",
+    description: "装饰落地式3D雾化壁炉，适合酒店、会所、商业展示和住宅项目。水雾火焰视觉柔和，无明火，标准配置 2 米烟囱，不含法兰，支持外观颜色和项目包装定制。",
+    descriptionEn: "Decorative freestanding 3D mist fireplace for hotels, clubs, commercial displays, and residential projects. It provides a soft water-vapor flame effect without open flame, includes a 2 m chimney without flange, and supports color and project packing customization.",
+    installation: "装饰 / 落地款",
+    priceCny: 3310,
+    images: ["/media/products/art-fireplace-series/original/decorative-freestanding-mist.webp"],
+    coverImage: "/media/products/art-fireplace-series/original/decorative-freestanding-mist.webp",
+  },
+  {
+    id: "p3_29",
+    category: "p3",
+    brand: "壁炉宗师",
+    brandCountry: "中国",
+    name: "球形装饰酒精壁炉",
+    nameEn: "Spherical Decorative Ethanol Fireplace",
+    description: "球形装饰酒精壁炉，适合别墅、酒店、会所、餐厅和展厅空间。球形外观适合做软装陈列和商业装饰项目，支持尺寸、颜色、包装和品牌资料确认。",
+    descriptionEn: "Spherical decorative ethanol fireplace for villas, hotels, clubs, restaurants, and showrooms. The round sculptural form is suitable for interior styling and commercial decoration projects, with size, color, packing, and private-label details confirmed by order.",
+    installation: "球形 / 装饰款",
+    priceCny: 1910,
+    images: ["/media/products/art-fireplace-series/original/spherical-decorative-ethanol.webp"],
+    coverImage: "/media/products/art-fireplace-series/original/spherical-decorative-ethanol.webp",
+  },
   // === 全息壁炉 ===
   {
     id: "p9_1",
@@ -1439,7 +1527,8 @@ const productCatalog: Product[] = [
 ];
 
 export const products: Product[] = productCatalog.filter((product) =>
-  activeCategoryIds.has(product.category),
+  activeCategoryIds.has(product.category) &&
+  (product.category !== "p1" || activeLegacyWoodProductIds.has(product.id)),
 );
 
 export function getProductsByCategory(categoryId: string): Product[] {
