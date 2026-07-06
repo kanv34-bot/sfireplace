@@ -9,16 +9,16 @@ import { getSiteCopy } from "@/lib/site-i18n";
 const navKeys = ["home", "products", "cases", "about", "contact", "news", "videos"] as const;
 
 const dictionaries: Record<string, Record<string, string>> = {
-  zh: { home: "首页", products: "产品中心", cases: "经典案例", about: "关于我们", contact: "联系我们", news: "资讯分享", videos: "视频中心" },
-  en: { home: "Home", products: "Products", cases: "Cases", about: "About", contact: "Contact", news: "News", videos: "Videos" },
-  de: { home: "Startseite", products: "Produkte", cases: "Projekte", about: "Über uns", contact: "Kontakt", news: "Neuigkeiten", videos: "Videos" },
-  fr: { home: "Accueil", products: "Produits", cases: "Réalisations", about: "À propos", contact: "Contact", news: "Actualités", videos: "Vidéos" },
-  es: { home: "Inicio", products: "Productos", cases: "Proyectos", about: "Nosotros", contact: "Contacto", news: "Noticias", videos: "Videos" },
-  it: { home: "Home", products: "Prodotti", cases: "Progetti", about: "Chi siamo", contact: "Contatti", news: "Notizie", videos: "Video" },
-  ru: { home: "Главная", products: "Продукты", cases: "Проекты", about: "О нас", contact: "Контакты", news: "Новости", videos: "Видео" },
-  ja: { home: "ホーム", products: "製品", cases: "施工事例", about: "私たち", contact: "お問い合わせ", news: "お知らせ", videos: "動画" },
-  pt: { home: "Início", products: "Produtos", cases: "Projetos", about: "Sobre", contact: "Contato", news: "Notícias", videos: "Vídeos" },
-  ar: { home: "الرئيسية", products: "المنتجات", cases: "المشاريع", about: "من نحن", contact: "اتصل بنا", news: "الأخبار", videos: "الفيديوهات" },
+  zh: { home: "首页", products: "产品中心", cases: "经典案例", about: "关于我们", contact: "联系我们", news: "资讯分享", videos: "视频中心", search: "搜索产品" },
+  en: { home: "Home", products: "Products", cases: "Cases", about: "About", contact: "Contact", news: "News", videos: "Videos", search: "Search products" },
+  de: { home: "Startseite", products: "Produkte", cases: "Projekte", about: "Über uns", contact: "Kontakt", news: "Neuigkeiten", videos: "Videos", search: "Produkte suchen" },
+  fr: { home: "Accueil", products: "Produits", cases: "Réalisations", about: "À propos", contact: "Contact", news: "Actualités", videos: "Vidéos", search: "Rechercher" },
+  es: { home: "Inicio", products: "Productos", cases: "Proyectos", about: "Nosotros", contact: "Contacto", news: "Noticias", videos: "Videos", search: "Buscar productos" },
+  it: { home: "Home", products: "Prodotti", cases: "Progetti", about: "Chi siamo", contact: "Contatti", news: "Notizie", videos: "Video", search: "Cerca prodotti" },
+  ru: { home: "Главная", products: "Продукты", cases: "Проекты", about: "О нас", contact: "Контакты", news: "Новости", videos: "Видео", search: "Поиск товаров" },
+  ja: { home: "ホーム", products: "製品", cases: "施工事例", about: "私たち", contact: "お問い合わせ", news: "お知らせ", videos: "動画", search: "製品検索" },
+  pt: { home: "Início", products: "Produtos", cases: "Projetos", about: "Sobre", contact: "Contato", news: "Notícias", videos: "Vídeos", search: "Buscar produtos" },
+  ar: { home: "الرئيسية", products: "المنتجات", cases: "المشاريع", about: "من نحن", contact: "اتصل بنا", news: "الأخبار", videos: "الفيديوهات", search: "بحث المنتجات" },
 };
 
 const navPaths: Record<string, string> = {
@@ -104,6 +104,32 @@ export default function Header({ lang }: { lang: string }) {
               </Link>
             ))}
 
+            <form action={`/${lang}/search`} className="ml-2 hidden xl:flex items-center">
+              <label className="sr-only" htmlFor="site-product-search">
+                {nav.search}
+              </label>
+              <div
+                className={`flex h-9 w-44 items-center gap-2 rounded-lg border px-3 transition-colors ${
+                  isHomePage
+                    ? "border-white/15 bg-white/8 text-white focus-within:border-white/40"
+                    : "border-[#e5e5ea] bg-white text-[#1d1d1f] focus-within:border-[#f97316]"
+                }`}
+              >
+                <svg className="h-4 w-4 shrink-0 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="m21 21-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z" />
+                </svg>
+                <input
+                  id="site-product-search"
+                  name="q"
+                  type="search"
+                  placeholder={nav.search}
+                  className={`min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:opacity-70 ${
+                    isHomePage ? "text-white placeholder:text-white/65" : "text-[#1d1d1f] placeholder:text-[#86868b]"
+                  }`}
+                />
+              </div>
+            </form>
+
             {isHomePage && (
               <a href="tel:+8618028181668" className="ml-3 hidden text-xs font-medium text-white/75 lg:inline-flex">
                 +86 180 2818 1668
@@ -178,6 +204,34 @@ export default function Header({ lang }: { lang: string }) {
         {/* Mobile menu */}
         {mobileMenuOpen && (
           <div className={`md:hidden pb-4 border-t pt-2 lang-enter ${isHomePage ? "border-white/10" : "border-[#e5e5ea]"}`}>
+            <form action={`/${lang}/search`} className="px-1 pb-2">
+              <label className="sr-only" htmlFor="mobile-product-search">
+                {nav.search}
+              </label>
+              <div
+                className={`flex h-11 items-center gap-2 rounded-lg border px-3 ${
+                  isHomePage
+                    ? "border-white/15 bg-white/8 text-white"
+                    : "border-[#e5e5ea] bg-white text-[#1d1d1f]"
+                }`}
+              >
+                <svg className="h-4 w-4 shrink-0 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="m21 21-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z" />
+                </svg>
+                <input
+                  id="mobile-product-search"
+                  name="q"
+                  type="search"
+                  placeholder={nav.search}
+                  className={`min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:opacity-70 ${
+                    isHomePage ? "text-white placeholder:text-white/65" : "text-[#1d1d1f] placeholder:text-[#86868b]"
+                  }`}
+                />
+                <button type="submit" className="text-sm font-semibold text-[#f97316]">
+                  Go
+                </button>
+              </div>
+            </form>
             {navKeys.map((key) => (
               <Link
                 key={key}

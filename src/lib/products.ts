@@ -1,4 +1,5 @@
 import { alibabaProducts } from "./alibaba-products";
+import { getProductModel } from "./product-models";
 
 export interface Product {
   id: string;
@@ -1562,6 +1563,15 @@ export function getProductsByCategory(categoryId: string): Product[] {
 
 export function getProductById(id: string): Product | undefined {
   return products.find((p) => p.id === id);
+}
+
+export function getProductRouteId(product: Product): string {
+  const model = getProductModel(product.id);
+  return model ? `${product.category}_${model}` : product.id;
+}
+
+export function getProductByRouteId(routeId: string): Product | undefined {
+  return products.find((product) => getProductRouteId(product) === routeId);
 }
 
 export function getCategoryName(categoryId: string): string {

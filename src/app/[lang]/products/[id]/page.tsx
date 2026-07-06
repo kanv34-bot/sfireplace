@@ -4,7 +4,7 @@ import Link from "next/link";
 import ProductImage from "@/components/ProductImage";
 import ProductGallery from "@/components/ProductGallery";
 import CoreWholesaleDetails from "@/components/CoreWholesaleDetails";
-import { getProductById, categories, products } from "@/lib/products";
+import { getProductByRouteId, getProductRouteId, categories, products } from "@/lib/products";
 import { notFound } from "next/navigation";
 import { locales, getDictionary, localizedText } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
@@ -278,15 +278,16 @@ export async function generateMetadata({
   params: Promise<{ lang: string; id: string }>;
 }): Promise<Metadata> {
   const { lang, id } = await params;
-  const product = getProductById(id);
+  const product = getProductByRouteId(id);
   if (!product) return {};
+  const routeId = getProductRouteId(product);
 
-  if (id === "p3_14") {
+  if (product.id === "p3_14") {
     const copy = getEthanolWholesaleCopy(lang);
     const languageAlternates = Object.fromEntries(
       locales.map((locale) => [
         locale,
-        `https://sfireplace.com/${locale}/products/p3_14`,
+        `https://sfireplace.com/${locale}/products/${routeId}`,
       ]),
     );
     return {
@@ -299,10 +300,10 @@ export async function generateMetadata({
         images: [ethanolImages.villa],
       },
       alternates: {
-        canonical: `https://sfireplace.com/${lang}/products/p3_14`,
+        canonical: `https://sfireplace.com/${lang}/products/${routeId}`,
         languages: {
           ...languageAlternates,
-          "x-default": "https://sfireplace.com/en/products/p3_14",
+          "x-default": `https://sfireplace.com/en/products/${routeId}`,
         },
       },
     };
@@ -325,13 +326,13 @@ export async function generateMetadata({
         images: [product.coverImage],
       },
       alternates: {
-        canonical: `https://sfireplace.com/${lang}/products/${product.id}`,
+        canonical: `https://sfireplace.com/${lang}/products/${routeId}`,
         languages: Object.fromEntries([
           ...locales.map((locale) => [
             locale,
-            `https://sfireplace.com/${locale}/products/${product.id}`,
+            `https://sfireplace.com/${locale}/products/${routeId}`,
           ]),
-          ["x-default", `https://sfireplace.com/en/products/${product.id}`],
+          ["x-default", `https://sfireplace.com/en/products/${routeId}`],
         ]),
       },
     };
@@ -347,7 +348,7 @@ export async function generateStaticParams() {
   const params: { lang: string; id: string }[] = [];
   for (const lang of locales) {
     for (const p of products) {
-      params.push({ lang, id: p.id });
+      params.push({ lang, id: getProductRouteId(p) });
     }
   }
   return params;
@@ -362,7 +363,7 @@ export default async function ProductDetailPage({
   const t = await getDictionary(lang);
   const langMap = await loadLangData(lang);
 
-  const product = getProductById(id);
+  const product = getProductByRouteId(id);
   if (!product) notFound();
 
   const category = categories.find((c) => c.id === product.category);

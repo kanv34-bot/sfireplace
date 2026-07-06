@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { products, categories } from "@/lib/products";
+import { getProductRouteId, products, categories } from "@/lib/products";
 import ProductImage from "@/components/ProductImage";
 import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
@@ -113,7 +113,7 @@ export default async function ProductsPage({
                   return (
                     <Link
                       key={product.id}
-                      href={`/${lang}/products/${product.id}`}
+                      href={`/${lang}/products/${getProductRouteId(product)}`}
                       className="group bg-white rounded-2xl overflow-hidden card-hover border border-[#e5e5ea]"
                     >
                       <div className="aspect-[4/3] bg-white relative overflow-hidden">

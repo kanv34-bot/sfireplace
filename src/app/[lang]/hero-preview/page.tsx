@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductImage from "@/components/ProductImage";
 import { cases } from "@/lib/cases";
-import { categories, products } from "@/lib/products";
+import { categories, getProductRouteId, products } from "@/lib/products";
 import { getDictionary } from "@/lib/dictionary";
 import { localizedField } from "@/lib/localize";
 import { loadLangData } from "@/lib/lang-data";
@@ -78,7 +78,7 @@ export default async function HeroPreviewPage({
 
           <div className="relative hidden min-h-[560px] lg:block">
             <Link
-              href={`/${lang}/products/${heroProduct.id}`}
+              href={`/${lang}/products/${getProductRouteId(heroProduct)}`}
               className="group absolute right-0 top-8 block w-[82%] overflow-hidden rounded-[8px] border border-white/14 bg-white shadow-2xl shadow-black/45"
             >
               <div className="relative aspect-[4/5] bg-[#f2f2ef]">
@@ -148,7 +148,7 @@ export default async function HeroPreviewPage({
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {signatureProducts.map((product) => (
               <Link
-                href={`/${lang}/products/${product.id}`}
+                href={`/${lang}/products/${getProductRouteId(product)}`}
                 key={product.id}
                 className="group overflow-hidden rounded-[8px] border border-black/8 bg-white shadow-sm hover:shadow-xl"
               >

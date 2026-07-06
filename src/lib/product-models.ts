@@ -106,6 +106,10 @@ export function getProductModel(productId: string): string | undefined {
   return getProductModelRow(productId)?.model;
 }
 
+export function getProductLinkModel(productId: string): string {
+  return productId;
+}
+
 export function getProductSizeModels(productId: string): ProductSizeModel[] {
   return getProductModelRow(productId)?.sizeModels ?? [];
 }
@@ -118,4 +122,17 @@ export function getModelLabel(lang: string): string {
   if (lang === "es" || lang === "pt") return "Modelo";
   if (lang === "ar") return "الموديل";
   return "Model";
+}
+
+export function getLinkModelLabel(lang: string): string {
+  if (lang === "zh") return "链接型号";
+  if (lang === "ja") return "リンク型番";
+  if (lang === "de") return "Link-Modell";
+  if (lang === "fr") return "Modèle de lien";
+  if (lang === "it") return "Modello link";
+  if (lang === "es") return "Modelo de enlace";
+  if (lang === "pt") return "Modelo do link";
+  if (lang === "ru") return "Модель ссылки";
+  if (lang === "ar") return "رمز الرابط";
+  return "Link model";
 }

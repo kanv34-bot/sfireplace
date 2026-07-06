@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { cases } from "@/lib/cases";
 import { locales } from "@/lib/dictionary";
 import { newsArticles } from "@/lib/news";
-import { products } from "@/lib/products";
+import { getProductRouteId, products } from "@/lib/products";
 
 const baseUrl = "https://sfireplace.com";
 
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: path === "" ? 1 : path === "/products" ? 0.9 : 0.7,
     })),
     ...products.map((product) => ({
-      url: `${baseUrl}/${lang}/products/${product.id}`,
+      url: `${baseUrl}/${lang}/products/${getProductRouteId(product)}`,
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
