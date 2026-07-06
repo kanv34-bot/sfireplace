@@ -1081,6 +1081,7 @@ export default async function ProductDetailPage({
           productId={product.id}
           productName={productName}
           priceCny={displayPriceCny}
+          detailImages={productGallery}
         />
       )}
 

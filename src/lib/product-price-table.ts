@@ -1,73 +1,7 @@
-export type ProductPriceRow = {
-  productId: string;
-  priceCny: number;
-  note?: string;
-};
-
-// Source file: /Users/x/Desktop/sfireplace产品价格总表.csv
+import { alibabaProductPriceTable } from "./alibaba-product-prices"; export type ProductPriceRow = { productId: string; priceCny: number; note?: string;
+}; // Source file: /Users/x/Desktop/sfireplace产品价格总表.csv
 // Edit the local CSV on the Desktop, then run: npm run sync:prices
-export const productPriceTable: ProductPriceRow[] = [
-  { productId: "p3_14", priceCny: 1650, note: "手动线性生物乙醇燃烧器" },
-  { productId: "p3_15", priceCny: 12800, note: "自动酒精燃烧器" },
-  { productId: "p3_16", priceCny: 16800, note: "双面隔断酒精壁炉" },
-  { productId: "p3_17", priceCny: 19800, note: "三面观火酒精壁炉" },
-  { productId: "p3_18", priceCny: 2800, note: "桌面酒精壁炉" },
-  { productId: "p3_19", priceCny: 6800, note: "独立式酒精壁炉" },
-  { productId: "p3_20", priceCny: 5800, note: "圆形酒精火盆" },
-  { productId: "p3_21", priceCny: 15800, note: "户外酒精火桌" },
-  { productId: "p3_22", priceCny: 22800, note: "岩板岛台酒精壁炉" },
-  { productId: "p3_23", priceCny: 32800, note: "酒店大堂长条酒精壁炉" },
-  { productId: "p3_24", priceCny: 9800, note: "嵌入式壁龛酒精壁炉套件" },
-  { productId: "p3_25", priceCny: 4800, note: "OEM酒精燃烧器套件" },
-  { productId: "p3_26", priceCny: 13800, note: "悬挂式酒精壁炉" },
-  { productId: "p4_70", priceCny: 913.5984, note: "长条雾化壁炉模块 M01 600mm 起，人民币报价" },
-  { productId: "p4_61", priceCny: 1086.194, note: "仿木炭长条3D雾化壁炉 M11 600mm 起，人民币报价" },
-  { productId: "p4_69", priceCny: 1004.9582, note: "双面隔断雾化壁炉 M02 600mm 起，人民币报价" },
-  { productId: "p4_68", priceCny: 14800, note: "全景雾化壁炉" },
-  { productId: "p4_67", priceCny: 17800, note: "三面雾化壁炉" },
-  { productId: "p4_66", priceCny: 1060, note: "圆形雾化壁炉 M05 R300mm 起，人民币报价" },
-  { productId: "p4_65", priceCny: 18800, note: "悬挂式雾化壁炉" },
-  { productId: "p4_64", priceCny: 15800, note: "隔断式雾化壁炉" },
-  { productId: "p4_63", priceCny: 23800, note: "太阳之眼雾化壁炉" },
-  { productId: "p4_62", priceCny: 12800, note: "单面雾化壁炉" },
-  { productId: "p4_11", priceCny: 913.5984, note: "智能雾化壁炉 M10 600mm 起，人民币报价" },
-  { productId: "p4_71", priceCny: 969.5984, note: "语音控制长条嵌入式3D雾化壁炉，人民币批发价起" },
-  { productId: "p4_72", priceCny: 1014.5984, note: "音乐播放长条嵌入式3D雾化壁炉，人民币批发价起" },
-  { productId: "p4_73", priceCny: 1049.5984, note: "户外防水长条嵌入式3D雾化壁炉，人民币批发价起" },
-  { productId: "p4_74", priceCny: 1622.7552, note: "圆形嵌入式3D雾化壁炉带仿真木柴装饰，人民币批发价起" },
-  { productId: "p4_75", priceCny: 1785.0307, note: "半球独立装饰雾化壁炉，人民币批发价起" },
-  { productId: "p7_6", priceCny: 5800, note: "嵌入式电子壁炉" },
-  { productId: "p7_7", priceCny: 9800, note: "全景电子壁炉" },
-  { productId: "p7_8", priceCny: 3600, note: "独立式电子壁炉" },
-  { productId: "p7_9", priceCny: 2600, note: "OEM电子壁炉核心模块" },
-  { productId: "p7_10", priceCny: 468, note: "直条内嵌式电子壁炉，人民币批发价起" },
-  { productId: "p7_11", priceCny: 730, note: "左边L型两面观火内嵌式电子壁炉，人民币批发价起" },
-  { productId: "p7_12", priceCny: 730, note: "右边L型两面观火电子壁炉，人民币批发价起" },
-  { productId: "p7_13", priceCny: 818, note: "三面观火电子壁炉，人民币批发价起" },
-  { productId: "p7_14", priceCny: 1015, note: "三面观火B型电子壁炉，人民币批发价起" },
-  { productId: "p7_15", priceCny: 1115, note: "四面观火电子壁炉，人民币批发价起" },
-  { productId: "p7_16", priceCny: 502, note: "圆形电子壁炉，人民币批发价起" },
-  { productId: "p7_17", priceCny: 496, note: "下半圆形电子壁炉，人民币批发价起" },
-  { productId: "p7_18", priceCny: 496, note: "上半圆形电子壁炉，人民币批发价起" },
-  { productId: "p7_19", priceCny: 506, note: "三角形电子壁炉，人民币批发价起" },
-  { productId: "p7_20", priceCny: 560, note: "拱形电子壁炉，人民币批发价起" },
-  { productId: "p1_72", priceCny: 4220, note: "飞碟悬挂式燃木壁炉 W1 Ø600 mm 起，人民币批发价起" },
-  { productId: "p3_27", priceCny: 4480, note: "飞碟悬挂式酒精壁炉 A14 Ø600 mm 起，人民币批发价起" },
-  { productId: "p4_76", priceCny: 6770, note: "飞碟悬挂式3D雾化壁炉 M17 Ø800 mm 起，人民币批发价起" },
-  { productId: "p3_28", priceCny: 3020, note: "装饰落地式酒精壁炉 A15 Ø600 mm 起，人民币批发价起" },
-  { productId: "p4_77", priceCny: 3310, note: "装饰落地式3D雾化壁炉 M18 Ø600 mm 起，人民币批发价起" },
-  { productId: "p3_29", priceCny: 1910, note: "球形装饰酒精壁炉 A16 Ø450 mm 起，人民币批发价起" },
-  { productId: "p9_1", priceCny: 16800, note: "全息壁炉显示模块" },
-  { productId: "p9_2", priceCny: 22800, note: "投影壁炉系统" },
-  { productId: "p9_3", priceCny: 36800, note: "沉浸式火焰影像墙" },
-];
-
-const productPriceMap = new Map(productPriceTable.map((row) => [row.productId, row]));
-
-export function getProductPriceRow(productId: string): ProductPriceRow | undefined {
-  return productPriceMap.get(productId);
-}
-
-export function getProductBasePriceCny(productId: string, fallbackPriceCny?: number): number | undefined {
-  return getProductPriceRow(productId)?.priceCny ?? fallbackPriceCny;
+export const productPriceTable: ProductPriceRow[] = [ { productId: "p3_14", priceCny: 1650, note: "手动线性生物乙醇燃烧器" }, { productId: "p3_15", priceCny: 12800, note: "自动酒精燃烧器" }, { productId: "p3_16", priceCny: 16800, note: "型号A03，尺寸1000 mm / 1200 mm / 1500 mm / 1800 mm / +1，双面隔断酒精壁炉" }, { productId: "p3_17", priceCny: 19800, note: "型号A04，尺寸1000 mm / 1200 mm / 1500 mm / 1800 mm / +1，三面观火酒精壁炉" }, { productId: "p3_18", priceCny: 2800, note: "型号A05，尺寸300 mm / 400 mm / 600 mm，桌面酒精壁炉" }, { productId: "p3_19", priceCny: 6800, note: "型号A06，尺寸500 mm / 800 mm / 1000 mm，独立式酒精壁炉" }, { productId: "p3_20", priceCny: 5800, note: "型号A07，尺寸Ø600 mm / Ø800 mm / Ø1000 mm / Ø1200 mm，圆形酒精火盆" }, { productId: "p3_21", priceCny: 15800, note: "型号A08，尺寸1200 mm / 1500 mm / 1800 mm / 2400 mm，户外酒精火桌" }, { productId: "p3_22", priceCny: 22800, note: "型号A09，尺寸1200 mm / 1600 mm / 2000 mm / 2600 mm，岩板岛台酒精壁炉" }, { productId: "p3_23", priceCny: 32800, note: "型号A10，尺寸2000 mm / 3000 mm / 4000 mm / 6000 mm，酒店大堂长条酒精壁炉" }, { productId: "p3_24", priceCny: 9800, note: "型号A11，尺寸800 mm / 1200 mm / 1600 mm / 2000 mm，嵌入式壁龛酒精壁炉套件" }, { productId: "p3_25", priceCny: 4800, note: "型号A12，尺寸400 mm / 800 mm / 1200 mm / 1600 mm，OEM酒精燃烧器套件" }, { productId: "p3_26", priceCny: 13800, note: "型号A13，尺寸Ø800 mm / Ø1000 mm / Ø1200 mm，悬挂式酒精壁炉" }, { productId: "p4_70", priceCny: 913.5984, note: "型号M01，尺寸600 mm / 700 mm / 800 mm / 900 mm / +11，长条雾化壁炉模块 M01 600mm 起，人民币报价" }, { productId: "p4_61", priceCny: 1086.194, note: "型号M11，尺寸600 mm / 700 mm / 800 mm / 900 mm / +11，仿木炭长条3D雾化壁炉 M11 600mm 起，人民币报价" }, { productId: "p4_69", priceCny: 1004.9582, note: "型号M02，尺寸600 mm / 700 mm / 800 mm / 900 mm / +11，双面隔断雾化壁炉 M02 600mm 起，人民币报价" }, { productId: "p4_68", priceCny: 14800, note: "型号M03，尺寸1200 mm / 1500 mm / 1800 mm / 2400 mm / +1，全景雾化壁炉" }, { productId: "p4_67", priceCny: 17800, note: "型号M04，尺寸1000 mm / 1200 mm / 1500 mm / 1800 mm / +1，三面雾化壁炉" }, { productId: "p4_66", priceCny: 1060, note: "型号M05，尺寸Ø300 mm / Ø350 mm / Ø400 mm / Ø450 mm / +4，圆形雾化壁炉 M05 R300mm 起，人民币报价" }, { productId: "p4_65", priceCny: 18800, note: "型号M06，尺寸Ø800 mm / Ø1000 mm / Ø1200 mm，悬挂式雾化壁炉" }, { productId: "p4_64", priceCny: 15800, note: "型号M07，尺寸1200 mm / 1500 mm / 2000 mm / 3000 mm，隔断式雾化壁炉" }, { productId: "p4_63", priceCny: 23800, note: "型号M08，尺寸Ø1000 mm / Ø1200 mm / Ø1500 mm / Ø1800 mm，太阳之眼雾化壁炉" }, { productId: "p4_62", priceCny: 12800, note: "型号M09，尺寸800 mm / 1200 mm / 1500 mm / 1800 mm / +1，单面雾化壁炉" }, { productId: "p4_11", priceCny: 913.5984, note: "型号M10，尺寸600 mm / 700 mm / 800 mm / 900 mm / +11，智能雾化壁炉 M10 600mm 起，人民币报价" }, { productId: "p4_71", priceCny: 969.5984, note: "型号M12，尺寸600 mm / 700 mm / 800 mm / 900 mm / +11，语音控制长条嵌入式3D雾化壁炉，人民币批发价起" }, { productId: "p4_72", priceCny: 1014.5984, note: "型号M13，尺寸600 mm / 700 mm / 800 mm / 900 mm / +11，音乐播放长条嵌入式3D雾化壁炉，人民币批发价起" }, { productId: "p4_73", priceCny: 1049.5984, note: "型号M14，尺寸600 mm / 700 mm / 800 mm / 900 mm / +11，户外防水长条嵌入式3D雾化壁炉，人民币批发价起" }, { productId: "p4_74", priceCny: 1622.7552, note: "型号M15，尺寸Ø500 mm / Ø550 mm / Ø600 mm，圆形嵌入式3D雾化壁炉带仿真木柴装饰，人民币批发价起" }, { productId: "p4_75", priceCny: 1785.0307, note: "型号M16，尺寸Ø556 mm / Ø600 mm / Ø650 mm，半球独立装饰雾化壁炉，人民币批发价起" }, { productId: "p7_6", priceCny: 5800, note: "型号E01，尺寸800 mm / 1200 mm / 1500 mm / 1800 mm / +1，嵌入式电子壁炉" }, { productId: "p7_7", priceCny: 9800, note: "型号E02，尺寸1200 mm / 1500 mm / 1800 mm / 2400 mm / +1，全景电子壁炉" }, { productId: "p7_8", priceCny: 3600, note: "型号E03，尺寸450 mm / 600 mm / 700 mm，独立式电子壁炉" }, { productId: "p7_9", priceCny: 2600, note: "型号E04，尺寸600 mm / 800 mm / 1200 mm / 1800 mm / +1，OEM电子壁炉核心模块" }, { productId: "p7_10", priceCny: 468, note: "型号E1，尺寸500 mm / 600 mm / 700 mm / 800 mm / +12，直条内嵌式电子壁炉，人民币批发价起" }, { productId: "p7_11", priceCny: 730, note: "型号E2，尺寸1000+300 mm，左边L型两面观火内嵌式电子壁炉，人民币批发价起" }, { productId: "p7_12", priceCny: 730, note: "型号E3，尺寸300+1000 mm，右边L型两面观火电子壁炉，人民币批发价起" }, { productId: "p7_13", priceCny: 818, note: "型号E4，尺寸300+1000+300 mm，三面观火电子壁炉，人民币批发价起" }, { productId: "p7_14", priceCny: 1015, note: "型号E5，尺寸1000+300+1000 mm，三面观火B型电子壁炉，人民币批发价起" }, { productId: "p7_15", priceCny: 1115, note: "型号E6，尺寸4S，四面观火电子壁炉，人民币批发价起" }, { productId: "p7_16", priceCny: 502, note: "型号E7，尺寸Ø500 mm / Ø550 mm / Ø600 mm / Ø650 mm / +1，圆形电子壁炉，人民币批发价起" }, { productId: "p7_17", priceCny: 496, note: "型号E8，尺寸500 mm / 550 mm / 600 mm / 650 mm / +1，下半圆形电子壁炉，人民币批发价起" }, { productId: "p7_18", priceCny: 496, note: "型号E9，尺寸500 mm / 550 mm / 600 mm / 650 mm / +1，上半圆形电子壁炉，人民币批发价起" }, { productId: "p7_19", priceCny: 506, note: "型号EA，尺寸500 mm / 550 mm / 600 mm / 650 mm / +1，三角形电子壁炉，人民币批发价起" }, { productId: "p7_20", priceCny: 560, note: "型号EB，尺寸2DN500 / 2DN550 / 2DN600，拱形电子壁炉，人民币批发价起" }, { productId: "p7_21", priceCny: 1100, note: "型号EC，尺寸72 inch / 80 inch，72/80英寸壁挂嵌入式RGB电子壁炉，阿里资料样板页人民币批发价起" }, { productId: "p1_72", priceCny: 4220, note: "型号W1，尺寸Ø600 mm / Ø700 mm / Ø800 mm / Ø900 mm / +2，飞碟悬挂式燃木壁炉 W1 Ø600 mm 起，人民币批发价起" }, { productId: "p3_27", priceCny: 4480, note: "型号A14，尺寸Ø600 mm / Ø700 mm / Ø800 mm / Ø900 mm / +2，飞碟悬挂式酒精壁炉 A14 Ø600 mm 起，人民币批发价起" }, { productId: "p4_76", priceCny: 6770, note: "型号M17，尺寸Ø800 mm / Ø900 mm / Ø1000 mm / Ø1200 mm，飞碟悬挂式3D雾化壁炉 M17 Ø800 mm 起，人民币批发价起" }, { productId: "p3_28", priceCny: 3020, note: "型号A15，尺寸Ø600 mm / Ø650 mm / Ø700 mm / Ø750 mm / +5，装饰落地式酒精壁炉 A15 Ø600 mm 起，人民币批发价起" }, { productId: "p4_77", priceCny: 3310, note: "型号M18，尺寸Ø600 mm / Ø650 mm / Ø700 mm / Ø750 mm / +5，装饰落地式3D雾化壁炉 M18 Ø600 mm 起，人民币批发价起" }, { productId: "p3_29", priceCny: 1910, note: "型号A16，尺寸Ø450 mm / Ø500 mm / Ø550 mm / Ø600 mm / +3，球形装饰酒精壁炉 A16 Ø450 mm 起，人民币批发价起" }, { productId: "p9_1", priceCny: 16800, note: "型号H01，尺寸800 mm / 1200 mm / 1800 mm / 2400 mm，全息壁炉显示模块" }, { productId: "p9_2", priceCny: 22800, note: "型号H02，尺寸Project S / Project M / Project L，投影壁炉系统" }, { productId: "p9_3", priceCny: 36800, note: "型号H03，尺寸2 m / 5 m / 10 m，沉浸式火焰影像墙" }, ...alibabaProductPriceTable,
+]; const productPriceMap = new Map(productPriceTable.map((row) => [row.productId, row])); export function getProductPriceRow(productId: string): ProductPriceRow | undefined { return productPriceMap.get(productId);
+} export function getProductBasePriceCny(productId: string, fallbackPriceCny?: number): number | undefined { return getProductPriceRow(productId)?.priceCny ?? fallbackPriceCny;
 }

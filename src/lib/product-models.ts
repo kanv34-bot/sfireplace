@@ -1,3 +1,5 @@
+import { alibabaProductModelTable } from "./alibaba-product-models";
+
 export type ProductSizeModel = {
   size: string;
   model: string;
@@ -86,10 +88,12 @@ export const productModelTable: ProductModelRow[] = [
   { productId: "p7_18", series: "E", model: "E9", sizeModels: [{ size: "500 mm", model: "E9050" }, { size: "550 mm", model: "E9055" }, { size: "600 mm", model: "E9060" }, { size: "650 mm", model: "E9065" }, { size: "700 mm", model: "E9070" }] },
   { productId: "p7_19", series: "E", model: "EA", sizeModels: [{ size: "500 mm", model: "EA050" }, { size: "550 mm", model: "EA055" }, { size: "600 mm", model: "EA060" }, { size: "650 mm", model: "EA065" }, { size: "700 mm", model: "EA070" }] },
   { productId: "p7_20", series: "E", model: "EB", sizeModels: [{ size: "2DN500", model: "EB050" }, { size: "2DN550", model: "EB055" }, { size: "2DN600", model: "EB060" }] },
+  { productId: "p7_21", series: "E", model: "EC", sizeModels: [{ size: "72 inch", model: "EC072" }, { size: "80 inch", model: "EC080" }] },
 
   { productId: "p9_1", series: "H", model: "H01", sizeModels: [{ size: "800 mm", model: "H0108" }, { size: "1200 mm", model: "H0112" }, { size: "1800 mm", model: "H0118" }, { size: "2400 mm", model: "H0124" }] },
   { productId: "p9_2", series: "H", model: "H02", sizeModels: [{ size: "Project S", model: "H02S" }, { size: "Project M", model: "H02M" }, { size: "Project L", model: "H02L" }] },
   { productId: "p9_3", series: "H", model: "H03", sizeModels: [{ size: "2 m", model: "H0302" }, { size: "5 m", model: "H0305" }, { size: "10 m", model: "H0310" }] },
+  ...alibabaProductModelTable,
 ];
 
 const productModelMap = new Map(productModelTable.map((row) => [row.productId, row]));

@@ -1,3 +1,5 @@
+import { alibabaProductSizePriceTable } from "./alibaba-product-size-prices";
+
 export type ProductSizePriceRow = {
   productId: string;
   sizeModel: string;
@@ -159,6 +161,8 @@ export const productSizePriceTable: ProductSizePriceRow[] = [
   { productId: "p7_20", sizeModel: "EB050", size: "2DN500", productSize: "500 × 180 × 620 mm", packingSize: "560 × 240 × 680 mm", grossWeightKg: 12.5, wholesalePriceCny: 560, retailPriceCny: 1120, woodCratePriceCny: 53, woodCrateSize: "610 × 300 × 740 mm", woodCrateWeightKg: 14.5, sourceWholesaleCny: 560 },
   { productId: "p7_20", sizeModel: "EB055", size: "2DN550", productSize: "550 × 180 × 690 mm", packingSize: "610 × 240 × 750 mm", grossWeightKg: 13.5, wholesalePriceCny: 590, retailPriceCny: 1180, woodCratePriceCny: 58, woodCrateSize: "660 × 300 × 810 mm", woodCrateWeightKg: 15.5, sourceWholesaleCny: 590 },
   { productId: "p7_20", sizeModel: "EB060", size: "2DN600", productSize: "600 × 180 × 750 mm", packingSize: "660 × 240 × 810 mm", grossWeightKg: 14.5, wholesalePriceCny: 622, retailPriceCny: 1244, woodCratePriceCny: 64, woodCrateSize: "710 × 300 × 860 mm", woodCrateWeightKg: 16.5, sourceWholesaleCny: 622 },
+  { productId: "p7_21", sizeModel: "EC072", size: "72 inch", productSize: "1830 × 130 × 445 mm", packingSize: "1910 × 220 × 520 mm", grossWeightKg: 39, wholesalePriceCny: 1235, retailPriceCny: 2470, woodCratePriceCny: 110, woodCrateSize: "1980 × 280 × 580 mm", woodCrateWeightKg: 45, sourceWholesaleCny: 1235 },
+  { productId: "p7_21", sizeModel: "EC080", size: "80 inch", productSize: "2030 × 130 × 445 mm", packingSize: "2110 × 220 × 520 mm", grossWeightKg: 43, wholesalePriceCny: 1435, retailPriceCny: 2870, woodCratePriceCny: 120, woodCrateSize: "2180 × 280 × 580 mm", woodCrateWeightKg: 49, sourceWholesaleCny: 1435 },
   { productId: "p4_66", sizeModel: "M0503", size: "Ø300 mm", productSize: "300 × 300 × 280 mm", packingSize: "380 × 380 × 360 mm", grossWeightKg: 7, wholesalePriceCny: 1060, retailPriceCny: 2120, woodCratePriceCny: 44, woodCrateSize: "430 × 430 × 410 mm", woodCrateWeightKg: 8, sourceWholesaleCny: 1060 },
   { productId: "p4_66", sizeModel: "M0535", size: "Ø350 mm", productSize: "350 × 350 × 280 mm", packingSize: "430 × 430 × 360 mm", grossWeightKg: 8, wholesalePriceCny: 1043, retailPriceCny: 2086, woodCratePriceCny: 47, woodCrateSize: "480 × 480 × 410 mm", woodCrateWeightKg: 9, sourceWholesaleCny: 1043 },
   { productId: "p4_66", sizeModel: "M0504", size: "Ø400 mm", productSize: "400 × 400 × 280 mm", packingSize: "480 × 480 × 360 mm", grossWeightKg: 9, wholesalePriceCny: 1211, retailPriceCny: 2422, woodCratePriceCny: 50, woodCrateSize: "530 × 530 × 410 mm", woodCrateWeightKg: 10, sourceWholesaleCny: 1211 },
@@ -218,6 +222,7 @@ export const productSizePriceTable: ProductSizePriceRow[] = [
   { productId: "p4_75", sizeModel: "M1656", size: "Ø556 mm", productSize: "550 × 550 × 370 mm", packingSize: "630 × 630 × 360 mm", grossWeightKg: 15, wholesalePriceCny: 1785.0307, retailPriceCny: 3570.0614, woodCratePriceCny: 80, woodCrateSize: "680 × 680 × 360 mm", woodCrateWeightKg: 17, sourceWholesaleCny: 1785.0307 },
   { productId: "p4_75", sizeModel: "M1606", size: "Ø600 mm", productSize: "600 × 600 × 400 mm", packingSize: "680 × 680 × 400 mm", grossWeightKg: 16, wholesalePriceCny: 1841.2522, retailPriceCny: 3682.5043, woodCratePriceCny: 92, woodCrateSize: "730 × 730 × 450 mm", woodCrateWeightKg: 18, sourceWholesaleCny: 1841.2522 },
   { productId: "p4_75", sizeModel: "M1665", size: "Ø650 mm", productSize: "650 × 650 × 430 mm", packingSize: "730 × 730 × 420 mm", grossWeightKg: 17, wholesalePriceCny: 2217.233, retailPriceCny: 4434.4661, woodCratePriceCny: 95, woodCrateSize: "780 × 780 × 470 mm", woodCrateWeightKg: 19, sourceWholesaleCny: 2217.233 },
+  ...alibabaProductSizePriceTable,
 ];
 
 const productSizePriceMap = new Map(productSizePriceTable.map((row) => [`${row.productId}:${row.sizeModel}`, row]));

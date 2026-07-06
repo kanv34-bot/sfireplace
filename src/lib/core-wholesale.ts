@@ -649,6 +649,22 @@ const configs: Record<string, WholesaleConfig> = {
       { model: "2DN600", packingSize: "660 × 240 × 810 mm", grossWeight: "≈14.5 kg", load20: "≈187 pcs", load40: "≈452 pcs" },
     ],
   },
+  p7_21: {
+    moq: 1,
+    sample: 1,
+    leadTime: "20–30 days",
+    size: "72 inch / 80 inch",
+    keySpec: "RGB LED flame · 13 colors · 750W/1500W · remote + app control · OEM/ODM",
+    packing: "Foam protection + reinforced export carton; wooden crate optional for project shipments",
+    packingSize: "Estimated by standard export carton",
+    grossWeight: "Estimated by model size",
+    load20: "Estimated by packing size",
+    load40: "Estimated by packing size",
+    containerRows: [
+      { model: "EC072 / 72 inch", packingSize: "1910 × 220 × 520 mm", grossWeight: "≈39 kg", load20: "≈108 pcs", load40: "≈260 pcs" },
+      { model: "EC080 / 80 inch", packingSize: "2110 × 220 × 520 mm", grossWeight: "≈43 kg", load20: "≈99 pcs", load40: "≈236 pcs" },
+    ],
+  },
   p9_1: { moq: 3, sample: 1, leadTime: "25–35 days", size: "800–2400 mm", keySpec: "Holographic flame display · remote control", packing: "Flight case / wooden crate", packingSize: "1450 × 420 × 520 mm", grossWeight: "≈62 kg", load20: "≈170 pcs", load40: "≈410 pcs" },
   p9_2: { moq: 1, sample: 1, leadTime: "30–45 days", size: "Project-based", keySpec: "Projection system · custom flame media", packing: "Flight cases", packingSize: "720 × 520 × 420 mm / case", grossWeight: "≈38 kg / case", load20: "≈330 cases", load40: "≈790 cases" },
   p9_3: { moq: 1, sample: 1, leadTime: "30–45 days", size: "Modular 2–10 m+", keySpec: "Modular immersive flame wall", packing: "Sectional flight cases", packingSize: "980 × 680 × 520 mm / module", grossWeight: "≈55 kg / module", load20: "≈150 modules", load40: "≈360 modules" },
@@ -668,7 +684,7 @@ const coreProductDetails: Record<string, Partial<Record<Locale, CoreProductDetai
   p3_15: {
     zh: {
       eyebrow: "自动酒精燃烧器 · 外贸批发资料",
-      title: "面向品牌商和工程项目的自动生物乙醇燃烧器",
+      title: "自动生物乙醇燃烧器（型号A02）",
       description:
         "这款产品不是零售装饰品，而是用于壁龛、台面、岛台、酒店会所和定制壁炉结构的自动真火燃烧器。页面参数按海外批发采购、OEM/ODM 打样和工程报价场景整理，方便客户快速判断尺寸、控制、安全、包装和装柜条件。",
       specTitle: "建议给客户确认的核心技术参数",
@@ -693,7 +709,7 @@ const coreProductDetails: Record<string, Partial<Record<Locale, CoreProductDetai
     },
     en: {
       eyebrow: "Automatic Ethanol Burner · Wholesale Data",
-      title: "Automatic bio ethanol burner for brands and project buyers",
+      title: "Automatic Bio Ethanol Burner - A02",
       description:
         "This is not a retail decorative item. It is an automatic real-flame burner module for niches, counters, islands, hotel lounges, clubs, and custom fireplace structures. The data is organized for overseas wholesale quotation, OEM/ODM sampling, and project purchasing.",
       specTitle: "Core technical parameters to confirm",
@@ -720,7 +736,7 @@ const coreProductDetails: Record<string, Partial<Record<Locale, CoreProductDetai
   p4_11: {
     zh: {
       eyebrow: "M10 智能3D雾化壁炉 · 工厂批发资料",
-      title: "按 M10 报价表整理的智能雾化壁炉批发页面",
+      title: "智能3D雾化壁炉（型号M10）",
       description:
         "M10 是面向海外经销商、设计公司、酒店工程和品牌客户的智能 3D 雾化壁炉系列。页面已按 600–3000 mm 全尺寸报价表整理，客户可以直接查看尺寸型号、批发价、零售参考价、产品尺寸、包装尺寸、毛重、木架加价和装柜参考，方便做进口采购、项目报价和 OEM/ODM 选型。",
       specTitle: "M10 报价对应核心参数",
@@ -744,7 +760,7 @@ const coreProductDetails: Record<string, Partial<Record<Locale, CoreProductDetai
     },
     en: {
       eyebrow: "M10 Smart 3D Water Vapor Fireplace · Factory Wholesale Data",
-      title: "Smart mist fireplace wholesale page organized from the M10 quotation sheet",
+      title: "Smart 3D Mist Fireplace - M10",
       description:
         "M10 is a smart 3D water vapor fireplace series for overseas distributors, design firms, hotel projects, and private-label buyers. The page now follows the full 600–3000 mm quotation sheet, including size model, wholesale price, sample price, product dimensions, packing dimensions, gross weight, wooden-crate add-on, and container loading reference.",
       specTitle: "Core parameters linked to the M10 quotation",
@@ -848,6 +864,11 @@ function localizeCoreValue(value: string, lang: string): string {
       .replace(/Flight case \/ wooden crate/g, "航空箱 / 木箱")
       .replace(/Sectional flight cases/g, "分段航空箱")
       .replace(/Flight cases/g, "航空箱")
+      .replace(/RGB LED flame · 13 colors · 750W\/1500W · remote \+ app control · OEM\/ODM/g, "RGB LED 火焰 · 13 色 · 750W/1500W · 遥控 + APP 控制 · OEM/ODM")
+      .replace(/Foam protection \+ reinforced export carton; wooden crate optional for project shipments/g, "泡沫防护 + 加固出口纸箱；工程出货可选木箱")
+      .replace(/Estimated by standard export carton/g, "按标准出口纸箱预估")
+      .replace(/Estimated by model size/g, "按型号尺寸预估")
+      .replace(/Estimated by packing size/g, "按包装尺寸预估")
       .replace(/Automatic ignition · flame failure protection · sensors · remote control/g, "自动点火 · 熄火保护 · 传感器 · 遥控控制")
       .replace(/Automatic ignition · sensors · remote control/g, "自动点火 · 传感器 · 遥控控制")
       .replace(/Double-sided real flame/g, "双面真火")
@@ -885,6 +906,76 @@ function localizeCoreValue(value: string, lang: string): string {
       .replace(/module/g, "模块")
       .replace(/cases/g, "箱")
       .replace(/case/g, "箱");
+  }
+  if (lang === "fr") {
+    return value
+      .replace(/(\d+)[–-](\d+) days/g, "$1-$2 jours")
+      .replace(/RGB LED flame · 13 colors · 750W\/1500W · remote \+ app control · OEM\/ODM/g, "Flamme LED RGB · 13 couleurs · 750W/1500W · télécommande + application · OEM/ODM")
+      .replace(/Foam protection \+ reinforced export carton; wooden crate optional for project shipments/g, "Protection mousse + carton export renforcé; caisse bois en option pour projets")
+      .replace(/Estimated by standard export carton/g, "Estimé selon carton export standard")
+      .replace(/Estimated by model size/g, "Estimé selon le modèle")
+      .replace(/Estimated by packing size/g, "Estimé selon l'emballage")
+      .replace(/pcs/g, "unités");
+  }
+  if (lang === "it") {
+    return value
+      .replace(/(\d+)[–-](\d+) days/g, "$1-$2 giorni")
+      .replace(/RGB LED flame · 13 colors · 750W\/1500W · remote \+ app control · OEM\/ODM/g, "Fiamma LED RGB · 13 colori · 750W/1500W · telecomando + app · OEM/ODM")
+      .replace(/Foam protection \+ reinforced export carton; wooden crate optional for project shipments/g, "Protezione in schiuma + cartone export rinforzato; cassa in legno opzionale per progetti")
+      .replace(/Estimated by standard export carton/g, "Stimato su cartone export standard")
+      .replace(/Estimated by model size/g, "Stimato in base al modello")
+      .replace(/Estimated by packing size/g, "Stimato in base all'imballo")
+      .replace(/pcs/g, "pz");
+  }
+  if (lang === "es") {
+    return value
+      .replace(/(\d+)[–-](\d+) days/g, "$1-$2 días")
+      .replace(/RGB LED flame · 13 colors · 750W\/1500W · remote \+ app control · OEM\/ODM/g, "Llama LED RGB · 13 colores · 750W/1500W · control remoto + app · OEM/ODM")
+      .replace(/Foam protection \+ reinforced export carton; wooden crate optional for project shipments/g, "Protección de espuma + cartón export reforzado; caja de madera opcional para proyectos")
+      .replace(/Estimated by standard export carton/g, "Estimado según cartón export estándar")
+      .replace(/Estimated by model size/g, "Estimado según el modelo")
+      .replace(/Estimated by packing size/g, "Estimado según el embalaje")
+      .replace(/pcs/g, "uds.");
+  }
+  if (lang === "pt") {
+    return value
+      .replace(/(\d+)[–-](\d+) days/g, "$1-$2 dias")
+      .replace(/RGB LED flame · 13 colors · 750W\/1500W · remote \+ app control · OEM\/ODM/g, "Chama LED RGB · 13 cores · 750W/1500W · controle remoto + app · OEM/ODM")
+      .replace(/Foam protection \+ reinforced export carton; wooden crate optional for project shipments/g, "Proteção em espuma + caixa export reforçada; caixa de madeira opcional para projetos")
+      .replace(/Estimated by standard export carton/g, "Estimado por caixa export padrão")
+      .replace(/Estimated by model size/g, "Estimado pelo modelo")
+      .replace(/Estimated by packing size/g, "Estimado pela embalagem")
+      .replace(/pcs/g, "unid.");
+  }
+  if (lang === "ru") {
+    return value
+      .replace(/(\d+)[–-](\d+) days/g, "$1-$2 дней")
+      .replace(/RGB LED flame · 13 colors · 750W\/1500W · remote \+ app control · OEM\/ODM/g, "RGB LED-пламя · 13 цветов · 750W/1500W · пульт + приложение · OEM/ODM")
+      .replace(/Foam protection \+ reinforced export carton; wooden crate optional for project shipments/g, "Защитная пена + усиленный экспортный картон; деревянная обрешётка опционально для проектов")
+      .replace(/Estimated by standard export carton/g, "Оценка по стандартной экспортной коробке")
+      .replace(/Estimated by model size/g, "Оценка по размеру модели")
+      .replace(/Estimated by packing size/g, "Оценка по упаковке")
+      .replace(/pcs/g, "шт.");
+  }
+  if (lang === "ja") {
+    return value
+      .replace(/(\d+)[–-](\d+) days/g, "$1-$2日")
+      .replace(/RGB LED flame · 13 colors · 750W\/1500W · remote \+ app control · OEM\/ODM/g, "RGB LED炎 · 13色 · 750W/1500W · リモコン + アプリ制御 · OEM/ODM")
+      .replace(/Foam protection \+ reinforced export carton; wooden crate optional for project shipments/g, "緩衝フォーム + 強化輸出カートン、案件出荷は木箱対応可")
+      .replace(/Estimated by standard export carton/g, "標準輸出カートン基準の概算")
+      .replace(/Estimated by model size/g, "型番サイズによる概算")
+      .replace(/Estimated by packing size/g, "梱包寸法による概算")
+      .replace(/pcs/g, "台");
+  }
+  if (lang === "ar") {
+    return value
+      .replace(/(\d+)[–-](\d+) days/g, "$1-$2 يومًا")
+      .replace(/RGB LED flame · 13 colors · 750W\/1500W · remote \+ app control · OEM\/ODM/g, "لهب LED RGB · 13 لونًا · 750W/1500W · ريموت + تحكم عبر التطبيق · OEM/ODM")
+      .replace(/Foam protection \+ reinforced export carton; wooden crate optional for project shipments/g, "حماية فوم + كرتون تصدير مقوى؛ صندوق خشبي اختياري للمشروعات")
+      .replace(/Estimated by standard export carton/g, "تقديري حسب كرتون التصدير القياسي")
+      .replace(/Estimated by model size/g, "تقديري حسب مقاس الموديل")
+      .replace(/Estimated by packing size/g, "تقديري حسب أبعاد التغليف")
+      .replace(/pcs/g, "وحدة");
   }
   if (lang !== "de") return value;
   return value

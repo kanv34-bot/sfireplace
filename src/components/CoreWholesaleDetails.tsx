@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ProductImage from "@/components/ProductImage";
 import {
   getCoreContainerCopy,
   getCoreProductDetail,
@@ -15,6 +16,14 @@ type Props = {
   productId: string;
   productName: string;
   priceCny?: number;
+  detailImages?: DetailImage[];
+};
+
+type DetailImage = {
+  src: string;
+  alt: string;
+  label: string;
+  fit?: "contain" | "cover";
 };
 
 const whatsappUrl =
@@ -168,6 +177,7 @@ export default function CoreWholesaleDetails({
   productId,
   productName,
   priceCny,
+  detailImages = [],
 }: Props) {
   const t = getCoreWholesaleCopy(lang);
   const container = getCoreContainerCopy(lang);
@@ -195,6 +205,7 @@ export default function CoreWholesaleDetails({
         load20: config.load20,
         load40: config.load40,
       }];
+  const visibleDetailImages = detailImages.slice(0, 6);
 
   return (
     <div className="border-t border-[#ece7e1] bg-white">
@@ -285,6 +296,22 @@ export default function CoreWholesaleDetails({
             {t.requestQuote}
           </Link>
         </div>
+
+        {visibleDetailImages.length >= 3 && (
+          <section className="mt-12 bg-white">
+            <div className="overflow-hidden">
+              {visibleDetailImages.map((image, index) => (
+                <div key={`${image.src}-detail-flow-${index}`} className="bg-white">
+                  <ProductImage
+                    src={image.src}
+                    alt={image.alt}
+                    className="block h-auto w-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {sizePriceRows.length > 0 && (
           <section className="mt-12 rounded-[8px] border border-[#ece7e1] bg-white p-5 sm:p-6">
